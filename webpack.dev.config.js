@@ -5,10 +5,13 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/main.jsx'),
+  entry: {
+    bundle: path.resolve(__dirname, './src/main.jsx'),
+    github: path.resolve(__dirname, './src/github/main.jsx')
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/'
   },
   plugins: [
@@ -17,8 +20,14 @@ module.exports = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
+      chunks: ['bundle'],
       template: path.resolve(__dirname, './src/index.pug'),
       filename: 'index.html'
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['github'],
+      template: path.resolve(__dirname, './src/index.pug'),
+      filename: 'github.html'
     }),
     new ExtractTextWebpackPlugin('styles.css'),
     new UglifyJSWebpackPlugin({
@@ -62,5 +71,6 @@ module.exports = {
       })
     }]
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  watch: true
 }

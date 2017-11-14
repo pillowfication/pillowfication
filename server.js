@@ -3,11 +3,15 @@ const express = require('express')
 
 const PORT = process.argv[2] || process.env.PFN_PORT || 80
 const INDEX_PATH = path.resolve(__dirname, './dist/index.html')
+const GITHUB_PATH = path.resolve(__dirname, './dist/github.html')
 
 const app = express()
 
 app.use(express.static(path.resolve(__dirname, './dist')))
 
+app.get('/github*', (_, response) => {
+  response.sendFile(GITHUB_PATH)
+})
 app.get('*', (_, response) => {
   response.sendFile(INDEX_PATH)
 })

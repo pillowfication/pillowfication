@@ -18,7 +18,7 @@
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --config webpack.prod.config.js",
-    "build:dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --config webpack.dev.config.js --progress --colors --watch",
+    "build:dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --config webpack.dev.config.js --progress --colors",
     "test": "node_modules/standard/bin/cmd.js"
   },
   "dependencies": {
