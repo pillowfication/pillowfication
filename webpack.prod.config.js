@@ -16,7 +16,7 @@ module.exports = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Pillowfication',
+      template: path.resolve(__dirname, './src/index.pug'),
       filename: 'index.html'
     }),
     new UglifyJSPlugin({

@@ -1,7 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
+const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: path.resolve(__dirname, './src/main.jsx'),
@@ -19,7 +20,8 @@ module.exports = {
       template: path.resolve(__dirname, './src/index.pug'),
       filename: 'index.html'
     }),
-    new UglifyJSPlugin({
+    new ExtractTextWebpackPlugin('styles.css'),
+    new UglifyJSWebpackPlugin({
       cache: path.resolve(__dirname, './.cache'),
       parallel: true
     })
@@ -36,6 +38,22 @@ module.exports = {
     }, {
       test: /\.pug$/,
       loader: 'pug-loader'
+    }, {
+      test: /\.s?css$/,
+      use: ExtractTextWebpackPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: {
+            sourceMap: true
+          }
+        }, {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }]
+      })
     }]
   }
 }
