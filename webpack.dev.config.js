@@ -23,7 +23,8 @@ module.exports = {
     new ExtractTextWebpackPlugin('styles.css'),
     new UglifyJSWebpackPlugin({
       cache: path.resolve(__dirname, './.cache'),
-      parallel: true
+      parallel: true,
+      sourceMap: true
     })
   ],
   module: {
@@ -45,6 +46,8 @@ module.exports = {
         use: [{
           loader: 'css-loader',
           options: {
+            modules: true,
+            camelCase: 'dashesOnly',
             sourceMap: true
           }
         }, {
@@ -55,5 +58,6 @@ module.exports = {
         }]
       })
     }]
-  }
+  },
+  devtool: 'source-map'
 }
