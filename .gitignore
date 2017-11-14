@@ -1,7 +1,3 @@
 /node_modules
-*.log
-
-website/bundle.js
-website/bundle.js.gz
-website/bundle.js.map
-website/public
+/dist
+/.cache
