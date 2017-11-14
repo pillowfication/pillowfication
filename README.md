@@ -1,3 +1,3 @@
 # pillowfication
 
-http://pillowfiation.com
+http://pillowfication.com
