@@ -1,8 +1,9 @@
 import React from 'react'
-import styles from './App.scss'
+
+import UnderConstruction from './components/UnderConstruction.jsx'
 
 export default class App extends React.Component {
   render () {
-    return <div className={styles.app}>Hello, World!</div>
+    return <UnderConstruction />
   }
 }
