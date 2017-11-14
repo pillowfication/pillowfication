@@ -1,4 +1,4 @@
-// See https://github.com/webpack-contrib/css-loader/issues/436
 :global {
+  // Not sure why `~` doesn't work here
   @import "../node_modules/normalize.css/normalize.css";
 }
