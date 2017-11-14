@@ -48,6 +48,9 @@ module.exports = {
           options: {
             modules: true,
             camelCase: 'dashesOnly',
+            minimize: {
+              preset: 'advanced'
+            },
             sourceMap: true
           }
         }, {
