@@ -1,0 +1,7 @@
+@import '../settings';
+
+.side-bar {
+  margin: $global-padding 0 $global-padding $global-padding;
+  border-right: 1px solid $light-gray;
+  white-space: nowrap;
+}

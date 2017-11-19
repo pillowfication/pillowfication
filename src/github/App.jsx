@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+import classnames from 'classnames'
 
-import Home from './components/Home.jsx'
-import _404 from './components/404.jsx'
-import PerfectCuboid from './components/PerfectCuboid.jsx'
-import './main.scss'
+import TopBar from './components/TopBar.jsx'
+import SideBar from './components/SideBar.jsx'
+import ProjectViewer from './components/ProjectViewer.jsx'
+import zf from './foundation.scss'
+import styles from './App.scss'
 
 export default class App extends Component {
   render () {
     return (
       <Router basename='/github'>
         <div>
-          <nav>
-            foo
-          </nav>
-          <main>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/perfect-cuboid' component={PerfectCuboid} />
-              <Route component={_404} />
-            </Switch>
+          <TopBar />
+          <main className={classnames(styles.main, zf.row, zf.columns, zf.small12)}>
+            <SideBar />
+            <ProjectViewer />
           </main>
         </div>
       </Router>
