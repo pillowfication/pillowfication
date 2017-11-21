@@ -168,15 +168,16 @@ class CuboidTester extends Component {
         <div className={classnames(zf.columns, zf.small12, zf.medium8, zf.large9)}>
           Equivalents<br />
           {getEquivalents(this.state.id).map(id =>
-            <a key={id}
+            <button key={id}
+              type='button'
               className={classnames(styles.idButton, zf.button, zf.hollow)}
               onClick={this.selectId.bind(this, id)}
             >
               {id}
-            </a>
+            </button>
           )}
         </div>
-        <div className={classnames(zf.columns, zf.small12)}>
+        <div className={classnames(zf.columns, zf.small12, zf.tableScroll)}>
           <table className={styles.inputTable}>
             <thead>
               <tr>
@@ -204,7 +205,7 @@ class CuboidTester extends Component {
             </tbody>
           </table>
         </div>
-        <div className={classnames(zf.columns, zf.small12, zf.large6)}>
+        <div className={classnames(zf.columns, zf.small12, zf.large6, zf.tableScroll)}>
           Steps<br />
           <ol className={styles.steps} start={0}>
             {verification.stateArray.map((step, index) =>
@@ -223,7 +224,7 @@ class CuboidTester extends Component {
             </li>
           </ol>
         </div>
-        <div className={classnames(zf.columns, zf.small12, zf.large6)}>
+        <div className={classnames(zf.columns, zf.small12, zf.large6, zf.tableScroll)}>
           Knowledge (step {stepIndex})<br />
           <table className={styles.knowledgeTable}>
             <thead>
@@ -259,12 +260,13 @@ class CuboidTester extends Component {
         <div className={classnames(zf.columns, zf.small12)}>
           Passed Cases<br />
           {PASSED.map(id =>
-            <a key={id}
+            <button key={id}
+              type='button'
               className={classnames(styles.idButton, zf.button, zf.hollow)}
               onClick={this.selectId.bind(this, id)}
             >
               {id}
-            </a>
+            </button>
           )}
         </div>
       </div>
@@ -282,44 +284,46 @@ export default class PerfectCuboid extends Component {
       <div>
         <h1>Perfect Cuboid</h1>
         <p>Also a known as a perfect Euler brick or a perfect box, a <a href='https://en.wikipedia.org/wiki/Euler_brick#Perfect_cuboid'>perfect cuboid</a> is a cuboid where all distances between vertices are integers. Existence of a perfect cuboid is an unsolved problem in mathematics.</p>
-        <div className={styles.diagramContainer}>
-          <svg className={styles.diagram}>
-            <line x1='320' y1='20' x2='320' y2='160' style={lineStyle.gray} />
-            <line x1='420' y1='240' x2='320' y2='160' style={lineStyle.gray} />
-            <line x1='320' y1='160' x2='20' y2='160' style={lineStyle.gray} />
-            <line x1='120' y1='240' x2='320' y2='20' style={lineStyle.grayDash} />
-            <line x1='20' y1='20' x2='120' y2='100' style={lineStyle.black} />
-            <line x1='120' y1='100' x2='420' y2='100' style={lineStyle.black} />
-            <line x1='420' y1='100' x2='320' y2='20' style={lineStyle.black} />
-            <line x1='320' y1='20' x2='20' y2='20' style={lineStyle.black} />
-            <line x1='20' y1='20' x2='20' y2='160' style={lineStyle.black} />
-            <line x1='120' y1='100' x2='120' y2='240' style={lineStyle.black} />
-            <line x1='420' y1='100' x2='420' y2='240' style={lineStyle.black} />
-            <line x1='20' y1='160' x2='120' y2='240' style={lineStyle.black} />
-            <line x1='120' y1='240' x2='420' y2='240' style={lineStyle.black} />
-            <line x1='20' y1='20' x2='120' y2='240' style={lineStyle.blackDash} />
-            <line x1='120' y1='240' x2='420' y2='100' style={lineStyle.blackDash} />
-            <line x1='420' y1='100' x2='20' y2='20' style={lineStyle.blackDash} />
-          </svg>
-          <div className={styles.labels}>
-            <div style={{ left: '0px', top: '80px' }}>\(a\)</div>
-            <div style={{ left: '50px', top: '198px' }}>\(b\)</div>
-            <div style={{ left: '260px', top: '242px' }}>\(c\)</div>
-            <div style={{ left: '70px', top: '100px' }}>\(d\)</div>
-            <div style={{ left: '140px', top: '44px' }}>\(e\)</div>
-            <div style={{ left: '240px', top: '184px' }}>\(f\)</div>
-            <div style={{ left: '190px', top: '124px' }}>\(g\)</div>
+        <div className={classnames(styles.diagramContainer, zf.tableScroll)}>
+          <div>
+            <svg className={styles.diagram}>
+              <line x1='320' y1='20' x2='320' y2='160' style={lineStyle.gray} />
+              <line x1='420' y1='240' x2='320' y2='160' style={lineStyle.gray} />
+              <line x1='320' y1='160' x2='20' y2='160' style={lineStyle.gray} />
+              <line x1='120' y1='240' x2='320' y2='20' style={lineStyle.grayDash} />
+              <line x1='20' y1='20' x2='120' y2='100' style={lineStyle.black} />
+              <line x1='120' y1='100' x2='420' y2='100' style={lineStyle.black} />
+              <line x1='420' y1='100' x2='320' y2='20' style={lineStyle.black} />
+              <line x1='320' y1='20' x2='20' y2='20' style={lineStyle.black} />
+              <line x1='20' y1='20' x2='20' y2='160' style={lineStyle.black} />
+              <line x1='120' y1='100' x2='120' y2='240' style={lineStyle.black} />
+              <line x1='420' y1='100' x2='420' y2='240' style={lineStyle.black} />
+              <line x1='20' y1='160' x2='120' y2='240' style={lineStyle.black} />
+              <line x1='120' y1='240' x2='420' y2='240' style={lineStyle.black} />
+              <line x1='20' y1='20' x2='120' y2='240' style={lineStyle.blackDash} />
+              <line x1='120' y1='240' x2='420' y2='100' style={lineStyle.blackDash} />
+              <line x1='420' y1='100' x2='20' y2='20' style={lineStyle.blackDash} />
+            </svg>
+            <div className={styles.labels}>
+              <div style={{ left: '0px', top: '80px' }}>\(a\)</div>
+              <div style={{ left: '50px', top: '198px' }}>\(b\)</div>
+              <div style={{ left: '260px', top: '242px' }}>\(c\)</div>
+              <div style={{ left: '70px', top: '100px' }}>\(d\)</div>
+              <div style={{ left: '140px', top: '44px' }}>\(e\)</div>
+              <div style={{ left: '240px', top: '184px' }}>\(f\)</div>
+              <div style={{ left: '190px', top: '124px' }}>\(g\)</div>
+            </div>
+            <$ $$={`
+              \\begin{align}
+                a^2 + b^2 &= d^2\\\\
+                a^2 + c^2 &= e^2\\\\
+                b^2 + c^2 &= f^2\\\\
+                a^2 + f^2 = b^2 + e^2 = c^2 + d^2 &= g^2
+              \\end{align}
+              \\quad
+              \\text{where $a, b, c, d, e, f, g \\in \\mathbb{Z}^+$}
+            `} />
           </div>
-          <$ $$={`
-            \\begin{align}
-              a^2 + b^2 &= d^2\\\\
-              a^2 + c^2 &= e^2\\\\
-              b^2 + c^2 &= f^2\\\\
-              a^2 + f^2 = b^2 + e^2 = c^2 + d^2 &= g^2
-            \\end{align}
-            \\quad
-            \\text{where $a, b, c, d, e, f, g \\in \\mathbb{Z}^+$}
-          `} />
         </div>
         <p>There are six <a href='https://en.wikipedia.org/wiki/Pythagorean_triple'>Pythagorean triples</a> to satisfy. I tried to test which kinds of triples are possible using modular arithmetic. Triples were categorized by their divisibility:</p>
         <$ $$={`

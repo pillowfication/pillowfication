@@ -6,7 +6,11 @@ $cuboid-width: 440px;
 $cuboid-height: 260px;
 
 .diagram-container {
-  position: relative;
+  & > div {
+    position: relative;
+    width: 100%;
+    min-width: 540px;
+  }
 }
 
 .diagram {
@@ -34,28 +38,13 @@ $cuboid-height: 260px;
 }
 
 .input-table {
-  th {
+  th, td {
     padding: .3rem;
     text-align: center;
   }
-  td {
-    padding: 0;
-    text-align: center;
-  }
+
   input[type=radio] {
     margin: .3rem;
-  }
-
-  @include breakpoint(medium down) {
-    th, td {
-      font-size: .9rem;
-    }
-  }
-
-  @include breakpoint(small down) {
-    th, td {
-      font-size: .8rem;
-    }
   }
 }
 
@@ -77,6 +66,7 @@ $cuboid-height: 260px;
 
 .knowledge-table {
   th, td {
+    padding: .3rem;
     text-align: center;
   }
 

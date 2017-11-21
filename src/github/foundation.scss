@@ -41,3 +41,7 @@
 @include foundation-top-bar;
 // @include foundation-visibility-classes;
 // @include foundation-float-classes;
+
+.table-scroll table {
+  width: 100%;
+}
