@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import PerfectCuboid from './pages/PerfectCuboid.jsx'
+import PerfectCuboid from './perfect-cuboid/PerfectCuboid.jsx'
 import styles from './ProjectViewer.scss'
 
 class Home extends Component {
