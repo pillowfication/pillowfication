@@ -20,16 +20,19 @@ module.exports = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      chunks: ['bundle'],
+      chunks: [ 'bundle' ],
       template: path.resolve(__dirname, './src/index.pug'),
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
-      chunks: ['github'],
-      template: path.resolve(__dirname, './src/index.pug'),
+      chunks: [ 'github' ],
+      template: path.resolve(__dirname, './src/github/index.pug'),
       filename: 'github.html'
     }),
-    new ExtractTextWebpackPlugin('styles.css'),
+    new ExtractTextWebpackPlugin({
+      filename: '[name].css',
+      ignoreOrder: true
+    }),
     new UglifyJSWebpackPlugin({
       cache: path.resolve(__dirname, './.cache'),
       parallel: true,
@@ -70,6 +73,24 @@ module.exports = {
           }
         }]
       })
+    }, {
+      test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          mimetype: 'application/font-woff',
+          name: 'dist/fonts/[name].[ext]'
+        }
+      }]
+    }, {
+      test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: 'dist/fonts/[name].[ext]'
+        }
+      }]
     }]
   },
   devtool: 'source-map',

@@ -1,0 +1,112 @@
+@import "../../settings";
+@import "~font-awesome/scss/mixins";
+@import "~font-awesome/scss/variables";
+
+$cuboid-width: 440px;
+$cuboid-height: 260px;
+
+.diagram-container {
+  position: relative;
+}
+
+.diagram {
+  display: block;
+  width: $cuboid-width;
+  height: $cuboid-height;
+  margin: 0 auto;
+}
+
+.labels {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: $cuboid-width;
+  height: $cuboid-height;
+  margin-left: -$cuboid-width/2;
+
+  & > div {
+    position: absolute;
+  }
+}
+
+.id-button {
+  margin: 0 .2rem .5rem 0;
+}
+
+.input-table {
+  th {
+    padding: .3rem;
+    text-align: center;
+  }
+  td {
+    padding: 0;
+    text-align: center;
+  }
+  input[type=radio] {
+    margin: .3rem;
+  }
+
+  @include breakpoint(medium down) {
+    th, td {
+      font-size: .9rem;
+    }
+  }
+
+  @include breakpoint(small down) {
+    th, td {
+      font-size: .8rem;
+    }
+  }
+}
+
+.steps {
+  li:not(:last-child) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($primary-color, .1);
+    }
+    &.selected {
+      background-color: rgba($primary-color, .18);
+    }
+  }
+  .contradiction {
+    color: $alert-color;
+  }
+}
+
+.knowledge-table {
+  th, td {
+    text-align: center;
+  }
+
+  td:not(.unknown) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($primary-color, .1);
+    }
+    &.selected {
+      background-color: rgba($primary-color, .18);
+    }
+  }
+}
+
+.true, .false, .unknown {
+  font-size: 1.5em;
+  &::before {
+    @include fa-icon();
+  }
+}
+.true::before {
+  content: $fa-var-check;
+  color: $success-color;
+}
+.false::before {
+  content: $fa-var-times;
+  color: $alert-color;
+}
+.unknown::before {
+  content: $fa-var-question;
+  color: rgba(0, 0, 0, .1);
+}

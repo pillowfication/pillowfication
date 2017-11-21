@@ -1,4 +1,6 @@
-:global {
-  // Not sure why `~` doesn't work here
-  @import "../node_modules/normalize.css/normalize.css";
+// Not sure why `~` doesn't work here
+@import "../node_modules/normalize.css/normalize.css";
+
+.foo {
+  asdf: blue;
 }

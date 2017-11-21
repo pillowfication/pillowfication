@@ -5,10 +5,13 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/main.jsx'),
+  entry: {
+    bundle: path.resolve(__dirname, './src/main.jsx'),
+    github: path.resolve(__dirname, './src/github/main.jsx')
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/'
   },
   plugins: [
@@ -17,10 +20,19 @@ module.exports = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
+      chunks: [ 'bundle' ],
       template: path.resolve(__dirname, './src/index.pug'),
       filename: 'index.html'
     }),
-    new ExtractTextWebpackPlugin('styles.css'),
+    new HtmlWebpackPlugin({
+      chunks: [ 'github' ],
+      template: path.resolve(__dirname, './src/github/index.pug'),
+      filename: 'github.html'
+    }),
+    new ExtractTextWebpackPlugin({
+      filename: '[name].css',
+      ignoreOrder: true
+    }),
     new UglifyJSWebpackPlugin({
       parallel: true
     })
@@ -53,6 +65,24 @@ module.exports = {
           loader: 'sass-loader'
         }]
       })
+    }, {
+      test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          mimetype: 'application/font-woff',
+          name: 'dist/fonts/[name].[ext]'
+        }
+      }]
+    }, {
+      test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: 'dist/fonts/[name].[ext]'
+        }
+      }]
     }]
   }
 }

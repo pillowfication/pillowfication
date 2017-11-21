@@ -1,3 +1,13 @@
+@import "settings";
+
+pre {
+  margin-bottom: $global-margin;
+}
+
 .main {
   display: flex;
+
+  @include breakpoint(medium down) {
+    flex-direction: column;
+  }
 }

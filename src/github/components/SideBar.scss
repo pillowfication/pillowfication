@@ -4,4 +4,10 @@
   margin: $global-padding 0 $global-padding $global-padding;
   border-right: 1px solid $light-gray;
   white-space: nowrap;
+
+  @include breakpoint(medium down) {
+    margin: $global-padding;
+    border: none;
+    white-space: normal;
+  }
 }
