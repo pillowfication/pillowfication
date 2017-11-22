@@ -50,9 +50,19 @@ $cuboid-height: 260px;
     padding: .3rem;
   }
 
+  tbody tr {
+    background: none;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $light-gray;
+    }
+  }
+  th:first-child {
+    border-right: 1px solid $light-gray;
+  }
+
   label {
     cursor: pointer;
-
     transition: {
       property: background-color;
       duration: .15s;
@@ -95,6 +105,17 @@ $cuboid-height: 260px;
   th, td {
     padding: .3rem;
     text-align: center;
+  }
+
+  tbody tr {
+    background: none;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $light-gray;
+    }
+  }
+  th:first-child {
+    border-right: 1px solid $light-gray;
   }
 
   td:not(.unknown) {
