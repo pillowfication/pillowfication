@@ -1,6 +1,5 @@
 /* global MathJax */
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 import zf from '../foundation.scss'
 
@@ -33,30 +32,30 @@ class Math extends Component {
 
 Math.propTypes = {
   $: (props, propName, componentName) => {
-    const error = PropTypes.string.apply(arguments)
-    if (error) {
-      return error
+    const propType = typeof props[propName]
+    if (propType !== 'undefined' && propType !== 'string') {
+      return new Error(`Invalid prop \`${propName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`string\`.`)
     }
 
     if (!props.$ && !props.$$) {
-      return new Error(`One of props '$' or '$$' was not specified in '${componentName}'.`)
+      return new Error(`One of props \`$\` or \`$$\` was not specified in \`${componentName}\`.`)
     }
     if (props.$ && props.$$) {
-      return new Error(`Only one of props '$' or '$$' should be specified in '${componentName}'.`)
+      return new Error(`Only one of props \`$\` or \`$$\` should be specified in \`${componentName}\`.`)
     }
   },
 
   $$: (props, propName, componentName) => {
-    const error = PropTypes.string.apply(arguments)
-    if (error) {
-      return error
+    const propType = typeof props[propName]
+    if (propType !== 'undefined' && propType !== 'string') {
+      return new Error(`Invalid prop \`${propName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`string\`.`)
     }
 
     if (!props.$ && !props.$$) {
-      return new Error(`One of props '$' or '$$' was not specified in '${componentName}'.`)
+      return new Error(`One of props \`$\` or \`$$\` was not specified in \`${componentName}\`.`)
     }
     if (props.$ && props.$$) {
-      return new Error(`Only one of props '$' or '$$' should be specified in '${componentName}'.`)
+      return new Error(`Only one of props \`$\` or \`$$\` should be specified in \`${componentName}\`.`)
     }
   }
 }
