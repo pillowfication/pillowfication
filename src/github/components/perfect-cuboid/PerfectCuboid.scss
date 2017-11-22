@@ -55,6 +55,10 @@ $cuboid-height: 260px;
 .steps {
   li:not(:last-child) {
     cursor: pointer;
+    transition: {
+      property: background-color;
+      duration: .15s;
+    }
 
     &:hover {
       background-color: rgba($primary-color, .1);
@@ -76,6 +80,10 @@ $cuboid-height: 260px;
 
   td:not(.unknown) {
     cursor: pointer;
+    transition: {
+      property: background-color;
+      duration: .15s;
+    }
 
     &:hover {
       background-color: rgba($primary-color, .1);
