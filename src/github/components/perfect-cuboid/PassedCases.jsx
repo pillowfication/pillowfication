@@ -60,17 +60,21 @@ const PASSED = [
 
 class PassedCases extends PureComponent {
   render () {
+    const { id, onSelectId } = this.props
+
     return (
       <div className={zf.row}>
         <div className={classnames(zf.columns, zf.small12)}>
-          Passed Cases ({PASSED.length} total)<br />
-          {PASSED.map(id =>
-            <button key={id}
+          <b>Passed Cases ({PASSED.length} total)</b><br />
+          {PASSED.map(passed =>
+            <button key={passed}
               type='button'
-              className={classnames(styles.idButton, zf.button, zf.hollow)}
-              onClick={this.props.onSelectId.bind(this, id)}
+              className={classnames(styles.idButton, zf.button, zf.hollow, {
+                [styles.selected]: id === passed
+              })}
+              onClick={onSelectId.bind(this, passed)}
             >
-              {id}
+              {passed}
             </button>
           )}
         </div>
@@ -80,6 +84,7 @@ class PassedCases extends PureComponent {
 }
 
 PassedCases.propTypes = {
+  id: PropTypes.number.isRequired,
   onSelectId: PropTypes.func.isRequired
 }
 

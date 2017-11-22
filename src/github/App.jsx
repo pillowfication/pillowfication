@@ -8,7 +8,7 @@ import ProjectViewer from './components/ProjectViewer.jsx'
 import zf from './foundation.scss'
 import styles from './App.scss'
 
-export default class App extends Component {
+class App extends Component {
   render () {
     return (
       <Router basename='/github'>
@@ -23,3 +23,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default App

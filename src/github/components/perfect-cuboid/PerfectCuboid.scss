@@ -35,6 +35,10 @@ $cuboid-height: 260px;
 
 .id-button {
   margin: 0 .2rem .5rem 0;
+
+  &.selected {
+    text-decoration: underline;
+  }
 }
 
 .input-table {

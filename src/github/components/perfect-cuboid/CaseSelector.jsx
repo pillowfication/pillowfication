@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { toId, fromId, getEquivalents } from 'perfect-cuboid/src/enumerate'
+import { toId, fromId } from 'perfect-cuboid/src/enumerate'
+import { getEquivalents } from 'perfect-cuboid/src/equivalent'
 import { TRIPLES, TYPES } from './maps'
 
 import $ from '../Math.jsx'
@@ -32,7 +33,7 @@ class CaseSelector extends PureComponent {
     }
   }
 
-  sanitizeIdInput (idInput) {
+  static sanitizeIdInput (idInput) {
     const id = Math.floor(+idInput || 0)
     return Math.min(MAX_ID, Math.max(MIN_ID, id))
   }
@@ -40,7 +41,7 @@ class CaseSelector extends PureComponent {
   inputId (event) {
     const idInput = event.target.value
     this.setState({ idInput })
-    this.props.onSelectId(this.sanitizeIdInput(idInput))
+    this.props.onSelectId(CaseSelector.sanitizeIdInput(idInput))
   }
 
   focusIdInput () {
@@ -62,13 +63,13 @@ class CaseSelector extends PureComponent {
   }
 
   render () {
-    const id = this.props.id
+    const { id } = this.props
     const permutation = fromId(id)
 
     return (
       <div className={zf.row}>
         <div className={classnames(zf.columns, zf.small12, zf.medium4, zf.large3)}>
-          Case Identifier<br />
+          <b>Case Identifier</b><br />
           <input type='number'
             value={this.state.idInput}
             min={MIN_ID}
@@ -79,11 +80,13 @@ class CaseSelector extends PureComponent {
           />
         </div>
         <div className={classnames(zf.columns, zf.small12, zf.medium8, zf.large9)}>
-          Equivalents<br />
+          <b>Equivalents</b><br />
           {getEquivalents(id).map(equivalent =>
             <button key={equivalent}
               type='button'
-              className={classnames(styles.idButton, zf.button, zf.hollow)}
+              className={classnames(styles.idButton, zf.button, zf.hollow, {
+                [styles.selected]: id === equivalent
+              })}
               value={equivalent}
               onClick={this.selectEquivalent}
             >

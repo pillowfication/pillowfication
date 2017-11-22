@@ -3,7 +3,6 @@ import React, { PureComponent } from 'react'
 import CaseSelector from './CaseSelector.jsx'
 import StepSelector from './StepSelector.jsx'
 import PassedCases from './PassedCases.jsx'
-import '../../font-awesome.scss'
 
 class Playground extends PureComponent {
   constructor (props) {

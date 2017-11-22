@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import zf from '../foundation.scss'
+
 let calledRender = false
 function queueRenderMath () {
   if (!calledRender) {
@@ -24,14 +26,39 @@ class Math extends Component {
 
   render () {
     return this.props.$$
-      ? <p dangerouslySetInnerHTML={{ __html: `\\[${this.props.$$}\\]` }} />
-      : <span dangerouslySetInnerHTML={{ __html: `\\(${this.props.$}\\)` }} />
+      ? <div className={zf.tableScroll}><p>{`\\[${this.props.$$}\\]`}</p></div>
+      : <span>{`\\(${this.props.$}\\)`}</span>
   }
 }
 
 Math.propTypes = {
-  $: PropTypes.string,
-  $$: PropTypes.string
+  $: (props, propName, componentName) => {
+    const error = PropTypes.string.apply(arguments)
+    if (error) {
+      return error
+    }
+
+    if (!props.$ && !props.$$) {
+      return new Error(`One of props '$' or '$$' was not specified in '${componentName}'.`)
+    }
+    if (props.$ && props.$$) {
+      return new Error(`Only one of props '$' or '$$' should be specified in '${componentName}'.`)
+    }
+  },
+
+  $$: (props, propName, componentName) => {
+    const error = PropTypes.string.apply(arguments)
+    if (error) {
+      return error
+    }
+
+    if (!props.$ && !props.$$) {
+      return new Error(`One of props '$' or '$$' was not specified in '${componentName}'.`)
+    }
+    if (props.$ && props.$$) {
+      return new Error(`Only one of props '$' or '$$' should be specified in '${componentName}'.`)
+    }
+  }
 }
 
 export default Math

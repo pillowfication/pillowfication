@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import zf from '../foundation.scss'
 import styles from './SideBar.scss'
 
-export default class SideBar extends Component {
+class SideBar extends Component {
   render () {
     return (
       <div className={styles.sideBar}>
@@ -21,3 +21,5 @@ export default class SideBar extends Component {
     )
   }
 }
+
+export default SideBar

@@ -11,12 +11,13 @@ class Code extends Component {
   }
 
   render () {
+    const { lang, $ } = this.props
+
     return (
       <pre>
-        <code ref='code'
-          className={`language-${this.props.lang}`}
-          dangerouslySetInnerHTML={{ __html: this.props.$.trim() }}
-        />
+        <code ref='code' className={`language-${lang}`}>
+          {$.trim()}
+        </code>
       </pre>
     )
   }
@@ -24,7 +25,7 @@ class Code extends Component {
 
 Code.propTypes = {
   lang: PropTypes.string.isRequired,
-  $: PropTypes.string
+  $: PropTypes.string.isRequired
 }
 
 export default Code

@@ -16,7 +16,7 @@ class _404 extends Component {
   }
 }
 
-export default class ProjectViewer extends Component {
+class ProjectViewer extends Component {
   render () {
     return (
       <div className={styles.projectViewer}>
@@ -29,3 +29,5 @@ export default class ProjectViewer extends Component {
     )
   }
 }
+
+export default ProjectViewer

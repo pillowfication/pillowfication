@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import zf from '../foundation.scss'
 import styles from './TopBar.scss'
 
-export default class TopBar extends Component {
+class TopBar extends Component {
   render () {
     return (
       <div className={styles.topBar}>
@@ -23,3 +23,5 @@ export default class TopBar extends Component {
     )
   }
 }
+
+export default TopBar
