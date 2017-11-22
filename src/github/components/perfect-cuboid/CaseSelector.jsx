@@ -110,7 +110,9 @@ class CaseSelector extends PureComponent {
                   <th><$ $={type.label} /></th>
                   {TRIPLES.map(triple =>
                     <td key={triple.name}>
-                      <label>
+                      <label className={classnames({
+                        [styles.selected]: permutation[triple.name] === type.name
+                      })}>
                         <input type='radio'
                           name={triple.name}
                           checked={permutation[triple.name] === type.name}

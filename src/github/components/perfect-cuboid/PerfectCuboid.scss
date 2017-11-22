@@ -43,12 +43,31 @@ $cuboid-height: 260px;
 
 .input-table {
   th, td {
-    padding: .3rem;
+    padding: 0;
     text-align: center;
+  }
+  thead th {
+    padding: .3rem;
+  }
+
+  label {
+    cursor: pointer;
+
+    transition: {
+      property: background-color;
+      duration: .15s;
+    }
+
+    &:hover {
+      background-color: rgba($primary-color, .1);
+    }
+    &.selected {
+      background-color: rgba($primary-color, .18);
+    }
   }
 
   input[type=radio] {
-    margin: .3rem;
+    margin: .7rem;
   }
 }
 
