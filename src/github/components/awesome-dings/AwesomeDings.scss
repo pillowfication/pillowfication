@@ -28,3 +28,17 @@
     color: $primary-color;
   }
 }
+
+.cheatsheet {
+  th, td {
+    text-align: center;
+  }
+
+  td {
+    padding: 0;
+  }
+
+  i {
+    font-size: 2rem;
+  }
+}

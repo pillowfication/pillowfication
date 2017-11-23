@@ -21,7 +21,7 @@ class Playground extends PureComponent {
 
   render () {
     return (
-      <div >
+      <div>
         <h3>Playground</h3>
         <p>See the old playground at <a href='http://old.pillowfication.com/projects/cuboid/'>old.pillowfication.com/projects/cuboid</a>.</p>
         <CaseSelector id={this.state.id} onSelectId={this.onSelectId} />
