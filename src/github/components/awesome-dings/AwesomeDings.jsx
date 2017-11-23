@@ -12,7 +12,7 @@ import styles from './AwesomeDings.scss'
 class AwesomeDings extends PureComponent {
   render () {
     return (
-      <Page title='AwesomeDings'>
+      <Page title='AwesomeDings' github='pillowfication/AwesomeDings'>
         <p>This package was created as an April Fools’ Day joke.</p>
         <div className={classnames(styles.imageContainer, zf.tableScroll)}>
           <img src={pullRequest} />

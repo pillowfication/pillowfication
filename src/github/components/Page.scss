@@ -1,6 +1,20 @@
+@import "../settings";
+
 .title {
   display: inline-block;
   margin-bottom: 0;
+
+  small {
+    margin-left: 1rem;
+  }
+
+  a {
+    color: $secondary-color;
+
+    &:hover {
+      color: $anchor-color-hover;
+    }
+  }
 }
 
 .title-divider {

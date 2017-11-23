@@ -18,7 +18,7 @@ const lineStyle = {
 class PerfectCuboid extends PureComponent {
   render () {
     return (
-      <Page title='Perfect Cuboid'>
+      <Page title='Perfect Cuboid' github='pillowfication/perfect-cuboid'>
         <div className={zf.row}>
           <div className={classnames(zf.columns, zf.small12)}>
             <p>Also a known as a perfect Euler brick or a perfect box, a <a href='https://en.wikipedia.org/wiki/Euler_brick#Perfect_cuboid'>perfect cuboid</a> is a cuboid where all distances between vertices are integers. Existence of a perfect cuboid is an unsolved problem in mathematics.</p>
