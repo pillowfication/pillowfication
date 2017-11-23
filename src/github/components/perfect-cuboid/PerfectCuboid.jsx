@@ -90,7 +90,7 @@ class PerfectCuboid extends PureComponent {
 ]
             `} />
             <p>The program would keep updating the knowledge table until no new facts were available, or if a contradiction was reached.</p>
-            <p>To speed up checking, some extra considerations were made. Due to symmetries of a cuboid (<$ $='6' /> involving the permutations of <$ $='a, b, c' />), certain cases could be identical to each other. The case with the smallest identifier was used as the representative for each group of identical cases. In addition, some cases could not represent a primitive cuboid, and those cases were disregarded.</p>
+            <p>To speed up checking, some extra considerations were made. Due to symmetries of a cuboid (<$ $='6' /> with the permutations of <$ $='a, b, c' />), certain cases could be identical to each other. The case with the smallest identifier was used as the representative for each group of identical cases. In addition, some cases could not represent a primitive cuboid, and those cases were disregarded.</p>
           </div>
         </div>
         <hr />

@@ -13,11 +13,11 @@ class AwesomeDings extends PureComponent {
   render () {
     return (
       <Page title='AwesomeDings'>
-        <p>This package was created as an April Fools joke.</p>
+        <p>This package was created as an April Fools’ Day joke.</p>
         <div className={classnames(styles.imageContainer, zf.tableScroll)}>
           <img src={pullRequest} />
         </div>
-        <p>I took the entire <a href='http://fontawesome.io/'>FontAwesome</a> package that my workplace was using and replaced it with my homemade AwesomeDings package and proceeded to change all our icons. (Elements on this page may not render correctly if you don't have the Webdings or Wingdings fonts installed.)</p>
+        <p>I took the entire <a href='http://fontawesome.io/'>FontAwesome</a> package that my workplace was using and replaced it with my homemade AwesomeDings package and proceeded to change all our icons. (Elements on this page may not render correctly if you don’t have the Webdings or Wingdings fonts installed.)</p>
         <div className={zf.tableScroll}>
           <table className={styles.examples}>
             <thead>
