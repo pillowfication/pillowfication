@@ -1,5 +1,7 @@
 @import '../../settings';
 
+$icon-view-size: 100px;
+
 .image-container {
   margin-bottom: 1rem;
   text-align: center;
@@ -35,10 +37,27 @@
   }
 
   td {
+    position: relative;
     padding: 0;
+
+    &:hover i {
+      z-index: 100;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: $icon-view-size;
+      height: $icon-view-size;
+      margin-left: -$icon-view-size / 2;
+      margin-top: -$icon-view-size / 2;
+      border: 1px solid black;
+      background-color: #fff;
+      font-size: $icon-view-size * .8;
+      line-height: $icon-view-size;
+    }
   }
 
   i {
     font-size: 2rem;
+    pointer-events: none;
   }
 }
