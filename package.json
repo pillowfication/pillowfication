@@ -26,6 +26,7 @@
     "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
+    "awesome-dings": "^4.7.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",

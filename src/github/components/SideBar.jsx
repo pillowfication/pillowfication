@@ -13,6 +13,7 @@ class SideBar extends Component {
           <li>
             /pillowfication
             <ul className={classnames(zf.menu, zf.vertical, zf.nested)}>
+              <li><Link to='/awesome-dings'>awesome-dings</Link></li>
               <li><Link to='/perfect-cuboid'>perfect-cuboid</Link></li>
             </ul>
           </li>

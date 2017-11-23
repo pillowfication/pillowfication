@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+import AwesomeDings from './awesome-dings/AwesomeDings.jsx'
 import PerfectCuboid from './perfect-cuboid/PerfectCuboid.jsx'
 import styles from './ProjectViewer.scss'
 
@@ -22,6 +23,7 @@ class ProjectViewer extends Component {
       <div className={styles.projectViewer}>
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route path='/awesome-dings' component={AwesomeDings} />
           <Route path='/perfect-cuboid' component={PerfectCuboid} />
           <Route component={_404} />
         </Switch>

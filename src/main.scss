@@ -1,2 +1,2 @@
-// Not sure why `~` doesn't work here
-@import "../node_modules/normalize.css/normalize.css";
+// Not sure why `~` doesn't work here if the `.css` extension is included
+@import "~normalize.css/normalize";
