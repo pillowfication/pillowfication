@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 
 import zf from '../../foundation.scss'
 import ad from './awesome-dings.scss'
@@ -11,7 +11,7 @@ function toHex2 (num) {
   return '0x' + ('0' + num.toString(16).toUpperCase()).substr(-2)
 }
 
-class Cheatsheet extends PureComponent {
+class Cheatsheet extends Component {
   render () {
     return (
       <div className={zf.tableScroll}>

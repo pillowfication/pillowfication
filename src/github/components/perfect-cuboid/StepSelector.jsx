@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { fromId } from 'perfect-cuboid/src/enumerate'
@@ -11,7 +11,7 @@ import $ from '../Math.jsx'
 import zf from '../../foundation.scss'
 import styles from './PerfectCuboid.scss'
 
-class StepSelector extends PureComponent {
+class StepSelector extends Component {
   constructor (props) {
     super(props)
 

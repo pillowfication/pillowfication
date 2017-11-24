@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import classnames from 'classnames'
 
 import Page from '../Page.jsx'
@@ -15,7 +15,7 @@ const lineStyle = {
   grayDash: { stroke: '#aaa', strokeDasharray: '5,8', strokeWidth: 2, strokeLinecap: 'round' }
 }
 
-class PerfectCuboid extends PureComponent {
+class PerfectCuboid extends Component {
   render () {
     return (
       <Page title='Perfect Cuboid' github='pillowfication/perfect-cuboid'>

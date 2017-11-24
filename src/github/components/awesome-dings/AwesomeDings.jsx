@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import classnames from 'classnames'
 
 import Page from '../Page.jsx'
@@ -9,7 +9,7 @@ import fa from '../../font-awesome.scss'
 import ad from './awesome-dings.scss'
 import styles from './AwesomeDings.scss'
 
-class AwesomeDings extends PureComponent {
+class AwesomeDings extends Component {
   render () {
     return (
       <Page title='AwesomeDings' github='pillowfication/AwesomeDings'>

@@ -15,6 +15,7 @@ class SideBar extends Component {
             <ul className={classnames(zf.menu, zf.vertical, zf.nested)}>
               <li><Link to='/awesome-dings'>awesome-dings</Link></li>
               <li><Link to='/perfect-cuboid'>perfect-cuboid</Link></li>
+              <li><Link to='/pf-konami'>pf-konami</Link></li>
             </ul>
           </li>
         </ul>

@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 
 import CaseSelector from './CaseSelector.jsx'
 import StepSelector from './StepSelector.jsx'
 import PassedCases from './PassedCases.jsx'
 
-class Playground extends PureComponent {
+class Playground extends Component {
   constructor (props) {
     super(props)
 

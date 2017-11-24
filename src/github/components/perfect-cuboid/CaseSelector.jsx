@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { toId, fromId } from 'perfect-cuboid/src/enumerate'
@@ -12,7 +12,7 @@ import styles from './PerfectCuboid.scss'
 const MIN_ID = 0
 const MAX_ID = 2985983
 
-class CaseSelector extends PureComponent {
+class CaseSelector extends Component {
   constructor (props) {
     super(props)
 

@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import fa from '../font-awesome.scss'
 import styles from './Page.scss'
 
-class Page extends PureComponent {
+class Page extends Component {
   render () {
     const { title, github } = this.props
 

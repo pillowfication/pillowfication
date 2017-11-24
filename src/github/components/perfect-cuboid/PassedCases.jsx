@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
@@ -58,7 +58,7 @@ const PASSED = [
   547056
 ]
 
-class PassedCases extends PureComponent {
+class PassedCases extends Component {
   render () {
     const { id, onSelectId } = this.props
 

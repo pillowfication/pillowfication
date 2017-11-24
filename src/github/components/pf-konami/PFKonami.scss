@@ -1,0 +1,24 @@
+.konami-code {
+  margin-left: .5rem;
+  font-size: 1.5rem;
+
+  i {
+    padding-bottom: .3rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
+    transition: {
+      property: border-bottom-color;
+      duration: .2s;
+    }
+  }
+}
+
+.a-button::before {
+  content: "A"
+}
+.b-button::before {
+  content: "B"
+}
+
+i.selected-button {
+  border-bottom-color: #000;
+}
