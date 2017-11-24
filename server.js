@@ -11,6 +11,8 @@ const app = express()
 app.use(favicon(path.resolve(__dirname, './src/favicon.ico')))
 app.use(express.static(path.resolve(__dirname, './dist')))
 
+app.use('/~20198403', express.static(path.resolve(__dirname, './dist/cis89c')))
+
 app.get('/github*', (_, response) => {
   response.sendFile(GITHUB_PATH)
 })
