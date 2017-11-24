@@ -1,0 +1,72 @@
+@import "../../settings";
+
+$cube-size: 200px;
+$cube-perspective: $cube-size * 3.5;
+$cube-edge-color: #000;
+$cube-color: #bbb;
+$cube-glow: $primary-color;
+
+.cube {
+  position: relative;
+  height: $cube-size * 2;
+  perspective: $cube-perspective;
+  perspective-origin: 50% 50%;
+  font-family: "Times New Roman", serif;
+
+  & > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $cube-size;
+    height: $cube-size;
+    margin: (-$cube-size / 2) 0 0 (-$cube-size / 2);
+    transform-style: preserve-3d;
+    animation-name: rotate-cube;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+  }
+}
+
+.cube > div div {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid $cube-edge-color;
+  background-color: rgba(255, 255, 255, .6);
+  color: $cube-color;
+  font-size: $cube-size * .7;
+  line-height: $cube-size;
+  text-align: center;
+  animation-name: pulse-color;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+}
+
+                     /* Push Face                   Align Face      Orient Face      Sync Animation */
+.F /* 1 */ { transform: translateZ( $cube-size / 2)                                ; animation-delay: 0 * 2.25s; }
+.B /* 6 */ { transform: translateZ(-$cube-size / 2) rotateY(180deg) rotateZ(180deg); animation-delay: 5 * 2.25s; }
+.U /* 4 */ { transform: translateY(-$cube-size / 2) rotateX( 90deg) rotateZ(-90deg); animation-delay: 3 * 2.25s; }
+.D /* 5 */ { transform: translateY( $cube-size / 2) rotateX(-90deg) rotateZ(-90deg); animation-delay: 4 * 2.25s; }
+.L /* 3 */ { transform: translateX(-$cube-size / 2) rotateY(-90deg)                ; animation-delay: 2 * 2.25s; }
+.R /* 2 */ { transform: translateX( $cube-size / 2) rotateY( 90deg) rotateZ(-90deg); animation-delay: 1 * 2.25s; }
+
+@keyframes rotate-cube {
+  0%   /* F: 1 */ { transform: rotateX(  0deg) rotateY(  0deg) rotateZ(   0deg); }
+  10%  /* F: 1 */ { transform: rotateX(  0deg) rotateY(  0deg) rotateZ(   0deg); }
+  25%  /* R: 2 */ { transform: rotateX( 90deg) rotateY(  0deg) rotateZ(  90deg); }
+  40%  /* L: 3 */ { transform: rotateX(-90deg) rotateY( 90deg) rotateZ(  90deg); }
+  55%  /* U: 4 */ { transform: rotateX(  0deg) rotateY(270deg) rotateZ(  90deg); }
+  70%  /* D: 5 */ { transform: rotateX( 90deg) rotateY( 90deg) rotateZ(   0deg); }
+  85%  /* B: 6 */ { transform: rotateX(  0deg) rotateY(180deg) rotateZ(-180deg); }
+  100% /* F: 1 */ { transform: rotateX(  0deg) rotateY(  0deg) rotateZ(   0deg); }
+}
+
+@keyframes pulse-color {
+  0%   { color: $cube-color; }
+  5%   { color: $cube-color; } /* 5% transition */
+  10%  { color: $cube-glow ; } /* 2% stay       */
+  12%  { color: $cube-glow ; } /* 5% transition */
+  17%  { color: $cube-color; }
+  100% { color: $cube-color; }
+}
