@@ -31,6 +31,21 @@ $icon-view-size: 100px;
   }
 }
 
+.output {
+  display: table;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 1rem;
+  border: 1px solid $secondary-color;
+  font-size: 1.5rem;
+
+  & > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+}
+
 .cheatsheet {
   th, td {
     text-align: center;

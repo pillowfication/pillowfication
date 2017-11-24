@@ -10,6 +10,10 @@ class Code extends Component {
     highlight.highlightBlock(findDOMNode(this.refs.code))
   }
 
+  componentDidUpdate () {
+    highlight.highlightBlock(findDOMNode(this.refs.code))
+  }
+
   render () {
     const { lang, $ } = this.props
 

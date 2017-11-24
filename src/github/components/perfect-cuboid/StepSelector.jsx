@@ -19,8 +19,8 @@ class StepSelector extends Component {
       stepIndex: -1
     }
 
-    this.selectStep = this.selectStep.bind(this)
-    this.selectKnowledge = this.selectKnowledge.bind(this)
+    this.onSelectStep = this.onSelectStep.bind(this)
+    this.onSelectKnowledge = this.onSelectKnowledge.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -51,11 +51,11 @@ class StepSelector extends Component {
     return _if + ' \\implies ' + _then
   }
 
-  selectStep (stepIndex) {
+  onSelectStep (stepIndex) {
     this.setState({ stepIndex })
   }
 
-  selectKnowledge (steps, side, divisibility) {
+  onSelectKnowledge (steps, side, divisibility) {
     const currStepIndex = this.state.stepIndex
     const nextStepIndex = steps.findIndex(step => {
       if (!step.rule) {
@@ -91,7 +91,7 @@ class StepSelector extends Component {
             {verification.steps.map((step, index) =>
               <li key={index}
                 className={classnames({ [styles.selected]: stepIndex === index })}
-                onClick={this.selectStep.bind(this, index)}
+                onClick={this.onSelectStep.bind(this, index)}
               >
                 <$ $={StepSelector.stringifyStep(permutation, step.rule)} />
               </li>
@@ -129,7 +129,7 @@ class StepSelector extends Component {
                           newKnowledge.side === side.name &&
                           newKnowledge.divisibility === divisibility.name
                       })}
-                      onClick={this.selectKnowledge.bind(this, verification.steps, side.name, divisibility.name)}
+                      onClick={this.onSelectKnowledge.bind(this, verification.steps, side.name, divisibility.name)}
                     />
                   )}
                 </tr>

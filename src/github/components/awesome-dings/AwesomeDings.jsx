@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 
 import Page from '../Page.jsx'
+import Playground from './Playground.jsx'
 import Cheatsheet from './Cheatsheet.jsx'
 import pullRequest from './pull-request.png'
 import zf from '../../foundation.scss'
@@ -74,6 +75,8 @@ class AwesomeDings extends Component {
             </tbody>
           </table>
         </div>
+        <hr />
+        <Playground />
         <hr />
         <Cheatsheet />
       </Page>

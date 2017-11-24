@@ -17,14 +17,15 @@ class CaseSelector extends Component {
     super(props)
 
     this.state = {
-      idInput: String(this.props.id)
+      idInput: String(this.props.id),
+      inputIdFocused: false
     }
 
-    this.inputId = this.inputId.bind(this)
-    this.focusIdInput = this.focusIdInput.bind(this)
-    this.blurIdInput = this.blurIdInput.bind(this)
-    this.selectEquivalent = this.selectEquivalent.bind(this)
-    this.selectRadio = this.selectRadio.bind(this)
+    this.onInputId = this.onInputId.bind(this)
+    this.onFocusIdInput = this.onFocusIdInput.bind(this)
+    this.onBlurIdInput = this.onBlurIdInput.bind(this)
+    this.onSelectEquivalent = this.onSelectEquivalent.bind(this)
+    this.onSelectRadio = this.onSelectRadio.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -38,25 +39,25 @@ class CaseSelector extends Component {
     return Math.min(MAX_ID, Math.max(MIN_ID, id))
   }
 
-  inputId (event) {
+  onInputId (event) {
     const idInput = event.target.value
     this.setState({ idInput })
     this.props.onSelectId(CaseSelector.sanitizeIdInput(idInput))
   }
 
-  focusIdInput () {
+  onFocusIdInput () {
     this.setState({ inputIdFocused: true })
   }
 
-  blurIdInput () {
+  onBlurIdInput () {
     this.setState({ inputIdFocused: false, idInput: String(this.props.id) })
   }
 
-  selectEquivalent (event) {
+  onSelectEquivalent (event) {
     this.props.onSelectId(+event.target.value)
   }
 
-  selectRadio (triple, type) {
+  onSelectRadio (triple, type) {
     const permutation = fromId(this.props.id)
     permutation[triple] = type
     this.props.onSelectId(toId(permutation))
@@ -74,9 +75,9 @@ class CaseSelector extends Component {
             value={this.state.idInput}
             min={MIN_ID}
             max={MAX_ID}
-            onChange={this.inputId}
-            onFocus={this.focusIdInput}
-            onBlur={this.blurIdInput}
+            onChange={this.onInputId}
+            onFocus={this.onFocusIdInput}
+            onBlur={this.onBlurIdInput}
           />
         </div>
         <div className={classnames(zf.columns, zf.small12, zf.medium8, zf.large9)}>
@@ -88,7 +89,7 @@ class CaseSelector extends Component {
                 [styles.selected]: id === equivalent
               })}
               value={equivalent}
-              onClick={this.selectEquivalent}
+              onClick={this.onSelectEquivalent}
             >
               {equivalent}
             </button>
@@ -116,7 +117,7 @@ class CaseSelector extends Component {
                         <input type='radio'
                           name={triple.name}
                           checked={permutation[triple.name] === type.name}
-                          onChange={this.selectRadio.bind(this, triple.name, type.name)}
+                          onChange={this.onSelectRadio.bind(this, triple.name, type.name)}
                         />
                       </label>
                     </td>
