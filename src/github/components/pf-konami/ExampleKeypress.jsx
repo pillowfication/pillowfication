@@ -37,7 +37,6 @@ class ExampleKeypress extends Component {
   }
 
   captureKeyDown (event) {
-    console.log(event)
     var key = event.which || event.keyCode || 0
     let { pointer } = this.state
 
