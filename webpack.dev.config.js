@@ -85,7 +85,7 @@ module.exports = {
         options: {
           limit: 10000,
           mimetype: 'application/font-woff',
-          name: 'dist/fonts/[name].[ext]'
+          name: 'fonts/[name].[ext]'
         }
       }]
     }, {
@@ -93,7 +93,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: 'dist/fonts/[name].[ext]'
+          name: 'fonts/[name].[ext]'
         }
       }]
     }, {
@@ -101,7 +101,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: 'dist/images/[name].[ext]'
+          name: 'images/[name].[ext]'
         }
       }]
     }]
