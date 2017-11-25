@@ -97,7 +97,7 @@ class Playground extends Component {
     )
 
     return (
-      <div>
+      <section>
         <h3>Playground</h3>
         <p>This does not go over <a href='http://fontawesome.io/examples/#fixed-width'>Fixed Width Icons</a>, <a href='http://fontawesome.io/examples/#list'>List Icons</a>, <a href='http://fontawesome.io/examples/#bordered-pulled'>Bordered & Pulled Icons</a>, and <a href='http://fontawesome.io/examples/#stacked'>Stacked Icons.</a></p>
         <h5>Settings</h5>
@@ -136,7 +136,7 @@ class Playground extends Component {
         <div className={styles.output}><div>
           <i className={cssModulesClassNames}>{character}</i>
         </div></div>
-      </div>
+      </section>
     )
   }
 }

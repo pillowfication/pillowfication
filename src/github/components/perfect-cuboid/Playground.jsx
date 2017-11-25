@@ -21,13 +21,13 @@ class Playground extends Component {
 
   render () {
     return (
-      <div>
+      <section>
         <h3>Playground</h3>
         <p>See the old playground at <a href='http://old.pillowfication.com/projects/cuboid/'>old.pillowfication.com/projects/cuboid</a>.</p>
         <CaseSelector id={this.state.id} onSelectId={this.onSelectId} />
         <StepSelector id={this.state.id} />
         <PassedCases id={this.state.id} onSelectId={this.onSelectId} />
-      </div>
+      </section>
     )
   }
 }

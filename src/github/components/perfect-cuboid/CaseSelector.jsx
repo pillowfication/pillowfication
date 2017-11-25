@@ -34,15 +34,12 @@ class CaseSelector extends Component {
     }
   }
 
-  static sanitizeIdInput (idInput) {
-    const id = Math.floor(+idInput || 0)
-    return Math.min(MAX_ID, Math.max(MIN_ID, id))
-  }
-
   onInputId (event) {
     const idInput = event.target.value
     this.setState({ idInput })
-    this.props.onSelectId(CaseSelector.sanitizeIdInput(idInput))
+
+    const id = Math.min(MAX_ID, Math.max(MIN_ID, Math.floor(+idInput || 0)))
+    this.props.onSelectId(id)
   }
 
   onFocusIdInput () {
@@ -69,8 +66,8 @@ class CaseSelector extends Component {
 
     return (
       <div className={zf.row}>
-        <div className={classnames(zf.columns, zf.small12, zf.medium4, zf.large3)}>
-          <b>Case Identifier</b><br />
+        <fieldset className={classnames(zf.columns, zf.small12, zf.medium4, zf.large3)}>
+          <legend>Case Identifier</legend>
           <input type='number'
             value={this.state.idInput}
             min={MIN_ID}
@@ -79,9 +76,9 @@ class CaseSelector extends Component {
             onFocus={this.onFocusIdInput}
             onBlur={this.onBlurIdInput}
           />
-        </div>
-        <div className={classnames(zf.columns, zf.small12, zf.medium8, zf.large9)}>
-          <b>Equivalents</b><br />
+        </fieldset>
+        <fieldset className={classnames(zf.columns, zf.small12, zf.medium8, zf.large9)}>
+          <legend>Equivalents</legend>
           {getEquivalents(id).map(equivalent =>
             <button key={equivalent}
               type='button'
@@ -94,8 +91,8 @@ class CaseSelector extends Component {
               {equivalent}
             </button>
           )}
-        </div>
-        <div className={classnames(zf.columns, zf.small12, zf.tableScroll)}>
+        </fieldset>
+        <fieldset className={classnames(zf.columns, zf.small12, zf.tableScroll)}>
           <table className={styles.inputTable}>
             <thead>
               <tr>
@@ -126,7 +123,7 @@ class CaseSelector extends Component {
               )}
             </tbody>
           </table>
-        </div>
+        </fieldset>
       </div>
     )
   }

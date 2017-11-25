@@ -11,6 +11,28 @@ import $ from '../Math.jsx'
 import zf from '../../foundation.scss'
 import styles from './PerfectCuboid.scss'
 
+function stringifyStatement (statement) {
+  return statement.divisibility.substring(1) + ' ' +
+    (statement.truth === TRUE ? '\\mid ' : '\\nmid ') +
+    SIDES.get(statement.triple[statement.side])
+}
+
+function stringifyStep (permutation, stepRule) {
+  if (!stepRule) {
+    return '\\text{Initialization}'
+  }
+
+  const conditionType = '\\text{' +
+    '$' + TRIPLES.get(stepRule.then.triple) + '$ is ' +
+    '$' + TYPES.get(permutation[stepRule.then.triple]) + '$}'
+  const _if = [ conditionType ]
+    .concat(stepRule.if.map(stringifyStatement))
+    .join('\\;\\land\\;')
+  const _then = stringifyStatement(stepRule.then)
+
+  return _if + ' \\implies ' + _then
+}
+
 class StepSelector extends Component {
   constructor (props) {
     super(props)
@@ -27,28 +49,6 @@ class StepSelector extends Component {
     if (nextProps.id !== this.props.id) {
       this.setState({ stepIndex: -1 })
     }
-  }
-
-  static stringifyStatement (statement) {
-    return statement.divisibility.substring(1) + ' ' +
-      (statement.truth === TRUE ? '\\mid ' : '\\nmid ') +
-      SIDES.get(statement.triple[statement.side])
-  }
-
-  static stringifyStep (permutation, stepRule) {
-    if (!stepRule) {
-      return '\\text{Initialization}'
-    }
-
-    const conditionType = '\\text{' +
-      '$' + TRIPLES.get(stepRule.then.triple) + '$ is ' +
-      '$' + TYPES.get(permutation[stepRule.then.triple]) + '$}'
-    const _if = [ conditionType ]
-      .concat(stepRule.if.map(StepSelector.stringifyStatement))
-      .join('\\;\\land\\;')
-    const _then = StepSelector.stringifyStatement(stepRule.then)
-
-    return _if + ' \\implies ' + _then
   }
 
   onSelectStep (stepIndex) {
@@ -85,27 +85,27 @@ class StepSelector extends Component {
 
     return (
       <div className={zf.row}>
-        <div className={classnames(zf.columns, zf.small12, zf.large6, zf.tableScroll)}>
-          <b>Steps</b><br />
+        <fieldset className={classnames(zf.columns, zf.small12, zf.large6, zf.tableScroll)}>
+          <legend>Steps</legend>
           <ol className={styles.steps} start={0}>
             {verification.steps.map((step, index) =>
               <li key={index}
                 className={classnames({ [styles.selected]: stepIndex === index })}
                 onClick={this.onSelectStep.bind(this, index)}
               >
-                <$ $={StepSelector.stringifyStep(permutation, step.rule)} />
+                <$ $={stringifyStep(permutation, step.rule)} />
               </li>
             )}
             <li className={classnames({ [styles.contradiction]: verification.contradiction })}>
               <$ $={verification.contradiction
-                ? StepSelector.stringifyStep(permutation, verification.contradiction)
+                ? stringifyStep(permutation, verification.contradiction)
                 : '\\text{No contradiction}'}
               />
             </li>
           </ol>
-        </div>
-        <div className={classnames(zf.columns, zf.small12, zf.large6, zf.tableScroll)}>
-          <b>Knowledge (step {stepIndex})</b><br />
+        </fieldset>
+        <fieldset className={classnames(zf.columns, zf.small12, zf.large6, zf.tableScroll)}>
+          <legend>Knowledge (step {stepIndex})</legend>
           <table className={styles.knowledgeTable}>
             <thead>
               <tr>
@@ -136,7 +136,7 @@ class StepSelector extends Component {
               )}
             </tbody>
           </table>
-        </div>
+        </fieldset>
       </div>
     )
   }

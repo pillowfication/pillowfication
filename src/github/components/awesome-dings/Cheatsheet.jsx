@@ -14,44 +14,46 @@ function toHex2 (num) {
 class Cheatsheet extends Component {
   render () {
     return (
-      <div className={zf.tableScroll}>
+      <section>
         <h3>Cheatsheet</h3>
-        <table className={styles.cheatsheet}>
-          <thead>
-            <tr>
-              <th>ASCII</th>
-              <th>Hex</th>
-              <th>Symbol</th>
-              <th>Webdings</th>
-              <th>Wingdings 1</th>
-              <th>Wingdings 2</th>
-              <th>Wingdings 3</th>
-            </tr>
-          </thead>
-          <tbody>
-            {(() => {
-              const rows = []
+        <div className={zf.tableScroll}>
+          <table className={styles.cheatsheet}>
+            <thead>
+              <tr>
+                <th>ASCII</th>
+                <th>Hex</th>
+                <th>Symbol</th>
+                <th>Webdings</th>
+                <th>Wingdings 1</th>
+                <th>Wingdings 2</th>
+                <th>Wingdings 3</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(() => {
+                const rows = []
 
-              for (let code = START_CODE; code <= END_CODE; ++code) {
-                const char = String.fromCharCode(code)
-                rows.push(
-                  <tr key={code}>
-                    <td>{code}</td>
-                    <td>{toHex2(code)}</td>
-                    <td><code>{char}</code></td>
-                    <td><i className={ad.wdWebdings}>{char}</i></td>
-                    <td><i className={ad.wdWingdings1}>{char}</i></td>
-                    <td><i className={ad.wdWingdings2}>{char}</i></td>
-                    <td><i className={ad.wdWingdings3}>{char}</i></td>
-                  </tr>
-                )
-              }
+                for (let code = START_CODE; code <= END_CODE; ++code) {
+                  const char = String.fromCharCode(code)
+                  rows.push(
+                    <tr key={code}>
+                      <td>{code}</td>
+                      <td>{toHex2(code)}</td>
+                      <td><code>{char}</code></td>
+                      <td><i className={ad.wdWebdings}>{char}</i></td>
+                      <td><i className={ad.wdWingdings1}>{char}</i></td>
+                      <td><i className={ad.wdWingdings2}>{char}</i></td>
+                      <td><i className={ad.wdWingdings3}>{char}</i></td>
+                    </tr>
+                  )
+                }
 
-              return rows
-            })()}
-          </tbody>
-        </table>
-      </div>
+                return rows
+              })()}
+            </tbody>
+          </table>
+        </div>
+      </section>
     )
   }
 }

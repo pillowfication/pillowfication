@@ -64,8 +64,8 @@ class PassedCases extends Component {
 
     return (
       <div className={zf.row}>
-        <div className={classnames(zf.columns, zf.small12)}>
-          <b>Passed Cases ({PASSED.length} total)</b><br />
+        <fieldset className={classnames(zf.columns, zf.small12)}>
+          <legend>Passed Cases ({PASSED.length} total)</legend>
           {PASSED.map(passed =>
             <button key={passed}
               type='button'
@@ -77,7 +77,7 @@ class PassedCases extends Component {
               {passed}
             </button>
           )}
-        </div>
+        </fieldset>
       </div>
     )
   }
