@@ -45,7 +45,7 @@
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.6.1",
     "normalize.css": "^7.0.0",
-    "perfect-cuboid": "^0.0.7",
+    "perfect-cuboid": "git+ssh://git@github.com/pillowfication/perfect-cuboid.git#v0.0.7",
     "pf-konami": "^1.0.7",
     "prop-types": "^15.6.0",
     "pug": "^2.0.0-rc.4",
