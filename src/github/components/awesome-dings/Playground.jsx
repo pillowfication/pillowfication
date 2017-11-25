@@ -100,7 +100,6 @@ class Playground extends Component {
       <section>
         <h3>Playground</h3>
         <p>This does not go over <a href='http://fontawesome.io/examples/#fixed-width'>Fixed Width Icons</a>, <a href='http://fontawesome.io/examples/#list'>List Icons</a>, <a href='http://fontawesome.io/examples/#bordered-pulled'>Bordered & Pulled Icons</a>, and <a href='http://fontawesome.io/examples/#stacked'>Stacked Icons.</a></p>
-        <h5>Settings</h5>
         <div className={zf.row}>
           <fieldset className={classnames(zf.columns, zf.small12, zf.medium6)}>
             <legend>Character</legend>
@@ -117,25 +116,30 @@ class Playground extends Component {
           {RADIO_GROUPS.map(radioGroup =>
             <fieldset key={radioGroup.name} className={classnames(zf.columns, zf.small12, zf.medium6, zf.large3)}>
               <legend>{radioGroup.name}</legend>
-              {radioGroup.radios.map((radio, index) => [
-                <input key='radio' type='radio' name={radioGroup.name} id={radioGroup.name + '-' + radio.name}
-                  value={index}
-                  checked={this.state[radioGroup.name] === index}
-                  onChange={this.onSelectRadio.bind(this, radioGroup.name)}
-                />,
-                <label key='label' htmlFor={radioGroup.name + '-' + radio.name}>{radio.name}</label>,
-                <br key='br' />
-              ])}
+              {radioGroup.radios.map((radio, index) =>
+                <div>
+                  <input key='radio' type='radio' name={radioGroup.name} id={radioGroup.name + '-' + radio.name}
+                    value={index}
+                    checked={this.state[radioGroup.name] === index}
+                    onChange={this.onSelectRadio.bind(this, radioGroup.name)}
+                  />
+                  <label key='label' htmlFor={radioGroup.name + '-' + radio.name}>{radio.name}</label>
+                </div>
+              )}
             </fieldset>
           )}
+          <fieldset className={classnames(zf.columns, zf.small12)}>
+            <legend>Code</legend>
+            <Code lang='html' $={`<i class="${cssClassNames}">&#${code};</i>`} />
+            <Code lang='jsx' $={`<i className='${cssClassNames}'>{String.fromCharCode(${code})}</i>`} />
+          </fieldset>
+          <fieldset className={classnames(zf.columns, zf.small12)}>
+            <legend>Output</legend>
+            <div className={styles.output}><div>
+              <i className={cssModulesClassNames}>{character}</i>
+            </div></div>
+          </fieldset>
         </div>
-        <h5>Code</h5>
-        <Code lang='html' $={`<i class="${cssClassNames}">&#${code};</i>`} />
-        <Code lang='jsx' $={`<i className='${cssClassNames}'>{String.fromCharCode(${code})}</i>`} />
-        <h5>Output</h5>
-        <div className={styles.output}><div>
-          <i className={cssModulesClassNames}>{character}</i>
-        </div></div>
       </section>
     )
   }
