@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import classnames from 'classnames'
 
 import zf from '../foundation.scss'
@@ -8,19 +8,19 @@ import styles from './SideBar.scss'
 class SideBar extends Component {
   render () {
     return (
-      <div className={styles.sideBar}>
+      <nav className={styles.sideBar}>
         <ul className={classnames(zf.menu, zf.vertical)}>
           <li>
-            /pillowfication
+            pillowfication<span className={styles.pathDivider}>/</span>
             <ul className={classnames(zf.menu, zf.vertical, zf.nested)}>
-              <li><Link to='/awesome-dings'>awesome-dings</Link></li>
-              <li><Link to='/cis89c'>cis89c</Link></li>
-              <li><Link to='/perfect-cuboid'>perfect-cuboid</Link></li>
-              <li><Link to='/pf-konami'>pf-konami</Link></li>
+              <li><NavLink activeClassName={styles.active} to='/awesome-dings'>awesome-dings</NavLink></li>
+              <li><NavLink activeClassName={styles.active} to='/cis89c'>cis89c</NavLink></li>
+              <li><NavLink activeClassName={styles.active} to='/perfect-cuboid'>perfect-cuboid</NavLink></li>
+              <li><NavLink activeClassName={styles.active} to='/pf-konami'>pf-konami</NavLink></li>
             </ul>
           </li>
         </ul>
-      </div>
+      </nav>
     )
   }
 }
