@@ -117,7 +117,7 @@ class Playground extends Component {
             <fieldset key={radioGroup.name} className={classnames(zf.columns, zf.small12, zf.medium6, zf.large3)}>
               <legend>{radioGroup.name}</legend>
               {radioGroup.radios.map((radio, index) =>
-                <div>
+                <div key={radio.name}>
                   <input key='radio' type='radio' name={radioGroup.name} id={radioGroup.name + '-' + radio.name}
                     value={index}
                     checked={this.state[radioGroup.name] === index}
