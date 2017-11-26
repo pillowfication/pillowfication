@@ -40,6 +40,7 @@
 }
 
 .main {
+  flex: auto;
   margin: $global-padding $global-padding $global-padding 2*$global-padding;
 
   @include breakpoint(medium down) {
