@@ -1,6 +1,7 @@
 @import '../settings';
 
 .project-viewer {
+  flex: auto;
   display: flex;
 
   @include breakpoint(medium down) {

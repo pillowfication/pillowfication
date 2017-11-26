@@ -3,3 +3,16 @@
 pre {
   margin-bottom: $global-margin;
 }
+
+:global {
+  #app {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
