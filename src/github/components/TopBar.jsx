@@ -8,7 +8,7 @@ import styles from './TopBar.scss'
 class TopBar extends Component {
   render () {
     return (
-      <div className={styles.topBar}>
+      <header className={styles.topBar}>
         <div className={classnames(zf.row, zf.columns, zf.small12)}>
           <nav className={zf.topBar}>
             <div className={zf.topBarLeft}>
@@ -19,7 +19,7 @@ class TopBar extends Component {
             </div>
           </nav>
         </div>
-      </div>
+      </header>
     )
   }
 }

@@ -1,6 +1,41 @@
 @import '../settings';
 
 .project-viewer {
+  display: flex;
+
+  @include breakpoint(medium down) {
+    flex-direction: column;
+  }
+}
+
+.side-bar {
+  margin: $global-padding 0 $global-padding $global-padding;
+  border-right: 1px solid $medium-gray;
+  white-space: nowrap;
+
+  a {
+    padding: .5rem 1.5rem .5rem .5rem;
+    border-bottom: 1px solid rgba($medium-gray, 0);
+
+    &.active {
+      border-bottom-color: rgba($medium-gray, 1);
+    }
+  }
+
+  .path-divider::before {
+    content: "/";
+    position: relative;
+    top: .2rem;
+    margin: 0 .2rem;
+    font-size: 1.4rem;
+  }
+
+  @include breakpoint(medium down) {
+    display: none;
+  }
+}
+
+.main {
   margin: $global-padding $global-padding $global-padding 2*$global-padding;
 
   @include breakpoint(medium down) {
