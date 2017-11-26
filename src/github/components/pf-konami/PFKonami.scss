@@ -12,13 +12,6 @@
   }
 }
 
-.a-button::before {
-  content: "A"
-}
-.b-button::before {
-  content: "B"
-}
-
 i.selected-button {
   border-bottom-color: #000;
 }

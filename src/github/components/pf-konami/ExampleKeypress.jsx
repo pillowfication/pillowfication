@@ -13,8 +13,8 @@ const KONAMI = [
   { code: 39, icon: fa.faArrowRight },
   { code: 37, icon: fa.faArrowLeft },
   { code: 39, icon: fa.faArrowRight },
-  { code: 66, icon: styles.bButton },
-  { code: 65, icon: styles.aButton }
+  { code: 66, icon: fa.faBold },
+  { code: 65, icon: fa.faFont }
 ]
 
 class ExampleKeypress extends Component {
