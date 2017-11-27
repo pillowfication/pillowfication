@@ -18,6 +18,7 @@ class Cheatsheet extends Component {
     return (
       <section>
         <h3>Cheatsheet</h3>
+        <p><a href='http://unicode.org/~asmus/web-wing-ding-ext.pdf'>http://unicode.org/~asmus/web-wing-ding-ext.pdf</a></p>
         <div className={zf.tableScroll}>
           <table className={styles.cheatsheet}>
             <thead>
