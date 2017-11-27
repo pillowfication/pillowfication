@@ -4,8 +4,10 @@ import zf from '../../foundation.scss'
 import ad from './awesome-dings.scss'
 import styles from './AwesomeDings.scss'
 
-const START_CODE = 0x21
-const END_CODE = 0xFF
+function isControlCharacter (charCode) {
+  // 32 is space, but since it has no glyph it's here
+  return charCode <= 32 || charCode === 127
+}
 
 function toHex2 (num) {
   return '0x' + ('0' + num.toString(16).toUpperCase()).substr(-2)
@@ -20,7 +22,7 @@ class Cheatsheet extends Component {
           <table className={styles.cheatsheet}>
             <thead>
               <tr>
-                <th>ASCII</th>
+                <th>Code</th>
                 <th>Hex</th>
                 <th>Symbol</th>
                 <th>Webdings</th>
@@ -33,13 +35,17 @@ class Cheatsheet extends Component {
               {(() => {
                 const rows = []
 
-                for (let code = START_CODE; code <= END_CODE; ++code) {
-                  const char = String.fromCharCode(code)
+                for (let code = 0x00; code <= 0xFF; ++code) {
+                  if (isControlCharacter(code)) {
+                    continue
+                  }
+
+                  const char = String.fromCharCode(0xF000 + code)
                   rows.push(
                     <tr key={code}>
                       <td>{code}</td>
                       <td>{toHex2(code)}</td>
-                      <td><code>{char}</code></td>
+                      <td><code>{String.fromCharCode(code)}</code></td>
                       <td><i className={ad.wdWebdings}>{char}</i></td>
                       <td><i className={ad.wdWingdings1}>{char}</i></td>
                       <td><i className={ad.wdWingdings2}>{char}</i></td>

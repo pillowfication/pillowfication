@@ -1,0 +1,16 @@
+@import "../../settings";
+
+table.mapping-table {
+  width: auto;
+
+  .meaning {
+    min-width: 300px;
+  }
+
+  th, td {
+    text-align: center;
+  }
+  code {
+    white-space: nowrap;
+  }
+}

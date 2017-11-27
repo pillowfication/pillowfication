@@ -88,7 +88,8 @@ class Playground extends Component {
 
   render () {
     const { code } = this.state
-    const character = String.fromCharCode(code)
+    const shiftedCode = code === 173 ? code + 0xF000 : code
+    const character = String.fromCharCode(shiftedCode)
     const cssClassNames = classnames(
       RADIO_GROUPS.map(radioGroup => radioGroup.radios[this.state[radioGroup.name]].css)
     )
@@ -99,7 +100,7 @@ class Playground extends Component {
     return (
       <section>
         <h3>Playground</h3>
-        <p>This does not go over <a href='http://fontawesome.io/examples/#fixed-width'>Fixed Width Icons</a>, <a href='http://fontawesome.io/examples/#list'>List Icons</a>, <a href='http://fontawesome.io/examples/#bordered-pulled'>Bordered & Pulled Icons</a>, and <a href='http://fontawesome.io/examples/#stacked'>Stacked Icons.</a></p>
+        <p>This does not go over <a href='http://fontawesome.io/examples/#fixed-width'>Fixed Width Icons</a>, <a href='http://fontawesome.io/examples/#list'>List Icons</a>, <a href='http://fontawesome.io/examples/#bordered-pulled'>Bordered & Pulled Icons</a>, and <a href='http://fontawesome.io/examples/#stacked'>Stacked Icons</a>. Remember to add 0xF000 for 0xAD (<a href='https://bugzilla.mozilla.org/show_bug.cgi?id=399636#c24'>See issue</a>).</p>
         <div className={zf.row}>
           <fieldset className={classnames(zf.columns, zf.small12, zf.medium6)}>
             <legend>Character</legend>
@@ -130,8 +131,7 @@ class Playground extends Component {
           )}
           <fieldset className={classnames(zf.columns, zf.small12)}>
             <legend>Code</legend>
-            <Code lang='html' $={`<i class="${cssClassNames}">&#${code};</i>`} />
-            <Code lang='jsx' $={`<i className='${cssClassNames}'>{String.fromCharCode(${code})}</i>`} />
+            <Code lang='html' $={`<i class="${cssClassNames}">&#x${shiftedCode.toString(16)};</i>`} />
           </fieldset>
           <fieldset className={classnames(zf.columns, zf.small12)}>
             <legend>Output</legend>

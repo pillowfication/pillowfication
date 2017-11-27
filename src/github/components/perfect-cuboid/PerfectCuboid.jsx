@@ -83,9 +83,9 @@ class PerfectCuboid extends Component {
           <p>With <$ $='6' /> triples and <$ $='12' /> kinds each, I created a program to check each of the <$ $='12^6 = 2{,}985{,}984' /> cases. During a check, a knowledge table would keep track of each length’s divisibility by <$ $='2' />, <$ $='3' />, <$ $='4' />, and <$ $='5' />. A list of possible proof steps was created for the program to use to update the knowledge table. For a triple <$ $='(x, y, z)' /> that was <$ $='\times 2, 3' />, possible proof steps looked like</p>
           <Code lang='javascript' $={`
 'x2 x3': [
-{ if: [ y.d4 ], then: x.not.d4 },
-{ if: [ x.not.d5, y.not.d5 ], then: z.d5 },
-// ...
+  { if: [ y.d4 ], then: x.not.d4 },
+  { if: [ x.not.d5, y.not.d5 ], then: z.d5 },
+  // ...
 ]
           `} />
           <p>The program would keep updating the knowledge table until no new facts were available, or if a contradiction was reached.</p>
