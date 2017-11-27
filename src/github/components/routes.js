@@ -14,6 +14,7 @@ const routes = [{
     { path: 'pf-konami', component: PFKonami }
   ]
 }]
+
 for (const routeGroup of routes) {
   const pathPrefix = routeGroup.header === 'pillowfication' ? '/' : '/' + routeGroup.header
   for (const route of routeGroup.children) {

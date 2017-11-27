@@ -63,13 +63,17 @@ module.exports = {
     rules: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel-loader',
-      options: {
-        presets: [ 'env', 'react' ]
-      }
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          presets: [ 'env', 'react' ]
+        }
+      }]
     }, {
       test: /\.pug$/,
-      loader: 'pug-loader'
+      use: [{
+        loader: 'pug-loader'
+      }]
     }, {
       test: /\.s?css$/,
       use: ExtractTextWebpackPlugin.extract({
@@ -90,17 +94,17 @@ module.exports = {
         }]
       })
     }, {
-      test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      test: /\.woff2?$/,
       use: [{
         loader: 'url-loader',
         options: {
-          limit: 10000,
+          limit: 8192,
           mimetype: 'application/font-woff',
           name: 'fonts/[name].[ext]'
         }
       }]
     }, {
-      test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      test: /\.(ttf|eot|svg)$/,
       use: [{
         loader: 'file-loader',
         options: {
@@ -110,8 +114,9 @@ module.exports = {
     }, {
       test: /\.(gif|png|jpe?g|svg)$/,
       use: [{
-        loader: 'file-loader',
+        loader: 'url-loader',
         options: {
+          limit: 8192,
           name: 'images/[name].[ext]'
         }
       }]

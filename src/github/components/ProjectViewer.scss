@@ -11,7 +11,7 @@
 
 .side-bar {
   margin: $global-padding 0 $global-padding $global-padding;
-  border-right: 1px solid $medium-gray;
+  border-right: 1px solid $hr-color;
   white-space: nowrap;
 
   a {
@@ -22,7 +22,7 @@
     border: 1px solid rgba(0, 0, 0, 0);
 
     &.active {
-      border-color: $medium-gray $body-background $medium-gray $medium-gray;
+      border-color: $hr-color $body-background $hr-color $hr-color;
     }
   }
 
