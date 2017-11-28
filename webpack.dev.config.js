@@ -68,8 +68,9 @@ module.exports = {
           loader: 'css-loader',
           options: {
             modules: true,
+            importLoaders: 2,
             localIdentName: '[local]--[hash:base64:5]',
-            camelCase: 'dashesOnly',
+            camelCase: 'dashes',
             minimize: {
               preset: 'advanced'
             },

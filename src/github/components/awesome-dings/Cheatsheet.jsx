@@ -25,7 +25,7 @@ class Cheatsheet extends Component {
               <tr>
                 <th>Code</th>
                 <th>Hex</th>
-                <th>Symbol</th>
+                <th>Character</th>
                 <th>Webdings</th>
                 <th>Wingdings 1</th>
                 <th>Wingdings 2</th>

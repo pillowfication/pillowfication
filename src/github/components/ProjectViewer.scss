@@ -1,49 +1,68 @@
 @import '../settings';
 
-.project-viewer {
-  flex: auto;
-  display: flex;
+.project-viewer-container {
+  composes: grid-container from '../foundation.scss';
+  width: 100%;
+}
 
-  @include breakpoint(medium down) {
-    flex-direction: column;
-  }
+.project-viewer {
+  composes: grid-x grid-padding-x from '../foundation.scss';
+  padding: $global-margin 0;
 }
 
 .side-bar {
-  margin: $global-padding 0 $global-padding $global-padding;
-  border-right: 1px solid $hr-color;
-  white-space: nowrap;
+  composes: cell shrink from '../foundation.scss';
+  border-right: $hr-border;
+}
+
+.nav-list {
+  composes: menu vertical from '../foundation.scss';
+
+  ul {
+    margin: 0;
+    list-style-type: none;
+  }
 
   a {
-    box-sizing: border-box;
     position: relative;
-    left: 1px;
-    padding: .5rem 1.5rem .5rem .5rem;
-    border: 1px solid rgba(0, 0, 0, 0);
-
-    &.active {
-      border-color: $hr-color $body-background $hr-color $hr-color;
+    margin-left: $global-margin;
+    padding-left: 0;
+    padding-right: $global-margin;
+    color: $secondary-color;
+    transition: color .2s;
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0.2rem;
+      right: 0;
+      width: 0%;
+      height: 1px;
+      background-color: $black;
+      transition: width 0.2s;
     }
-  }
 
-  .path-divider::before {
-    content: "/";
-    position: relative;
-    top: .2rem;
-    margin: 0 .2rem;
-    font-size: 1.4rem;
-  }
-
-  @include breakpoint(medium down) {
-    display: none;
+    &:hover, &.active {
+      color: $black;
+    }
+    &.active::before {
+      width: 100%;
+    }
   }
 }
 
-.main {
-  flex: auto;
-  margin: $global-padding $global-padding $global-padding 2*$global-padding;
+.path-divider::before {
+  content: "/";
+  position: relative;
+  top: 0.2em;
+  margin: 0 0.2em;
+  font-size: 1.4em;
+}
 
-  @include breakpoint(medium down) {
-    margin: $global-padding;
+.main {
+  composes: cell auto from '../foundation.scss';
+
+  @include breakpoint(large) {
+    padding-left: $global-margin * 2 !important;
   }
 }

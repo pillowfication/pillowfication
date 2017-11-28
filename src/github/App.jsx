@@ -3,13 +3,13 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import TopBar from './components/TopBar.jsx'
 import ProjectViewer from './components/ProjectViewer.jsx'
-import styles from './App.scss'
+import './App.scss'
 
 class App extends Component {
   render () {
     return (
       <Router basename='/github'>
-        <div className={styles.app}>
+        <div>
           <TopBar />
           <ProjectViewer />
         </div>

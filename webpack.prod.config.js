@@ -82,7 +82,8 @@ module.exports = {
           loader: 'css-loader',
           options: {
             modules: true,
-            camelCase: 'dashesOnly',
+            importLoaders: 2,
+            camelCase: 'dashes',
             getLocalIdent: (context, localIdentName, localName, options) =>
               getId(getLocalIdent(context, localIdentName, localName, options)),
             minimize: {
