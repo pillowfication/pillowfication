@@ -64,36 +64,34 @@ class CaseSelector extends Component {
     const { id } = this.props
     const permutation = fromId(id)
 
-    return (
-      <div className={zf.row}>
-        <fieldset className={classnames(zf.columns, zf.small12, zf.medium4, zf.large3)}>
-          <legend>Case Identifier</legend>
-          <input type='number'
-            value={this.state.idInput}
-            min={MIN_ID}
-            max={MAX_ID}
-            onChange={this.onInputId}
-            onFocus={this.onFocusIdInput}
-            onBlur={this.onBlurIdInput}
-          />
-        </fieldset>
-        <fieldset className={classnames(zf.columns, zf.small12, zf.medium8, zf.large9)}>
-          <legend>Equivalents</legend>
-          {getEquivalents(id).map(equivalent =>
-            <button key={equivalent}
-              type='button'
-              className={classnames(styles.idButton, zf.button, zf.hollow, {
-                [styles.selected]: id === equivalent
-              })}
-              value={equivalent}
-              onClick={this.onSelectEquivalent}
-            >
-              {equivalent}
-            </button>
-          )}
-        </fieldset>
-        <fieldset className={classnames(zf.columns, zf.small12, zf.tableScroll)}>
-          <table className={styles.inputTable}>
+    return [
+      <fieldset key='case-identifier' className={`${zf.cell} ${zf.small12} ${zf.medium4} ${zf.large3}`}>
+        <legend>Case Identifier</legend>
+        <input type='number'
+          value={this.state.idInput}
+          min={MIN_ID}
+          max={MAX_ID}
+          onChange={this.onInputId}
+          onFocus={this.onFocusIdInput}
+          onBlur={this.onBlurIdInput}
+        />
+      </fieldset>,
+      <fieldset key='equivalents' className={`${zf.cell} ${zf.small12} ${zf.medium8} ${zf.large9}`}>
+        <legend>Equivalents</legend>
+        {getEquivalents(id).map(equivalent =>
+          <button key={equivalent}
+            type='button'
+            className={classnames(styles.idButton, { [styles.selected]: id === equivalent })}
+            value={equivalent}
+            onClick={this.onSelectEquivalent}
+          >
+            {equivalent}
+          </button>
+        )}
+      </fieldset>,
+      <fieldset key='input-table' className={`${zf.cell} ${zf.small12}`}>
+        <div className={styles.inputTableContainer}>
+          <table>
             <thead>
               <tr>
                 <th />
@@ -123,9 +121,9 @@ class CaseSelector extends Component {
               )}
             </tbody>
           </table>
-        </fieldset>
-      </div>
-    )
+        </div>
+      </fieldset>
+    ]
   }
 }
 

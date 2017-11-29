@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { execute, transpile } from 'moofuck'
 
 import Page from '../Page.jsx'
-import zf from '../../foundation.scss'
 import styles from './Moofuck.scss'
 
 class Moofuck extends Component {

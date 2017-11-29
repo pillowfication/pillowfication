@@ -69,7 +69,7 @@ $global-font-size: 1rem;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #1779ba,
+  primary: #0a56d1,
   secondary: #767676,
   success: #3adb76,
   warning: #ffae00,
@@ -167,8 +167,8 @@ $code-font-weight: $global-weight-normal;
 $code-background: $white;
 $code-border: 1px solid $black;
 $code-padding: rem-calc(2 5 1);
-$anchor-color: $secondary-color;
-$anchor-color-hover: $body-font-color;
+$anchor-color: $primary-color;
+$anchor-color-hover: $primary-color;
 $anchor-text-decoration: none;
 $anchor-text-decoration-hover: none;
 $hr-width: $global-width;
@@ -283,7 +283,7 @@ $button-font-family: inherit;
 $button-padding: 0.85em 1em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
-$button-background: $primary-color;
+$button-background: $black;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
 $button-color-alt: $black;
@@ -848,7 +848,7 @@ $tooltip-radius: $global-radius;
 // -----------
 
 $topbar-padding: 0;
-$topbar-background: #000;
+$topbar-background: $primary-color;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 0.5rem 1rem 0.5rem 0;
 $topbar-input-width: 200px;

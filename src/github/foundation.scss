@@ -48,13 +48,13 @@
 }
 
 a {
-  border-bottom: 1px solid $anchor-color;
+  border-bottom: 1px solid rgba($anchor-color, 0);
   transition: {
-    property: color border-color;
+    property: border-color;
     duration: 0.2s;
   }
 
   &:hover {
-    border-color: $anchor-color-hover;
+    border-color: rgba($anchor-color-hover, 1);
   }
 }

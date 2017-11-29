@@ -43,11 +43,11 @@
       right: 0;
       width: 0%;
       height: 1px;
-      background-color: $black;
+      background-color: $hr-color;
       transition: width 0.2s;
     }
 
-    &.active {
+    &.active, &:hover {
       color: $black;
     }
     &.active::before {

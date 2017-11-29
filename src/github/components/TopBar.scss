@@ -4,25 +4,29 @@ $icon-size: 2rem;
 
 .top-bar {
   background-color: $topbar-background;
-  border: 1px solid $topbar-background;
   color: $white;
   font-weight: bold;
 
   a {
     display: inline-block;
+    position: relative;
     padding: $global-margin;
-    padding-bottom: calc(#{$global-margin} - 3px);
-    background-color: $topbar-background;
-    border-bottom: 3px solid $topbar-background;
+    background-color: inherit;
     color: inherit;
-    text-decoration: none;
-    transition: {
-      property: border-color;
-      duration: .2s;
-    }
 
-    &:hover {
-      border-color: $white;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 1px;
+      height: 3px;
+      margin: 0 auto;
+      background-color: inherit;
+      transition: background-color 0.2s;
+    }
+    &:hover::before {
+      background-color: $white;
     }
 
     i {

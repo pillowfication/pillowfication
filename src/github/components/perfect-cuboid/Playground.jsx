@@ -3,13 +3,15 @@ import React, { Component } from 'react'
 import CaseSelector from './CaseSelector.jsx'
 import StepSelector from './StepSelector.jsx'
 import PassedCases from './PassedCases.jsx'
+import zf from '../../foundation.scss'
+import fa from '../../font-awesome.scss'
 
 class Playground extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      id: Math.pow(12, 6) * Math.random() | 0
+      id: 2985984 * Math.random() | 0
     }
 
     this.onSelectId = this.onSelectId.bind(this)
@@ -23,10 +25,12 @@ class Playground extends Component {
     return (
       <section>
         <h3>Playground</h3>
-        <p>See the old playground at <a href='http://old.pillowfication.com/projects/cuboid/'>old.pillowfication.com/projects/cuboid</a>.</p>
-        <CaseSelector id={this.state.id} onSelectId={this.onSelectId} />
-        <StepSelector id={this.state.id} />
-        <PassedCases id={this.state.id} onSelectId={this.onSelectId} />
+        <p><i className={`${fa.fa} ${fa.faReply} ${fa.faRotate180}`} /> <a href='http://old.pillowfication.com/projects/cuboid/'>See the old playground here</a></p>
+        <div className={`${zf.gridX} ${zf.gridMarginX}`}>
+          <CaseSelector id={this.state.id} onSelectId={this.onSelectId} />
+          <StepSelector id={this.state.id} />
+          <PassedCases id={this.state.id} onSelectId={this.onSelectId} />
+        </div>
       </section>
     )
   }

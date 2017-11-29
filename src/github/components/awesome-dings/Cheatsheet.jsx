@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import zf from '../../foundation.scss'
+import fa from '../../font-awesome.scss'
 import ad from './awesome-dings.scss'
 import styles from './AwesomeDings.scss'
 
@@ -17,7 +18,7 @@ class Cheatsheet extends Component {
     return (
       <section>
         <h3>Cheatsheet</h3>
-        <p><a href='http://unicode.org/~asmus/web-wing-ding-ext.pdf'>Webdings and Wingdings Symbol Collection</a></p>
+        <p><i className={`${fa.fa} ${fa.faReply} ${fa.faRotate180}`} /> <a href='http://unicode.org/~asmus/web-wing-ding-ext.pdf'>Webdings and Wingdings Symbol Collection</a></p>
         <div className={zf.tableScroll}>
           <table className={styles.cheatsheet}>
             <thead>

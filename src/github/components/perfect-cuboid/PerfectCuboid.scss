@@ -26,7 +26,7 @@ $cuboid-height: 260px;
   left: 50%;
   width: $cuboid-width;
   height: $cuboid-height;
-  margin-left: -$cuboid-width/2;
+  margin-left: -$cuboid-width / 2;
 
   & > div {
     position: absolute;
@@ -34,38 +34,42 @@ $cuboid-height: 260px;
 }
 
 .id-button {
-  margin: 0 .2rem .5rem 0;
+  composes: button hollow from "../../foundation.scss";
+  margin: 0 0.5rem 0.5rem 0;
 
-  &.selected {
-    text-decoration: underline;
+  &:hover, &.selected {
+    background-color: $black !important;
+    color: $white !important;
   }
 }
 
-.input-table {
-  th, td {
-    padding: 0;
-    text-align: center;
-  }
-  thead th {
-    padding: .3rem;
-  }
+.input-table-container {
+  composes: table-scroll from "../../foundation.scss";
 
-  th:first-child {
-    border-right: $table-border;
-  }
+  table {
+    width: 100%;
 
-  label {
-    cursor: pointer;
-    transition: {
-      property: background-color;
-      duration: .15s;
+    th, td {
+      padding: 0;
+      text-align: center;
     }
 
-    &:hover {
-      background-color: rgba($primary-color, .1);
+    thead th {
+      padding: 0.5rem;
     }
-    &.selected {
-      background-color: rgba($primary-color, .18);
+
+    th:first-child {
+      border-right: $table-border;
+      padding: 0 0.5rem;
+    }
+
+    label {
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: {
+        property: background-color;
+        duration: 0.2s;
+      }
     }
   }
 
