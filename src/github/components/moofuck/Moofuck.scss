@@ -1,20 +1,14 @@
-@import "../../settings";
+.table {
+  th, td {
+    text-align: center;
+  }
 
-.table-container {
-  composes: table-scroll from "../../foundation.scss";
+  kbd {
+    white-space: nowrap;
+  }
 
-  table {
-    th, td {
-      text-align: center;
-    }
-
-    kbd {
-      white-space: nowrap;
-    }
-
-    .meaning {
-      min-width: 300px;
-      text-align: left;
-    }
+  .meaning {
+    min-width: 300px;
+    text-align: left;
   }
 }

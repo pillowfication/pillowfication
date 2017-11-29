@@ -55,10 +55,15 @@ class Playground extends Component {
       this.state[radioGroup.name] = 0
     })
 
+    this.onFocusCharacter = this.onFocusCharacter.bind(this)
     this.onInputCharacter = this.onInputCharacter.bind(this)
     this.onInputCode = this.onInputCode.bind(this)
     this.onBlurCodeInput = this.onBlurCodeInput.bind(this)
     this.onSelectRadio = this.onSelectRadio.bind(this)
+  }
+
+  onFocusCharacter (event) {
+    event.target.select()
   }
 
   onInputCharacter (event) {
@@ -104,7 +109,11 @@ class Playground extends Component {
         <div className={`${zf.gridX} ${zf.gridMarginX}`}>
           <fieldset className={`${zf.cell} ${zf.small12} ${zf.medium6}`}>
             <legend>Character</legend>
-            <input type='text' value={character} onChange={this.onInputCharacter} />
+            <input type='text'
+              value={character}
+              onFocus={this.onFocusCharacter}
+              onChange={this.onInputCharacter}
+            />
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12} ${zf.medium6}`}>
             <legend>Code</legend>
