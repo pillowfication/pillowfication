@@ -100,13 +100,13 @@ class Playground extends Component {
     return (
       <section>
         <h3>Playground</h3>
-        <p>This does not go over <a href='http://fontawesome.io/examples/#fixed-width'>Fixed Width Icons</a>, <a href='http://fontawesome.io/examples/#list'>List Icons</a>, <a href='http://fontawesome.io/examples/#bordered-pulled'>Bordered & Pulled Icons</a>, and <a href='http://fontawesome.io/examples/#stacked'>Stacked Icons</a>. Remember to add 0xF000 for 0xAD (<a href='https://bugzilla.mozilla.org/show_bug.cgi?id=399636#c24'>See issue</a>).</p>
-        <div className={zf.row}>
-          <fieldset className={classnames(zf.columns, zf.small12, zf.medium6)}>
+        <p>This does not go over <a href='http://fontawesome.io/examples/#fixed-width'>Fixed Width Icons</a>, <a href='http://fontawesome.io/examples/#list'>List Icons</a>, <a href='http://fontawesome.io/examples/#bordered-pulled'>Bordered & Pulled Icons</a>, and <a href='http://fontawesome.io/examples/#stacked'>Stacked Icons</a> which are all supported. Remember to add <samp>0xF000</samp> for <samp>0xAD</samp> / <samp>173</samp> (<a href='https://bugzilla.mozilla.org/show_bug.cgi?id=399636#c24'>see issue</a>).</p>
+        <div className={`${zf.gridX} ${zf.gridMarginX}`}>
+          <fieldset className={`${zf.cell} ${zf.small12} ${zf.medium6}`}>
             <legend>Character</legend>
             <input type='text' value={character} onChange={this.onInputCharacter} />
           </fieldset>
-          <fieldset className={classnames(zf.columns, zf.small12, zf.medium6)}>
+          <fieldset className={`${zf.cell} ${zf.small12} ${zf.medium6}`}>
             <legend>Code</legend>
             <input type='number'
               value={this.state.codeInput}
@@ -115,7 +115,7 @@ class Playground extends Component {
             />
           </fieldset>
           {RADIO_GROUPS.map(radioGroup =>
-            <fieldset key={radioGroup.name} className={classnames(zf.columns, zf.small12, zf.medium6, zf.large3)}>
+            <fieldset key={radioGroup.name} className={`${zf.cell} ${zf.small12} ${zf.medium6} ${zf.large3}`}>
               <legend>{radioGroup.name}</legend>
               {radioGroup.radios.map((radio, index) =>
                 <div key={radio.name}>
@@ -129,11 +129,11 @@ class Playground extends Component {
               )}
             </fieldset>
           )}
-          <fieldset className={classnames(zf.columns, zf.small12)}>
+          <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Code</legend>
             <Code lang='html' $={`<i class="${cssClassNames}">&#x${shiftedCode.toString(16)};</i>`} />
           </fieldset>
-          <fieldset className={classnames(zf.columns, zf.small12)}>
+          <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Output</legend>
             <div className={styles.output}><div>
               <i className={cssModulesClassNames}>{character}</i>

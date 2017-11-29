@@ -10,18 +10,18 @@ $icon-size: 2rem;
 
   a {
     display: inline-block;
-    padding: calc(#{$global-margin} - 3px);
+    padding: $global-margin;
+    padding-bottom: calc(#{$global-margin} - 3px);
     background-color: $topbar-background;
-    border: 3px solid $topbar-background;
+    border-bottom: 3px solid $topbar-background;
     color: inherit;
     text-decoration: none;
     transition: {
-      property: background-color border-color;
+      property: border-color;
       duration: .2s;
     }
 
     &:hover {
-      background-color: darken($topbar-background, 10%);
       border-color: $white;
     }
 

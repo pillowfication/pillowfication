@@ -3,7 +3,7 @@
 
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;
-@include foundation-grid;
+// @include foundation-grid;
 // @include foundation-flex-grid;
 // @include foundation-flex-classes;
 @include foundation-typography;
@@ -43,5 +43,18 @@
 // @include foundation-float-classes;
 
 .table-scroll table {
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  border-bottom: 1px solid $anchor-color;
+  transition: {
+    property: color border-color;
+    duration: 0.2s;
+  }
+
+  &:hover {
+    border-color: $anchor-color-hover;
+  }
 }

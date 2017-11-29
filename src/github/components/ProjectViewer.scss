@@ -13,6 +13,10 @@
 .side-bar {
   composes: cell shrink from '../foundation.scss';
   border-right: $hr-border;
+
+  @include breakpoint(medium down) {
+    display: none;
+  }
 }
 
 .nav-list {
@@ -28,8 +32,9 @@
     margin-left: $global-margin;
     padding-left: 0;
     padding-right: $global-margin;
-    color: $secondary-color;
-    transition: color .2s;
+    border: none;
+    transition: color 0.2s;
+
     &::before {
       content: "";
       display: block;
@@ -42,7 +47,7 @@
       transition: width 0.2s;
     }
 
-    &:hover, &.active {
+    &.active {
       color: $black;
     }
     &.active::before {

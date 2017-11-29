@@ -1,8 +1,10 @@
 @import '../../settings';
 
-$icon-view-size: 100px;
+$icon-view-size: 8rem;
+$icon-view-padding: 2.5rem;
 
 .image-container {
+  composes: table-scroll from "../../foundation.scss";
   margin-bottom: 1rem;
   text-align: center;
 
@@ -11,24 +13,37 @@ $icon-view-size: 100px;
   }
 }
 
-.examples {
-  th, td {
+.table-container {
+  composes: table-scroll from "../../foundation.scss";
+
+  table th {
     text-align: center;
   }
-
-  button {
-    margin: 0;
-    font-size: 1.2rem;
-    white-space: nowrap;
-
-    @include breakpoint(medium) {
-      font-size: 1.6rem;
-    }
+  table td {
+    padding: $global-padding;
+    text-align: center;
   }
+}
 
-  .loader {
-    color: $primary-color;
-  }
+.button {
+  composes: button from "../../foundation.scss";
+  margin: 0;
+  border-radius: .2rem;
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+.secondary {
+  composes: hollow secondary from "../../foundation.scss";
+}
+
+.alert {
+  composes: alert from "../../foundation.scss";
+  color: $white !important;
+}
+
+.spinner {
+  color: $primary-color;
 }
 
 .output {
@@ -36,7 +51,7 @@ $icon-view-size: 100px;
   width: 200px;
   height: 200px;
   margin-bottom: 1rem;
-  border: 1px solid $secondary-color;
+  border: 1px solid $black;
   font-size: 1.5rem;
 
   & > div {
@@ -53,7 +68,7 @@ $icon-view-size: 100px;
 
   td {
     position: relative;
-    padding: 0;
+    padding: 1px;
 
     &:hover i {
       z-index: 100;
@@ -66,7 +81,7 @@ $icon-view-size: 100px;
       margin-top: -$icon-view-size / 2;
       border: 1px solid black;
       background-color: #fff;
-      font-size: $icon-view-size * .8;
+      font-size: $icon-view-size - $icon-view-padding;
       line-height: $icon-view-size;
     }
   }

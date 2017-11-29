@@ -5,8 +5,7 @@ import ad from './awesome-dings.scss'
 import styles from './AwesomeDings.scss'
 
 function isControlCharacter (charCode) {
-  // 32 is space, but since it has no glyph it's here
-  return charCode <= 32 || charCode === 127
+  return charCode <= 31 || charCode === 127
 }
 
 function toHex2 (num) {
@@ -18,7 +17,7 @@ class Cheatsheet extends Component {
     return (
       <section>
         <h3>Cheatsheet</h3>
-        <p><a href='http://unicode.org/~asmus/web-wing-ding-ext.pdf'>http://unicode.org/~asmus/web-wing-ding-ext.pdf</a></p>
+        <p><a href='http://unicode.org/~asmus/web-wing-ding-ext.pdf'>Webdings and Wingdings Symbol Collection</a></p>
         <div className={zf.tableScroll}>
           <table className={styles.cheatsheet}>
             <thead>

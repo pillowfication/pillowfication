@@ -6,14 +6,11 @@
 
   small {
     margin-left: 1rem;
+    font-size: .7em;
   }
 
   a {
-    color: $secondary-color;
-
-    &:hover {
-      color: $anchor-color-hover;
-    }
+    border: none;
   }
 }
 
