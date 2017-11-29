@@ -38,88 +38,79 @@ $cuboid-height: 260px;
   margin: 0 0.5rem 0.5rem 0;
 
   &:hover, &.selected {
-    background-color: $black !important;
+    border-color: $black;
+    background-color: $primary-color !important;
     color: $white !important;
   }
 }
 
-.input-table-container {
-  composes: table-scroll from "../../foundation.scss";
+.input-table {
+  width: 100% !important;
 
-  table {
-    width: 100%;
+  th, td {
+    padding: 0;
+    text-align: center;
+  }
 
-    th, td {
-      padding: 0;
-      text-align: center;
-    }
+  thead th {
+    padding: 0.5rem;
+  }
 
-    thead th {
-      padding: 0.5rem;
-    }
+  tbody th:first-child {
+    border-right: $table-border;
+    padding: 0 0.5rem;
+  }
 
-    th:first-child {
-      border-right: $table-border;
-      padding: 0 0.5rem;
-    }
+  label {
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.2s;
 
-    label {
-      box-sizing: border-box;
-      cursor: pointer;
-      transition: {
-        property: background-color;
-        duration: 0.2s;
-      }
+    &:hover, &.selected {
+      background-color: rgba($primary-color, 0.2);
     }
   }
 
   input[type=radio] {
-    margin: .7rem;
+    margin: 0.7rem;
   }
 }
 
 .steps {
+  margin-left: 2.5rem;
+
   li:not(:last-child) {
     cursor: pointer;
-    transition: {
-      property: background-color;
-      duration: .15s;
-    }
+    transition: background-color 0.2s;
 
-    &:hover {
-      background-color: rgba($primary-color, .1);
+    &:hover, &.selected {
+      background-color: rgba($primary-color, 0.2);
     }
-    &.selected {
-      background-color: rgba($primary-color, .18);
-    }
-  }
-  .contradiction {
-    color: $alert-color;
   }
 }
 
+.contradiction {
+  color: $alert-color;
+}
+
 .knowledge-table {
+  width: 100% !important;
+
   th, td {
-    padding: .3rem;
+    padding: 0.3rem;
     text-align: center;
   }
 
-  th:first-child {
+  tbody th:first-child {
     border-right: $table-border;
   }
 
   td:not(.unknown) {
     cursor: pointer;
-    transition: {
-      property: background-color;
-      duration: .15s;
-    }
+    transition: background-color 0.2s;
 
-    &:hover {
-      background-color: rgba($primary-color, .1);
-    }
-    &.selected {
-      background-color: rgba($primary-color, .18);
+    &:hover, &.selected {
+      background-color: rgba($primary-color, 0.2);
     }
   }
 }
@@ -140,5 +131,5 @@ $cuboid-height: 260px;
 }
 .unknown::before {
   content: $fa-var-question;
-  color: rgba(0, 0, 0, .1);
+  color: rgba(0, 0, 0, 0.1);
 }

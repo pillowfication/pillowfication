@@ -1,26 +1,26 @@
 const path = require('path')
 const webpack = require('webpack')
-const incstr = require('incstr')
-const getLocalIdent = require('css-loader/lib/getLocalIdent')
+// const incstr = require('incstr')
+// const getLocalIdent = require('css-loader/lib/getLocalIdent')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 
-const generateId = incstr.idGenerator({
-  alphabet: 'abcefghijklmnopqrstuvwxyzABCEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-})
-const ids = {}
-
-function getId (name) {
-  if (ids[name]) {
-    return ids[name]
-  }
-
-  const id = 'pf-' + generateId()
-  ids[name] = id
-  return id
-}
+// const generateId = incstr.idGenerator({
+//   alphabet: 'abcefghijklmnopqrstuvwxyzABCEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+// })
+// const ids = {}
+//
+// function getId (name) {
+//   if (ids[name]) {
+//     return ids[name]
+//   }
+//
+//   const id = 'pf-' + generateId()
+//   ids[name] = id
+//   return id
+// }
 
 module.exports = {
   entry: {
@@ -83,9 +83,10 @@ module.exports = {
           options: {
             modules: true,
             importLoaders: 2,
+            localIdentName: '[local]--[hash:base64:5]',
+            // getLocalIdent: (context, localIdentName, localName, options) =>
+            //   getId(getLocalIdent(context, localIdentName, localName, options)),
             camelCase: 'dashes',
-            getLocalIdent: (context, localIdentName, localName, options) =>
-              getId(getLocalIdent(context, localIdentName, localName, options)),
             minimize: {
               preset: 'advanced'
             }

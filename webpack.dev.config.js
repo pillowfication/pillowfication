@@ -39,8 +39,8 @@ module.exports = {
       ignoreOrder: true
     }),
     new UglifyJSWebpackPlugin({
-      cache: path.resolve(__dirname, './.cache'),
       parallel: true,
+      cache: path.resolve(__dirname, './.cache'),
       sourceMap: true
     })
   ],

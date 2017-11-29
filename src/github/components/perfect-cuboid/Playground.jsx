@@ -25,7 +25,7 @@ class Playground extends Component {
     return (
       <section>
         <h3>Playground</h3>
-        <p><i className={`${fa.fa} ${fa.faReply} ${fa.faRotate180}`} /> <a href='http://old.pillowfication.com/projects/cuboid/'>See the old playground here</a></p>
+        <p><a href='http://old.pillowfication.com/projects/cuboid/'><i className={`${fa.fa} ${fa.faReply} ${fa.faRotate180}`} /> See the old playground here</a></p>
         <div className={`${zf.gridX} ${zf.gridMarginX}`}>
           <CaseSelector id={this.state.id} onSelectId={this.onSelectId} />
           <StepSelector id={this.state.id} />

@@ -13,33 +13,32 @@ $icon-view-padding: 2.5rem;
   }
 }
 
-.table-container {
-  composes: table-scroll from "../../foundation.scss";
-
-  table th {
+.examples {
+  th {
     text-align: center;
   }
-  table td {
+  td {
     padding: $global-padding;
     text-align: center;
   }
 }
 
-.button {
+.primary-button {
   composes: button from "../../foundation.scss";
   margin: 0;
-  border-radius: .2rem;
+  border-radius: 0.4rem;
   font-size: 1.5rem;
   white-space: nowrap;
 }
 
-.secondary {
+.secondary-button {
+  composes: primary-button;
   composes: hollow secondary from "../../foundation.scss";
 }
 
-.alert {
+.alert-button {
+  composes: primary-button;
   composes: alert from "../../foundation.scss";
-  color: $white !important;
 }
 
 .spinner {

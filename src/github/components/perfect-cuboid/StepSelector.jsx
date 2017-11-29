@@ -83,10 +83,10 @@ class StepSelector extends Component {
       divisibility: then.divisibility
     }
 
-    return (
-      <div className={zf.row}>
-        <fieldset className={classnames(zf.columns, zf.small12, zf.large6, zf.tableScroll)}>
-          <legend>Steps</legend>
+    return [
+      <fieldset key='steps' className={`${zf.cell} ${zf.small12} ${zf.large6}`}>
+        <legend>Steps</legend>
+        <div className={zf.tableScroll}>
           <ol className={styles.steps} start={0}>
             {verification.steps.map((step, index) =>
               <li key={index}
@@ -103,9 +103,11 @@ class StepSelector extends Component {
               />
             </li>
           </ol>
-        </fieldset>
-        <fieldset className={classnames(zf.columns, zf.small12, zf.large6, zf.tableScroll)}>
-          <legend>Knowledge (step {stepIndex})</legend>
+        </div>
+      </fieldset>,
+      <fieldset key='knowledge-table' className={`${zf.columns} ${zf.small12} ${zf.large6}`}>
+        <legend>Knowledge (step {stepIndex})</legend>
+        <div className={zf.tableScroll}>
           <table className={styles.knowledgeTable}>
             <thead>
               <tr>
@@ -136,9 +138,9 @@ class StepSelector extends Component {
               )}
             </tbody>
           </table>
-        </fieldset>
-      </div>
-    )
+        </div>
+      </fieldset>
+    ]
   }
 }
 

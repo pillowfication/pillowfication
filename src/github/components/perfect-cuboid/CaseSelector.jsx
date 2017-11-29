@@ -90,8 +90,8 @@ class CaseSelector extends Component {
         )}
       </fieldset>,
       <fieldset key='input-table' className={`${zf.cell} ${zf.small12}`}>
-        <div className={styles.inputTableContainer}>
-          <table>
+        <div className={zf.tableScroll}>
+          <table className={styles.inputTable}>
             <thead>
               <tr>
                 <th />
