@@ -1,16 +1,20 @@
 @import "../../settings";
 
-table.mapping-table {
-  width: auto;
+.table-container {
+  composes: table-scroll from "../../foundation.scss";
 
-  .meaning {
-    min-width: 300px;
-  }
+  table {
+    th, td {
+      text-align: center;
+    }
 
-  th, td {
-    text-align: center;
-  }
-  code {
-    white-space: nowrap;
+    kbd {
+      white-space: nowrap;
+    }
+
+    .meaning {
+      min-width: 300px;
+      text-align: left;
+    }
   }
 }

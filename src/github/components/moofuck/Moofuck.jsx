@@ -10,56 +10,56 @@ class Moofuck extends Component {
     return (
       <Page title='moofuck' github='pillowfication/moofuck'>
         <section>
-          <p>Moofuck is a language designed to consist entirely of “moo”s. A “moo” ends with either a <code>LF</code> or <code>CRLF</code>. Anything else is ignored. 3 “moo”s in a row form a codon, and the 8 possible codons are mapped to the 8 <a href='https://en.wikipedia.org/wiki/Brainfuck'>Brainfuck</a> commands as follows:</p>
-          <div className={zf.tableScroll}>
-            <table className={styles.mappingTable}>
+          <p>Moofuck is a language designed to consist entirely of “moo”s. A “moo” ends with either a <kbd>LF</kbd> or <kbd>CRLF</kbd>. Anything else is ignored. 3 “moo”s in a row form a codon, and the 8 possible codons are mapped to the 8 <a href='https://en.wikipedia.org/wiki/Brainfuck'>Brainfuck</a> commands as follows:</p>
+          <div className={styles.tableContainer}>
+            <table>
               <thead>
                 <tr>
                   <th>Moofuck</th>
                   <th>Brainfuck</th>
-                  <th className={styles.meaning}>Meaning</th>
+                  <th>Meaning</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><code>LF LF LF</code></td>
-                  <td><code>></code></td>
-                  <td>Increment the data pointer</td>
+                  <td><kbd>LF LF LF</kbd></td>
+                  <td><kbd>></kbd></td>
+                  <td className={styles.meaning}>Increment the data pointer</td>
                 </tr>
                 <tr>
-                  <td><code>LF LF CRLF</code></td>
-                  <td><code>{'<'}</code></td>
-                  <td>Decrement the data pointer</td>
+                  <td><kbd>LF LF CRLF</kbd></td>
+                  <td><kbd>{'<'}</kbd></td>
+                  <td className={styles.meaning}>Decrement the data pointer</td>
                 </tr>
                 <tr>
-                  <td><code>LF CRLF LF</code></td>
-                  <td><code>+</code></td>
-                  <td>Increment the byte at the data pointer</td>
+                  <td><kbd>LF CRLF LF</kbd></td>
+                  <td><kbd>+</kbd></td>
+                  <td className={styles.meaning}>Increment the byte at the data pointer</td>
                 </tr>
                 <tr>
-                  <td><code>LF CRLF CRLF</code></td>
-                  <td><code>-</code></td>
-                  <td>Decrement the byte at the data pointer</td>
+                  <td><kbd>LF CRLF CRLF</kbd></td>
+                  <td><kbd>-</kbd></td>
+                  <td className={styles.meaning}>Decrement the byte at the data pointer</td>
                 </tr>
                 <tr>
-                  <td><code>CRLF LF LF</code></td>
-                  <td><code>.</code></td>
-                  <td>Output the byte at the data pointer</td>
+                  <td><kbd>CRLF LF LF</kbd></td>
+                  <td><kbd>.</kbd></td>
+                  <td className={styles.meaning}>Output the byte at the data pointer</td>
                 </tr>
                 <tr>
-                  <td><code>CRLF LF CRLF</code></td>
-                  <td><code>,</code></td>
-                  <td>Accept one byte of input and store its value in the byte at the data pointer</td>
+                  <td><kbd>CRLF LF CRLF</kbd></td>
+                  <td><kbd>,</kbd></td>
+                  <td className={styles.meaning}>Accept one byte of input and store its value in the byte at the data pointer</td>
                 </tr>
                 <tr>
-                  <td><code>CRLF CRLF LF</code></td>
-                  <td><code>[</code></td>
-                  <td>If the byte at the data pointer is 0, jump the instruction pointer forward to the matching <code>]</code></td>
+                  <td><kbd>CRLF CRLF LF</kbd></td>
+                  <td><kbd>[</kbd></td>
+                  <td className={styles.meaning}>If the byte at the data pointer is <samp>0</samp>, jump the instruction pointer forward to the matching <kbd>]</kbd></td>
                 </tr>
                 <tr>
-                  <td><code>CRLF CRLF CRLF</code></td>
-                  <td><code>]</code></td>
-                  <td>Jump the instruction pointer back to the matching <code>[</code></td>
+                  <td><kbd>CRLF CRLF CRLF</kbd></td>
+                  <td><kbd>]</kbd></td>
+                  <td className={styles.meaning}>Jump the instruction pointer back to the matching <kbd>[</kbd></td>
                 </tr>
               </tbody>
             </table>
