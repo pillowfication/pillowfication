@@ -6,7 +6,7 @@ class Footer extends Component {
   render () {
     return (
       <footer className={styles.footer}>
-        foobar
+        http://pillowfication.com
       </footer>
     )
   }
