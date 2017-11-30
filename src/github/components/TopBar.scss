@@ -44,9 +44,11 @@ $icon-size: 2rem;
 }
 .left {
   composes: top-bar-left from '../foundation.scss';
+  flex: 0 0 auto !important;
 }
 .right {
   composes: top-bar-right from '../foundation.scss';
+  flex: 0 0 auto !important;
 }
 
 .icon {

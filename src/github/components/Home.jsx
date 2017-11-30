@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 
+import Page from './Page.jsx'
+
 class Home extends Component {
   render () {
-    return <div>Home</div>
+    return (
+      <Page title='home'>Home</Page>
+    )
   }
 }
 

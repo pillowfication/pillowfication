@@ -9,7 +9,7 @@ class Page extends Component {
     const { title, github } = this.props
 
     return (
-      <div>
+      <div className={styles.page}>
         <h1 className={styles.title}>{title}
           <small>
             {github &&

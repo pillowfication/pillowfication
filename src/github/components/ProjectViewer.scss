@@ -1,12 +1,12 @@
 @import '../settings';
 
 .project-viewer-container {
-  composes: grid-container from '../foundation.scss';
-  width: 100%;
+  // composes: grid-container from '../foundation.scss';
+  background-color: $body-background;
 }
 
 .project-viewer {
-  composes: grid-x grid-padding-x from '../foundation.scss';
+  composes: grid-container grid-x grid-padding-x from '../foundation.scss';
   padding: $global-margin 0;
 }
 
