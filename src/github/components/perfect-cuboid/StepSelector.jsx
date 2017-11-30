@@ -77,7 +77,7 @@ class StepSelector extends Component {
     const verification = verify(id)
     const stepIndex = this.state.stepIndex === -1 ? verification.steps.length - 1 : this.state.stepIndex
     const step = verification.steps[stepIndex]
-    const then = step.rule.then
+    const then = stepIndex && step.rule.then
     const newKnowledge = stepIndex && {
       side: then.triple[then.side],
       divisibility: then.divisibility
