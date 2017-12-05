@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import TopBar from './components/TopBar.jsx'
 import ProjectViewer from './components/ProjectViewer.jsx'
-import Footer from './components/Footer.jsx'
 import styles from './App.scss'
 
 class App extends Component {
@@ -13,7 +12,6 @@ class App extends Component {
         <div className={styles.app}>
           <TopBar />
           <ProjectViewer />
-          <Footer />
         </div>
       </Router>
     )
