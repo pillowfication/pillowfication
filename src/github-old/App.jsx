@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import Header from './components/Header.jsx'
+import TopBar from './components/TopBar.jsx'
 import ProjectViewer from './components/ProjectViewer.jsx'
 import styles from './App.scss'
 
@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <Router basename='/github'>
         <div className={styles.app}>
-          <Header />
+          <TopBar />
           <ProjectViewer />
         </div>
       </Router>

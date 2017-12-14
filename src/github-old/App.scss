@@ -1,0 +1,10 @@
+@import "settings";
+
+pre {
+  margin-bottom: $global-margin;
+}
+
+.app {
+  width: 100vw;
+  min-height: 100vh;
+}

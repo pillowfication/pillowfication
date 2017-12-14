@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 // const incstr = require('incstr')
 // const getLocalIdent = require('css-loader/lib/getLocalIdent')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
@@ -37,10 +37,10 @@ module.exports = {
       NODE_ENV: 'production'
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, './node_modules/cis89c'),
-      to: 'cis89c'
-    }]),
+    // new CopyWebpackPlugin([{
+    //   from: path.resolve(__dirname, './node_modules/cis89c'),
+    //   to: 'cis89c'
+    // }]),
     new HtmlWebpackPlugin({
       chunks: [ 'bundle' ],
       template: path.resolve(__dirname, './src/index.pug'),
@@ -83,10 +83,10 @@ module.exports = {
           options: {
             modules: true,
             importLoaders: 2,
-            localIdentName: '[local]--[hash:base64:5]',
+            localIdentName: '[path][name]__[local]--[hash:base64:5]',
             // getLocalIdent: (context, localIdentName, localName, options) =>
             //   getId(getLocalIdent(context, localIdentName, localName, options)),
-            camelCase: 'dashes',
+            camelCase: 'dashesOnly',
             minimize: {
               preset: 'advanced'
             }
@@ -96,17 +96,7 @@ module.exports = {
         }]
       })
     }, {
-      test: /\.woff2?$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          mimetype: 'application/font-woff',
-          name: 'fonts/[name].[ext]'
-        }
-      }]
-    }, {
-      test: /\.(ttf|eot|svg)$/,
+      test: /\.ttf$/,
       use: [{
         loader: 'file-loader',
         options: {
