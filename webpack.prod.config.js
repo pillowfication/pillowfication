@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 // const incstr = require('incstr')
 // const getLocalIdent = require('css-loader/lib/getLocalIdent')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
@@ -37,10 +37,13 @@ module.exports = {
       NODE_ENV: 'production'
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    // new CopyWebpackPlugin([{
-    //   from: path.resolve(__dirname, './node_modules/cis89c'),
-    //   to: 'cis89c'
-    // }]),
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, './node_modules/cis89c'),
+      to: 'cis89c'
+    }, {
+      from: path.resolve(__dirname, './src/github/assets'),
+      to: ''
+    }]),
     new HtmlWebpackPlugin({
       chunks: [ 'bundle' ],
       template: path.resolve(__dirname, './src/index.pug'),
@@ -96,7 +99,7 @@ module.exports = {
         }]
       })
     }, {
-      test: /\.ttf$/,
+      test: /\.(eot|ttf|woff2?)(v=[0-9]\.[0-9]\.[0-9])?$/,
       use: [{
         loader: 'file-loader',
         options: {
