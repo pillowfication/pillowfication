@@ -1,0 +1,54 @@
+@import "../settings";
+
+.nav {
+  margin-top: $global-margin;
+  margin-bottom: $global-margin;
+  border-right: 1px solid $dark-gray;
+  height: 100%;
+
+  ul {
+    list-style-type: none;
+  }
+
+  & > ul {
+    margin: 0;
+  }
+
+  & > ul ul {
+    margin: 0 0 0 8px;
+  }
+
+  a {
+    display: block;
+    position: relative;
+    padding: 0.4rem $global-margin 0.4rem 0;
+    color: $secondary-color;
+
+    &:hover, &.active {
+      color: $black;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0.25rem;
+      right: 0;
+      width: 0%;
+      height: 1px;
+      background-color: $dark-gray;
+      transition: width 0.2s;
+    }
+    &.active::after {
+      width: 100%;
+    }
+  }
+}
+
+.path-divider::before {
+  content: "/";
+  position: relative;
+  top: 0.1em;
+  padding: 0 4px;
+  font-size: 1.2em;
+}
