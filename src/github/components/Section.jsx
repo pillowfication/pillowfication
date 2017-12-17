@@ -13,7 +13,7 @@ class Section extends Component {
 
     return (
       <section>
-        <h2 className={styles.title}>
+        <h2 className={styles.title} id={hash}>
           {title}
           <Link className={styles.hash} to={{ hash: '#' + hash }}>
             <i className={`${fa.fa} ${fa.faHashtag}`} />

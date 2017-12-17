@@ -51,6 +51,9 @@ $icon-view-padding: 2.5rem;
 }
 
 .cheatsheet {
+  width: 100% !important;
+  margin: 0.5rem auto ($icon-view-size / 2) !important;
+
   th, td {
     text-align: center;
   }

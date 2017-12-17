@@ -1,13 +1,17 @@
 @import "../settings";
 
+$section-anchor-padding: 1rem;
+
 .title {
   position: relative;
+  margin-top: -$section-anchor-padding;
+  padding-top: $section-anchor-padding;
 }
 
 .hash {
   display: inline-block;
   position: absolute;
-  top: 0;
+  top: $section-anchor-padding;
   right: 0;
 
   &:link, &:visited, &:active {

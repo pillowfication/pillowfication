@@ -8,7 +8,7 @@ import styles from './Moofuck.scss'
 class Moofuck extends Component {
   render () {
     return (
-      <Page title='moofuck' github='pillowfication/moofuck'>
+      <Page title='Moofuck' github='pillowfication/moofuck'>
         <section>
           <p>Moofuck is a language designed to consist entirely of “moo”s. A “moo” ends with either a <kbd>LF</kbd> or <kbd>CRLF</kbd>. Anything else is ignored. 3 “moo”s in a row form a codon, and the 8 possible codons are mapped to the 8 <a href='https://en.wikipedia.org/wiki/Brainfuck'>Brainfuck</a> commands as follows:</p>
           <div className={zf.scroller}>

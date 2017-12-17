@@ -99,7 +99,7 @@ module.exports = {
         }]
       })
     }, {
-      test: /\.(eot|ttf|woff2?)(v=[0-9]\.[0-9]\.[0-9])?$/,
+      test: /\.(eot|ttf|woff2?)(\?.*)?$/,
       use: [{
         loader: 'file-loader',
         options: {

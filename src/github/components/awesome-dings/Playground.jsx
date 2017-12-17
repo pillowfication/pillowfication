@@ -106,7 +106,7 @@ class Playground extends Component {
     return (
       <Section title='Playground'>
         <p>This does not go over <a href='http://fontawesome.io/examples/#fixed-width'>Fixed Width Icons</a>, <a href='http://fontawesome.io/examples/#list'>List Icons</a>, <a href='http://fontawesome.io/examples/#bordered-pulled'>Bordered & Pulled Icons</a>, and <a href='http://fontawesome.io/examples/#stacked'>Stacked Icons</a> which are all supported. Remember to add <samp>0xF000</samp> for <samp>0xAD</samp> / <samp>173</samp> (<a href='https://bugzilla.mozilla.org/show_bug.cgi?id=399636#c24'>see issue</a>).</p>
-        <div className={`${zf.gridX} ${zf.gridMarginX} ${zf.gridMarginY}`}>
+        <div className={`${zf.gridX} ${zf.gridMarginX}`}>
           <fieldset className={`${zf.cell} ${zf.small12} ${zf.medium6}`}>
             <legend>Character</legend>
             <input type='text'
