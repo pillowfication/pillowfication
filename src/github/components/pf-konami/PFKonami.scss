@@ -1,0 +1,17 @@
+@import "../../settings";
+
+.konami-code {
+  margin-left: .5rem;
+  font-size: 1.5rem;
+  color: $primary-color;
+
+  i {
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid rgba($black, 0);
+    transition: border-bottom-color 0.2s;
+  }
+}
+
+i.selected-button {
+  border-bottom-color: rgba($black, 1);
+}

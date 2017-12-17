@@ -3,23 +3,13 @@
 $topbar-icon-size: 2rem;
 $topbar-item-padding: $global-margin * 0.7;
 
-/* Use floats instead of flex */
-.top-bar {
-  composes: topBar from "../foundation.scss";
-  @include clearfix;
-  display: block;
-}
-.left {
-  float: left;
-}
-.right {
-  float: right;
-}
-
 .header {
+  z-index: 1;
+  position: relative;
   background-color: $topbar-background;
   color: $white;
   font-weight: bold;
+  box-shadow: 0 0 5px $black;
 
   a {
     display: inline-block;

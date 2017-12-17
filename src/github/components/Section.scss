@@ -1,0 +1,20 @@
+@import "../settings";
+
+.title {
+  position: relative;
+}
+
+.hash {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  &:link, &:visited, &:active {
+    color: $light-gray;
+  }
+
+  &:hover {
+    color: $primary-color;
+  }
+}

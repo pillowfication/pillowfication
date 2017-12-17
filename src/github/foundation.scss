@@ -6,9 +6,9 @@
 // @include foundation-grid;
 // @include foundation-flex-grid;
 // @include foundation-flex-classes;
-// @include foundation-typography;
-// @include foundation-forms;
-// @include foundation-button;
+@include foundation-typography;
+@include foundation-forms;
+@include foundation-button;
 // @include foundation-accordion;
 // @include foundation-accordion-menu;
 // @include foundation-badge;
@@ -33,7 +33,7 @@
 // @include foundation-sticky;
 // @include foundation-reveal;
 // @include foundation-switch;
-// @include foundation-table;
+@include foundation-table;
 // @include foundation-tabs;
 // @include foundation-thumbnail;
 // @include foundation-title-bar;
@@ -41,3 +41,36 @@
 @include foundation-top-bar;
 @include foundation-visibility-classes;
 // @include foundation-float-classes;
+
+a {
+  transition: color 0.2s;
+}
+
+code {
+  margin-bottom: $paragraph-margin-bottom;
+}
+
+hr {
+  border-top: 1px solid $dark-gray;
+}
+
+thead {
+  border: 1px solid $table-head-background;
+}
+
+// Replacement for .table-scroll
+.scroller {
+  margin-bottom: $paragraph-margin-bottom;
+  overflow-x: auto;
+
+  table {
+    width: auto;
+    margin: 0 auto;
+  }
+
+  img {
+    display: block;
+    max-width: none;
+    margin: 0 auto;
+  }
+}

@@ -14,7 +14,7 @@ class App extends Component {
           <div className={`${zf.cell} ${zf.shrink}`}>
             <Header />
           </div>
-          <div className={`${zf.cell} ${zf.auto}`}>
+          <div className={`${zf.cell} ${zf.auto} ${zf.cellBlock}`}>
             <div className={`${zf.gridContainer} ${zf.gridX} ${zf.gridPaddingX}`}>
               <div className={`${zf.cell} ${zf.shrink}`}>
                 <Navigation />
