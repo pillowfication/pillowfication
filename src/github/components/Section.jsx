@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import kebabCase from 'lodash/kebabCase'
 
 import fa from '../font-awesome.scss'
@@ -15,18 +13,14 @@ class Section extends Component {
       <section>
         <h2 className={styles.title} id={hash}>
           {title}
-          <Link className={styles.hash} to={{ hash: '#' + hash }}>
+          <a className={styles.hash} href={'#' + hash}>
             <i className={`${fa.fa} ${fa.faHashtag}`} />
-          </Link>
+          </a>
         </h2>
         {this.props.children}
       </section>
     )
   }
-}
-
-Section.propTypes = {
-  title: PropTypes.string.isRequired
 }
 
 export default Section
