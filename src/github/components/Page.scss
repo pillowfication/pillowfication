@@ -5,6 +5,19 @@
   margin-bottom: $global-margin;
 }
 
+.links {
+  display: inline-block;
+  float: right;
+
+  a:link, a:visited, a:active {
+    color: $light-gray;
+  }
+
+  a:hover {
+    color: $primary-color;
+  }
+}
+
 .title-divider {
   margin-top: 0;
 }
