@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import pfIcon from './pf-icon.png'
 import zf from '../foundation.scss'
@@ -8,6 +9,8 @@ import styles from './Header.scss'
 
 class Header extends Component {
   render () {
+    const { openOffCanvas } = this.props
+
     return (
       <header className={styles.header}>
         <div className={zf.gridContainer}>
@@ -17,7 +20,7 @@ class Header extends Component {
             </div>
             <div className={zf.topBarRight}>
               <div className={zf.showForSmallOnly}>
-                <a href="#"><i className={`${fa.fa} ${fa.faNavicon}`} /></a>
+                <a onClick={openOffCanvas}><i className={`${fa.fa} ${fa.faNavicon}`} /></a>
               </div>
               <div className={zf.showForMedium}>
                 <Link to='/'><i className={`${fa.fa} ${fa.faHome}`} /></Link>
@@ -29,6 +32,10 @@ class Header extends Component {
       </header>
     )
   }
+}
+
+Header.propTypes = {
+  openOffCanvas: PropTypes.func.isRequired
 }
 
 export default Header

@@ -46,6 +46,10 @@ a {
   transition: color 0.2s;
 }
 
+body {
+  overflow: hidden;
+}
+
 code {
   margin-bottom: $paragraph-margin-bottom;
 }
