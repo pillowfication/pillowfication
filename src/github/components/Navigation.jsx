@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import routes from './routes'
 
 import zf from '../foundation.scss'
@@ -9,11 +10,13 @@ import styles from './Navigation.scss'
 
 class Navigation extends Component {
   render () {
-    const { closeOffCanvas } = this.props
+    // `offCanvas` is a workaround for CSS Modules not being able to reference
+    // a class from another file.
+    const { closeOffCanvas, offCanvas } = this.props
 
     return (
-      <nav className={styles.nav}>
-        <div className={`${styles.iconBar} ${zf.showForSmallOnly} ${zf.gridX} ${zf.gridPaddingX} ${zf.smallUp3}`}>
+      <nav className={classnames({ [styles.offCanvas]: offCanvas }, styles.nav)}>
+        <div className={`${styles.iconBar} ${zf.gridX} ${zf.gridPaddingX} ${zf.smallUp3}`}>
           <Link to='/' className={zf.cell} onClick={closeOffCanvas}><i className={`${fa.fa} ${fa.faHome}`} /></Link>
           <a href='https://github.com/pillowfication/pillowfication' className={zf.cell}><i className={`${fa.fa} ${fa.faGithub}`} /></a>
           <a className={zf.cell} onClick={closeOffCanvas}><i className={`${fa.fa} ${fa.faClose}`} /></a>
@@ -38,7 +41,8 @@ class Navigation extends Component {
 }
 
 Navigation.propTypes = {
-  closeOffCanvas: PropTypes.func.isRequired
+  closeOffCanvas: PropTypes.func.isRequired,
+  offCanvas: PropTypes.bool
 }
 
 export default Navigation

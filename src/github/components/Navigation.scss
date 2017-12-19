@@ -43,26 +43,26 @@
     }
   }
 
-  @include breakpoint(small only) {
+  // Change this to use .off-canvas from `App.scss` when CSS Modules is able to.
+  &.off-canvas {
     border: none;
     padding: 0;
-    color: $white;
 
     & > ul {
       margin-left: $global-margin;
     }
+  }
+}
 
-    a {
-      color: $dark-gray;
+.icon-bar {
+  display: none;
 
-      &:hover, &.active {
-        color: $white;
-      }
-
-      &::after {
-        background-color: $white;
-      }
-    }
+  // Change this to use .off-canvas from `App.scss` when CSS Modules is able to.
+  .off-canvas & {
+    display: flex;
+    margin-bottom: $global-margin;
+    text-align: center;
+    font-size: 2rem;
   }
 }
 
@@ -72,10 +72,4 @@
   top: 0.1em;
   padding: 0 4px;
   font-size: 1.2em;
-}
-
-.icon-bar {
-  margin-bottom: $global-margin;
-  text-align: center;
-  font-size: 2rem;
 }

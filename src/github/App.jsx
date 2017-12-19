@@ -33,20 +33,26 @@ class App extends Component {
 
     return (
       <Router basename='/github'>
-        <div className={classnames({ [styles.open]: open }, `${styles.canvas} ${zf.gridFrame} ${zf.gridY}`)}>
-          <div className={styles.canvasShield} onClick={this.closeOffCanvas} />
-          <div className={`${zf.cell} ${zf.shrink}`}>
-            <Header openOffCanvas={this.openOffCanvas} />
-          </div>
-          <div className={`${zf.cell} ${zf.auto} ${zf.cellBlock}`}>
-            <div className={`${styles.body} ${zf.gridContainer} ${zf.gridX} ${zf.gridPaddingX}`}>
-              <div className={`${styles.offCanvas} ${zf.cell} ${zf.shrink}`}>
-                <Navigation closeOffCanvas={this.closeOffCanvas} />
-              </div>
-              <div className={`${zf.cell} ${zf.auto}`}>
-                <ProjectViewer />
+        <div className={classnames(styles.app, { [styles.open]: open })}>
+          <div className={`${zf.gridFrame} ${zf.gridY}`}>
+            <div className={styles.canvasShield} onClick={this.closeOffCanvas} />
+            <div className={`${zf.cell} ${zf.shrink}`}>
+              <Header openOffCanvas={this.openOffCanvas} />
+            </div>
+            <div className={`${styles.body} ${zf.cell} ${zf.auto} ${zf.cellBlock}`}>
+              <div className={`${styles.bodyContent} ${zf.gridContainer} ${zf.gridX} ${zf.gridPaddingX}`}>
+                <div className={`${zf.hideForSmallOnly} ${zf.cell} ${zf.shrink}`}>
+                  <Navigation closeOffCanvas={this.closeOffCanvas} />
+                </div>
+                <div className={`${zf.cell} ${zf.auto}`}>
+                  <ProjectViewer />
+                </div>
               </div>
             </div>
+          </div>
+          <div className={styles.offCanvas}>
+            <Navigation offCanvas closeOffCanvas={this.closeOffCanvas} />
+            sdf
           </div>
         </div>
       </Router>
