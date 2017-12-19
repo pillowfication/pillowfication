@@ -30,36 +30,36 @@ class AwesomeDings extends Component {
               <tbody>
                 <tr>
                   <td>
-                    <button type='button' className={styles.primaryButton}>
+                    <button type='button' className={`${styles.button} ${zf.button}`}>
                       <i className={`${fa.fa} ${fa.faLg} ${fa.faHome}`} /> Home
                     </button>
                   </td>
                   <td>
-                    <button type='button' className={styles.primaryButton}>
+                    <button type='button' className={`${styles.button} ${zf.button}`}>
                       <i className={`${ad.wdWebdings} ${ad.wdLg}`}>J</i> Home
                     </button>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <button type='button' className={styles.secondaryButton}>
+                    <button type='button' className={`${styles.button} ${zf.button} ${zf.hollow} ${zf.secondary}`}>
                       <i className={`${fa.fa} ${fa.faLg} ${fa.faPlus}`} /> Add Impairment
                     </button>
                   </td>
                   <td>
-                    <button type='button' className={styles.secondaryButton}>
+                    <button type='button' className={`${styles.button} ${zf.button} ${zf.hollow} ${zf.secondary}`}>
                       <i className={`${ad.wdWingdings1} ${ad.wdLg}`}>N</i> Add Impairment
                     </button>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <button type='button' className={styles.alertButton}>
+                    <button type='button' className={`${styles.button} ${zf.button} ${zf.alert}`}>
                       <i className={`${fa.fa} ${fa.faLg} ${fa.faTrash}`} /> Delete
                     </button>
                   </td>
                   <td>
-                    <button type='button' className={styles.alertButton}>
+                    <button type='button' className={`${styles.button} ${zf.button} ${zf.alert}`}>
                       <i className={`${ad.wdWingdings1} ${ad.wdLg}`}>M</i> Delete
                     </button>
                   </td>

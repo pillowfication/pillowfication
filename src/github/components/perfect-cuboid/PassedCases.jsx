@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import zf from '../../foundation.scss'
-import styles from './PerfectCuboid.scss'
+import styles from './PerfectCuboid-styles'
 
 const PASSED = [
   3,

@@ -7,7 +7,7 @@ import { TRIPLES, TYPES } from './maps'
 
 import $ from '../Math.jsx'
 import zf from '../../foundation.scss'
-import styles from './PerfectCuboid.scss'
+import styles from './PerfectCuboid-styles'
 
 const MIN_ID = 0
 const MAX_ID = 2985983

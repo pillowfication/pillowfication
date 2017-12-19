@@ -7,28 +7,18 @@ $icon-view-padding: 2.5rem;
   th {
     text-align: center;
   }
+
   td {
     padding: $global-padding;
     text-align: center;
   }
 }
 
-.primary-button {
-  composes: button from "../../foundation.scss";
+.button {
   margin: 0;
   border-radius: 0.4rem;
   font-size: 1.5rem;
   white-space: nowrap;
-}
-
-.secondary-button {
-  composes: primary-button;
-  composes: hollow secondary from "../../foundation.scss";
-}
-
-.alert-button {
-  composes: primary-button;
-  composes: alert from "../../foundation.scss";
 }
 
 .spinner {
