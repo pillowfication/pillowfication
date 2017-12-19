@@ -12,7 +12,7 @@ class Page extends Component {
       <div className={styles.page}>
         <h1>{title}
           <span className={styles.links}>
-            {github && <a href={github}><i className={`${fa.fa} ${fa.faGithub}`} /></a>}
+            {github && <a href={`https://github.com/${github}`}><i className={`${fa.fa} ${fa.faGithub}`} /></a>}
           </span>
         </h1>
         <hr className={styles.titleDivider} />
