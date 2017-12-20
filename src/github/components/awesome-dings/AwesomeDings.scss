@@ -3,6 +3,11 @@
 $icon-view-size: 8rem;
 $icon-view-padding: 2.5rem;
 
+:export {
+  body-background: $body-background;
+  body-font-color: $body-font-color;
+}
+
 .examples {
   th {
     text-align: center;
@@ -25,13 +30,16 @@ $icon-view-padding: 2.5rem;
   color: $primary-color;
 }
 
+.style-editor {
+  font-family: $font-family-monospace;
+}
+
 .output {
   display: table;
   width: 200px;
   height: 200px;
   margin-bottom: 1rem;
   border: 1px solid $medium-gray;
-  font-size: 1.5rem;
 
   & > div {
     display: table-cell;

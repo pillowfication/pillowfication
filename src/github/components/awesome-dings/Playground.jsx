@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
+import isPlainObject from 'lodash/isPlainObject'
 
 import Section from '../Section.jsx'
 import Code from '../Code.jsx'
@@ -50,7 +51,12 @@ class Playground extends Component {
 
     this.state = {
       code: 109,
-      codeInput: '109'
+      codeInput: '109',
+      rawOutputStyle: `{
+  background: '${styles.bodyBackground}',
+  color: '${styles.bodyFontColor}',
+  fontSize: '24px'
+}`
     }
     radioGroups.forEach(radioGroup => {
       this.state[radioGroup.name] = 0
@@ -61,6 +67,7 @@ class Playground extends Component {
     this.onInputCode = this.onInputCode.bind(this)
     this.onBlurCodeInput = this.onBlurCodeInput.bind(this)
     this.onSelectRadio = this.onSelectRadio.bind(this)
+    this.onInputStyle = this.onInputStyle.bind(this)
   }
 
   onFocusCharacter (event) {
@@ -92,8 +99,12 @@ class Playground extends Component {
     this.setState({ [group]: +event.target.value })
   }
 
+  onInputStyle (event) {
+    this.setState({ rawOutputStyle: event.target.value })
+  }
+
   render () {
-    const { code } = this.state
+    const { code, rawOutputStyle } = this.state
     const shiftedCode = code === 173 ? code + 0xF000 : code
     const character = String.fromCharCode(shiftedCode)
     const cssClassNames = classnames(
@@ -102,6 +113,17 @@ class Playground extends Component {
     const cssModulesClassNames = classnames(
       radioGroups.map(radioGroup => radioGroup.radios[this.state[radioGroup.name]].style)
     )
+
+    const outputStyleRows = rawOutputStyle.split('\n').length
+    let outputStyle
+    try {
+      outputStyle = eval(`(${rawOutputStyle})`) // eslint-disable-line no-eval
+      if (!isPlainObject(outputStyle)) {
+        throw new Error()
+      }
+    } catch (_) {
+      outputStyle = {}
+    }
 
     return (
       <Section title='Playground'>
@@ -143,8 +165,16 @@ class Playground extends Component {
             <Code lang='html' $={`<i class="${cssClassNames}">&#x${shiftedCode.toString(16)};</i>`} />
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
+            <legend>Styles</legend>
+            <textarea className={styles.styleEditor}
+              value={rawOutputStyle}
+              rows={outputStyleRows}
+              onChange={this.onInputStyle}
+            />
+          </fieldset>
+          <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Output</legend>
-            <div className={styles.output}><div>
+            <div className={styles.output}><div style={outputStyle}>
               <i className={cssModulesClassNames}>{character}</i>
             </div></div>
           </fieldset>
