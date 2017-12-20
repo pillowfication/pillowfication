@@ -115,6 +115,11 @@ module.exports = {
           name: 'images/[name].[ext]'
         }
       }]
+    }, {
+      test: /\.brainfuck$/,
+      use: [{
+        loader: 'raw-loader'
+      }]
     }]
   }
 }

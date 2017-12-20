@@ -54,6 +54,10 @@ code {
   margin-bottom: $paragraph-margin-bottom;
 }
 
+pre > code {
+  min-height: 3rem;
+}
+
 hr {
   border-top: 1px solid $dark-gray;
 }

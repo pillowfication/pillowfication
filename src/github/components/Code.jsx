@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import highlight from 'highlight.js'
 
 import './Code.scss'
@@ -19,7 +20,7 @@ class Code extends Component {
 
     return (
       <pre>
-        <code ref='code' className={`language-${lang}`}>
+        <code ref='code' className={classnames(this.props.className, lang && `language-${lang}`)}>
           {$.trim()}
         </code>
       </pre>
@@ -28,7 +29,7 @@ class Code extends Component {
 }
 
 Code.propTypes = {
-  lang: PropTypes.string.isRequired,
+  lang: PropTypes.string,
   $: PropTypes.string.isRequired
 }
 

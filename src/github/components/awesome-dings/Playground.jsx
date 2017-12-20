@@ -4,6 +4,7 @@ import isPlainObject from 'lodash/isPlainObject'
 
 import Section from '../Section.jsx'
 import Code from '../Code.jsx'
+import CodeEditable from '../CodeEditable.jsx'
 import zf from '../../foundation.scss'
 import ad from './awesome-dings.scss'
 import styles from './AwesomeDings.scss'
@@ -114,7 +115,6 @@ class Playground extends Component {
       radioGroups.map(radioGroup => radioGroup.radios[this.state[radioGroup.name]].style)
     )
 
-    const outputStyleRows = rawOutputStyle.split('\n').length
     let outputStyle
     try {
       outputStyle = eval(`(${rawOutputStyle})`) // eslint-disable-line no-eval
@@ -166,11 +166,7 @@ class Playground extends Component {
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Styles</legend>
-            <textarea className={styles.styleEditor}
-              value={rawOutputStyle}
-              rows={outputStyleRows}
-              onChange={this.onInputStyle}
-            />
+            <CodeEditable $={rawOutputStyle} onChange={this.onInputStyle} />
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Output</legend>
