@@ -81,11 +81,9 @@ class Playground extends Component {
             <legend>Input String</legend>
             <input type='text' value={inputString} onChange={this.onInputInputString} />
           </fieldset>
-          <div className={`${zf.cell} ${zf.small12}`}>
-            <button className={zf.button} onClick={this.onExecuteMoofuck}>Execute Moofuck</button>
-          </div>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Output</legend>
+            <button className={zf.button} onClick={this.onExecuteMoofuck}>Execute Moofuck</button>
             <pre><code className={`hljs ${styles.moofuck}`}>
               {output}
             </code></pre>
