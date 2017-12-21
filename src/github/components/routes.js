@@ -3,6 +3,7 @@ import CIS89C from './cis89c/CIS89C.jsx'
 import Moofuck from './moofuck/Moofuck.jsx'
 import PerfectCuboid from './perfect-cuboid/PerfectCuboid.jsx'
 import PFKonami from './pf-konami/PFKonami.jsx'
+import PillowficationOld from './pillowfication-old/PillowficationOld.jsx'
 
 const routes = [{
   header: 'pillowfication',
@@ -11,7 +12,8 @@ const routes = [{
     { path: 'cis89c', component: CIS89C },
     { path: 'moofuck', component: Moofuck },
     { path: 'perfect-cuboid', component: PerfectCuboid },
-    { path: 'pf-konami', component: PFKonami }
+    { path: 'pf-konami', component: PFKonami },
+    { path: 'pillowfication-old', component: PillowficationOld }
   ]
 }]
 
