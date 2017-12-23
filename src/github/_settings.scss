@@ -163,14 +163,17 @@ $header-styles: (
   small: (
     "h1": ("font-size": 32),
     "h2": ("font-size": 24),
+    "h3": ("font-size": 20)
   ),
   medium: (
     "h1": ("font-size": 40),
     "h2": ("font-size": 28),
+    "h3": ("font-size": 22),
   ),
   large: (
     "h1": ("font-size": 48),
     "h2": ("font-size": 32),
+    "h3": ("font-size": 24),
   ),
 );
 $header-text-rendering: optimizeLegibility;
