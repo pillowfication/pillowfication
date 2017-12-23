@@ -1,0 +1,31 @@
+@import "../settings";
+
+.title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.bar-graph {
+  border: none;
+
+  thead, tbody, tr, th, td {
+    border: none;
+  }
+  th, td {
+    padding: 0 ($global-margin / 2);
+  }
+}
+
+.label {
+  // padding-right: $global-margin;
+  text-align: right;
+}
+
+.bar {
+  width: 100%;
+
+  & > div {
+    background-color: $primary-color;
+    height: 1rem;
+  }
+}
