@@ -1,0 +1,34 @@
+@import "../../settings";
+@import "~font-awesome/scss/variables";
+
+.none-icon {
+  color: $dark-gray;
+
+  &::before {
+    content: $fa-var-question;
+  }
+}
+
+.ok-icon {
+  color: $success-color;
+
+  &::before {
+    content: $fa-var-check;
+  }
+}
+
+.no-icon {
+  color: $alert-color;
+
+  &::before {
+    content: $fa-var-times;
+  }
+}
+
+.results {
+  max-height: 50vh;
+  text-align: center;
+  font-family: "Times New Roman", serif;
+  font-size: 1.4rem;
+  overflow-y: auto;
+}

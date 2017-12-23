@@ -12,7 +12,8 @@ class Statistics extends Component {
     for (let length = 2; length <= 15; ++length) {
       lengthStats.push({
         label: `${length}`,
-        value: stats.lengthFrequency[length]
+        value: stats.lengthFrequency[length].count,
+        displayValue: stats.lengthFrequency[length].percentage.toFixed(2) + '%'
       })
     }
 
@@ -20,7 +21,8 @@ class Statistics extends Component {
     for (const letter of letters) {
       letterStats.push({
         label: letter,
-        value: stats.letterFrequency[letter]
+        value: stats.letterFrequency[letter].count,
+        displayValue: stats.letterFrequency[letter].percentage.toFixed(2) + '%'
       })
     }
 

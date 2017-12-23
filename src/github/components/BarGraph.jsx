@@ -20,8 +20,9 @@ class BarGraph extends Component {
                 <th className={styles.label}>
                   {stat.label}
                 </th>
-                <td className={styles.bar}>
-                  <div style={{ width: stat.value / maxValue * 100 + '%' }} />
+                <td className={styles.datum}>
+                  <div className={styles.bar} style={{ width: stat.value / maxValue * 100 + '%' }} />
+                  <div className={styles.displayValue}>{stat.displayValue}</div>
                 </td>
               </tr>
             )}

@@ -1,5 +1,8 @@
 @import "../settings";
 
+$bar-width: 1.4rem;
+$bar-spacing: 1px;
+
 .title {
   text-align: center;
   font-weight: bold;
@@ -17,15 +20,32 @@
 }
 
 .label {
-  // padding-right: $global-margin;
   text-align: right;
 }
 
-.bar {
+.datum {
   width: 100%;
+  position: relative;
+}
 
-  & > div {
-    background-color: $primary-color;
-    height: 1rem;
+.bar {
+  margin: $bar-spacing 0;
+  height: $bar-width;
+  background-color: $primary-color;
+}
+
+.display-value {
+  position: absolute;
+  top: $bar-spacing;
+  right: 0;
+  height: $bar-width;
+  padding: 0 0.5rem;
+  background-color: rgba($body-background, 0.5);
+  overflow: visible;
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  .datum:hover & {
+    opacity: 1;
   }
 }
