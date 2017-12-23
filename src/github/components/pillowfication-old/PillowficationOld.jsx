@@ -28,12 +28,12 @@ class PillowficationOld extends Component {
         <Section title='/games'>
           <p>A few little games that I made.</p>
           <h3><a href='http://old.pillowfication.com/games/wizard'>/games/wizard</a></h3>
-          <p>This is a short visual novel-type game with elements from the Flash game <a href='http://www.realmofthemadgod.com/'>Realm of the Mad God</a>. The player MerchantCo asked for a story featuring his wizard, and I made this as a submission.</p>
+          <p>This is a short visual novel-type game with elements from the Flash game <a href='http://www.realmofthemadgod.com/'>Realm of the Mad God</a>. The player MerchantCo asked for a story featuring his wizard on the forum, and I made this as a submission.</p>
           <p className={zf.textCenter}>
             <img src={wizard} />
           </p>
           <h3><a href='http://old.pillowfication.com/games/tetris'>/games/tetris</a></h3>
-          <p>50&times;100 Tetris. This started as a Java applet when I first learned Java. The code has remained mostly the same, but translated to use a <code>&lt;canvas&gt;</code>.</p>
+          <p>50&times;100 Tetris. This started as a Java applet from when I first learned Java. The code has remained mostly the same, but translated to use a <code>&lt;canvas&gt;</code>.</p>
           <p className={zf.textCenter}>
             <img src={tetris} />
           </p>
@@ -57,7 +57,7 @@ class PillowficationOld extends Component {
             <img src={bezier} />
           </p>
           <h3><a href='http://old.pillowfication.com/projects/3D'>/projects/3D</a></h3>
-          <p>After studying Linear Algebra, I tried to take what I learned and write some code to draw a 3D cube with perspective.</p>
+          <p>After studying Linear Algebra, I tried to take what I learned and wrote some code to draw a 3D cube with perspective.</p>
           <p className={zf.textCenter}>
             <img src={_3D} />
           </p>
