@@ -3,7 +3,6 @@ const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
-const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -19,7 +18,6 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development'
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, './node_modules/cis89c'),
       to: 'cis89c'
@@ -40,11 +38,6 @@ module.exports = {
     new ExtractTextWebpackPlugin({
       filename: '[name].css',
       ignoreOrder: true
-    }),
-    new UglifyJSWebpackPlugin({
-      parallel: true,
-      cache: path.resolve(__dirname, './.cache'),
-      sourceMap: true
     })
   ],
   module: {
@@ -74,9 +67,6 @@ module.exports = {
             importLoaders: 2,
             localIdentName: '[path][name]__[local]--[hash:base64:5]',
             camelCase: 'dashesOnly',
-            minimize: {
-              preset: 'advanced'
-            },
             sourceMap: true
           }
         }, {
