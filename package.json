@@ -50,6 +50,7 @@
     "node-sass": "^4.6.1",
     "normalize.css": "^7.0.0",
     "perfect-cuboid": "pillowfication/perfect-cuboid#v0.0.7",
+    "pf-boggle": "1.2.1",
     "pf-konami": "1.0.8",
     "pf-sowpods": "1.2.1",
     "pillowfication-old": "pillowfication/pillowfication-old#v0.0.2",

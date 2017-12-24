@@ -2,6 +2,7 @@ import AwesomeDings from './awesome-dings/AwesomeDings.jsx'
 import CIS89C from './cis89c/CIS89C.jsx'
 import Moofuck from './moofuck/Moofuck.jsx'
 import PerfectCuboid from './perfect-cuboid/PerfectCuboid.jsx'
+import PFBoggle from './pf-boggle/PFBoggle.jsx'
 import PFKonami from './pf-konami/PFKonami.jsx'
 import PFSowpods from './pf-sowpods/PFSowpods.jsx'
 import Pillowfication from './pillowfication/Pillowfication.jsx'
@@ -14,6 +15,7 @@ const routes = [{
     { path: 'cis89c', component: CIS89C },
     { path: 'moofuck', component: Moofuck },
     { path: 'perfect-cuboid', component: PerfectCuboid },
+    { path: 'pf-boggle', component: PFBoggle },
     { path: 'pf-konami', component: PFKonami },
     { path: 'pf-sowpods', component: PFSowpods },
     { path: 'pillowfication', component: Pillowfication },
