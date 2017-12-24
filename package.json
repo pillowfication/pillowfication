@@ -2,20 +2,20 @@
   "name": "pillowfication",
   "version": "0.0.0",
   "description": "http://pillowfication.com",
+  "main": "index.js",
+  "homepage": "http://pillowfication.com",
   "author": {
     "name": "Markus Tran",
     "email": "thebluepillow@gmail.com",
     "url": "http://pillowfication.com"
   },
-  "homepage": "https://github.com/pillowfication/pillowfication",
   "repository": {
     "type": "git",
-    "url": "git://github.com/pillowfication/pillowfication.git"
+    "url": "https://github.com/pillowfication/pillowfication.git"
   },
   "bugs": {
     "url": "https://github.com/pillowfication/pillowfication/issues"
   },
-  "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --config webpack.prod.config.js",
     "build:dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --config webpack.dev.config.js --progress --colors",
@@ -66,5 +66,6 @@
     "uglifyjs-webpack-plugin": "^1.1.4",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
-  }
+  },
+  "license": "MIT"
 }
