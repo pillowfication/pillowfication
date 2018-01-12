@@ -87,22 +87,24 @@ class StepSelector extends Component {
       <fieldset key='steps' className={`${zf.cell} ${zf.small12} ${zf.large6}`}>
         <legend>Steps</legend>
         <div className={zf.scroller}>
-          <ol className={styles.steps} start={0}>
-            {verification.steps.map((step, index) =>
-              <li key={index}
-                className={classnames({ [styles.selected]: stepIndex === index })}
-                onClick={this.onSelectStep.bind(this, index)}
-              >
-                <$ $={stringifyStep(permutation, step.rule)} />
+          <div className={styles.scrollerFix}>
+            <ol className={styles.steps} start={0}>
+              {verification.steps.map((step, index) =>
+                <li key={index}
+                  className={classnames({ [styles.selected]: stepIndex === index })}
+                  onClick={this.onSelectStep.bind(this, index)}
+                >
+                  <$ $={stringifyStep(permutation, step.rule)} />
+                </li>
+              )}
+              <li className={classnames({ [styles.contradiction]: verification.contradiction })}>
+                <$ $={verification.contradiction
+                  ? stringifyStep(permutation, verification.contradiction)
+                  : '\\text{No contradiction}'}
+                />
               </li>
-            )}
-            <li className={classnames({ [styles.contradiction]: verification.contradiction })}>
-              <$ $={verification.contradiction
-                ? stringifyStep(permutation, verification.contradiction)
-                : '\\text{No contradiction}'}
-              />
-            </li>
-          </ol>
+            </ol>
+          </div>
         </div>
       </fieldset>,
       <fieldset key='knowledge-table' className={`${zf.cell} ${zf.small12} ${zf.large6}`}>

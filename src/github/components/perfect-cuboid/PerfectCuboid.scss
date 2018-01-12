@@ -75,6 +75,7 @@ $cuboid-height: 260px;
 
 .steps {
   margin: 0 0 0 2em;
+  white-space: nowrap;
 
   li:not(:last-child) {
     cursor: pointer;
@@ -84,6 +85,10 @@ $cuboid-height: 260px;
       background-color: rgba($primary-color, 0.2);
     }
   }
+}
+
+.scroller-fix {
+  overflow-y: hidden;
 }
 
 .contradiction {

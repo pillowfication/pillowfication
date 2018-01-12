@@ -87,7 +87,7 @@
 // 1. Global
 // ---------
 
-$global-font-size: 14pt;
+$global-font-size: 12pt;
 $global-width: 1200px;
 $global-lineheight: 1.4;
 $foundation-palette: (
@@ -451,7 +451,7 @@ $select-radius: $global-radius;
 $input-color: $black;
 $input-placeholder-color: $medium-gray;
 $input-font-family: inherit;
-$input-font-size: rem-calc(16);
+$input-font-size: rem-calc($global-font-size);
 $input-font-weight: $global-weight-normal;
 $input-line-height: $global-lineheight;
 $input-background: $white;
