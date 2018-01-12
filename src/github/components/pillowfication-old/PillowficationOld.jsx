@@ -18,7 +18,7 @@ class PillowficationOld extends Component {
     return (
       <Page title='pillowfication-old' github='pillowfication/pillowfication-old'>
         <section>
-          <p><a href='/~20198403'><i className={`${fa.fa} ${fa.faReply} ${fa.faRotate180}`} /> Enter the website here</a></p>
+          <p><a href='http://old.pillowfication.com'><i className={`${fa.fa} ${fa.faReply} ${fa.faRotate180}`} /> Enter the website here</a></p>
           <p>This is the first website I ever made for myself. (Even the graphic below was made in MS Paint.)</p>
           <div className={styles.ambigram}>
             <img src={pillowfication} />
