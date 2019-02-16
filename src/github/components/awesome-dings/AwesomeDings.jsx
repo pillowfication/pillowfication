@@ -69,7 +69,7 @@ class AwesomeDings extends Component {
                     <i className={`${styles.spinner} ${fa.fa} ${fa.faCircleONotch} ${fa.faSpin} ${fa.fa5x}`} />
                   </td>
                   <td>
-                    <i className={`${styles.spinner} ${ad.wdWingdings1} ${ad.wdPulse} ${ad.wd5x}`} style={{color: 'black'}}>6</i>
+                    <i className={`${styles.spinner} ${ad.wdWingdings1} ${ad.wdPulse} ${ad.wd5x}`} style={{ color: 'black' }}>6</i>
                   </td>
                 </tr>
               </tbody>

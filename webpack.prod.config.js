@@ -1,11 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
 const incstr = require('incstr')
-const getLocalIdent = require('css-loader/lib/getLocalIdent')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { getLocalIdent } = require('css-loader/dist/utils')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
-const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const generateId = incstr.idGenerator({
   alphabet: 'abcefghijklmnopqrstuvwxyzABCEFGHIJKLMNOPQRSTUVWXYZ0123456789'
@@ -23,6 +24,7 @@ function getId (name) {
 }
 
 module.exports = {
+  mode: 'production',
   entry: {
     bundle: path.resolve(__dirname, './src/main.jsx'),
     github: path.resolve(__dirname, './src/github/main.jsx')
@@ -36,16 +38,8 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production'
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, './node_modules/cis89c'),
-      to: 'cis89c'
-    }, {
-      from: path.resolve(__dirname, './src/github/assets'),
-      to: ''
-    }]),
     new HtmlWebpackPlugin({
-      chunks: [ 'bundle' ],
+      chunks: [ 'app' ],
       template: path.resolve(__dirname, './src/index.pug'),
       filename: 'index.html'
     }),
@@ -54,50 +48,56 @@ module.exports = {
       template: path.resolve(__dirname, './src/github/index.pug'),
       filename: 'github.html'
     }),
-    new ExtractTextWebpackPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css',
-      ignoreOrder: true
+      chunkFilename: '[id].css'
     }),
-    new UglifyJSWebpackPlugin({
-      parallel: true
-    })
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, './node_modules/cis89c'),
+      to: 'cis89c'
+    }, {
+      // See github/_settings.scss:65
+      from: path.resolve(__dirname, './src/github/assets'),
+      to: ''
+    }])
   ],
+  optimization: {
+    minimizer: [
+      new TerserPlugin(),
+      new OptimizeCSSAssetsPlugin()
+    ]
+  },
   module: {
     rules: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'babel-loader',
-        options: {
-          presets: [ 'env', 'react' ]
-        }
-      }]
-    }, {
       test: /\.pug$/,
       use: [{
         loader: 'pug-loader'
       }]
     }, {
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          presets: [ '@babel/preset-env', '@babel/preset-react' ]
+        }
+      }]
+    }, {
       test: /\.s?css$/,
-      use: ExtractTextWebpackPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            modules: true,
-            importLoaders: 2,
-            localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            getLocalIdent: (context, localIdentName, localName, options) =>
-              getId(getLocalIdent(context, localIdentName, localName, options)),
-            camelCase: 'dashesOnly',
-            minimize: {
-              preset: 'advanced'
-            }
-          }
-        }, {
-          loader: 'sass-loader'
-        }]
-      })
+      use: [{
+        loader: MiniCssExtractPlugin.loader
+      }, {
+        loader: 'css-loader',
+        options: {
+          modules: true,
+          importLoaders: 2,
+          localIdentName: '[path][name]__[local]--[hash:base64:5]',
+          getLocalIdent: (...args) => getId(getLocalIdent(...args)),
+          camelCase: 'dashesOnly'
+        }
+      }, {
+        loader: 'sass-loader'
+      }]
     }, {
       test: /\.(eot|ttf|woff2?)(\?.*)?$/,
       use: [{

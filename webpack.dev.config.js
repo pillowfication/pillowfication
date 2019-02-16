@@ -1,32 +1,27 @@
 const path = require('path')
 const webpack = require('webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
+  mode: 'development',
   entry: {
-    bundle: path.resolve(__dirname, './src/main.jsx'),
+    app: path.resolve(__dirname, './src/main.jsx'),
     github: path.resolve(__dirname, './src/github/main.jsx')
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[id].chunk.js',
     publicPath: '/'
   },
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development'
     }),
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, './node_modules/cis89c'),
-      to: 'cis89c'
-    }, {
-      from: path.resolve(__dirname, './src/github/assets'),
-      to: ''
-    }]),
     new HtmlWebpackPlugin({
-      chunks: [ 'bundle' ],
+      chunks: [ 'app' ],
       template: path.resolve(__dirname, './src/index.pug'),
       filename: 'index.html'
     }),
@@ -35,47 +30,54 @@ module.exports = {
       template: path.resolve(__dirname, './src/github/index.pug'),
       filename: 'github.html'
     }),
-    new ExtractTextWebpackPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css',
-      ignoreOrder: true
-    })
+      chunkFilename: '[id].css'
+    }),
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, './node_modules/cis89c'),
+      to: 'cis89c'
+    }, {
+      // See github/_settings.scss:65
+      from: path.resolve(__dirname, './src/github/assets'),
+      to: ''
+    }])
   ],
   module: {
     rules: [{
+      test: /\.pug$/,
+      use: [{
+        loader: 'pug-loader'
+      }]
+    }, {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       use: [{
         loader: 'babel-loader',
         options: {
           cacheDirectory: path.resolve(__dirname, './.cache'),
-          presets: [ 'env', 'react' ]
+          presets: [ '@babel/preset-env', '@babel/preset-react' ]
         }
       }]
     }, {
-      test: /\.pug$/,
-      use: [{
-        loader: 'pug-loader'
-      }]
-    }, {
       test: /\.s?css$/,
-      use: ExtractTextWebpackPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            modules: true,
-            importLoaders: 2,
-            localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            camelCase: 'dashesOnly',
-            sourceMap: true
-          }
-        }, {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true
-          }
-        }]
-      })
+      use: [{
+        loader: MiniCssExtractPlugin.loader
+      }, {
+        loader: 'css-loader',
+        options: {
+          modules: true,
+          importLoaders: 2,
+          localIdentName: '[path][name]__[local]--[hash:base64:5]',
+          camelCase: 'dashesOnly',
+          sourceMap: true
+        }
+      }, {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: true
+        }
+      }]
     }, {
       test: /\.(eot|ttf|woff2?)(\?.*)?$/,
       use: [{
