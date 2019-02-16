@@ -5,7 +5,7 @@ import Code from '../Code.jsx'
 import $ from '../Math.jsx'
 import Playground from './Playground.jsx'
 import zf from '../../foundation.scss'
-import styles from './PerfectCuboid-styles'
+import styles from './PerfectCuboid.scss'
 
 const lineStyle = {
   black: { stroke: '#000', strokeWidth: 2, strokeLinecap: 'round' },

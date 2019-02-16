@@ -26,7 +26,7 @@ function getId (name) {
 module.exports = {
   mode: 'production',
   entry: {
-    bundle: path.resolve(__dirname, './src/main.jsx'),
+    app: path.resolve(__dirname, './src/main.jsx'),
     github: path.resolve(__dirname, './src/github/main.jsx')
   },
   output: {

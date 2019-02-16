@@ -9,7 +9,7 @@ import { TRIPLES, TYPES, SIDES, DIVISIBILITY, TRUTH_STATES } from './maps'
 import '../../font-awesome.scss'
 import $ from '../Math.jsx'
 import zf from '../../foundation.scss'
-import styles from './PerfectCuboid-styles'
+import styles from './PerfectCuboid.scss'
 
 function stringifyStatement (statement) {
   return statement.divisibility.substring(1) + ' ' +

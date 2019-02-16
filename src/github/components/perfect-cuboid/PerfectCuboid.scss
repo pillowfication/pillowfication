@@ -34,7 +34,7 @@ $cuboid-height: 260px;
 }
 
 .id-button {
-  // composes: button hollow from "../../foundation.scss";
+  composes: button hollow from "../../foundation.scss";
   margin: 0 0.5rem 0.5rem 0;
 
   &:hover, &.selected {
