@@ -1,0 +1,10 @@
+.pf-triangle {
+  composes: pfTriangle from "../../../components/UnderConstruction.scss";
+}
+
+.under-construction {
+  composes: underConstruction from "../../../components/UnderConstruction.scss";
+  width: 100%;
+  height: auto;
+  margin: 100px 0;
+}

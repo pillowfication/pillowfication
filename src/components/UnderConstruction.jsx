@@ -12,7 +12,7 @@ class SVGTriangle extends Component {
   }
 }
 
-export default class UnderConstruction extends Component {
+class UnderConstruction extends Component {
   render () {
     return (
       <div className={styles.underConstruction}>
@@ -30,3 +30,5 @@ export default class UnderConstruction extends Component {
     )
   }
 }
+
+export default UnderConstruction
