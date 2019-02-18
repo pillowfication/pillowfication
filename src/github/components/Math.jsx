@@ -5,7 +5,7 @@ import zf from '../foundation.scss'
 
 let calledRender = false
 function queueRenderMath () {
-  if (!calledRender) {
+  if (typeof MathJax !== 'undefined' && !calledRender) {
     MathJax.Hub.Queue([ 'Typeset', MathJax.Hub ])
     calledRender = true
   }
