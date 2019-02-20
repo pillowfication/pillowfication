@@ -46,6 +46,7 @@
     "highlight.js": "^9.14.2",
     "html-webpack-plugin": "^3.2.0",
     "incstr": "^1.2.3",
+    "lodash": "^4.17.11",
     "mini-css-extract-plugin": "^0.5.0",
     "moofuck": "1.0.4",
     "node-sass": "^4.11.0",
