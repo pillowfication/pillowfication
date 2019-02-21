@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import PFPerlin from 'pf-perlin'
 
-const zf = require('../../foundation.scss')
-const styles = require('./PFPerlin.scss')
+import Section from '../Section.jsx'
+import zf from '../../foundation.scss'
+import styles from './PFPerlin.scss'
 
 class RainbowPerlin extends Component {
   constructor (props) {
@@ -21,6 +22,12 @@ class RainbowPerlin extends Component {
     this.drawRainbowPerlin()
   }
 
+  componentWillUnmount () {
+    if (this.animationId) {
+      clearImmediate(this.animationId)
+    }
+  }
+
   drawRainbowPerlin () {
     if (this.state.isDrawing) {
       return
@@ -28,7 +35,7 @@ class RainbowPerlin extends Component {
     const _this = this
     _this.setState({ isDrawing: true })
 
-    const canvas = this.canvas.current
+    const canvas = _this.canvas.current
     const { offsetWidth: width, offsetHeight: height } = canvas
     const dpi = window.devicePixelRatio || 1
     canvas.setAttribute('height', height * dpi)
@@ -42,24 +49,25 @@ class RainbowPerlin extends Component {
     pillowText.setAttribute('height', height * dpi)
     pillowText.setAttribute('width', width * dpi)
     const pillowTextCtx = pillowText.getContext('2d')
-    pillowTextCtx.fillStyle = '#FFFFFF'
+    pillowTextCtx.fillStyle = '#000000'
     pillowTextCtx.fillRect(0, 0, width, height)
     pillowTextCtx.font = `bold ${height * 0.7 | 0}px Times New Roman`
-    pillowTextCtx.strokeStyle = '#000000'
-    pillowTextCtx.fillStyle = '#000000'
+    pillowTextCtx.strokeStyle = '#FFFFFF'
+    pillowTextCtx.fillStyle = '#FFFFFF'
     pillowTextCtx.textAlign = 'center'
     pillowTextCtx.textBaseline = 'middle'
     pillowTextCtx.fillText('Pillow', width * 0.5, height * 0.55)
     const pillowTextData = pillowTextCtx.getImageData(0, 0, width, height).data
 
     let row = 0
-    setImmediate(function loop () {
+    _this.animationId = setImmediate(function loop () {
       if (row < height) {
         drawRow()
         ++row
-        setImmediate(loop)
+        _this.animationId = setImmediate(loop)
       } else {
         _this.setState({ isDrawing: false })
+        _this.animationId = undefined
       }
     })
 
@@ -72,10 +80,9 @@ class RainbowPerlin extends Component {
         const g = perlin3D.get([ row / resolution, col / resolution, 1 ]) * 256
         const b = perlin3D.get([ row / resolution, col / resolution, 2 ]) * 256
         const pillowTextValue = pillowTextData[dataIndex] / 255
-        const negPTV = 1 - pillowTextValue
-        data[dataIndex++] = pillowTextValue * r + (255 - r) * negPTV
-        data[dataIndex++] = pillowTextValue * g + (255 - g) * negPTV
-        data[dataIndex++] = pillowTextValue * b + (255 - b) * negPTV
+        data[dataIndex++] = r + (255 - 2 * r) * pillowTextValue
+        data[dataIndex++] = g + (255 - 2 * g) * pillowTextValue
+        data[dataIndex++] = b + (255 - 2 * b) * pillowTextValue
         data[dataIndex++] = 255
       }
       ctx.putImageData(imageData, 0, 0)
@@ -84,7 +91,7 @@ class RainbowPerlin extends Component {
 
   render () {
     return (
-      <div>
+      <Section title='Rainbow Perlin'>
         <p>
           Each RGB channel is sampled over a 2D Perlin noise. Pixels in the text are inverted (with anti-aliasing).
         </p>
@@ -97,7 +104,7 @@ class RainbowPerlin extends Component {
         >
           Redraw
         </button>
-      </div>
+      </Section>
     )
   }
 }
