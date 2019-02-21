@@ -76,13 +76,17 @@ class RainbowPerlin extends Component {
       const data = imageData.data
       let dataIndex = row * width << 2
       for (let col = 0; col < width; ++col) {
-        const r = perlin3D.get([ row / resolution, col / resolution, 0 ]) * 256
-        const g = perlin3D.get([ row / resolution, col / resolution, 1 ]) * 256
-        const b = perlin3D.get([ row / resolution, col / resolution, 2 ]) * 256
+        let r = perlin3D.get([ row / resolution, col / resolution, 0 ]) * 256
+        let g = perlin3D.get([ row / resolution, col / resolution, 1 ]) * 256
+        let b = perlin3D.get([ row / resolution, col / resolution, 2 ]) * 256
         const pillowTextValue = pillowTextData[dataIndex] / 255
-        data[dataIndex++] = r + (255 - 2 * r) * pillowTextValue
-        data[dataIndex++] = g + (255 - 2 * g) * pillowTextValue
-        data[dataIndex++] = b + (255 - 2 * b) * pillowTextValue
+        r += (255 - 2 * r) * pillowTextValue
+        g += (255 - 2 * g) * pillowTextValue
+        b += (255 - 2 * b) * pillowTextValue
+        const gray = 0.2989 * r + 0.5870 * g + 0.1140 * b
+        data[dataIndex++] = 1.5 * r - 0.5 * gray
+        data[dataIndex++] = 1.5 * g - 0.5 * gray
+        data[dataIndex++] = 1.5 * b - 0.5 * gray
         data[dataIndex++] = 255
       }
       ctx.putImageData(imageData, 0, 0)
@@ -93,7 +97,7 @@ class RainbowPerlin extends Component {
     return (
       <Section title='Rainbow Perlin'>
         <p>
-          Each RGB channel is sampled over a 2D Perlin noise. Pixels in the text are inverted (with anti-aliasing).
+          Each RGB channel is sampled over a 2D Perlin noise. Pixels in the text are inverted (with anti-aliasing). Then the pixels were brightened.
         </p>
         <canvas ref={this.canvas} className={styles.rainbowPerlin} />
         <br />
