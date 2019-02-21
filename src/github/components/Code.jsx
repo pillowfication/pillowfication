@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import highlight from 'highlight.js'
+import highlight from 'highlight.js/lib/highlight'
+import javascript from 'highlight.js/lib/languages/javascript'
 
 import './Code.scss'
+
+highlight.registerLanguage('javascript', javascript)
 
 class Code extends Component {
   componentDidMount () {

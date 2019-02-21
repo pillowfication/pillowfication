@@ -9,7 +9,7 @@ class PFPerlin extends Component {
     return (
       <Page title='pf-perlin' github='pillowfication/pf-perlin'>
         <p>
-          A Perlin noise generator for any number of dimensions.
+          A <a href='https://en.wikipedia.org/wiki/Perlin_noise'>Perlin noise</a> generator for any number of dimensions.
         </p>
         <RainbowPerlin />
         <hr />
