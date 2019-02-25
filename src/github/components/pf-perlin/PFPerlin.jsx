@@ -11,6 +11,7 @@ class PFPerlin extends Component {
         <p>
           A <a href='https://en.wikipedia.org/wiki/Perlin_noise'>Perlin noise</a> generator for any number of dimensions.
         </p>
+        <hr />
         <RainbowPerlin />
         <hr />
         <_4DPerlin />
