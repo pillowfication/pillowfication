@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-import sowpods from 'pf-sowpods'
 
 import Page from '../Page.jsx'
 import Statistics from './Statistics.jsx'
 import Playground from './Playground.jsx'
-
-window.sowpods = sowpods
 
 class PFSowpods extends Component {
   render () {
