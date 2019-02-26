@@ -64,6 +64,7 @@ class Moofuck extends Component {
               </tbody>
             </table>
           </div>
+          <p>All errors are thrown as <kbd>new Error('moo')</kbd>.</p>
         </section>
         <hr />
         <Playground />
