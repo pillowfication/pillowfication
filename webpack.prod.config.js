@@ -121,5 +121,10 @@ module.exports = {
         loader: 'raw-loader'
       }]
     }]
+  },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
   }
 }
