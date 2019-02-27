@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
-import PFPerlin from 'pf-perlin'
+import PFValueNoise from 'pf-value-noise'
 
 import Section from '../Section.jsx'
 import zf from '../../foundation.scss'
-import styles from './PFPerlin.scss'
+import styles from './PFValueNoise.scss'
 
-class RainbowPerlin extends Component {
+class RainbowValueNoise extends Component {
   constructor (props) {
     super(props)
 
@@ -15,11 +15,11 @@ class RainbowPerlin extends Component {
     }
 
     this.canvas = React.createRef()
-    this.drawRainbowPerlin = this.drawRainbowPerlin.bind(this)
+    this.drawRainbowValueNoise = this.drawRainbowValueNoise.bind(this)
   }
 
   componentDidMount () {
-    this.drawRainbowPerlin()
+    this.drawRainbowValueNoise()
   }
 
   componentWillUnmount () {
@@ -28,7 +28,7 @@ class RainbowPerlin extends Component {
     }
   }
 
-  drawRainbowPerlin () {
+  drawRainbowValueNoise () {
     if (this.state.isDrawing) {
       return
     }
@@ -42,7 +42,7 @@ class RainbowPerlin extends Component {
     canvas.setAttribute('width', width * dpi)
 
     const ctx = canvas.getContext('2d')
-    const perlin3D = new PFPerlin({ dimensions: 3, octaves: 6 })
+    const noise3D = new PFValueNoise({ dimensions: 3, octaves: 6 })
     const resolution = Math.max(width / 10, 50)
 
     const pillowText = document.createElement('canvas')
@@ -76,9 +76,9 @@ class RainbowPerlin extends Component {
       const data = imageData.data
       let dataIndex = row * width << 2
       for (let col = 0; col < width; ++col) {
-        let r = perlin3D.get([ row / resolution, col / resolution, 0 ]) * 256
-        let g = perlin3D.get([ row / resolution, col / resolution, 1 ]) * 256
-        let b = perlin3D.get([ row / resolution, col / resolution, 2 ]) * 256
+        let r = noise3D.get([ row / resolution, col / resolution, 0 ]) * 256
+        let g = noise3D.get([ row / resolution, col / resolution, 1 ]) * 256
+        let b = noise3D.get([ row / resolution, col / resolution, 2 ]) * 256
         const pillowTextValue = pillowTextData[dataIndex] / 255
         r += (255 - 2 * r) * pillowTextValue
         g += (255 - 2 * g) * pillowTextValue
@@ -95,16 +95,16 @@ class RainbowPerlin extends Component {
 
   render () {
     return (
-      <Section title='Rainbow Perlin'>
+      <Section title='Rainbow Value Noise'>
         <p>
-          Each RGB channel is sampled over a 2D Perlin noise. Pixels in the text are inverted (with anti-aliasing). Then the pixels were brightened.
+          Each RGB channel is sampled over a 2D value noise. Pixels in the text are inverted (with anti-aliasing). Then the pixels were brightened.
         </p>
-        <canvas ref={this.canvas} className={styles.rainbowPerlin} />
+        <canvas ref={this.canvas} className={styles.rainbowValueNoise} />
         <br />
         <button
           type='button'
           className={classnames(zf.button, zf.expanded, { [zf.disabled]: this.state.isDrawing })}
-          onClick={this.drawRainbowPerlin}
+          onClick={this.drawRainbowValueNoise}
         >
           Redraw
         </button>
@@ -113,4 +113,4 @@ class RainbowPerlin extends Component {
   }
 }
 
-export default RainbowPerlin
+export default RainbowValueNoise

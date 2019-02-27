@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import PFPerlin from 'pf-perlin'
+import PFValueNoise from 'pf-value-noise'
 
 import Section from '../Section.jsx'
-import styles from './PFPerlin.scss'
+import styles from './PFValueNoise.scss'
 
 const CUBE_SIZE = +styles.cubeSize.slice(0, -2)
 const CUBE_COLOR = styles.cubeColor
@@ -10,14 +10,14 @@ const RESOLUTION = 35
 const EASING = 100
 const TIMING_SPEED = 800
 
-class _4DPerlin extends Component {
+class _4DValueNoise extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
       pitch: -0.5,
       roll: 0,
-      isDraggin: false
+      isDragging: false
     }
     this.mouseX = 0
     this.mouseY = 0
@@ -72,7 +72,7 @@ class _4DPerlin extends Component {
       ctx[face] = faceCtx
     }
 
-    const perlin4D = new PFPerlin({
+    const noise4D = new PFValueNoise({
       dimensions: 4,
       wavelength: 12,
       octaves: 2,
@@ -90,7 +90,7 @@ class _4DPerlin extends Component {
           for (let col = 0; col < RESOLUTION; ++col) {
             const point = facePoints[row][col]
             point[3] = time
-            if (perlin4D.get(point.slice()) > 0.5) {
+            if (noise4D.get(point) > 0.5) {
               faceCtx.fillRect(col * squareSize - 0.5, row * squareSize - 0.5, squareSize + 1, squareSize + 1)
             }
           }
@@ -142,9 +142,9 @@ class _4DPerlin extends Component {
     /* eslint-enable no-multi-spaces,comma-spacing */
 
     return (
-      <Section title='4D Perlin'>
+      <Section title='4D Value Noise'>
         <p>
-          The following is a visualization of 4D Perlin noise. The cube is a 3D cross section of the noise, moving at a constant speed across the 4th dimension.
+          The following is a visualization of 4D value noise. The cube is a 3D cross section of the noise, moving at a constant speed across the 4th dimension.
         </p>
         <div
           className={styles.cubeContainer}
@@ -166,4 +166,4 @@ class _4DPerlin extends Component {
   }
 }
 
-export default _4DPerlin
+export default _4DValueNoise
