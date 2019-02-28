@@ -8,9 +8,11 @@ class PFValueNoise extends Component {
   render () {
     return (
       <Page title='pf-value-noise' github='pillowfication/pf-value-noise'>
-        <p>
-          A <a href='https://en.wikipedia.org/wiki/Value_noise'>value noise</a> generator for any number of dimensions.
-        </p>
+        <section>
+          <p>
+            A <a href='https://en.wikipedia.org/wiki/Value_noise'>value noise</a> generator for any number of dimensions.
+          </p>
+        </section>
         <hr />
         <RainbowValueNoise />
         <hr />

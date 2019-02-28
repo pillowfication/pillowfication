@@ -31,4 +31,8 @@
   font-family: "Times New Roman", serif;
   font-size: 1.4rem;
   overflow-y: auto;
+
+  &.loading {
+    opacity: 0.5;
+  }
 }

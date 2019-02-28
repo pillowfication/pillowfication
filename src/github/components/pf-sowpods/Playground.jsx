@@ -1,41 +1,11 @@
 import React, { Component } from 'react'
-import request from 'request-promise-native'
+import classnames from 'classnames'
+import * as api from './api'
 
 import Section from '../Section.jsx'
 import zf from '../../foundation.scss'
 import fa from '../../font-awesome.scss'
 import styles from './PFSowpods.scss'
-
-const BASE_URL = window.location.origin + '/api/sowpods'
-const api = {
-  random () {
-    return request.get({
-      uri: BASE_URL + '/random',
-      json: true
-    }).then(response => response.result)
-  },
-  verify (word) {
-    return request.get({
-      uri: BASE_URL + '/verify',
-      qs: { w: word },
-      json: true
-    }).then(response => response.result)
-  },
-  anagram (word) {
-    return request.get({
-      uri: BASE_URL + '/anagram',
-      qs: { w: word },
-      json: true
-    }).then(response => response.result)
-  },
-  suggest (word) {
-    return request.get({
-      uri: BASE_URL + '/suggest',
-      qs: { w: word },
-      json: true
-    }).then(response => response.result)
-  }
-}
 
 class Playground extends Component {
   constructor (props) {
@@ -43,11 +13,14 @@ class Playground extends Component {
 
     this.state = {
       verificationWord: '',
+      verificationWordLoading: null,
       isValid: -1,
       anagramString: '',
       anagramResults: [],
+      anagramResultsLoading: null,
       suggestString: '',
-      suggestResults: []
+      suggestResults: [],
+      suggestResultsLoading: null
     }
 
     this.onInputVerificationWord = this.onInputVerificationWord.bind(this)
@@ -67,9 +40,14 @@ class Playground extends Component {
       isValid: -1
     })
     if (word) {
-      api.verify(word)
-        .then(result => this.setState({ isValid: result ? 1 : 0 }))
+      const promise = api.verify(word)
+        .then(result => {
+          if (this.state.verificationWordLoading === promise) {
+            this.setState({ isValid: result ? 1 : 0 })
+          }
+        })
         .catch(() => {})
+      this.setState({ verificationWordLoading: promise })
     }
   }
 
@@ -91,14 +69,21 @@ class Playground extends Component {
   }
 
   onClickAnagram () {
-    this.setState({ anagramResults: [] })
     if (this.state.anagramString) {
-      api.anagram(this.state.anagramString)
-        .then(results => results.length
-          ? this.setState({ anagramResults: results })
-          : this.setState({ anagramResults: 'No anagrams' })
-        )
-        .catch(() => this.setState({ anagramResults: 'Error - Could not retrieve anagrams' }))
+      const promise = api.anagram(this.state.anagramString)
+        .then(results => results.length ? results : 'No anagrams')
+        .catch(() => 'Error - Could not retrieve anagrams')
+        .then(results => {
+          if (this.state.anagramResultsLoading === promise) {
+            this.setState({
+              anagramResults: results,
+              anagramResultsLoading: null
+            })
+          }
+        })
+      this.setState({ anagramResultsLoading: promise })
+    } else {
+      this.setState({ anagramResults: [] })
     }
   }
 
@@ -113,14 +98,21 @@ class Playground extends Component {
   }
 
   onClickSuggest () {
-    this.setState({ suggestResults: [] })
     if (this.state.suggestString) {
-      api.suggest(this.state.suggestString)
-        .then(results => results.length
-          ? this.setState({ suggestResults: results })
-          : this.setState({ suggestResults: 'No suggestions' })
-        )
-        .catch(() => this.setState({ suggestResults: 'Error - Could not retrieve suggestions' }))
+      const promise = api.suggest(this.state.suggestString)
+        .then(results => results.length ? results : 'No suggestions')
+        .catch(() => 'Error - Could not retrieve suggestions')
+        .then(results => {
+          if (this.state.suggestResultsLoading === promise) {
+            this.setState({
+              suggestResults: results,
+              suggestResultsLoading: null
+            })
+          }
+        })
+      this.setState({ suggestResultsLoading: promise })
+    } else {
+      this.setState({ suggestResults: [] })
     }
   }
 
@@ -175,7 +167,7 @@ class Playground extends Component {
                 </button>
               </div>
             </div>
-            <div className={styles.results}>
+            <div className={classnames(styles.results, { [styles.loading]: this.state.anagramResultsLoading })}>
               {
                 typeof anagramResults === 'string'
                   ? anagramResults
@@ -198,7 +190,7 @@ class Playground extends Component {
                 </button>
               </div>
             </div>
-            <div className={styles.results}>
+            <div className={classnames(styles.results, { [styles.loading]: this.state.suggestResultsLoading })}>
               {
                 typeof suggestResults === 'string'
                   ? suggestResults
