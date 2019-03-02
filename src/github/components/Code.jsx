@@ -3,11 +3,13 @@ import { findDOMNode } from 'react-dom'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import highlight from 'highlight.js/lib/highlight'
+import php from 'highlight.js/lib/languages/php'
 import javascript from 'highlight.js/lib/languages/javascript'
 
 import './Code.scss'
 
 highlight.registerLanguage('javascript', javascript)
+highlight.registerLanguage('html', php)
 
 class Code extends Component {
   componentDidMount () {
