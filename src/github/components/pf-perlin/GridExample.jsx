@@ -52,6 +52,13 @@ class GridExample extends Component {
     const { width } = this.props
     const { gridOffsetX, gridOffsetY } = this.state
 
+    const left = gridOffsetX < 0 ? gridOffsetX % GRID_RESOLUTION : gridOffsetX % GRID_RESOLUTION - GRID_RESOLUTION
+    const up = gridOffsetY < 0 ? gridOffsetY % GRID_RESOLUTION : gridOffsetY % GRID_RESOLUTION - GRID_RESOLUTION
+    const startX = -Math.floor((gridOffsetX + width / 2) / GRID_RESOLUTION) - 1
+    const startCanvasX = ((width / 2 + left) % GRID_RESOLUTION) - GRID_RESOLUTION
+    const startY = -Math.floor((gridOffsetY + GRID_HEIGHT / 2) / GRID_RESOLUTION) - 1
+    const startCanvasY = ((GRID_HEIGHT / 2 + up) % GRID_RESOLUTION) - GRID_RESOLUTION
+
     return (
       <>
         <div className={styles.gridExample}
@@ -72,13 +79,6 @@ class GridExample extends Component {
             </defs>
             {(() => {
               const children = []
-
-              const left = gridOffsetX < 0 ? gridOffsetX % GRID_RESOLUTION : gridOffsetX % GRID_RESOLUTION - GRID_RESOLUTION
-              const up = gridOffsetY < 0 ? gridOffsetY % GRID_RESOLUTION : gridOffsetY % GRID_RESOLUTION - GRID_RESOLUTION
-              const startX = -Math.floor((gridOffsetX + width / 2) / GRID_RESOLUTION) - 1
-              const startCanvasX = ((width / 2 + left) % GRID_RESOLUTION) - GRID_RESOLUTION
-              const startY = -Math.floor((gridOffsetY + GRID_HEIGHT / 2) / GRID_RESOLUTION) - 1
-              const startCanvasY = ((GRID_HEIGHT / 2 + up) % GRID_RESOLUTION) - GRID_RESOLUTION
 
               for (let x = startX, canvasX = startCanvasX; canvasX <= width + GRID_RESOLUTION; ++x, canvasX += GRID_RESOLUTION) {
                 children.push(

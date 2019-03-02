@@ -5,6 +5,7 @@ import Section from '../Section.jsx'
 import GridExample from './GridExample.jsx'
 import CellExample from './CellExample.jsx'
 import InterpolationExample from './InterpolationExample.jsx'
+import OctaveExample from './OctaveExample.jsx'
 import $ from '../Math.jsx'
 
 const DEBOUNCE_LIMIT = 100
@@ -52,7 +53,7 @@ class TheAlgorithm extends Component {
           <GridExample width={width} />
           <br />
           <p>
-            To find the value of a point, find the cell it lies in. For each corner of the cell, let the distance vector be the vector from the corner to the point. Compute the value of the corner by taking the dot product of the distance vector with the gradient vector at that corner. These are called influence values.
+            To find the value of a point, find the cell it lies in. For each corner of the cell, let the distance vector be the vector from the corner to the point. Compute the value of the corner by taking the dot product of the distance vector with the gradient vector at that corner. These are called <b>influence values</b>.
           </p>
           <CellExample width={width} />
           <br />
@@ -60,13 +61,32 @@ class TheAlgorithm extends Component {
             In the case of <a href='https://en.wikipedia.org/wiki/Value_noise'>value noise</a>, the influence value at each corner is a random value that is constant for all points inside the cell. Finally, to get the value for a point, interpolate between the <$ $='2^n' /> influence values.
           </p>
           <p>
-            An interpolation function between two points <$ $='a' /> and <$ $='b' /> takes in a parameter <$ $='0 \leq t \leq 1' /> and returns a value in <$ $='[a, b]' />. This can be formulated as
+            An interpolation function between two values <$ $='a' /> and <$ $='b' /> takes in a parameter <$ $='0 \leq t \leq 1' /> and returns a value in <$ $='[a, b]' />. This can be formulated as
           </p>
-          <$ $$='\operatorname{interpolate}(a, b, t) = \varphi(t) \cdot (b - a) + a' />
+          <$ $$={`
+            \\begin{align}
+              \\operatorname{interpolate}(a, b, t)
+              &= (1 - \\varphi(t)) \\cdot a + \\varphi(t) \\cdot b\\\\
+              &= \\varphi(t) \\cdot (b - a) + a
+            \\end{align}
+          `} />
           <p>
-            where <$ $='\varphi(t)' /> is any function <$ $='\varphi : [0, 1] \to [0, 1]' />. Ken Perlin used the function <$ $='6t^5 - 15t^4 + 10t^3' /> which has both first and second derivative equal to <$ $='0' /> at <$ $='t = 0, 1' />. With a <$ $='1' />-dimensional interpolation function <$ $='\varphi(t)' /> chosen, an <$ $='n' />-dimensional interpolation function can be constructed by repeatedly interpolating across each dimension.
+            where <$ $='\varphi(t)' /> is any function <$ $='\varphi : [0, 1] \to [0, 1]' />. Ken Perlin used the function <$ $='\varphi(t) = 6t^5 - 15t^4 + 10t^3' /> which has both first and second derivative equal to <$ $='0' /> at <$ $='t = 0, 1' />. With a <$ $='1' />-dimensional interpolation function chosen, an <$ $='n' />-dimensional interpolation function can be constructed by repeatedly interpolating along each dimension.
           </p>
           <InterpolationExample width={width} />
+          <br />
+          <p>
+            This completes the construction for one <b>octave</b> of Perlin noise. Next, the octave is scaled down by a factor of <$ $='2' /> and added to itself repeatedly. The effect is visualized here with 1D value noise:
+          </p>
+          <OctaveExample width={width} />
+          <br />
+          <p>
+            The range of the first octave is <$ $='[-\sqrt{n}/2, \sqrt{n}/2]' /> as is shown <a href='http://digitalfreepen.com/2017/06/20/range-perlin-noise.html'>here</a> (although this can depend on the interpolation function used). Thus the radius of the final Perlin noise function with <$ $='\theta' /> octaves is
+          </p>
+          <$ $$={`
+            \\sum_{i=1}^\\theta \\frac{1}{2^{i-1}} \\cdot \\frac{\\sqrt{n}}{2}
+            = \\sqrt{n} \\left( 1 - \\frac{1}{2^\\theta} \\right).
+          `} />
         </div>
       </Section>
     )

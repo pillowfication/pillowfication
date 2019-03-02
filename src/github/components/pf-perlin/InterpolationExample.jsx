@@ -167,7 +167,7 @@ class InterpolationExample extends Component {
         </div>
         <div className={zf.textCenter}>
           <small>
-            Each influence value is a constant color. Colors are linear interpolated with <$ $='\varphi(t) = t' />. The values are interpolated across the <$ $='x' />-axis, then the <$ $='y' />-axis.
+            Each influence value is a constant color. Colors are linearly interpolated with <$ $='\varphi(t) = t' />. Interpolation occurs along the <$ $='x' />-axis, then the <$ $='y' />-axis.
             <br />
             Click to randomize the influence values.
           </small>
