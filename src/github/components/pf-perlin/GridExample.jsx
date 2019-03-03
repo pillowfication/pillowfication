@@ -122,7 +122,7 @@ class GridExample extends Component {
           <small>
             The vectors are pictured with length <$ $='1/2' />.
             <br />
-            You can drag around the grid.
+            You can drag the grid around.
           </small>
         </div>
       </>

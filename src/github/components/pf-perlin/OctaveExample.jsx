@@ -156,7 +156,7 @@ class GridExample extends Component {
           </div>
           <div className={zf.textCenter}>
             <small>
-              You can drag around the graph.
+              You can drag the graph around.
             </small>
           </div>
         </div>

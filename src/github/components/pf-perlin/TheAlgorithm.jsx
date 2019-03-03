@@ -6,6 +6,7 @@ import GridExample from './GridExample.jsx'
 import CellExample from './CellExample.jsx'
 import InterpolationExample from './InterpolationExample.jsx'
 import OctaveExample from './OctaveExample.jsx'
+import PerlinExample from './PerlinExample.jsx'
 import $ from '../Math.jsx'
 
 const DEBOUNCE_LIMIT = 100
@@ -87,6 +88,10 @@ class TheAlgorithm extends Component {
             \\sum_{i=1}^\\theta \\frac{1}{2^{i-1}} \\cdot \\frac{\\sqrt{n}}{2}
             = \\sqrt{n} \\left( 1 - \\frac{1}{2^\\theta} \\right).
           `} />
+          <p>
+            This allows the noise function to be mapped to the interval <$ $='[0, 1]' /> or any desired interval.
+          </p>
+          <PerlinExample width={width} />
         </div>
       </Section>
     )
