@@ -59,7 +59,7 @@ class GridExample extends Component {
 
   getGraphValue (x) {
     const value = this.graphValues[x]
-    return value === undefined ? (this.graphValues[x] = Math.random()) : value
+    return value === undefined ? (this.graphValues[x] = Math.random() > 0.5 ? 1 : -1) : value
   }
 
   getNoiseValue (x) {
@@ -71,8 +71,8 @@ class GridExample extends Component {
     for (let octave = 0; octave < octaves; ++octave) {
       const xPrime = x * scale
       const intX = Math.floor(xPrime)
-      const x0 = this.getGraphValue(intX)
-      const x1 = this.getGraphValue(intX + 1)
+      const x0 = this.getGraphValue(intX) * (xPrime - intX)
+      const x1 = this.getGraphValue(intX + 1) * (xPrime - (intX + 1))
 
       value += (INTERPOLATION(xPrime - intX) * (x1 - x0) + x0) * persistence
       scale *= 2
@@ -123,7 +123,7 @@ class GridExample extends Component {
               const points = []
               for (let x = 0; x <= width - GRAPH_PADDING * 2; x += GRAPH_INTERVAL) {
                 const noise = this.getNoiseValue(leftX + x / GRAPH_RESOLUTION)
-                points.push(`${GRAPH_PADDING + x},${GRAPH_RESOLUTION * 2 + GRAPH_PADDING - noise * GRAPH_RESOLUTION}`)
+                points.push(`${GRAPH_PADDING + x},${GRAPH_RESOLUTION + GRAPH_PADDING - noise * GRAPH_RESOLUTION}`)
               }
               children.push(
                 <polyline key='graph'

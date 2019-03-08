@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import PFPerlin from 'pf-perlin'
 
+import $ from '../Math.jsx'
 import zf from '../../foundation.scss'
 import styles from './PFPerlin.scss'
 
 const PERLIN_RESOLUTION = 100
 const PERLIN_HEIGHT = 400
+const PERLIN_THETA = (1 + Math.sqrt(5)) * Math.PI
 
-class PerlinExample extends Component {
+class PerlinRotatedExample extends Component {
   constructor (props) {
     super(props)
 
     this.perlinOffsetX = 0
     this.perlinOffsetY = 0
     this.perlinDrag = null
-    this.perlinNoise = new PFPerlin()
+    this.perlinNoise = new PFPerlin({ octaves: 1 })
     this.perlinImageData = {}
 
     this.canvas = React.createRef()
@@ -70,12 +72,22 @@ class PerlinExample extends Component {
     let dataIndex = 0
 
     const { perlinNoise } = this
-    const coord = []
     for (let row = 0; row < PERLIN_RESOLUTION; ++row) {
-      coord[1] = y + row / PERLIN_RESOLUTION
+      const y0 = y + row / PERLIN_RESOLUTION
       for (let col = 0; col < PERLIN_RESOLUTION; ++col) {
-        coord[0] = x + col / PERLIN_RESOLUTION
-        const value = perlinNoise.get(coord) * 256
+        const x0 = x + col / PERLIN_RESOLUTION
+        const coordRadius = Math.hypot(x0, y0)
+        const coordTheta = Math.atan2(y0, x0)
+        let value = 0
+        let persistence = 1
+        for (let octave = 0; octave < 8; ++octave) {
+          const theta = coordTheta + octave * PERLIN_THETA
+          const radius = coordRadius * Math.pow(2, octave)
+          const coord = [ radius * Math.cos(theta), radius * Math.sin(theta) ]
+          value += perlinNoise.get(coord) * persistence
+          persistence /= 2
+        }
+        value = value / 2 * 256
         data[dataIndex++] = value
         data[dataIndex++] = value
         data[dataIndex++] = 255
@@ -125,7 +137,7 @@ class PerlinExample extends Component {
         </div>
         <div className={zf.textCenter}>
           <small>
-            2D Perlin noise with 8 octaves.
+            2D Perlin noise with 8 octaves, each rotated by <$ $='\theta = \pi \cdot (1 + \sqrt{5})' />.
             <br />
             Mouseover areas to generate noise. You can also drag the image around.
           </small>
@@ -135,4 +147,4 @@ class PerlinExample extends Component {
   }
 }
 
-export default PerlinExample
+export default PerlinRotatedExample

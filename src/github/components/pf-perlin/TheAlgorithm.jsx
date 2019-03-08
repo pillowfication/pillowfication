@@ -7,6 +7,7 @@ import CellExample from './CellExample.jsx'
 import InterpolationExample from './InterpolationExample.jsx'
 import OctaveExample from './OctaveExample.jsx'
 import PerlinExample from './PerlinExample.jsx'
+import PerlinRotatedExample from './PerlinRotatedExample.jsx'
 import $ from '../Math.jsx'
 
 const DEBOUNCE_LIMIT = 100
@@ -41,7 +42,7 @@ class TheAlgorithm extends Component {
       <Section title='The Algorithm'>
         <div ref={this.container}>
           <p>
-            First, a unit gradient vector is assigned to every lattice point. To get a random vector in <$ $='\mathbb{R}^n' />, each coordinate of the vector is randomly selected from a normal distribution. Thus the probability of any point <$ $='x' /> being selected is equal to
+            First, a unit gradient vector is assigned to every lattice point. (The original algorithm accomplishes this using a permutation table). To get a random vector in <$ $='\mathbb{R}^n' />, each coordinate of the vector is randomly selected from a normal distribution. Thus the probability of any point <$ $='x' /> being selected is equal to
           </p>
           <$ $$={`
             P(x)
@@ -77,21 +78,26 @@ class TheAlgorithm extends Component {
           <InterpolationExample width={width} />
           <br />
           <p>
-            This completes the construction for one <b>octave</b> of Perlin noise. Next, the octave is scaled down by a factor of <$ $='2' /> and added to itself repeatedly. The effect is visualized here with 1D value noise:
+            This completes the construction for one <b>octave</b> of Perlin noise. Next, the octave is scaled down by a factor of <$ $='2' /> and added to itself repeatedly. The effect is visualized here with 1D Perlin noise:
           </p>
           <OctaveExample width={width} />
           <br />
           <p>
-            The range of the first octave is <$ $='[-\sqrt{n}/2, \sqrt{n}/2]' /> as is shown <a href='http://digitalfreepen.com/2017/06/20/range-perlin-noise.html'>here</a> (although this can depend on the interpolation function used). Thus the radius of the final Perlin noise function with <$ $='\theta' /> octaves is
+            The range of the first octave is <$ $='[-\sqrt{n}/2, \sqrt{n}/2]' /> as is shown <a href='http://digitalfreepen.com/2017/06/20/range-perlin-noise.html'>here</a> (although this can depend on the interpolation function used). Thus the radius of the final Perlin noise function with <$ $='\omega' /> octaves is
           </p>
           <$ $$={`
-            \\sum_{i=1}^\\theta \\frac{1}{2^{i-1}} \\cdot \\frac{\\sqrt{n}}{2}
-            = \\sqrt{n} \\left( 1 - \\frac{1}{2^\\theta} \\right).
+            \\sum_{i=1}^\\omega \\frac{1}{2^{i-1}} \\cdot \\frac{\\sqrt{n}}{2}
+            = \\sqrt{n} \\left( 1 - \\frac{1}{2^\\omega} \\right).
           `} />
           <p>
             This allows the noise function to be mapped to the interval <$ $='[0, 1]' /> or any desired interval.
           </p>
-          <PerlinExample width={width} />
+          <PerlinExample />
+          <br />
+          <p>
+            Perlin noise still contains some directional artifacts, most notably at the origin (this is addressed in <a href='https://en.wikipedia.org/wiki/Simplex_noise'>simplex noise</a>). This can also be remedied by rotating each octave by some angle <$ $='\theta' />. It is recommended to use the <a href='https://en.wikipedia.org/wiki/Golden_ratio'>golden ratio</a> for its high irrationality.
+          </p>
+          <PerlinRotatedExample />
         </div>
       </Section>
     )
