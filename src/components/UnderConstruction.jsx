@@ -23,7 +23,7 @@ class UnderConstruction extends Component {
             )}
           </svg>
           <div className={styles.message}>
-            pillowfication.com is under construction
+            <a href='/github'>my GitHub projects</a>
           </div>
         </div>
       </div>
