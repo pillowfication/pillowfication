@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PFPerlin from 'pf-perlin'
 
-import $ from '../Math.jsx'
-import zf from '../../foundation.scss'
+import $ from '../../../shared/Math.jsx'
+import zf from '../../../foundation.scss'
 import styles from './PFPerlin.scss'
 
 const PERLIN_RESOLUTION = 100

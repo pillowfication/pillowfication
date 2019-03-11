@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import kebabCase from 'lodash/kebabCase'
 
-import fa from '../font-awesome.scss'
+import fa from '../../font-awesome.scss'
 import styles from './Section.scss'
 
 class Section extends Component {

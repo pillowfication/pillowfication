@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import zf from '../../foundation.scss'
+import zf from '../../../foundation.scss'
 import styles from './PerfectCuboid.scss'
 
 const PASSED = [

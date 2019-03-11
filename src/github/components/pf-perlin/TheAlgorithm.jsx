@@ -8,7 +8,7 @@ import InterpolationExample from './InterpolationExample.jsx'
 import OctaveExample from './OctaveExample.jsx'
 import PerlinExample from './PerlinExample.jsx'
 import PerlinRotatedExample from './PerlinRotatedExample.jsx'
-import $ from '../Math.jsx'
+import $ from '../../../shared/Math.jsx'
 
 const DEBOUNCE_LIMIT = 100
 

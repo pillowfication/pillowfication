@@ -9,8 +9,8 @@ import tree from './tree.png'
 import delaunay from './delaunay.png'
 import bezier from './bezier.png'
 import _3D from './3D.png'
-import zf from '../../foundation.scss'
-import fa from '../../font-awesome.scss'
+import zf from '../../../foundation.scss'
+import fa from '../../../font-awesome.scss'
 import styles from './PillowficationOld.scss'
 
 class PillowficationOld extends Component {

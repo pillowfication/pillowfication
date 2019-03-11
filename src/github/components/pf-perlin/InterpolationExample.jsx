@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import $ from '../Math.jsx'
-import zf from '../../foundation.scss'
+import $ from '../../../shared/Math.jsx'
+import zf from '../../../foundation.scss'
 import styles from './PFPerlin.scss'
 
 const MAX_INTERPOLATION_RESOLUTION = 200

@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { execute, transpile } from 'moofuck'
 
 import Section from '../Section.jsx'
-import CodeEditable from '../CodeEditable.jsx'
+import CodeEditable from '../../../shared/CodeEditable.jsx'
 import helloWorld from './hello-world.brainfuck'
-import zf from '../../foundation.scss'
+import zf from '../../../foundation.scss'
 import styles from './Moofuck.scss'
 
 const stdout = {

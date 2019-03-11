@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import 'pf-konami'
 
 import Page from '../Page.jsx'
-import Code from '../Code.jsx'
+import Code from '../../../shared/Code.jsx'
 import ExampleKeypress from './ExampleKeypress.jsx'
 
 class PFKonami extends Component {

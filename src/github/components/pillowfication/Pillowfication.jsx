@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Page from '../Page.jsx'
-import pillowfication, { minX, maxX, minY, maxY } from '../../../components/pillowfication'
+import pillowfication, { minX, maxX, minY, maxY } from '../../../pillowfication/components/pillowfication'
 import styles from './Pillowfication.scss'
 
 const width = maxX - minX

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Page from '../Page.jsx'
 import Playground from './Playground.jsx'
-import zf from '../../foundation.scss'
+import zf from '../../../foundation.scss'
 import styles from './Moofuck.scss'
 
 class Moofuck extends Component {

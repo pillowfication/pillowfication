@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import pfIcon from './pf-icon.png'
-import zf from '../foundation.scss'
-import fa from '../font-awesome.scss'
+import zf from '../../foundation.scss'
+import fa from '../../font-awesome.scss'
 import styles from './Header.scss'
 
 class Header extends Component {

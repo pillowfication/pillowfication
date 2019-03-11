@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import PFValueNoise from 'pf-value-noise'
 
 import Section from '../Section.jsx'
-import zf from '../../foundation.scss'
+import zf from '../../../foundation.scss'
 import styles from './PFValueNoise.scss'
 
 class RainbowValueNoise extends Component {

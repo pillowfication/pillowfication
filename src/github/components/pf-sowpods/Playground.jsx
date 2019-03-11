@@ -3,8 +3,8 @@ import classnames from 'classnames'
 import * as api from './api'
 
 import Section from '../Section.jsx'
-import zf from '../../foundation.scss'
-import fa from '../../font-awesome.scss'
+import zf from '../../../foundation.scss'
+import fa from '../../../font-awesome.scss'
 import styles from './PFSowpods.scss'
 
 class Playground extends Component {

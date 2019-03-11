@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Page from '../Page.jsx'
-import fa from '../../font-awesome.scss'
+import fa from '../../../font-awesome.scss'
 import styles from './CIS89C.scss'
 
 class CIS89C extends Component {

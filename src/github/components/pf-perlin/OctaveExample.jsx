@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import zf from '../../foundation.scss'
-import fa from '../../font-awesome.scss'
+import zf from '../../../foundation.scss'
+import fa from '../../../font-awesome.scss'
 import styles from './PFPerlin.scss'
 
 const GRAPH_RESOLUTION = 100

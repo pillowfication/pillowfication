@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import stats from './stats.json'
 
-import BarGraph from '../BarGraph.jsx'
-import zf from '../../foundation.scss'
+import BarGraph from '../../../shared/BarGraph.jsx'
+import zf from '../../../foundation.scss'
 
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 

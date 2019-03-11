@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import Header from './components/Header.jsx'
 import Navigation from './components/Navigation.jsx'
 import ProjectViewer from './components/ProjectViewer.jsx'
-import zf from './foundation.scss'
+import zf from '../foundation.scss'
 import styles from './App.scss'
 
 class App extends Component {

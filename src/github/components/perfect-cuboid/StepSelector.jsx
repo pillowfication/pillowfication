@@ -6,9 +6,8 @@ import verify from 'perfect-cuboid/src/verify'
 import { TRUE } from 'perfect-cuboid/src/Statement'
 import { TRIPLES, TYPES, SIDES, DIVISIBILITY, TRUTH_STATES } from './maps'
 
-import '../../font-awesome.scss'
-import $ from '../Math.jsx'
-import zf from '../../foundation.scss'
+import $ from '../../../shared/Math.jsx'
+import zf from '../../../foundation.scss'
 import styles from './PerfectCuboid.scss'
 
 function stringifyStatement (statement) {

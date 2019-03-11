@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-import fa from '../../font-awesome.scss'
+import fa from '../../../font-awesome.scss'
 import styles from './PFKonami.scss'
 
 const KONAMI = [

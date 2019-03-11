@@ -3,9 +3,9 @@ import classnames from 'classnames'
 import isPlainObject from 'lodash/isPlainObject'
 
 import Section from '../Section.jsx'
-import Code from '../Code.jsx'
-import CodeEditable from '../CodeEditable.jsx'
-import zf from '../../foundation.scss'
+import Code from '../../../shared/Code.jsx'
+import CodeEditable from '../../../shared/CodeEditable.jsx'
+import zf from '../../../foundation.scss'
 import ad from './awesome-dings.scss'
 import styles from './AwesomeDings.scss'
 

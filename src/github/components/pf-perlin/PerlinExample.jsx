@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PFPerlin from 'pf-perlin'
 
-import zf from '../../foundation.scss'
+import zf from '../../../foundation.scss'
 import styles from './PFPerlin.scss'
 
 const PERLIN_RESOLUTION = 100

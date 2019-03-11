@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import routes from './routes'
 
-import zf from '../foundation.scss'
-import fa from '../font-awesome.scss'
+import zf from '../../foundation.scss'
+import fa from '../../font-awesome.scss'
 import styles from './Navigation.scss'
 
 class Navigation extends Component {

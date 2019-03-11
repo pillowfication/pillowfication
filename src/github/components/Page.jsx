@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import fa from '../font-awesome.scss'
+import fa from '../../font-awesome.scss'
 import styles from './Page.scss'
 
 class Page extends Component {

@@ -5,8 +5,8 @@ import { toId, fromId } from 'perfect-cuboid/src/enumerate'
 import { getEquivalents } from 'perfect-cuboid/src/equivalent'
 import { TRIPLES, TYPES } from './maps'
 
-import $ from '../Math.jsx'
-import zf from '../../foundation.scss'
+import $ from '../../../shared/Math.jsx'
+import zf from '../../../foundation.scss'
 import styles from './PerfectCuboid.scss'
 
 const MIN_ID = 0

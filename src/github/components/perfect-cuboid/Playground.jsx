@@ -4,8 +4,8 @@ import Section from '../Section.jsx'
 import CaseSelector from './CaseSelector.jsx'
 import StepSelector from './StepSelector.jsx'
 import PassedCases from './PassedCases.jsx'
-import zf from '../../foundation.scss'
-import fa from '../../font-awesome.scss'
+import zf from '../../../foundation.scss'
+import fa from '../../../font-awesome.scss'
 
 class Playground extends Component {
   constructor (props) {

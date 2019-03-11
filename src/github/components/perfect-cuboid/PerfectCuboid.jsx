@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
 import Page from '../Page.jsx'
-import Code from '../Code.jsx'
-import $ from '../Math.jsx'
+import Code from '../../../shared/Code.jsx'
+import $ from '../../../shared/Math.jsx'
 import Playground from './Playground.jsx'
-import zf from '../../foundation.scss'
+import zf from '../../../foundation.scss'
 import styles from './PerfectCuboid.scss'
 
 const lineStyle = {

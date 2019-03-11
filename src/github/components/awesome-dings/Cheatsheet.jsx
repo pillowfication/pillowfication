@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 import Section from '../Section.jsx'
-import zf from '../../foundation.scss'
-import fa from '../../font-awesome.scss'
+import zf from '../../../foundation.scss'
+import fa from '../../../font-awesome.scss'
 import ad from './awesome-dings.scss'
 import styles from './AwesomeDings.scss'
 
