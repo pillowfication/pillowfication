@@ -11,7 +11,7 @@ import Pillowfication from './pillowfication/Pillowfication.jsx'
 import PillowficationOld from './pillowfication-old/PillowficationOld.jsx'
 
 const routes = [{
-  header: 'pillowfication',
+  header: '/pillowfication',
   children: [
     { path: 'awesome-dings', component: AwesomeDings },
     { path: 'cis89c', component: CIS89C },
@@ -28,7 +28,7 @@ const routes = [{
 }]
 
 for (const routeGroup of routes) {
-  const pathPrefix = routeGroup.header === 'pillowfication' ? '/' : '/' + routeGroup.header
+  const pathPrefix = routeGroup.header === '/pillowfication' ? '/' : routeGroup.header + '/'
   for (const route of routeGroup.children) {
     route.fullPath = pathPrefix + route.path
   }

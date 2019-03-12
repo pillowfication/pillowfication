@@ -8,6 +8,7 @@ module.exports = {
   mode: 'development',
   entry: {
     app: path.resolve(__dirname, './src/main.jsx'),
+    blog: path.resolve(__dirname, './src/blog/main.jsx'),
     github: path.resolve(__dirname, './src/github/main.jsx')
   },
   output: {
@@ -23,6 +24,11 @@ module.exports = {
       chunks: [ 'app' ],
       template: path.resolve(__dirname, './src/index.pug'),
       filename: 'index.html'
+    }),
+    new HtmlWebpackPlugin({
+      chunks: [ 'blog' ],
+      template: path.resolve(__dirname, './src/blog/index.pug'),
+      filename: 'blog.html'
     }),
     new HtmlWebpackPlugin({
       chunks: [ 'github' ],

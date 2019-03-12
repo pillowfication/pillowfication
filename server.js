@@ -6,6 +6,7 @@ const api = require('./api')
 
 const PORT = process.argv[2] || process.env.PFN_PORT || 80
 const INDEX_PATH = path.resolve(__dirname, './dist/index.html')
+const BLOG_PATH = path.resolve(__dirname, './dist/blog.html')
 const GITHUB_PATH = path.resolve(__dirname, './dist/github.html')
 
 const app = express()
@@ -21,6 +22,9 @@ app.use('/api', api)
 
 app.use('/~20198403', express.static(path.resolve(__dirname, './dist/cis89c')))
 
+app.get('/blog*', (_, response) => {
+  response.sendFile(BLOG_PATH)
+})
 app.get('/github*', (_, response) => {
   response.sendFile(GITHUB_PATH)
 })
