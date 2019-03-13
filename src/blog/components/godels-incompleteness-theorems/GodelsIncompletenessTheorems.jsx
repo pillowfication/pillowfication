@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import Blog from '../Blog.jsx'
+import { registerBlog } from '../Blog.jsx'
 import $ from '../../../shared/Math.jsx'
 
 class GodelsIncompletenessTheorems extends Component {
   render () {
     return (
-      <Blog title='Gödel’s Incompleteness Theorems'>
+      <>
         <p>
           Gödel’s proof is applied to some calculus strong enough to describe arithmetic. In his original paper, Gödel used an adaptation of <i>Principia Mathematica</i>. The system assumed here is Hofstadter’s Typographical Number Theory (<$ $='\text{TNT}' />).<sup>1</sup> <$ $='\text{TNT}' /> contains 20 symbols, 5 axioms, 8 rules of inference, and it can codify all of arithmetic. For example, the phrase “<$ $='\text{$x$ is an even number}' />” in <$ $='\text{TNT}' /> could be “<$ $={`\\exists a' : (\\text{SS}0 \\cdot a') = a`} />” where <$ $='x' /> is represented by the free variable <$ $={'a'} />.
         </p>
@@ -20,14 +20,14 @@ class GodelsIncompletenessTheorems extends Component {
           \\end{array}
         `} />
         <p>
-          Then for any sequence <$ $='e' /> of symbols <$ $='s_1, \ldots, s_k' /> with corresponding code numbers <$ $='c_1, \ldots, c_k' />, let the Gödel number (GN) for <$ $='e' /> be
+          Then for any sequence <$ $='e' /> of symbols <$ $='s_1, \ldots, s_k' /> with corresponding code numbers <$ $='c_1, \ldots, c_k' />, let the Gödel number for <$ $='e' /> be
         </p>
         <$ $$='\operatorname{GN}(e) = 2^{c_1} \times 3^{c_2} \times 5^{c_3} \times \cdots \times p_k^{c_k} = \prod_{i=1}^k p_i^{c_i}' />
         <p>
           where <$ $='p_i' /> indicates the <$ $='i' /><sup>th</sup> prime number. Thus the symbol “<$ $='\sim' />” has Gödel number <$ $='2^{17} = 131,072' />. The statement “<$ $='a = a' />” has Gödel number <$ $='2^{12} \cdot 3^{3} \cdot 5^{12} = 2.7 \times 10^{13}' />. Similarly, proofs, which are just sequences of statements, have unique Gödel numbers constructed the same way.<sup>2,3</sup>
         </p>
         <p>
-          Thus all the rules of inference which state which strings can be transformed into which strings, can be reinterpreted as statement about numbers, specifically the Gödel numbers of those strings. Every well defined operation on strings, has an equivalent well defined arithmetical operation on numbers. Subsequently, a proof with Gödel number <$ $='a' /> being valid proof for a theorem with Gödel number <$ $={'a\''} /> represents some mathematical relationship between <$ $='a' /> and <$ $={'a\''} /><sup>4</sup> denoted as
+          Thus all the rules of inference which state which strings can be transformed into which strings, can be reinterpreted as statement about numbers, specifically the Gödel numbers of those strings. Every well defined operation on strings, has an equivalent well defined arithmetical operation on numbers. Subsequently, a proof with Gödel number <$ $='a' /> being a valid proof for a theorem with Gödel number <$ $={'a\''} /> represents some mathematical relationship between <$ $='a' /> and <$ $={'a\''} /><sup>4</sup> denoted as
         </p>
         <$ $$={'\\operatorname{Prf}_{\\text{TNT}}\\langle a, a\' \\rangle.'} />
         <p>
@@ -84,9 +84,9 @@ class GodelsIncompletenessTheorems extends Component {
             </li>
           </ol>
         </small>
-      </Blog>
+      </>
     )
   }
 }
 
-export default GodelsIncompletenessTheorems
+export default registerBlog(GodelsIncompletenessTheorems, '2019/03/12', 'Gödel’s Incompleteness Theorems')
