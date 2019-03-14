@@ -17,9 +17,11 @@ class App extends Component {
             </div>
             <div className={`${styles.body} ${zf.cell} ${zf.auto} ${zf.cellBlock}`}>
               <div className={`${styles.bodyContent} ${zf.gridContainer} ${zf.gridX} ${zf.gridPaddingX}`}>
-                <div className={`${zf.cell} ${zf.auto}`}>
+                <div className={`${zf.cell} ${zf.large1}`} />
+                <div className={`${zf.cell} ${zf.small12} ${zf.large10}`}>
                   <BlogViewer />
                 </div>
+                <div className={`${zf.cell} ${zf.large1}`} />
               </div>
             </div>
           </div>

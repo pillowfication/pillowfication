@@ -81,7 +81,7 @@ class CaseSelector extends Component {
         {getEquivalents(id).map(equivalent =>
           <button key={equivalent}
             type='button'
-            className={classnames(styles.idButton, { [styles.selected]: id === equivalent })}
+            className={classnames(styles.idButton, id === equivalent && styles.selected)}
             value={equivalent}
             onClick={this.onSelectEquivalent}
           >
@@ -106,9 +106,7 @@ class CaseSelector extends Component {
                   <th><$ $={type.label} /></th>
                   {TRIPLES.map(triple =>
                     <td key={triple.name}>
-                      <label className={classnames({
-                        [styles.selected]: permutation[triple.name] === type.name
-                      })}>
+                      <label className={classnames(permutation[triple.name] === type.name && styles.selected)}>
                         <input type='radio'
                           name={triple.name}
                           checked={permutation[triple.name] === type.name}

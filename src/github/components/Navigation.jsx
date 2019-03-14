@@ -15,7 +15,7 @@ class Navigation extends Component {
     const { closeOffCanvas, offCanvas } = this.props
 
     return (
-      <nav className={classnames({ [styles.offCanvas]: offCanvas }, styles.nav)}>
+      <nav className={classnames(offCanvas && styles.offCanvas, styles.nav)}>
         <div className={`${styles.iconBar} ${zf.gridX} ${zf.gridPaddingX} ${zf.smallUp3}`}>
           <Link to='/' className={zf.cell} onClick={closeOffCanvas}><i className={`${fa.fa} ${fa.faHome}`} /></Link>
           <a href='https://github.com/pillowfication/pillowfication' className={zf.cell}><i className={`${fa.fa} ${fa.faGithub}`} /></a>
@@ -28,7 +28,9 @@ class Navigation extends Component {
               <ul>
                 {routeGroup.children.map(route =>
                   <li key={route.path}>
-                    <NavLink to={route.fullPath} activeClassName={styles.active} onClick={closeOffCanvas}>{route.path}</NavLink>
+                    <NavLink to={route.fullPath} activeClassName={styles.active} onClick={closeOffCanvas}>
+                      {route.path}
+                    </NavLink>
                   </li>
                 )}
               </ul>

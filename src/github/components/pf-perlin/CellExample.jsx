@@ -12,7 +12,7 @@ class CellExample extends Component {
     super(props)
 
     this.state = {
-      cellGradients: Array(4).fill(0).map(() => Math.random() * 2 * Math.PI),
+      cellGradients: Array(4).fill().map(() => Math.random() * 2 * Math.PI),
       cellMouseX: Math.random(),
       cellMouseY: Math.random()
     }
@@ -23,7 +23,7 @@ class CellExample extends Component {
   }
 
   onClickCell () {
-    this.setState({ cellGradients: Array(4).fill(0).map(() => Math.random() * 2 * Math.PI) })
+    this.setState({ cellGradients: Array(4).fill().map(() => Math.random() * 2 * Math.PI) })
   }
 
   onMouseMoveCell (event) {

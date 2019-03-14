@@ -9,7 +9,10 @@ class Blog extends Component {
 
     return (
       <div className={styles.page}>
-        <h1>{title} - {date}</h1>
+        <h1>
+          {title}
+          <span className={styles.date}>{date}</span>
+        </h1>
         <hr className={styles.titleDivider} />
         {this.props.children}
       </div>

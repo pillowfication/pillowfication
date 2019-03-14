@@ -90,13 +90,13 @@ class StepSelector extends Component {
             <ol className={styles.steps} start={0}>
               {verification.steps.map((step, index) =>
                 <li key={index}
-                  className={classnames({ [styles.selected]: stepIndex === index })}
+                  className={classnames(stepIndex === index && styles.selected)}
                   onClick={this.onSelectStep.bind(this, index)}
                 >
                   <$ $={stringifyStep(permutation, step.rule)} />
                 </li>
               )}
-              <li className={classnames({ [styles.contradiction]: verification.contradiction })}>
+              <li className={classnames(verification.contradiction && styles.contradiction)}>
                 <$ $={verification.contradiction
                   ? stringifyStep(permutation, verification.contradiction)
                   : '\\text{No contradiction}'}

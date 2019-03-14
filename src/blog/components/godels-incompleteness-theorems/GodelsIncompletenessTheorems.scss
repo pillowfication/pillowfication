@@ -1,0 +1,12 @@
+.statement {
+  font-family: "MJXc-TeX-main-R, MJXc-TeX-main-Rw";
+  font-size: 121%;
+  line-height: 100%;
+
+  &::before {
+    content: '“';
+  }
+  &::after {
+    content: '”';
+  }
+}

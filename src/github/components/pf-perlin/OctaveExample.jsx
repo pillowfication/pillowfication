@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 
 import zf from '../../../foundation.scss'
 import fa from '../../../font-awesome.scss'
@@ -145,13 +144,13 @@ class GridExample extends Component {
               Octaves: {this.state.octaves}
             </text>
           </svg>
-          <div className={classnames(zf.buttonGroup, zf.textCenter)}>
+          <div className={`${zf.buttonGroup} ${zf.textCenter}`}>
             <button className={zf.button} onClick={this.onClickSubtractOctave}>
-              <i className={classnames(fa.fa, fa.faFw, fa.faMinus)} />
+              <i className={`${fa.fa} ${fa.faFw} ${fa.faMinus}`} />
             </button>
             &nbsp;
             <button className={zf.button} onClick={this.onClickAddOctave}>
-              <i className={classnames(fa.fa, fa.faFw, fa.faPlus)} />
+              <i className={`${fa.fa} ${fa.faFw} ${fa.faPlus}`} />
             </button>
           </div>
           <div className={zf.textCenter}>

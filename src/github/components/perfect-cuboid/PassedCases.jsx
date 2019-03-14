@@ -63,14 +63,12 @@ class PassedCases extends Component {
     const { id, onSelectId } = this.props
 
     return (
-      <fieldset className={classnames(zf.cell, zf.small12)}>
+      <fieldset className={`${zf.cell} ${zf.small12}`}>
         <legend>Passed Cases ({PASSED.length} total)</legend>
         {PASSED.map(passed =>
           <button key={passed}
             type='button'
-            className={classnames(styles.idButton, zf.button, zf.hollow, {
-              [styles.selected]: id === passed
-            })}
+            className={classnames(styles.idButton, zf.button, zf.hollow, id === passed && styles.selected)}
             onClick={onSelectId.bind(this, passed)}
           >
             {passed}

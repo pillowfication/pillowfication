@@ -103,7 +103,7 @@ class RainbowValueNoise extends Component {
         <br />
         <button
           type='button'
-          className={classnames(zf.button, zf.expanded, { [zf.disabled]: this.state.isDrawing })}
+          className={classnames(zf.button, zf.expanded, this.state.isDrawing && zf.disabled)}
           onClick={this.drawRainbowValueNoise}
         >
           Redraw

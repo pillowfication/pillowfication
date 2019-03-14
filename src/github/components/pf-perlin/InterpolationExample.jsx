@@ -15,7 +15,7 @@ class InterpolationExample extends Component {
     super(props)
 
     this.state = {
-      influenceValues: Array(4).fill(0).map(() => ({
+      influenceValues: Array(4).fill().map(() => ({
         r: Math.random() * 256,
         g: Math.random() * 256,
         b: Math.random() * 256
@@ -30,7 +30,7 @@ class InterpolationExample extends Component {
   }
 
   onClickInterpolation () {
-    this.setState({ influenceValues: Array(4).fill(0).map(() => ({
+    this.setState({ influenceValues: Array(4).fill().map(() => ({
       r: Math.random() * 256,
       g: Math.random() * 256,
       b: Math.random() * 256

@@ -167,7 +167,7 @@ class Playground extends Component {
                 </button>
               </div>
             </div>
-            <div className={classnames(styles.results, { [styles.loading]: this.state.anagramResultsLoading })}>
+            <div className={classnames(styles.results, this.state.anagramResultsLoading && styles.loading)}>
               {
                 typeof anagramResults === 'string'
                   ? anagramResults
@@ -190,7 +190,7 @@ class Playground extends Component {
                 </button>
               </div>
             </div>
-            <div className={classnames(styles.results, { [styles.loading]: this.state.suggestResultsLoading })}>
+            <div className={classnames(styles.results, this.state.suggestResultsLoading && styles.loading)}>
               {
                 typeof suggestResults === 'string'
                   ? suggestResults

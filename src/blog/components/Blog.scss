@@ -1,8 +1,17 @@
 @import "../../settings";
 
 .page {
-  margin-top: $global-margin;
+  margin-top: 2 * $global-margin;
   margin-bottom: 30vh;
+}
+
+.date {
+  display: inline-block;
+  padding-left: 2rem;
+  font-weight: normal;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: $secondary-color;
 }
 
 .title-divider {

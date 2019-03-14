@@ -33,7 +33,7 @@ class App extends Component {
 
     return (
       <Router basename='/github'>
-        <div className={classnames(styles.app, { [styles.open]: open })}>
+        <div className={classnames(styles.app, open && styles.open)}>
           <div className={`${zf.gridFrame} ${zf.gridY}`}>
             <div className={styles.canvasShield} onClick={this.closeOffCanvas} />
             <div className={`${zf.cell} ${zf.shrink}`}>
