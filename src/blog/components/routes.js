@@ -4,12 +4,14 @@ import Caffeine from './caffeine/Caffeine.jsx'
 import GodelsIncompletenessTheorems from './godels-incompleteness-theorems/GodelsIncompletenessTheorems.jsx'
 import NewtonsMethod from './newtons-method/NewtonsMethod.jsx'
 import SolidAngles from './solid-angles/SolidAngles.jsx'
+import SwapSorting from './swap-sorting/SwapSorting.jsx'
 
 const routes = [
   Caffeine,
   GodelsIncompletenessTheorems,
   NewtonsMethod,
-  SolidAngles
+  SolidAngles,
+  SwapSorting
 ].map(blog => ({
   date: blog.date,
   path: kebabCase(blog.title),

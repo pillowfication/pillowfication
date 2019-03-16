@@ -16,10 +16,8 @@ class Header extends Component {
               <a href='/'><img className={styles.pfIcon} src={pfIcon} />pillowfication</a>
             </div>
             <div className={zf.topBarRight}>
-              <div className={zf.showForMedium}>
-                <Link to='/'><i className={`${fa.fa} ${fa.faHome}`} /></Link>
-                <a href='https://github.com/pillowfication/pillowfication'><i className={`${fa.fa} ${fa.faGithub}`} /></a>
-              </div>
+              <Link to='/'><i className={`${fa.fa} ${fa.faHome}`} /></Link>
+              <a href='https://github.com/pillowfication/pillowfication'><i className={`${fa.fa} ${fa.faGithub}`} /></a>
             </div>
           </nav>
         </div>

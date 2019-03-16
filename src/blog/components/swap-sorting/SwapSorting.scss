@@ -1,0 +1,45 @@
+.container {
+  counter-reset: corollary theorem;
+}
+
+@mixin header($title) {
+  margin-top: 2rem;
+
+  &::before {
+    content: $title;
+    display: block;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.definition {
+  @include header("Definition");
+
+  border: 1px solid black;
+  padding: 1.2rem;
+  margin-bottom: 1em;
+}
+
+.corollary {
+  @include header("");
+
+  &::before {
+    counter-increment: corollary;
+    content: "Corollary " counter(corollary);
+  }
+}
+
+.theorem {
+  @include header("");
+
+  &::before {
+    counter-increment: theorem;
+    content: "Theorem " counter(theorem);
+  }
+}
+
+.proof {
+  @include header("Proof");
+}
