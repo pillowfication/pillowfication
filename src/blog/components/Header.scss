@@ -31,6 +31,10 @@ $topbar-item-padding: $global-margin * 0.7;
     font-size: $topbar-icon-size;
     text-align: center;
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 .pf-icon {

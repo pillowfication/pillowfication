@@ -3,10 +3,16 @@
   font-size: 121%;
   line-height: 100%;
 
+  & > span {
+    white-space: nowrap;
+  }
+
   &::before {
     content: '“';
+    white-space: nowrap;
   }
   &::after {
     content: '”';
+    white-space: nowrap;
   }
 }

@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+
+import styles from './Footnotes.scss'
 
 class Footnotes {
   constructor () {
@@ -8,25 +10,29 @@ class Footnotes {
     this.displayFootnotes = this.displayFootnotes.bind(this)
   }
 
-  createFootnote (...component) {
-    this.footnotes.push(...component)
+  createFootnote (...ids) {
+    this.footnotes.push(...ids)
     return (
       <sup>
         {
-          Array(component.length).fill()
-            .map((_, index) => this.footnotes.length - component.length + index + 1)
-            .join(', ')
+          Array(ids.length).fill()
+            .map((_, index) => {
+              const count = this.footnotes.length - ids.length + index + 1
+              const footnote = <a key={index} href={`#[${count}]`} className={styles.ref}>{count}</a>
+              return index > 0 ? [ <Fragment key={index + 'f'}>, </Fragment>, footnote ] : footnote
+            })
+            .flat()
         }
       </sup>
     )
   }
 
-  displayFootnotes () {
+  displayFootnotes (footnotes) {
     return (
-      <small>
+      <small className={styles.footnotes}>
         <ol>
-          {this.footnotes.map((footnote, index) => (
-            <li key={index}>{footnote}</li>
+          {this.footnotes.map((id, index) => (
+            <li key={id} id={`[${index}]`}>{footnotes[id]}</li>
           ))}
         </ol>
       </small>

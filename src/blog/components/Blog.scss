@@ -3,6 +3,10 @@
 .page {
   margin-top: 2 * $global-margin;
   margin-bottom: 30vh;
+
+  @media print {
+    margin: 0;
+  }
 }
 
 .date {

@@ -11,17 +11,17 @@ class App extends Component {
     return (
       <Router basename='/blog'>
         <div className={styles.app}>
-          <div className={`${zf.gridFrame} ${zf.gridY}`}>
+          <div className={`${styles.grid} ${zf.gridFrame} ${zf.gridY}`}>
             <div className={`${zf.cell} ${zf.shrink}`}>
               <Header />
             </div>
-            <div className={`${styles.body} ${zf.cell} ${zf.auto} ${zf.cellBlock}`}>
+            <div className={`${zf.cell} ${zf.auto} ${zf.cellBlock}`}>
               <div className={`${styles.bodyContent} ${zf.gridContainer} ${zf.gridX} ${zf.gridPaddingX}`}>
-                <div className={`${zf.cell} ${zf.large1}`} />
-                <div className={`${zf.cell} ${zf.small12} ${zf.large10}`}>
+                <div className={styles.bodyPadding} />
+                <div className={`${styles.body} ${zf.cell} ${zf.small12} ${zf.large10}`}>
                   <BlogViewer />
                 </div>
-                <div className={`${zf.cell} ${zf.large1}`} />
+                <div className={styles.bodyPadding} />
               </div>
             </div>
           </div>

@@ -2,16 +2,17 @@
 import React, { Component } from 'react'
 
 import zf from '../foundation.scss'
+import styles from './Math.scss'
 
 let calledRender = false
 function queueRenderMath () {
   if (typeof MathJax !== 'undefined' && !calledRender) {
     MathJax.Hub.Queue([ 'Typeset', MathJax.Hub ])
     calledRender = true
+    setImmediate(() => {
+      calledRender = false
+    })
   }
-  setImmediate(() => {
-    calledRender = false
-  })
 }
 
 class Math extends Component {
@@ -24,9 +25,13 @@ class Math extends Component {
   }
 
   render () {
-    return this.props.$$
-      ? <div className={zf.scroller}><p>{`\\[${this.props.$$}\\]`}</p></div>
-      : <span>{`\\(${this.props.$}\\)`}</span>
+    return typeof MathJax === 'undefined'
+      ? this.props.$$
+        ? <div className={styles.noMathjax}><pre>{`\\[${this.props.$$}\\]`}</pre></div>
+        : <span className={styles.noMathjax}>{`\\(${this.props.$}\\)`}</span>
+      : this.props.$$
+        ? <div className={zf.scroller}><p>{`\\[${this.props.$$}\\]`}</p></div>
+        : <span>{`\\(${this.props.$}\\)`}</span>
   }
 }
 
