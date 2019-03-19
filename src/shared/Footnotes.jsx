@@ -32,7 +32,7 @@ class Footnotes {
       <small className={styles.footnotes}>
         <ol>
           {this.references.map((id, index) => (
-            <li key={id} id={`[${index}]`}>{footnotes[id]}</li>
+            <li key={id} id={`[${index + 1}]`}>{footnotes[id]}</li>
           ))}
         </ol>
       </small>
