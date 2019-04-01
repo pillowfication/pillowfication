@@ -1,9 +1,9 @@
 .pf-triangle {
-  composes: pfTriangle from "../../../pillowfication/components/UnderConstruction.scss";
+  composes: pfTriangle from "../../../pillowfication/components/Home.scss";
 }
 
 .under-construction {
-  composes: underConstruction from "../../../pillowfication/components/UnderConstruction.scss";
+  composes: underConstruction from "../../../pillowfication/components/Home.scss";
   width: 100%;
   height: auto;
   margin: 100px 0;

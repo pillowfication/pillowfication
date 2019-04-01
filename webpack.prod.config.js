@@ -26,7 +26,7 @@ function getId (name) {
 module.exports = {
   mode: 'production',
   entry: {
-    app: path.resolve(__dirname, './src/main.jsx'),
+    app: path.resolve(__dirname, './src/pillowfication/main.jsx'),
     blog: path.resolve(__dirname, './src/blog/main.jsx'),
     github: path.resolve(__dirname, './src/github/main.jsx')
   },
@@ -41,7 +41,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       chunks: [ 'app' ],
-      template: path.resolve(__dirname, './src/index.pug'),
+      template: path.resolve(__dirname, './src/pillowfication/index.pug'),
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import pillowfication, { minX, maxX, minY, maxY } from './pillowfication'
-import styles from './UnderConstruction.scss'
+import styles from './Home.scss'
 
 const width = maxX - minX
 const height = maxY - minY
@@ -12,23 +12,24 @@ class SVGTriangle extends Component {
   }
 }
 
-class UnderConstruction extends Component {
+class Home extends Component {
   render () {
     return (
-      <div className={styles.underConstruction}>
+      <div className={styles.container}>
         <div>
           <svg width={width} height={height}>
             {pillowfication.map((points, index) =>
               <SVGTriangle key={index} points={points} />
             )}
           </svg>
-          <div className={styles.message}>
-            <a href='/github'>my GitHub projects</a>
-          </div>
+          <ul className={styles.links}>
+            <li><a href='/github'>code</a></li>
+            <li><a href='/blog'>blog</a></li>
+          </ul>
         </div>
       </div>
     )
   }
 }
 
-export default UnderConstruction
+export default Home
