@@ -19,7 +19,7 @@ class Pillowfication extends Component {
       <Page title='pillowfication' github='pillowfication/pillowfication'>
         <section>
           <p>This repository is for the site you’re on right now&hellip;</p>
-          <div className={styles.underConstruction}>
+          <div className={styles.container}>
             <svg width={width} height={height}>
               {pillowfication.map((points, index) =>
                 <SVGTriangle key={index} points={points} />

@@ -144,7 +144,7 @@ class _4DValueNoise extends Component {
     return (
       <Section title='4D Value Noise'>
         <p>
-          The following is a visualization of 4D value noise. The cube is a 3D cross section of the noise, moving at a constant speed across the 4th dimension.
+          The following is a visualization of 4D value noise. The cube is a 3D cross section of the noise, moving at a constant speed along the 4th dimension.
         </p>
         <div
           className={styles.cubeContainer}

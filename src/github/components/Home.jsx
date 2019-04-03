@@ -5,7 +5,9 @@ import Page from './Page.jsx'
 class Home extends Component {
   render () {
     return (
-      <Page title='Home'>Home</Page>
+      <Page title='Home'>
+        <p>Home of my GitHub projects.</p>
+      </Page>
     )
   }
 }

@@ -2,8 +2,8 @@
   composes: pfTriangle from "../../../pillowfication/components/Home.scss";
 }
 
-.under-construction {
-  composes: underConstruction from "../../../pillowfication/components/Home.scss";
+.container {
+  composes: container from "../../../pillowfication/components/Home.scss";
   width: 100%;
   height: auto;
   margin: 100px 0;

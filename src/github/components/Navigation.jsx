@@ -24,7 +24,7 @@ class Navigation extends Component {
         <ul>
           {routes.map(routeGroup =>
             <li key={routeGroup.header}>
-              <b>{routeGroup.header}</b><span className={styles.pathDivider} />
+              <b>{routeGroup.header.substr(1)}</b><span className={styles.pathDivider} />
               <ul>
                 {routeGroup.children.map(route =>
                   <li key={route.path}>
