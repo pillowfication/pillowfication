@@ -89,48 +89,56 @@ class GodelsIncompletenessTheorems extends Component {
         </p>
         <hr />
         {createFootnotes({
-          /* eslint-disable react/jsx-indent */
-          tnt:
+          tnt: (
             <p>
               The exact system is called <i>austere</i> TNT and is described in full in Chapter 8 of <i>Gödel, Escher, Bach: an Eternal Golden Braid</i>.
-            </p>,
-          gnn:
+            </p>
+          ),
+          gnn: (
             <p>
               For a system of <$ $='n' /> symbols, it’s common to just assign each symbol a single base <$ $='n' /> numeral. Then for any string of symbols, replace each by its corresponding base <$ $='n' /> numeral, and the resulting base <$ $='n' /> number is the Gödel number for that string. The numeral <$ $='0' /> must be assigned to a symbol that can never appear first in a valid formula of the system. For TNT, Hofstadter assigns each symbol a 3-digit “codon,” and Gödel numbers are constructed by concatenating codons into a single base 10 number.
-            </p>,
-          gnu:
+            </p>
+          ),
+          gnu: (
             <p>
               Every Gödel number is unique due to the fundamental theorem of arithmetic.
-            </p>,
-          gnp:
+            </p>
+          ),
+          gnp: (
             <p>
               To make the Gödel number of a proof, an additional 21<sup>st</sup> symbol is needed to act as a punctuation mark delimiting each statement or line of a proof. Alternatively, the standard method is to translate the sequence of statements into a sequence of their Gödel numbers <$ $='g_1, \ldots, g_k' />, and let the “super Gödel number” of the sequence to be <$ $='\prod_{i=1}^k \pi_i^{g_i}' />.
-            </p>,
-          art:
+            </p>
+          ),
+          art: (
             <p>
               “arithMETical” is used in place of “arithMETic” to distinguish it from “aRITHmetic” as is used elsewhere.
-            </p>,
-          ppa:
+            </p>
+          ),
+          ppa: (
             <p>
               The process of checking if two Gödel numbers form a “proof-pair” involves 1) translating both numbers to their TNT-counterparts, 2) verifying that the last statement of the proof matches the theorem to be proved, and 3) verifying that each statement in the proof is either an axiom or can be obtained by combining previous lines through valid rules. This algorithm is primitive recursive and is therefore provably representable in TNT.
-            </p>,
-          sba:
+            </p>
+          ),
+          sba: (
             <p>
               The exact formulation of this function is extremely complex and is done in Gödel’s papers. Page 81 of <i>Gödel’s Proof</i> offers a brief attempt.
-            </p>,
-          gng:
+            </p>
+          ),
+          gng: (
             <p>
               This statement is a simpler, but stronger assertion than what Gödel actually proved. Gödel showed that if <$ $='G' /> is provable, then <$ $='{\sim}G' /> is provable; and if <$ $='{\sim}G' /> is provable, then arithmetic is <span style={{ whiteSpace: 'nowrap' }}><$ $='\omega' />-inconsistent</span>.
-            </p>,
-          icp:
+            </p>
+          ),
+          icp: (
             <p>
               Proving consistency of a system usually involves finding a formula in that system that cannot be proven, since if a system were inconsistent, then all formulas could be proven. In TNT, all axioms are tautological, and all rules of inference preserve tautologicalness. Thus the formula <span className={styles.statement}><$ $={'a = a\''} /></span> which is not a tautology, cannot be proven.
-            </p>,
-          inc:
+            </p>
+          ),
+          inc: (
             <p>
               TNT is <i>syntactically</i> incomplete. A system is syntactically complete if for every sentence <$ $='\varphi' /> of the system, either <$ $='\varphi' /> or <$ $='{\sim}\varphi' /> is a theorem. This property is also called Gödel completeness.
             </p>
-          /* eslint-enable react/jsx-indent */
+          )
         })}
         <hr />
         <h2>References</h2>

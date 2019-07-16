@@ -1,5 +1,7 @@
 /* global MathJax */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import AirbnbPropTypes from 'airbnb-prop-types'
 
 import zf from '../foundation.scss'
 import styles from './Math.scss'
@@ -35,34 +37,31 @@ class Math extends Component {
   }
 }
 
+const exclusivePropTypes = {
+  $: PropTypes.string,
+  $$: PropTypes.string
+}
+const exclusiveProps = Object.keys(exclusivePropTypes)
+
 Math.propTypes = {
-  $: (props, propName, componentName) => {
-    const propType = typeof props[propName]
-    if (propType !== 'undefined' && propType !== 'string') {
-      return new Error(`Invalid prop \`${propName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`string\`.`)
-    }
-
-    if (!props.$ && !props.$$) {
-      return new Error(`One of props \`$\` or \`$$\` was not specified in \`${componentName}\`.`)
-    }
-    if (props.$ && props.$$) {
-      return new Error(`Only one of props \`$\` or \`$$\` should be specified in \`${componentName}\`.`)
-    }
-  },
-
-  $$: (props, propName, componentName) => {
-    const propType = typeof props[propName]
-    if (propType !== 'undefined' && propType !== 'string') {
-      return new Error(`Invalid prop \`${propName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`string\`.`)
-    }
-
-    if (!props.$ && !props.$$) {
-      return new Error(`One of props \`$\` or \`$$\` was not specified in \`${componentName}\`.`)
-    }
-    if (props.$ && props.$$) {
-      return new Error(`Only one of props \`$\` or \`$$\` should be specified in \`${componentName}\`.`)
-    }
-  }
+  ...Object.fromEntries(exclusiveProps.map(exclusiveProp => [
+    exclusiveProp,
+    AirbnbPropTypes.and([
+      exclusivePropTypes[exclusiveProp],
+      (props, propName, componentName) => {
+        const propList = exclusiveProps.join(', ')
+        const exclusivePropCount = Object.keys(props)
+          .filter(prop => props[prop] != null)
+          .reduce((count, prop) => (count + (exclusivePropTypes[prop] ? 1 : 0)), 0)
+        if (exclusivePropCount > 1) {
+          return new Error(`A ${componentName} cannot have more than one of these props: ${propList}`)
+        }
+        if (exclusivePropCount < 1) {
+          return new Error(`A ${componentName} must have at least one of these props: ${propList}`)
+        }
+      }
+    ])
+  ]))
 }
 
 export default Math

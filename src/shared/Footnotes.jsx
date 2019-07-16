@@ -3,7 +3,8 @@ import React, { Fragment } from 'react'
 import styles from './Footnotes.scss'
 
 class Footnotes {
-  constructor () {
+  constructor (identifier) {
+    this.identifier = identifier
     this.references = []
 
     this.createReference = this.createReference.bind(this)
@@ -18,8 +19,15 @@ class Footnotes {
           Array(ids.length).fill()
             .map((_, index) => {
               const count = this.references.length - ids.length + index + 1
-              const footnote = <a key={index} href={`#[${count}]`} className={styles.ref}>{count}</a>
-              return index > 0 ? [ <Fragment key={index + 'f'}>, </Fragment>, footnote ] : footnote
+              const footnote = (
+                <a key={index}
+                  href={`#[${this.identifier ? this.identifier + count : count}]`}
+                  className={styles.ref}
+                >
+                  {count}
+                </a>
+              )
+              return index > 0 ? [ <Fragment key={'f' + index}>, </Fragment>, footnote ] : footnote
             })
             .flat()
         }
@@ -32,7 +40,11 @@ class Footnotes {
       <small className={styles.footnotes}>
         <ol>
           {this.references.map((id, index) => (
-            <li key={id} id={`[${index + 1}]`}>{footnotes[id]}</li>
+            <li key={id}
+              id={`[${this.identifier ? this.identifier + (index + 1) : index + 1}]`}
+            >
+              {footnotes[id]}
+            </li>
           ))}
         </ol>
       </small>

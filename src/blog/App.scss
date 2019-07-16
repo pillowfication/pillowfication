@@ -45,3 +45,16 @@
 blockquote {
   color: inherit;
 }
+
+figure {
+  margin-bottom: 1rem;
+  text-align: center;
+
+  & > img {
+    margin-bottom: 5px;
+  }
+}
+
+figcaption {
+  text-align: center;
+}
