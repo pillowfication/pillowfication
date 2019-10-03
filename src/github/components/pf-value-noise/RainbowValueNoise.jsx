@@ -15,11 +15,11 @@ class RainbowValueNoise extends Component {
     }
 
     this.canvas = React.createRef()
-    this.drawRainbowValueNoise = this.drawRainbowValueNoise.bind(this)
+    this.handleDrawRainbowValueNoise = this.handleDrawRainbowValueNoise.bind(this)
   }
 
   componentDidMount () {
-    this.drawRainbowValueNoise()
+    this.handleDrawRainbowValueNoise()
   }
 
   componentWillUnmount () {
@@ -28,7 +28,7 @@ class RainbowValueNoise extends Component {
     }
   }
 
-  drawRainbowValueNoise () {
+  handleDrawRainbowValueNoise () {
     if (this.state.isDrawing) {
       return
     }
@@ -76,9 +76,9 @@ class RainbowValueNoise extends Component {
       const data = imageData.data
       let dataIndex = row * width << 2
       for (let col = 0; col < width; ++col) {
-        let r = noise3D.get([ row / resolution, col / resolution, 0 ]) * 256
-        let g = noise3D.get([ row / resolution, col / resolution, 1 ]) * 256
-        let b = noise3D.get([ row / resolution, col / resolution, 2 ]) * 256
+        let r = noise3D.get([row / resolution, col / resolution, 0]) * 256
+        let g = noise3D.get([row / resolution, col / resolution, 1]) * 256
+        let b = noise3D.get([row / resolution, col / resolution, 2]) * 256
         const pillowTextValue = pillowTextData[dataIndex] / 255
         r += (255 - 2 * r) * pillowTextValue
         g += (255 - 2 * g) * pillowTextValue
@@ -104,7 +104,7 @@ class RainbowValueNoise extends Component {
         <button
           type='button'
           className={classnames(zf.button, zf.expanded, this.state.isDrawing && zf.disabled)}
-          onClick={this.drawRainbowValueNoise}
+          onClick={this.handleDrawRainbowValueNoise}
         >
           Redraw
         </button>

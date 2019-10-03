@@ -20,9 +20,9 @@ class PerlinRotatedExample extends Component {
     this.perlinImageData = {}
 
     this.canvas = React.createRef()
-    this.onMouseDownPerlin = this.onMouseDownPerlin.bind(this)
-    this.onMouseUpPerlin = this.onMouseUpPerlin.bind(this)
-    this.onDragPerlin = this.onDragPerlin.bind(this)
+    this.handleMouseDownPerlin = this.handleMouseDownPerlin.bind(this)
+    this.handleMouseUpPerlin = this.handleMouseUpPerlin.bind(this)
+    this.handleDragPerlin = this.handleDragPerlin.bind(this)
   }
 
   componentDidMount () {
@@ -34,15 +34,15 @@ class PerlinRotatedExample extends Component {
     this.drawPerlin()
   }
 
-  onMouseDownPerlin (event) {
+  handleMouseDownPerlin (event) {
     this.perlinDrag = { x: event.clientX, y: event.clientY }
   }
 
-  onMouseUpPerlin () {
+  handleMouseUpPerlin () {
     this.perlinDrag = null
   }
 
-  onDragPerlin (event) {
+  handleDragPerlin (event) {
     if (this.perlinDrag) {
       this.perlinOffsetX = this.perlinOffsetX + (event.clientX - this.perlinDrag.x)
       this.perlinOffsetY = this.perlinOffsetY + (event.clientY - this.perlinDrag.y)
@@ -60,7 +60,7 @@ class PerlinRotatedExample extends Component {
   }
 
   createPerlinImageData (x, y) {
-    let axis = this.perlinImageData[x]
+    const axis = this.perlinImageData[x]
     if (axis && axis[y]) {
       return
     }
@@ -83,7 +83,7 @@ class PerlinRotatedExample extends Component {
         for (let octave = 0; octave < 8; ++octave) {
           const theta = coordTheta + octave * PERLIN_THETA
           const radius = coordRadius * Math.pow(2, octave)
-          const coord = [ radius * Math.cos(theta), radius * Math.sin(theta) ]
+          const coord = [radius * Math.cos(theta), radius * Math.sin(theta)]
           value += perlinNoise.get(coord) * persistence
           persistence /= 2
         }
@@ -128,10 +128,11 @@ class PerlinRotatedExample extends Component {
   render () {
     return (
       <>
-        <div className={styles.perlinExample}
-          onMouseDown={this.onMouseDownPerlin}
-          onMouseUp={this.onMouseUpPerlin}
-          onMouseMove={this.onDragPerlin}
+        <div
+          className={styles.perlinExample}
+          onMouseDown={this.handleMouseDownPerlin}
+          onMouseUp={this.handleMouseUpPerlin}
+          onMouseMove={this.handleDragPerlin}
         >
           <canvas ref={this.canvas} />
         </div>

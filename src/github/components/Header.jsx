@@ -9,7 +9,7 @@ import styles from './Header.scss'
 
 class Header extends Component {
   render () {
-    const { openOffCanvas } = this.props
+    const { onOpenOffCanvas } = this.props
 
     return (
       <header className={styles.header}>
@@ -20,7 +20,7 @@ class Header extends Component {
             </div>
             <div className={zf.topBarRight}>
               <div className={zf.showForSmallOnly}>
-                <a onClick={openOffCanvas}><i className={`${fa.fa} ${fa.faNavicon}`} /></a>
+                <a onClick={onOpenOffCanvas}><i className={`${fa.fa} ${fa.faNavicon}`} /></a>
               </div>
               <div className={zf.showForMedium}>
                 <Link to='/'><i className={`${fa.fa} ${fa.faHome}`} /></Link>
@@ -35,7 +35,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  openOffCanvas: PropTypes.func.isRequired
+  onOpenOffCanvas: PropTypes.func.isRequired
 }
 
 export default Header

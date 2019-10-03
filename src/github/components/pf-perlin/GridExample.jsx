@@ -20,20 +20,20 @@ class GridExample extends Component {
 
     this.gridTheta = {}
 
-    this.onMouseDownGrid = this.onMouseDownGrid.bind(this)
-    this.onMouseUpGrid = this.onMouseUpGrid.bind(this)
-    this.onDragGrid = this.onDragGrid.bind(this)
+    this.handleMouseDownGrid = this.handleMouseDownGrid.bind(this)
+    this.handleMouseUpGrid = this.handleMouseUpGrid.bind(this)
+    this.handleDragGrid = this.handleDragGrid.bind(this)
   }
 
-  onMouseDownGrid (event) {
+  handleMouseDownGrid (event) {
     this.setState({ gridDrag: { x: event.clientX, y: event.clientY } })
   }
 
-  onMouseUpGrid () {
+  handleMouseUpGrid () {
     this.setState({ gridDrag: null })
   }
 
-  onDragGrid (event) {
+  handleDragGrid (event) {
     if (this.state.gridDrag) {
       this.setState({
         gridOffsetX: this.state.gridOffsetX + (event.clientX - this.state.gridDrag.x),
@@ -61,14 +61,16 @@ class GridExample extends Component {
 
     return (
       <>
-        <div className={styles.gridExample}
-          onMouseDown={this.onMouseDownGrid}
-          onMouseUp={this.onMouseUpGrid}
-          onMouseMove={this.onDragGrid}
+        <div
+          className={styles.gridExample}
+          onMouseDown={this.handleMouseDownGrid}
+          onMouseUp={this.handleMouseUpGrid}
+          onMouseMove={this.handleDragGrid}
         >
           <svg width={width} height={GRID_HEIGHT}>
             <defs>
-              <marker id='arrow'
+              <marker
+                id='arrow'
                 viewBox='0 0 10 10'
                 refX='5' refY='5'
                 markerWidth='6' markerHeight='6'
@@ -82,7 +84,8 @@ class GridExample extends Component {
 
               for (let x = startX, canvasX = startCanvasX; canvasX <= width + GRID_RESOLUTION; ++x, canvasX += GRID_RESOLUTION) {
                 children.push(
-                  <line key={`x${x}`}
+                  <line
+                    key={`x${x}`}
                     x1={canvasX} y1={0}
                     x2={canvasX} y2={GRID_HEIGHT}
                     stroke='#7caff0'
@@ -91,7 +94,8 @@ class GridExample extends Component {
               }
               for (let y = startY, canvasY = startCanvasY; canvasY <= GRID_HEIGHT + GRID_RESOLUTION; ++y, canvasY += GRID_RESOLUTION) {
                 children.push(
-                  <line key={`y${y}`}
+                  <line
+                    key={`y${y}`}
                     x1={0} y1={canvasY}
                     x2={width} y2={canvasY}
                     stroke='#7caff0'
@@ -103,7 +107,8 @@ class GridExample extends Component {
                 for (let y = startY, canvasY = startCanvasY; canvasY <= GRID_HEIGHT + GRID_RESOLUTION; ++y, canvasY += GRID_RESOLUTION) {
                   const theta = this.getGridTheta(x, y)
                   children.push(
-                    <line key={`x${x}y${y}`}
+                    <line
+                      key={`x${x}y${y}`}
                       x1={canvasX} y1={canvasY}
                       x2={canvasX + GRID_RESOLUTION * Math.cos(theta) / 2}
                       y2={canvasY + GRID_RESOLUTION * Math.sin(theta) / 2}

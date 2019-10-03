@@ -27,20 +27,20 @@ class Playground extends Component {
       output: ''
     }
 
-    this.onInputBrainfuck = this.onInputBrainfuck.bind(this)
-    this.onInputInputString = this.onInputInputString.bind(this)
-    this.onExecuteMoofuck = this.onExecuteMoofuck.bind(this)
+    this.handleInputBrainfuck = this.handleInputBrainfuck.bind(this)
+    this.handleInputInputString = this.handleInputInputString.bind(this)
+    this.handleExecuteMoofuck = this.handleExecuteMoofuck.bind(this)
   }
 
-  onInputBrainfuck (event) {
+  handleInputBrainfuck (event) {
     this.setState({ brainfuck: event.target.value })
   }
 
-  onInputInputString (event) {
+  handleInputInputString (event) {
     this.setState({ inputString: event.target.value })
   }
 
-  onExecuteMoofuck () {
+  handleExecuteMoofuck () {
     const { brainfuck, inputString } = this.state
 
     stdout.clear()
@@ -63,30 +63,34 @@ class Playground extends Component {
         <div className={`${zf.gridX} ${zf.gridMarginX}`}>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Brainfuck</legend>
-            <CodeEditable $={brainfuck} onChange={this.onInputBrainfuck} />
+            <CodeEditable $={brainfuck} onChange={this.handleInputBrainfuck} />
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Moofuck</legend>
-            <pre><code className={`hljs ${styles.moofuck}`}>
-              {invisibles.map(invisible => [
-                'moo',
-                <span key='moo' className={styles.invisible}>
-                  {invisible === '\n' ? '\\n' : '\\r\\n'}
-                </span>,
-                '\n'
-              ])}
-            </code></pre>
+            <pre>
+              <code className={`hljs ${styles.moofuck}`}>
+                {invisibles.map(invisible => [
+                  'moo',
+                  <span key='moo' className={styles.invisible}>
+                    {invisible === '\n' ? '\\n' : '\\r\\n'}
+                  </span>,
+                  '\n'
+                ])}
+              </code>
+            </pre>
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Input String</legend>
-            <input type='text' value={inputString} onChange={this.onInputInputString} />
+            <input type='text' value={inputString} onChange={this.handleInputInputString} />
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Output</legend>
-            <button className={zf.button} onClick={this.onExecuteMoofuck}>Execute Moofuck</button>
-            <pre><code className={`hljs ${styles.moofuck}`}>
-              {output}
-            </code></pre>
+            <button className={zf.button} onClick={this.handleExecuteMoofuck}>Execute Moofuck</button>
+            <pre>
+              <code className={`hljs ${styles.moofuck}`}>
+                {output}
+              </code>
+            </pre>
           </fieldset>
         </div>
       </Section>

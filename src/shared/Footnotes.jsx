@@ -20,14 +20,15 @@ class Footnotes {
             .map((_, index) => {
               const count = this.references.length - ids.length + index + 1
               const footnote = (
-                <a key={index}
+                <a
+                  key={index}
                   href={`#[${this.identifier ? this.identifier + count : count}]`}
                   className={styles.ref}
                 >
                   {count}
                 </a>
               )
-              return index > 0 ? [ <Fragment key={'f' + index}>, </Fragment>, footnote ] : footnote
+              return index > 0 ? [<Fragment key={'f' + index}>, </Fragment>, footnote] : footnote
             })
             .flat()
         }
@@ -40,7 +41,8 @@ class Footnotes {
       <small className={styles.footnotes}>
         <ol>
           {this.references.map((id, index) => (
-            <li key={id}
+            <li
+              key={id}
               id={`[${this.identifier ? this.identifier + (index + 1) : index + 1}]`}
             >
               {footnotes[id]}

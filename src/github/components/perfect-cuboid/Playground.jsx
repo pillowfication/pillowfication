@@ -15,10 +15,10 @@ class Playground extends Component {
       id: 2985984 * Math.random() | 0
     }
 
-    this.onSelectId = this.onSelectId.bind(this)
+    this.handleSelectId = this.handleSelectId.bind(this)
   }
 
-  onSelectId (id) {
+  handleSelectId (id) {
     this.setState({ id })
   }
 
@@ -27,9 +27,9 @@ class Playground extends Component {
       <Section title='Playground'>
         <p><a href='http://old.pillowfication.com/projects/cuboid/'><i className={`${fa.fa} ${fa.faReply} ${fa.faRotate180}`} /> See the old playground here</a></p>
         <div className={`${zf.gridX} ${zf.gridMarginX}`}>
-          <CaseSelector id={this.state.id} onSelectId={this.onSelectId} />
+          <CaseSelector id={this.state.id} onSelectId={this.handleSelectId} />
           <StepSelector id={this.state.id} />
-          <PassedCases id={this.state.id} onSelectId={this.onSelectId} />
+          <PassedCases id={this.state.id} onSelectId={this.handleSelectId} />
         </div>
       </Section>
     )

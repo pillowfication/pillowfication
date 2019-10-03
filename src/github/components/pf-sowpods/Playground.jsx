@@ -23,17 +23,17 @@ class Playground extends Component {
       suggestResultsLoading: null
     }
 
-    this.onInputVerificationWord = this.onInputVerificationWord.bind(this)
-    this.onClickRandomWord = this.onClickRandomWord.bind(this)
-    this.onInputAnagramString = this.onInputAnagramString.bind(this)
-    this.onKeyPressAnagramString = this.onKeyPressAnagramString.bind(this)
-    this.onClickAnagram = this.onClickAnagram.bind(this)
-    this.onInputSuggestString = this.onInputSuggestString.bind(this)
-    this.onKeyPressSuggestString = this.onKeyPressSuggestString.bind(this)
-    this.onClickSuggest = this.onClickSuggest.bind(this)
+    this.handleInputVerificationWord = this.handleInputVerificationWord.bind(this)
+    this.handleClickRandomWord = this.handleClickRandomWord.bind(this)
+    this.handleInputAnagramString = this.handleInputAnagramString.bind(this)
+    this.handleKeyPressAnagramString = this.handleKeyPressAnagramString.bind(this)
+    this.handleClickAnagram = this.handleClickAnagram.bind(this)
+    this.handleInputSuggestString = this.handleInputSuggestString.bind(this)
+    this.handleKeyPressSuggestString = this.handleKeyPressSuggestString.bind(this)
+    this.handleClickSuggest = this.handleClickSuggest.bind(this)
   }
 
-  onInputVerificationWord (event) {
+  handleInputVerificationWord (event) {
     const word = typeof event === 'string' ? event : event.target.value
     this.setState({
       verificationWord: word,
@@ -51,24 +51,24 @@ class Playground extends Component {
     }
   }
 
-  onClickRandomWord () {
-    this.onInputVerificationWord('')
+  handleClickRandomWord () {
+    this.handleInputVerificationWord('')
     api.random()
-      .then(word => this.onInputVerificationWord(word))
-      .catch(() => this.onInputVerificationWord('Error - Could not retrieve word'))
+      .then(word => this.handleInputVerificationWord(word))
+      .catch(() => this.handleInputVerificationWord('Error - Could not retrieve word'))
   }
 
-  onInputAnagramString (event) {
+  handleInputAnagramString (event) {
     this.setState({ anagramString: event.target.value })
   }
 
-  onKeyPressAnagramString (event) {
+  handleKeyPressAnagramString (event) {
     if (event.key === 'Enter') {
-      this.onClickAnagram()
+      this.handleClickAnagram()
     }
   }
 
-  onClickAnagram () {
+  handleClickAnagram () {
     if (this.state.anagramString) {
       const promise = api.anagram(this.state.anagramString)
         .then(results => results.length ? results : 'No anagrams')
@@ -87,17 +87,17 @@ class Playground extends Component {
     }
   }
 
-  onInputSuggestString (event) {
+  handleInputSuggestString (event) {
     this.setState({ suggestString: event.target.value })
   }
 
-  onKeyPressSuggestString (event) {
+  handleKeyPressSuggestString (event) {
     if (event.key === 'Enter') {
-      this.onClickSuggest()
+      this.handleClickSuggest()
     }
   }
 
-  onClickSuggest () {
+  handleClickSuggest () {
     if (this.state.suggestString) {
       const promise = api.suggest(this.state.suggestString)
         .then(results => results.length ? results : 'No suggestions')
@@ -133,19 +133,18 @@ class Playground extends Component {
             <legend>Verify</legend>
             <div className={zf.inputGroup}>
               <span className={zf.inputGroupLabel}>
-                <i className={`${fa.fa} ${fa.faLg} ${fa.faFw} ` + (
-                  isValid !== -1
-                    ? isValid ? styles.okIcon : styles.noIcon
-                    : styles.noneIcon
-                )} />
+                <i className={`${fa.fa} ${fa.faLg} ${fa.faFw} ` +
+                  (isValid !== -1 ? isValid ? styles.okIcon : styles.noIcon : styles.noneIcon)}
+                />
               </span>
-              <input type='text'
+              <input
+                type='text'
                 className={zf.inputGroupField}
                 value={verificationWord}
-                onChange={this.onInputVerificationWord}
+                onChange={this.handleInputVerificationWord}
               />
               <div className={zf.inputGroupButton}>
-                <button className={zf.button} onClick={this.onClickRandomWord}>
+                <button className={zf.button} onClick={this.handleClickRandomWord}>
                   Random Word
                 </button>
               </div>
@@ -155,14 +154,15 @@ class Playground extends Component {
             <legend>Anagram</legend>
             <label>Non-alphabetic characters are treated as wildcards</label>
             <div className={zf.inputGroup}>
-              <input type='text'
+              <input
+                type='text'
                 className={zf.inputGroupField}
                 value={anagramString}
-                onChange={this.onInputAnagramString}
-                onKeyPress={this.onKeyPressAnagramString}
+                onChange={this.handleInputAnagramString}
+                onKeyPress={this.handleKeyPressAnagramString}
               />
               <div className={zf.inputGroupButton}>
-                <button className={zf.button} onClick={this.onClickAnagram}>
+                <button className={zf.button} onClick={this.handleClickAnagram}>
                   Anagram
                 </button>
               </div>
@@ -178,14 +178,15 @@ class Playground extends Component {
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Suggest</legend>
             <div className={zf.inputGroup}>
-              <input type='text'
+              <input
+                type='text'
                 className={zf.inputGroupField}
                 value={suggestString}
-                onChange={this.onInputSuggestString}
-                onKeyPress={this.onKeyPressSuggestString}
+                onChange={this.handleInputSuggestString}
+                onKeyPress={this.handleKeyPressSuggestString}
               />
               <div className={zf.inputGroupButton}>
-                <button className={zf.button} onClick={this.onClickSuggest}>
+                <button className={zf.button} onClick={this.handleClickSuggest}>
                   Suggest
                 </button>
               </div>

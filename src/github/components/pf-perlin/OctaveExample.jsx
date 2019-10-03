@@ -22,22 +22,22 @@ class GridExample extends Component {
 
     this.graphValues = {}
 
-    this.onMouseDownGraph = this.onMouseDownGraph.bind(this)
-    this.onMouseUpGraph = this.onMouseUpGraph.bind(this)
-    this.onDragGraph = this.onDragGraph.bind(this)
-    this.onClickSubtractOctave = this.onClickSubtractOctave.bind(this)
-    this.onClickAddOctave = this.onClickAddOctave.bind(this)
+    this.handleMouseDownGraph = this.handleMouseDownGraph.bind(this)
+    this.handleMouseUpGraph = this.handleMouseUpGraph.bind(this)
+    this.handleDragGraph = this.handleDragGraph.bind(this)
+    this.handleClickSubtractOctave = this.handleClickSubtractOctave.bind(this)
+    this.handleClickAddOctave = this.handleClickAddOctave.bind(this)
   }
 
-  onMouseDownGraph (event) {
+  handleMouseDownGraph (event) {
     this.setState({ graphDrag: { x: event.clientX } })
   }
 
-  onMouseUpGraph () {
+  handleMouseUpGraph () {
     this.setState({ graphDrag: null })
   }
 
-  onDragGraph (event) {
+  handleDragGraph (event) {
     if (this.state.graphDrag) {
       this.setState({
         graphOffsetX: this.state.graphOffsetX + (event.clientX - this.state.graphDrag.x),
@@ -46,13 +46,13 @@ class GridExample extends Component {
     }
   }
 
-  onClickSubtractOctave () {
+  handleClickSubtractOctave () {
     if (this.state.octaves > 1) {
       this.setState({ octaves: this.state.octaves - 1 })
     }
   }
 
-  onClickAddOctave () {
+  handleClickAddOctave () {
     this.setState({ octaves: this.state.octaves + 1 })
   }
 
@@ -90,10 +90,11 @@ class GridExample extends Component {
 
     return (
       <>
-        <div className={styles.gridExample}
-          onMouseDown={this.onMouseDownGraph}
-          onMouseUp={this.onMouseUpGraph}
-          onMouseMove={this.onDragGraph}
+        <div
+          className={styles.gridExample}
+          onMouseDown={this.handleMouseDownGraph}
+          onMouseUp={this.handleMouseUpGraph}
+          onMouseMove={this.handleDragGraph}
         >
           <svg width={width} height={(GRAPH_RESOLUTION + GRAPH_PADDING) * 2}>
             <line
@@ -111,7 +112,8 @@ class GridExample extends Component {
 
               for (let index = 0, canvasX = GRAPH_PADDING + left; canvasX <= width - GRAPH_PADDING; ++index, canvasX += GRAPH_RESOLUTION) {
                 children.push(
-                  <line key={index}
+                  <line
+                    key={index}
                     x1={canvasX} y1={GRAPH_RESOLUTION * 2 + GRAPH_PADDING}
                     x2={canvasX} y2={GRAPH_PADDING}
                     stroke='#7caff0' strokeWidth='1'
@@ -125,7 +127,8 @@ class GridExample extends Component {
                 points.push(`${GRAPH_PADDING + x},${GRAPH_RESOLUTION + GRAPH_PADDING - noise * GRAPH_RESOLUTION}`)
               }
               children.push(
-                <polyline key='graph'
+                <polyline
+                  key='graph'
                   points={points.join(' ')}
                   stroke='#000000'
                   strokeWidth='2'
@@ -145,11 +148,11 @@ class GridExample extends Component {
             </text>
           </svg>
           <div className={`${zf.buttonGroup} ${zf.textCenter}`}>
-            <button className={zf.button} onClick={this.onClickSubtractOctave}>
+            <button className={zf.button} onClick={this.handleClickSubtractOctave}>
               <i className={`${fa.fa} ${fa.faFw} ${fa.faMinus}`} />
             </button>
             &nbsp;
-            <button className={zf.button} onClick={this.onClickAddOctave}>
+            <button className={zf.button} onClick={this.handleClickAddOctave}>
               <i className={`${fa.fa} ${fa.faFw} ${fa.faPlus}`} />
             </button>
           </div>

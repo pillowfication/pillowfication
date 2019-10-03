@@ -10,19 +10,21 @@ class Statistics extends Component {
   render () {
     const lengthStats = []
     for (let length = 2; length <= 15; ++length) {
+      const stat = stats.lengthFrequency[length]
       lengthStats.push({
         label: `${length}`,
-        value: stats.lengthFrequency[length].count,
-        displayValue: stats.lengthFrequency[length].percentage.toFixed(2) + '%'
+        value: stat.count,
+        displayValue: `${stat.count.toLocaleString()} (${stat.percentage.toFixed(2)}%)`
       })
     }
 
     const letterStats = []
     for (const letter of letters) {
+      const stat = stats.letterFrequency[letter]
       letterStats.push({
         label: letter,
-        value: stats.letterFrequency[letter].count,
-        displayValue: stats.letterFrequency[letter].percentage.toFixed(2) + '%'
+        value: stat.count,
+        displayValue: `${stat.count.toLocaleString()} (${stat.percentage.toFixed(2)}%)`
       })
     }
 

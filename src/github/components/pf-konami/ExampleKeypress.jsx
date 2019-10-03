@@ -67,9 +67,12 @@ class ExampleKeypress extends Component {
       <p>Try pressing
         <span className={styles.konamiCode}>
           {KONAMI.map((button, index) =>
-            <i key={index} className={classnames(fa.fa, fa.faFw, button.icon, {
-              [styles.selectedButton]: pointer === index
-            })} />
+            <i
+              key={index}
+              className={classnames(fa.fa, fa.faFw, button.icon, {
+                [styles.selectedButton]: pointer === index
+              })}
+            />
           )}
         </span>
       </p>

@@ -9,7 +9,8 @@ class CodeEditable extends Component {
     const rows = Math.max(1, $.split('\n').length)
 
     return (
-      <textarea className={`${this.props.className} ${styles.codeEditable}`}
+      <textarea
+        className={`${this.props.className} ${styles.codeEditable}`}
         value={$}
         rows={rows}
         onChange={onChange}

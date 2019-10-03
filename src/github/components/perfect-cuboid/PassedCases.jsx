@@ -66,7 +66,8 @@ class PassedCases extends Component {
       <fieldset className={`${zf.cell} ${zf.small12}`}>
         <legend>Passed Cases ({PASSED.length} total)</legend>
         {PASSED.map(passed =>
-          <button key={passed}
+          <button
+            key={passed}
             type='button'
             className={classnames(styles.idButton, zf.button, zf.hollow, id === passed && styles.selected)}
             onClick={onSelectId.bind(this, passed)}

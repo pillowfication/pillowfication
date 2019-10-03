@@ -7,9 +7,9 @@ const HEIGHT = 400
 const NUM_POINTS = 10
 const RESOLUTION = 60
 
-const points = [ [ 0, 0 ], [ WIDTH / 2, 0 ], [ WIDTH, 0 ], [ WIDTH, HEIGHT / 2 ], [ WIDTH, HEIGHT ], [ WIDTH / 2, HEIGHT ], [ 0, HEIGHT ], [ 0, HEIGHT / 2 ] ]
+const points = [[0, 0], [WIDTH / 2, 0], [WIDTH, 0], [WIDTH, HEIGHT / 2], [WIDTH, HEIGHT], [WIDTH / 2, HEIGHT], [0, HEIGHT], [0, HEIGHT / 2]]
 for (let i = 0; i < NUM_POINTS; ++i) {
-  points.push([ WIDTH * random(), HEIGHT * random() ])
+  points.push([WIDTH * random(), HEIGHT * random()])
 }
 const delaunay = Delaunay.from(points)
 
@@ -24,12 +24,12 @@ function dotProduct (p1, p2) {
 }
 
 function getBarycentricCoordinates ({ x, y }, triangle) {
-  const [ t1, t2, t3 ] = triangle
+  const [t1, t2, t3] = triangle
   const detT = (t2.y - t3.y) * (t1.x - t3.x) + (t3.x - t2.x) * (t1.y - t3.y)
   const lambda1 = ((t2.y - t3.y) * (x - t3.x) + (t3.x - t2.x) * (y - t3.y)) / detT
   const lambda2 = ((t3.y - t1.y) * (x - t3.x) + (t1.x - t3.x) * (y - t3.y)) / detT
   const lambda3 = 1 - lambda1 - lambda2
-  return [ lambda1, lambda2, lambda3 ]
+  return [lambda1, lambda2, lambda3]
 }
 
 function perlinInterpolation (t) {
@@ -39,9 +39,9 @@ function perlinInterpolation (t) {
 function getValue ({ x, y }) {
   let lambda1, lambda2, lambda3, triangleIndices, trianglePoints
   for (let index = 0; index < delaunay.triangles.length; index += 3) {
-    triangleIndices = [ index, index + 1, index + 2 ].map(index => delaunay.triangles[index])
+    triangleIndices = [index, index + 1, index + 2].map(index => delaunay.triangles[index])
     trianglePoints = triangleIndices.map(index => ({ x: delaunay.points[index * 2], y: delaunay.points[index * 2 + 1] }))
-    ;[ lambda1, lambda2, lambda3 ] = getBarycentricCoordinates({ x, y }, trianglePoints)
+    ;[lambda1, lambda2, lambda3] = getBarycentricCoordinates({ x, y }, trianglePoints)
     if (lambda1 >= 0 && lambda2 >= 0 && lambda3 >= 0) {
       break
     }
@@ -49,7 +49,7 @@ function getValue ({ x, y }) {
 
   // Errors on edges
   if (lambda1 < 0 || lambda2 < 0 || lambda3 < 0) {
-    [ lambda1, lambda2, lambda3 ] = [ 0, 0, 0 ]
+    [lambda1, lambda2, lambda3] = [0, 0, 0]
   }
 
   const distance0 = { x: (x - trianglePoints[0].x) / RESOLUTION, y: (y - trianglePoints[0].y) / RESOLUTION }

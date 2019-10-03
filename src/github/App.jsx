@@ -16,15 +16,15 @@ class App extends Component {
       open: false
     }
 
-    this.openOffCanvas = this.openOffCanvas.bind(this)
-    this.closeOffCanvas = this.closeOffCanvas.bind(this)
+    this.handleOpenOffCanvas = this.handleOpenOffCanvas.bind(this)
+    this.handleCloseOffCanvas = this.handleCloseOffCanvas.bind(this)
   }
 
-  openOffCanvas () {
+  handleOpenOffCanvas () {
     this.setState({ open: true })
   }
 
-  closeOffCanvas () {
+  handleCloseOffCanvas () {
     this.setState({ open: false })
   }
 
@@ -35,14 +35,14 @@ class App extends Component {
       <Router basename='/github'>
         <div className={classnames(styles.app, open && styles.open)}>
           <div className={`${zf.gridFrame} ${zf.gridY}`}>
-            <div className={styles.canvasShield} onClick={this.closeOffCanvas} />
+            <div className={styles.canvasShield} onClick={this.handleCloseOffCanvas} />
             <div className={`${zf.cell} ${zf.shrink}`}>
-              <Header openOffCanvas={this.openOffCanvas} />
+              <Header onOpenOffCanvas={this.handleOpenOffCanvas} />
             </div>
             <div className={`${styles.body} ${zf.cell} ${zf.auto} ${zf.cellBlock}`}>
               <div className={`${styles.bodyContent} ${zf.gridContainer} ${zf.gridX} ${zf.gridPaddingX}`}>
                 <div className={`${zf.hideForSmallOnly} ${zf.cell} ${zf.shrink}`}>
-                  <Navigation closeOffCanvas={this.closeOffCanvas} />
+                  <Navigation onCloseOffCanvas={this.handleCloseOffCanvas} />
                 </div>
                 <div className={`${zf.cell} ${zf.auto}`}>
                   <ProjectViewer />
@@ -51,7 +51,7 @@ class App extends Component {
             </div>
           </div>
           <div className={styles.offCanvas}>
-            <Navigation offCanvas closeOffCanvas={this.closeOffCanvas} />
+            <Navigation offCanvas onCloseOffCanvas={this.handleCloseOffCanvas} />
             sdf
           </div>
         </div>

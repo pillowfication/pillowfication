@@ -40,17 +40,17 @@ module.exports = {
       NODE_ENV: 'production'
     }),
     new HtmlWebpackPlugin({
-      chunks: [ 'app' ],
+      chunks: ['app'],
       template: path.resolve(__dirname, './src/pillowfication/index.pug'),
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
-      chunks: [ 'blog' ],
+      chunks: ['blog'],
       template: path.resolve(__dirname, './src/blog/index.pug'),
       filename: 'blog.html'
     }),
     new HtmlWebpackPlugin({
-      chunks: [ 'github' ],
+      chunks: ['github'],
       template: path.resolve(__dirname, './src/github/index.pug'),
       filename: 'github.html'
     }),
@@ -85,7 +85,7 @@ module.exports = {
       use: [{
         loader: 'babel-loader',
         options: {
-          presets: [ '@babel/preset-env', '@babel/preset-react' ]
+          presets: ['@babel/preset-env', '@babel/preset-react']
         }
       }]
     }, {

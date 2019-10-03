@@ -9,7 +9,7 @@ import styles from './Math.scss'
 let calledRender = false
 function queueRenderMath () {
   if (typeof MathJax !== 'undefined' && !calledRender) {
-    MathJax.Hub.Queue([ 'Typeset', MathJax.Hub ])
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub])
     calledRender = true
     setImmediate(() => {
       calledRender = false

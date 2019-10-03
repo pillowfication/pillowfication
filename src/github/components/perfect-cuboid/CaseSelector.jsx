@@ -21,11 +21,11 @@ class CaseSelector extends Component {
       inputIdFocused: false
     }
 
-    this.onInputId = this.onInputId.bind(this)
-    this.onFocusIdInput = this.onFocusIdInput.bind(this)
-    this.onBlurIdInput = this.onBlurIdInput.bind(this)
-    this.onSelectEquivalent = this.onSelectEquivalent.bind(this)
-    this.onSelectRadio = this.onSelectRadio.bind(this)
+    this.handleInputId = this.handleInputId.bind(this)
+    this.handleFocusIdInput = this.handleFocusIdInput.bind(this)
+    this.handleBlurIdInput = this.handleBlurIdInput.bind(this)
+    this.handleSelectEquivalent = this.handleSelectEquivalent.bind(this)
+    this.handleSelectRadio = this.handleSelectRadio.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -34,7 +34,7 @@ class CaseSelector extends Component {
     }
   }
 
-  onInputId (event) {
+  handleInputId (event) {
     const idInput = event.target.value
     this.setState({ idInput })
 
@@ -42,19 +42,19 @@ class CaseSelector extends Component {
     this.props.onSelectId(id)
   }
 
-  onFocusIdInput () {
+  handleFocusIdInput () {
     this.setState({ inputIdFocused: true })
   }
 
-  onBlurIdInput () {
+  handleBlurIdInput () {
     this.setState({ inputIdFocused: false, idInput: String(this.props.id) })
   }
 
-  onSelectEquivalent (event) {
+  handleSelectEquivalent (event) {
     this.props.onSelectId(+event.target.value)
   }
 
-  onSelectRadio (triple, type) {
+  handleSelectRadio (triple, type) {
     const permutation = fromId(this.props.id)
     permutation[triple] = type
     this.props.onSelectId(toId(permutation))
@@ -67,23 +67,25 @@ class CaseSelector extends Component {
     return [
       <fieldset key='case-identifier' className={`${zf.cell} ${zf.small12} ${zf.medium4} ${zf.large3}`}>
         <legend>Case Identifier</legend>
-        <input type='number'
+        <input
+          type='number'
           value={this.state.idInput}
           min={MIN_ID}
           max={MAX_ID}
-          onChange={this.onInputId}
-          onFocus={this.onFocusIdInput}
-          onBlur={this.onBlurIdInput}
+          onChange={this.handleInputId}
+          onFocus={this.handleFocusIdInput}
+          onBlur={this.handleBlurIdInput}
         />
       </fieldset>,
       <fieldset key='equivalents' className={`${zf.cell} ${zf.small12} ${zf.medium8} ${zf.large9}`}>
         <legend>Equivalents</legend>
         {getEquivalents(id).map(equivalent =>
-          <button key={equivalent}
+          <button
+            key={equivalent}
             type='button'
             className={classnames(styles.idButton, id === equivalent && styles.selected)}
             value={equivalent}
-            onClick={this.onSelectEquivalent}
+            onClick={this.handleSelectEquivalent}
           >
             {equivalent}
           </button>
@@ -107,10 +109,11 @@ class CaseSelector extends Component {
                   {TRIPLES.map(triple =>
                     <td key={triple.name}>
                       <label className={classnames(permutation[triple.name] === type.name && styles.selected)}>
-                        <input type='radio'
+                        <input
+                          type='radio'
                           name={triple.name}
                           checked={permutation[triple.name] === type.name}
-                          onChange={this.onSelectRadio.bind(this, triple.name, type.name)}
+                          onChange={this.handleSelectRadio.bind(this, triple.name, type.name)}
                         />
                       </label>
                     </td>

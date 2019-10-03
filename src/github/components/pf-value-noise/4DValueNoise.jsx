@@ -39,12 +39,12 @@ class _4DValueNoise extends Component {
       const rowR = []; this.points.R.push(rowR)
 
       for (let col = 0; col < RESOLUTION; ++col) {
-        rowF.push([ col, row, 0, 0 ])
-        rowB.push([ RESOLUTION - 1 - col, row, RESOLUTION, 0 ])
-        rowU.push([ col, 0, RESOLUTION - 1 - row, 0 ])
-        rowD.push([ col, RESOLUTION, row, 0 ])
-        rowL.push([ 0, row, RESOLUTION - 1 - col, 0 ])
-        rowR.push([ RESOLUTION, row, col, 0 ])
+        rowF.push([col, row, 0, 0])
+        rowB.push([RESOLUTION - 1 - col, row, RESOLUTION, 0])
+        rowU.push([col, 0, RESOLUTION - 1 - row, 0])
+        rowD.push([col, RESOLUTION, row, 0])
+        rowL.push([0, row, RESOLUTION - 1 - col, 0])
+        rowR.push([RESOLUTION, row, col, 0])
       }
     }
 
@@ -54,16 +54,16 @@ class _4DValueNoise extends Component {
     this.D = React.createRef()
     this.L = React.createRef()
     this.R = React.createRef()
-    this.onMouseDown = this.onMouseDown.bind(this)
-    this.onMouseUp = this.onMouseUp.bind(this)
-    this.onMouseMove = this.onMouseMove.bind(this)
+    this.handleMouseDown = this.handleMouseDown.bind(this)
+    this.handleMouseUp = this.handleMouseUp.bind(this)
+    this.handleMouseMove = this.handleMouseMove.bind(this)
   }
 
   componentDidMount () {
     const _this = this
     const dpi = window.devicePixelRatio || 1
     const ctx = {}
-    for (const face of [ 'F', 'B', 'U', 'D', 'L', 'R' ]) {
+    for (const face of ['F', 'B', 'U', 'D', 'L', 'R']) {
       const canvas = _this[face].current
       canvas.setAttribute('width', CUBE_SIZE * dpi)
       canvas.setAttribute('height', CUBE_SIZE * dpi)
@@ -82,7 +82,7 @@ class _4DValueNoise extends Component {
 
     _this.animationId = window.requestAnimationFrame(function loop (timestamp) {
       const time = timestamp / TIMING_SPEED
-      for (const face of [ 'F', 'B', 'U', 'D', 'L', 'R' ]) {
+      for (const face of ['F', 'B', 'U', 'D', 'L', 'R']) {
         const faceCtx = ctx[face]
         const facePoints = _this.points[face]
         faceCtx.clearRect(0, 0, CUBE_SIZE, CUBE_SIZE)
@@ -106,15 +106,15 @@ class _4DValueNoise extends Component {
     }
   }
 
-  onMouseDown () {
+  handleMouseDown () {
     this.setState({ isDragging: true })
   }
 
-  onMouseUp () {
+  handleMouseUp () {
     this.setState({ isDragging: false })
   }
 
-  onMouseMove (event) {
+  handleMouseMove (event) {
     if (this.state.isDragging) {
       this.setState({
         pitch: this.state.pitch + (event.pageX - this.mouseX) / EASING,
@@ -148,9 +148,9 @@ class _4DValueNoise extends Component {
         </p>
         <div
           className={styles.cubeContainer}
-          onMouseDown={this.onMouseDown}
-          onMouseUp={this.onMouseUp}
-          onMouseMove={this.onMouseMove}
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+          onMouseMove={this.handleMouseMove}
         >
           <div className={styles.cube} style={{ transform: `matrix3d(${rotationMatrix})` }}>
             <div className={styles.F}><canvas ref={this.F} /></div>

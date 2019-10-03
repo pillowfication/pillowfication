@@ -63,19 +63,19 @@ class Playground extends Component {
       this.state[radioGroup.name] = 0
     })
 
-    this.onFocusCharacter = this.onFocusCharacter.bind(this)
-    this.onInputCharacter = this.onInputCharacter.bind(this)
-    this.onInputCode = this.onInputCode.bind(this)
-    this.onBlurCodeInput = this.onBlurCodeInput.bind(this)
-    this.onSelectRadio = this.onSelectRadio.bind(this)
-    this.onInputStyle = this.onInputStyle.bind(this)
+    this.handleFocusCharacter = this.handleFocusCharacter.bind(this)
+    this.handleInputCharacter = this.handleInputCharacter.bind(this)
+    this.handleInputCode = this.handleInputCode.bind(this)
+    this.handleBlurCodeInput = this.handleBlurCodeInput.bind(this)
+    this.handleSelectRadio = this.handleSelectRadio.bind(this)
+    this.handleInputStyle = this.handleInputStyle.bind(this)
   }
 
-  onFocusCharacter (event) {
+  handleFocusCharacter (event) {
     event.target.select()
   }
 
-  onInputCharacter (event) {
+  handleInputCharacter (event) {
     const input = event.target.value
     const code = input.charCodeAt(input.length - 1) || 0
     this.setState({
@@ -84,7 +84,7 @@ class Playground extends Component {
     })
   }
 
-  onInputCode (event) {
+  handleInputCode (event) {
     const codeInput = event.target.value
     this.setState({
       code: Math.max(0, Math.floor(+codeInput || 0)),
@@ -92,15 +92,15 @@ class Playground extends Component {
     })
   }
 
-  onBlurCodeInput () {
+  handleBlurCodeInput () {
     this.setState({ codeInput: String(this.state.code) })
   }
 
-  onSelectRadio (group, event) {
+  handleSelectRadio (group, event) {
     this.setState({ [group]: +event.target.value })
   }
 
-  onInputStyle (event) {
+  handleInputStyle (event) {
     this.setState({ rawOutputStyle: event.target.value })
   }
 
@@ -131,18 +131,20 @@ class Playground extends Component {
         <div className={`${zf.gridX} ${zf.gridMarginX}`}>
           <fieldset className={`${zf.cell} ${zf.small12} ${zf.medium6}`}>
             <legend>Character</legend>
-            <input type='text'
+            <input
+              type='text'
               value={character}
-              onFocus={this.onFocusCharacter}
-              onChange={this.onInputCharacter}
+              onFocus={this.handleFocusCharacter}
+              onChange={this.handleInputCharacter}
             />
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12} ${zf.medium6}`}>
             <legend>Code</legend>
-            <input type='number'
+            <input
+              type='number'
               value={this.state.codeInput}
-              onChange={this.onInputCode}
-              onBlur={this.onBlurCodeInput}
+              onChange={this.handleInputCode}
+              onBlur={this.handleBlurCodeInput}
             />
           </fieldset>
           {radioGroups.map(radioGroup =>
@@ -150,10 +152,11 @@ class Playground extends Component {
               <legend>{radioGroup.name}</legend>
               {radioGroup.radios.map((radio, index) =>
                 <div key={radio.name}>
-                  <input key='radio' type='radio' name={radioGroup.name} id={radioGroup.name + '-' + radio.name}
+                  <input
+                    key='radio' type='radio' name={radioGroup.name} id={radioGroup.name + '-' + radio.name}
                     value={index}
                     checked={this.state[radioGroup.name] === index}
-                    onChange={this.onSelectRadio.bind(this, radioGroup.name)}
+                    onChange={this.handleSelectRadio.bind(this, radioGroup.name)}
                   />
                   <label key='label' htmlFor={radioGroup.name + '-' + radio.name}>{radio.name}</label>
                 </div>
@@ -166,13 +169,15 @@ class Playground extends Component {
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Styles</legend>
-            <CodeEditable $={rawOutputStyle} onChange={this.onInputStyle} />
+            <CodeEditable $={rawOutputStyle} onChange={this.handleInputStyle} />
           </fieldset>
           <fieldset className={`${zf.cell} ${zf.small12}`}>
             <legend>Output</legend>
-            <div className={styles.output}><div style={outputStyle}>
-              <i className={cssModulesClassNames}>{character}</i>
-            </div></div>
+            <div className={styles.output}>
+              <div style={outputStyle}>
+                <i className={cssModulesClassNames}>{character}</i>
+              </div>
+            </div>
           </fieldset>
         </div>
       </Section>

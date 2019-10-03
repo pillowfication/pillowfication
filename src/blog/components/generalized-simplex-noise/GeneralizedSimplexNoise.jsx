@@ -115,9 +115,9 @@ class GeneralizedSimplexNoise extends Component {
           </div>
         </div>
         <p>
-          The influence for a gradient <$ $='g' /> denoted <$ $='I_g : \mathbb{R}^n \to [0, 1]' /> in this case is not a smooth mapping, so the resulting noise would not be smooth. It can be made smooth, by creating a new function <$ $={`I_g'`} />, where <$ $={`I_g'(x)`} /> is equal to the average of all <$ $={`I_g`} /> in a spherical neighborhood around <$ $='x' />. In one dimension, this is the function
+          The influence for a gradient <$ $='g' /> denoted <$ $='I_g : \mathbb{R}^n \to [0, 1]' /> in this case is not a smooth mapping, so the resulting noise would not be smooth. It can be made smooth, by creating a new function <$ $={'I_g\''} />, where <$ $={'I_g\'(x)'} /> is equal to the average of all <$ $='I_g' /> in a spherical neighborhood around <$ $='x' />. In one dimension, this is the function
         </p>
-        <$ $$={`I_g'(x) = \\frac{1}{2r} \\int_{x-r}^{x+r} I_g(t)\\,dt`} />
+        <$ $$={'I_g\'(x) = \\frac{1}{2r} \\int_{x-r}^{x+r} I_g(t)\\,dt'} />
         <p>
           where <$ $='r' /> is the radius of the neighborhood. Larger values of <$ $='r' /> result in more smoothing.
         </p>

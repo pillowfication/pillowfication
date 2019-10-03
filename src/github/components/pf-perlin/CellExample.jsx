@@ -18,15 +18,15 @@ class CellExample extends Component {
     }
 
     this.cell = React.createRef()
-    this.onClickCell = this.onClickCell.bind(this)
-    this.onMouseMoveCell = this.onMouseMoveCell.bind(this)
+    this.handleClickCell = this.handleClickCell.bind(this)
+    this.handleMouseMoveCell = this.handleMouseMoveCell.bind(this)
   }
 
-  onClickCell () {
+  handleClickCell () {
     this.setState({ cellGradients: Array(4).fill().map(() => Math.random() * 2 * Math.PI) })
   }
 
-  onMouseMoveCell (event) {
+  handleMouseMoveCell (event) {
     const { width } = this.props
     const cellResolution = Math.min(width, MAX_CELL_RESOLUTION * 2) / 2
     const boundingRect = this.cell.current.getBoundingClientRect()
@@ -60,14 +60,16 @@ class CellExample extends Component {
 
     return (
       <>
-        <div className={styles.cellExample}
+        <div
+          className={styles.cellExample}
           ref={this.cell}
-          onClick={this.onClickCell}
-          onMouseMove={this.onMouseMoveCell}
+          onClick={this.handleClickCell}
+          onMouseMove={this.handleMouseMoveCell}
         >
           <svg width={width} height={Math.min(width, MAX_CELL_RESOLUTION * 2)}>
             <defs>
-              <marker id='arrow'
+              <marker
+                id='arrow'
                 viewBox='0 0 10 10'
                 refX='5' refY='5'
                 markerWidth='6' markerHeight='6'

@@ -24,7 +24,7 @@ function stringifyStep (permutation, stepRule) {
   const conditionType = '\\text{' +
     '$' + TRIPLES.get(stepRule.then.triple) + '$ is ' +
     '$' + TYPES.get(permutation[stepRule.then.triple]) + '$}'
-  const _if = [ conditionType ]
+  const _if = [conditionType]
     .concat(stepRule.if.map(stringifyStatement))
     .join('\\;\\land\\;')
   const _then = stringifyStatement(stepRule.then)
@@ -89,7 +89,8 @@ class StepSelector extends Component {
           <div className={styles.scrollerFix}>
             <ol className={styles.steps} start={0}>
               {verification.steps.map((step, index) =>
-                <li key={index}
+                <li
+                  key={index}
                   className={classnames(stepIndex === index && styles.selected)}
                   onClick={this.onSelectStep.bind(this, index)}
                 >
@@ -125,7 +126,8 @@ class StepSelector extends Component {
                 <tr key={side.name}>
                   <th><$ $={side.label} /></th>
                   {DIVISIBILITY.map(divisibility =>
-                    <td key={divisibility.name}
+                    <td
+                      key={divisibility.name}
                       className={classnames({
                         [TRUTH_STATES.get(step.knowledge[side.name][divisibility.name])]: true,
                         [styles.selected]: stepIndex &&

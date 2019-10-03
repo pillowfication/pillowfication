@@ -12,14 +12,14 @@ class Navigation extends Component {
   render () {
     // `offCanvas` is a workaround for CSS Modules not being able to reference
     // a class from another file.
-    const { closeOffCanvas, offCanvas } = this.props
+    const { onCloseOffCanvas, offCanvas } = this.props
 
     return (
       <nav className={classnames(offCanvas && styles.offCanvas, styles.nav)}>
         <div className={`${styles.iconBar} ${zf.gridX} ${zf.gridPaddingX} ${zf.smallUp3}`}>
-          <Link to='/' className={zf.cell} onClick={closeOffCanvas}><i className={`${fa.fa} ${fa.faHome}`} /></Link>
+          <Link to='/' className={zf.cell} onClick={onCloseOffCanvas}><i className={`${fa.fa} ${fa.faHome}`} /></Link>
           <a href='https://github.com/pillowfication/pillowfication' className={zf.cell}><i className={`${fa.fa} ${fa.faGithub}`} /></a>
-          <a className={zf.cell} onClick={closeOffCanvas}><i className={`${fa.fa} ${fa.faClose}`} /></a>
+          <a className={zf.cell} onClick={onCloseOffCanvas}><i className={`${fa.fa} ${fa.faClose}`} /></a>
         </div>
         <ul>
           {routes.map(routeGroup =>
@@ -28,7 +28,7 @@ class Navigation extends Component {
               <ul>
                 {routeGroup.children.map(route =>
                   <li key={route.path}>
-                    <NavLink to={route.fullPath} activeClassName={styles.active} onClick={closeOffCanvas}>
+                    <NavLink to={route.fullPath} activeClassName={styles.active} onClick={onCloseOffCanvas}>
                       {route.path}
                     </NavLink>
                   </li>
@@ -43,7 +43,7 @@ class Navigation extends Component {
 }
 
 Navigation.propTypes = {
-  closeOffCanvas: PropTypes.func.isRequired,
+  onCloseOffCanvas: PropTypes.func.isRequired,
   offCanvas: PropTypes.bool
 }
 

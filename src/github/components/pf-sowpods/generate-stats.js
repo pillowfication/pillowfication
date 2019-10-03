@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const sowpods = require('pf-sowpods')
 
-const filePath = path.resolve(__dirname, ('./stats.json'))
+const filePath = path.resolve(__dirname, './stats.json')
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
 const stats = {

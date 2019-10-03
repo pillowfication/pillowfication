@@ -25,19 +25,21 @@ class InterpolationExample extends Component {
     }
 
     this.cell = React.createRef()
-    this.onClickInterpolation = this.onClickInterpolation.bind(this)
-    this.onMouseMoveInterpolation = this.onMouseMoveInterpolation.bind(this)
+    this.handleClickInterpolation = this.handleClickInterpolation.bind(this)
+    this.handleMouseMoveInterpolation = this.handleMouseMoveInterpolation.bind(this)
   }
 
-  onClickInterpolation () {
-    this.setState({ influenceValues: Array(4).fill().map(() => ({
-      r: Math.random() * 256,
-      g: Math.random() * 256,
-      b: Math.random() * 256
-    })) })
+  handleClickInterpolation () {
+    this.setState({
+      influenceValues: Array(4).fill().map(() => ({
+        r: Math.random() * 256,
+        g: Math.random() * 256,
+        b: Math.random() * 256
+      }))
+    })
   }
 
-  onMouseMoveInterpolation (event) {
+  handleMouseMoveInterpolation (event) {
     const { width } = this.props
     const cellResolution = Math.max(0, Math.min(width - INTERPOLATION_PADDING * 2, MAX_INTERPOLATION_RESOLUTION))
     const boundingRect = this.cell.current.getBoundingClientRect()
@@ -81,10 +83,11 @@ class InterpolationExample extends Component {
 
     return (
       <>
-        <div className={styles.interpolationExample}
+        <div
+          className={styles.interpolationExample}
           ref={this.cell}
-          onClick={this.onClickInterpolation}
-          onMouseMove={this.onMouseMoveInterpolation}
+          onClick={this.handleClickInterpolation}
+          onMouseMove={this.handleMouseMoveInterpolation}
         >
           <svg width={width} height={Math.min(width, MAX_INTERPOLATION_RESOLUTION + 2 * INTERPOLATION_PADDING)}>
             <defs>

@@ -17,8 +17,7 @@ class Home extends Component {
               <li key={route.path}>
                 <Link to={route.path}>{route.date} - {route.title}</Link>
               </li>
-            )
-          }
+            )}
         </ul>
       </div>
     )

@@ -8,8 +8,8 @@ const HEIGHT = 400
 const RESOLUTION = 15
 const RADIUS = 30
 
-let points = [ [ 0, 0 ], [ WIDTH, 0 ], [ WIDTH, HEIGHT ], [ 0, HEIGHT ] ]
-const poisson = new Poisson([ WIDTH, HEIGHT ], RADIUS, RADIUS * 2, 30, random)
+let points = [[0, 0], [WIDTH, 0], [WIDTH, HEIGHT], [0, HEIGHT]]
+const poisson = new Poisson([WIDTH, HEIGHT], RADIUS, RADIUS * 2, 30, random)
 points = points.concat(poisson.fill())
 const delaunay = Delaunay.from(points)
 
@@ -24,12 +24,12 @@ function dotProduct (p1, p2) {
 }
 
 function getBarycentricCoordinates ({ x, y }, triangle) {
-  const [ t1, t2, t3 ] = triangle
+  const [t1, t2, t3] = triangle
   const detT = (t2.y - t3.y) * (t1.x - t3.x) + (t3.x - t2.x) * (t1.y - t3.y)
   const lambda1 = ((t2.y - t3.y) * (x - t3.x) + (t3.x - t2.x) * (y - t3.y)) / detT
   const lambda2 = ((t3.y - t1.y) * (x - t3.x) + (t1.x - t3.x) * (y - t3.y)) / detT
   const lambda3 = 1 - lambda1 - lambda2
-  return [ lambda1, lambda2, lambda3 ]
+  return [lambda1, lambda2, lambda3]
 }
 
 function interpolation (lambda1, lambda2, lambda3) {
@@ -46,9 +46,9 @@ function interpolation (lambda1, lambda2, lambda3) {
 function getValue ({ x, y }) {
   let lambda1, lambda2, lambda3, triangleIndices, trianglePoints
   for (let index = 0; index < delaunay.triangles.length; index += 3) {
-    triangleIndices = [ index, index + 1, index + 2 ].map(index => delaunay.triangles[index])
+    triangleIndices = [index, index + 1, index + 2].map(index => delaunay.triangles[index])
     trianglePoints = triangleIndices.map(index => ({ x: delaunay.points[index * 2], y: delaunay.points[index * 2 + 1] }))
-    ;[ lambda1, lambda2, lambda3 ] = getBarycentricCoordinates({ x, y }, trianglePoints)
+    ;[lambda1, lambda2, lambda3] = getBarycentricCoordinates({ x, y }, trianglePoints)
     if (lambda1 >= 0 && lambda2 >= 0 && lambda3 >= 0) {
       break
     }
@@ -56,13 +56,13 @@ function getValue ({ x, y }) {
 
   // Errors on edges
   if (lambda1 < 0 || lambda2 < 0 || lambda3 < 0) {
-    [ lambda1, lambda2, lambda3 ] = [ 0, 0, 0 ]
+    [lambda1, lambda2, lambda3] = [0, 0, 0]
   }
 
   const distance0 = { x: (x - trianglePoints[0].x) / RESOLUTION, y: (y - trianglePoints[0].y) / RESOLUTION }
   const distance1 = { x: (x - trianglePoints[1].x) / RESOLUTION, y: (y - trianglePoints[1].y) / RESOLUTION }
   const distance2 = { x: (x - trianglePoints[2].x) / RESOLUTION, y: (y - trianglePoints[2].y) / RESOLUTION }
-  const [ t0, t1, t2 ] = interpolation(lambda1, lambda2, lambda3)
+  const [t0, t1, t2] = interpolation(lambda1, lambda2, lambda3)
   return (
     t0 * dotProduct(distance0, gradients[triangleIndices[0]]) +
     t1 * dotProduct(distance1, gradients[triangleIndices[1]]) +

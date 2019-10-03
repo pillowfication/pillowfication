@@ -8,6 +8,10 @@ class SwapSorting extends Component {
   render () {
     return (
       <div className={styles.container}>
+        <p>
+          I wrote this trying to find the best way to sort a list, only swapping two elements at a time. Turns out I developed a basic theory of permutations with unweildy notation. Lists are permutations, swaps are transpositions, and loops are cycles.
+        </p>
+        <hr />
         <div className={styles.definition}>
           <p>
             A <b>list</b> of length <$ $='n' /> is defined as any bijective function <$ $='f: \Bbb{N}^n \to \Bbb{N}^n' /> where <$ $='\Bbb{N}^n = \{ 1,\ 2,\ \ldots,\ n \}' />. A <b>swap</b> on a list <$ $='f' /> at two indices <$ $='1 \leq i, j \leq n' /> denoted <$ $='\operatorname{swap}_f(i, j)' /> results in another list defined by
@@ -18,8 +22,8 @@ class SwapSorting extends Component {
               f(x),&x \\neq i, j\\\\
               f(j),&x = i\\\\
               f(i),&x = j.
-            \\end{cases}
-          `} />
+            \\end{cases}`}
+          />
         </div>
         <p>
           Since a list is bijective, any swap on a list results in a bijection and is a list. The unique identity list of length <$ $='n' /> is denoted as <$ $='I_n' /> and is defined as <$ $='I_n(x) = x' />.
@@ -32,8 +36,8 @@ class SwapSorting extends Component {
             \\begin{align}
               s_1 &= f(i)\\\\
               s_{n} &= f(s_{n-1}).
-            \\end{align}
-          `} />
+            \\end{align}`}
+          />
         </div>
         <div className={styles.corollary}>
           <p>

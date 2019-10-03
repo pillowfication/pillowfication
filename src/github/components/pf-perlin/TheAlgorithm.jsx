@@ -47,8 +47,8 @@ class TheAlgorithm extends Component {
           <$ $$={`
             P(x)
             = \\prod_{i=1}^n \\frac{1}{\\sqrt{2\\pi}}\\,\\exp\\left(-\\frac{x_i^2}{2}\\right)
-            = k\\cdot\\exp\\left(-\\sum_{i=1}^n x_i^2\\right).
-          `} />
+            = k\\cdot\\exp\\left(-\\sum_{i=1}^n x_i^2\\right).`}
+          />
           <p>
             This probability is only dependent on the magnitude of <$ $='x' />. All that’s left is to normalize the vector. Another option is to uniformly sample each component of <$ $='x' /> from <$ $='[-1, 1]' /> until you get a vector whose magnitude is less than or equal to <$ $='1' />. But the probability of sucess approaches <$ $='0' /> as the number of dimensions increases.
           </p>
@@ -70,8 +70,8 @@ class TheAlgorithm extends Component {
               \\operatorname{interpolate}(a, b, t)
               &= (1 - \\varphi(t)) \\cdot a + \\varphi(t) \\cdot b\\\\
               &= \\varphi(t) \\cdot (b - a) + a
-            \\end{align}
-          `} />
+            \\end{align}`}
+          />
           <p>
             where <$ $='\varphi(t)' /> is any function <$ $='\varphi : [0, 1] \to [0, 1]' />. Ken Perlin used the function <$ $='\varphi(t) = 6t^5 - 15t^4 + 10t^3' /> which has both first and second derivative equal to <$ $='0' /> at <$ $='t = 0, 1' />. With a <$ $='1' />-dimensional interpolation function chosen, an <$ $='n' />-dimensional interpolation function can be constructed by repeatedly interpolating along each dimension.
           </p>
@@ -87,8 +87,8 @@ class TheAlgorithm extends Component {
           </p>
           <$ $$={`
             \\sum_{i=1}^\\omega \\frac{1}{2^{i-1}} \\cdot \\frac{\\sqrt{n}}{2}
-            = \\sqrt{n} \\left( 1 - \\frac{1}{2^\\omega} \\right).
-          `} />
+            = \\sqrt{n} \\left( 1 - \\frac{1}{2^\\omega} \\right).`}
+          />
           <p>
             This allows the noise function to be mapped to the interval <$ $='[0, 1]' /> or any desired interval.
           </p>

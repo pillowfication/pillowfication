@@ -57,8 +57,8 @@ class PerfectCuboid extends Component {
                   a^2 + f^2 = b^2 + e^2 = c^2 + d^2 &= g^2
                 \\end{align}
                 \\quad
-                \\text{where $a, b, c, d, e, f, g \\in \\mathbb{Z}^+$}
-              `} />
+                \\text{where $a, b, c, d, e, f, g \\in \\mathbb{Z}^+$}`}
+              />
             </div>
           </div>
           <p>There are six <a href='https://en.wikipedia.org/wiki/Pythagorean_triple'>Pythagorean triples</a> to satisfy. I tried to test which kinds of triples are possible using modular arithmetic. Triples were categorized by their divisibility:</p>
@@ -76,17 +76,20 @@ class PerfectCuboid extends Component {
               \\times 4, 5 &: \\text{divisible by $4, 5$ and not $3$}\\\\
               \\times 2, 3, 5 &: \\text{divisible by $2, 3, 5$ and not $4$}\\\\
               \\times 3, 4, 5 &: \\text{divisible by $3, 4, 5$}
-            \\end{align}
-          `} />
+            \\end{align}`}
+          />
           <p>For example, if <$ $='(a, b, d)' /> is <$ $='\times 5' /> and <$ $='(b, c, f)' /> is <$ $='\times 3' />, then <$ $='f' /> cannot be divisible by <$ $='5' /> and <$ $='(a, f, g)' /> cannot be <$ $='\times 5' />.</p>
           <p>With <$ $='6' /> triples and <$ $='12' /> kinds each, I created a program to check each of the <$ $='12^6 = 2{,}985{,}984' /> cases. During a check, a knowledge table would keep track of each length’s divisibility by <$ $='2' />, <$ $='3' />, <$ $='4' />, and <$ $='5' />. A list of possible proof steps was created for the program to use to update the knowledge table. For a triple <$ $='(x, y, z)' /> that was <$ $='\times 2, 3' />, possible proof steps looked like</p>
-          <Code lang='javascript' $={`
+          <Code
+            lang='javascript'
+            $={`
 'x2 x3': [
   { if: [ y.d4 ], then: x.not.d4 },
   { if: [ x.not.d5, y.not.d5 ], then: z.d5 },
   // ...
 ]
-          `} />
+            `}
+          />
           <p>The program would keep updating the knowledge table until no new facts were available, or if a contradiction was reached.</p>
           <p>To speed up checking, some extra considerations were made. Due to symmetries of a cuboid (<$ $='6' /> with the permutations of <$ $='a, b, c' />), certain cases could be identical to each other. The case with the smallest identifier was used as the representative for each group of identical cases. In addition, some cases could not represent a primitive cuboid, and those cases were disregarded.</p>
         </section>

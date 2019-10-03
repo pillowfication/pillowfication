@@ -9,12 +9,12 @@ function skew ({ x, y }) {
 
 function getBarycentricCoordinates (x0, y0) {
   return x0 > y0
-    ? [ 1 - x0, x0 - y0, y0 ]
-    : [ 1 - y0, y0 - x0, x0 ]
+    ? [1 - x0, x0 - y0, y0]
+    : [1 - y0, y0 - x0, x0]
 }
 
 function getRGBPermutation (xInt, yInt) {
-  return [ 'RGB', 'GBR', 'BRG' ][(3 + ((xInt + yInt) % 3)) % 3]
+  return ['RGB', 'GBR', 'BRG'][(3 + ((xInt + yInt) % 3)) % 3]
 }
 
 function getValue ({ x, y }) {
@@ -33,7 +33,7 @@ function getValue ({ x, y }) {
 }
 
 const { createCanvas } = require('canvas')
-const [ width, height ] = [ 400, 400 ]
+const [width, height] = [400, 400]
 const canvas = createCanvas(width, height)
 const ctx = canvas.getContext('2d', { alpha: false })
 

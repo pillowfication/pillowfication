@@ -37,7 +37,7 @@ class GodelsIncompletenessTheorems extends Component {
         <hr />
         <h2>On Formally Undecidable Propositions of <i>Principia Mathematica</i> and Related Systems</h2>
         <p>
-          Gödel’s proof is applied to some system strong enough to describe arithmetic. In his original paper, Gödel used an adaptation of <i>Principia Mathematica</i>. The system assumed here is Hofstadter’s Typographical Number Theory (TNT).{createReference('tnt')} TNT contains 20 symbols, 5 axioms, 8 rules of inference, and it can codify all of arithmetic. For example, the phrase <span className={styles.statement}><$ $='x' /> is an even number</span> in TNT could be <span className={styles.statement}><$ $={`\\exists a' : (\\text{SS}0 \\cdot a') = a`} /></span> where <$ $='x' /> is represented by the free variable <$ $='a' />.
+          Gödel’s proof is applied to some system strong enough to describe arithmetic. In his original paper, Gödel used an adaptation of <i>Principia Mathematica</i>. The system assumed here is Hofstadter’s Typographical Number Theory (TNT).{createReference('tnt')} TNT contains 20 symbols, 5 axioms, 8 rules of inference, and it can codify all of arithmetic. For example, the phrase <span className={styles.statement}><$ $='x' /> is an even number</span> in TNT could be <span className={styles.statement}><$ $={'\\exists a\' : (\\text{SS}0 \\cdot a\') = a'} /></span> where <$ $='x' /> is represented by the free variable <$ $='a' />.
         </p>
         <p>
           The first step is to assign a unique code number to each symbol as in the following table:
@@ -46,8 +46,8 @@ class GodelsIncompletenessTheorems extends Component {
           \\begin{array}{}
             0 & \\text{S} & = & + & \\cdot & ( & ) & \\langle & \\rangle & [ & ] & a & ' & \\land & \\lor & \\supset & \\sim & \\exists & \\forall & : \\\\
             1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20
-          \\end{array}
-        `} />
+          \\end{array}`}
+        />
         <p>
           Then for any sequence <$ $='\varphi' /> of symbols <$ $='s_1, \ldots, s_k' /> with corresponding code numbers <$ $='c_1, \ldots, c_k' />, let the Gödel number for <$ $='\varphi' /> be
         </p>

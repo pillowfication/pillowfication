@@ -21,7 +21,7 @@ function attenuate (distance) {
 }
 
 function getRGBPermutation (xInt, yInt) {
-  return [ 'RGB', 'GBR', 'BRG' ][(3 + ((xInt + yInt) % 3)) % 3]
+  return ['RGB', 'GBR', 'BRG'][(3 + ((xInt + yInt) % 3)) % 3]
 }
 
 function getValue ({ x, y }) {
@@ -45,7 +45,7 @@ function getValue ({ x, y }) {
 }
 
 const { createCanvas } = require('canvas')
-const [ width, height ] = [ 400, 400 ]
+const [width, height] = [400, 400]
 const canvas = createCanvas(width, height)
 const ctx = canvas.getContext('2d', { alpha: false })
 
