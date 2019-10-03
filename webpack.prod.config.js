@@ -95,11 +95,12 @@ module.exports = {
       }, {
         loader: 'css-loader',
         options: {
-          modules: true,
+          modules: {
+            localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            getLocalIdent: (...args) => getId(getLocalIdent(...args))
+          },
           importLoaders: 2,
-          localIdentName: '[path][name]__[local]--[hash:base64:5]',
-          getLocalIdent: (...args) => getId(getLocalIdent(...args)),
-          camelCase: 'dashesOnly'
+          localsConvention: 'dashesOnly'
         }
       }, {
         loader: 'sass-loader'
