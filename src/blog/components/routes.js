@@ -1,6 +1,7 @@
 import kebabCase from 'lodash/kebabCase'
 
 import Caffeine from './caffeine/Caffeine.jsx'
+import FactorioFractions from './factorio-fractions/FactorioFractions.jsx'
 import GeneralizedSimplexNoise from './generalized-simplex-noise/GeneralizedSimplexNoise.jsx'
 import GodelsIncompletenessTheorems from './godels-incompleteness-theorems/GodelsIncompletenessTheorems.jsx'
 import NewtonsMethod from './newtons-method/NewtonsMethod.jsx'
@@ -9,6 +10,7 @@ import SwapSorting from './swap-sorting/SwapSorting.jsx'
 
 const routes = [
   Caffeine,
+  FactorioFractions,
   GeneralizedSimplexNoise,
   GodelsIncompletenessTheorems,
   NewtonsMethod,
