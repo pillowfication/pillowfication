@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import tokenizeBlueprint from './tokenize-blueprint'
 import attachNetwork from './attach-network'
+import p from './Path'
 
 import Code from '../../../../shared/Code.jsx'
 import zf from '../../../../foundation.scss'
@@ -24,7 +25,7 @@ const BI2sn = BS - BI2s
 const BB = 9 // Blob width in pixels (the apothem).
 const BR = BB * 2 / Math.sqrt(3)
 const BR2 = BR / 2
-const BELT_SPEED = 3 // Speed multiplier where 1 results in 1 block/second.
+const BELT_SPEED = 4 // Speed multiplier where 1 results in 1 block/second.
 
 Object.assign(styles, {
   blobFace1: { fill: '#0852ff' },
@@ -40,41 +41,6 @@ Object.assign(styles, {
   lightGray: { fill: '#bbbbbb' },
   darkBlue: { fill: '#0000cc' }
 })
-
-function p (mx, my) {
-  return new Path(mx, my)
-}
-
-class Path {
-  constructor (mx, my) {
-    this.str = `M${mx} ${my}`
-  }
-
-  h (dx) {
-    this.str += ` h${dx}`
-    return this
-  }
-
-  v (dy) {
-    this.str += ` v${dy}`
-    return this
-  }
-
-  l (dx, dy) {
-    this.str += ` l${dx} ${dy}`
-    return this
-  }
-
-  a (dx, dy, sweepFlag) {
-    const r = Math.abs(dx)
-    this.str += ` a${r} ${r} 0 0 ${sweepFlag} ${dx} ${dy}`
-    return this
-  }
-
-  toString () {
-    return this.str + ' Z'
-  }
-}
 
 function getBlobLocation (node, position) {
   const { inDirection: inn, direction: out } = node
@@ -118,22 +84,22 @@ function drawBlob (blob, index) {
   )
 }
 
-function drawInputBlock (layers, x, y, token, skip) {
+function drawInputBlock (layers, x, y, token, skip, bare) {
   const key = `${x},${y}`
   if (!skip) {
     layers[0].push(<rect key={key} x={x + 2} y={y + 2} width={BS - 4} height={BS - 4} style={styles.input} />)
   }
 
-  layers[2].push(<text key={key} x={x + BS2} y={y + BS2} style={styles.inputText}>{token.node.count}</text>)
+  bare && layers[2].push(<text key={key} x={x + BS2} y={y + BS2} style={styles.inputText}>{token.node.count}</text>)
 }
 
-function drawOutputBlock (layers, x, y, token, skip) {
+function drawOutputBlock (layers, x, y, token, skip, bare) {
   const key = `${x},${y}`
   if (!skip) {
     layers[0].push(<rect key={key} x={x + 2} y={y + 2} width={BS - 4} height={BS - 4} style={styles.output} />)
   }
 
-  layers[2].push(<text key={key} x={x + BS2} y={y + BS2} style={styles.inputText}>{token.node.count}</text>)
+  bare && layers[2].push(<text key={key} x={x + BS2} y={y + BS2} style={styles.inputText}>{token.node.count}</text>)
 }
 
 function drawDirectionalIndicatorBlock (layers, x, y, token, skip) {
@@ -238,7 +204,7 @@ function drawBeltBlock (layers, x, y, token, skip) {
   addBlobs(layers, x, y, token.node)
 }
 
-function drawSplitterLeftBlock (layers, x, y, token, skip) {
+function drawSplitterLeftBlock (layers, x, y, token, skip, bare) {
   const key = `${x},${y}`
   const { node } = token
   if (!skip) {
@@ -262,7 +228,7 @@ function drawSplitterLeftBlock (layers, x, y, token, skip) {
               .v(8).l(-BS2, -5).l(-BS2, 5).l(-BS2, -5).l(-BS2, 5)}
             style={styles.beltIndicator}
           />
-          <path d={p(x + BS2 - 6 + (node.parity > 0 ? 0 : BS), y + BS2 + 2).l(6, -6).l(6, 6)} style={styles.splitterIndicator} />
+          {bare && <path d={p(x + BS2 - 6 + (node.parity > 0 ? 0 : BS), y + BS2 + 2).l(6, -6).l(6, 6)} style={styles.splitterIndicator} />}
         </React.Fragment>
       )
       break
@@ -277,7 +243,7 @@ function drawSplitterLeftBlock (layers, x, y, token, skip) {
               .h(-8).l(5, -BS2).l(-5, -BS2).l(5, -BS2).l(-5, -BS2)}
             style={styles.beltIndicator}
           />
-          <path d={p(x + BS2 - 2, y + BS2 - 6 + (node.parity > 0 ? 0 : BS)).l(6, 6).l(-6, 6)} style={styles.splitterIndicator} />
+          {bare && <path d={p(x + BS2 - 2, y + BS2 - 6 + (node.parity > 0 ? 0 : BS)).l(6, 6).l(-6, 6)} style={styles.splitterIndicator} />}
         </React.Fragment>
       )
       break
@@ -292,7 +258,7 @@ function drawSplitterLeftBlock (layers, x, y, token, skip) {
               .v(-8).l(-BS2, 5).l(-BS2, -5).l(-BS2, 5).l(-BS2, -5)}
             style={styles.beltIndicator}
           />
-          <path d={p(x + BS2 - 6 - (node.parity > 0 ? 0 : BS), y + BS2 - 2).l(6, 6).l(6, -6)} style={styles.splitterIndicator} />
+          {bare && <path d={p(x + BS2 - 6 - (node.parity > 0 ? 0 : BS), y + BS2 - 2).l(6, 6).l(6, -6)} style={styles.splitterIndicator} />}
         </React.Fragment>
       )
       break
@@ -307,7 +273,7 @@ function drawSplitterLeftBlock (layers, x, y, token, skip) {
               .h(8).l(-5, -BS2).l(5, -BS2).l(-5, -BS2).l(5, -BS2)}
             style={styles.beltIndicator}
           />
-          <path d={p(x + BS2 + 2, y + BS2 - 6 - (node.parity > 0 ? 0 : BS)).l(-6, 6).l(6, 6)} style={styles.splitterIndicator} />
+          {bare && <path d={p(x + BS2 + 2, y + BS2 - 6 - (node.parity > 0 ? 0 : BS)).l(-6, 6).l(6, 6)} style={styles.splitterIndicator} />}
         </React.Fragment>
       )
       break
@@ -451,8 +417,7 @@ class Simulator extends Component {
       speedModifier: 1
     }
 
-    this.handleClickPlay = this.handleClickPlay.bind(this)
-    this.handleClickPause = this.handleClickPause.bind(this)
+    this.handleClickPlayPause = this.handleClickPlayPause.bind(this)
     this.handleClickReset = this.handleClickReset.bind(this)
     this.handleClickSpeedModifier05 = this.handleClickSpeedModifier.bind(this, 0.5)
     this.handleClickSpeedModifier1 = this.handleClickSpeedModifier.bind(this, 1)
@@ -471,7 +436,7 @@ class Simulator extends Component {
     }
   }
 
-  handleClickPlay () {
+  handleClickPlayPause () {
     switch (this.state.state) {
       case 'READY':
       case 'PAUSED':
@@ -490,11 +455,6 @@ class Simulator extends Component {
           }
         })
         break
-    }
-  }
-
-  handleClickPause () {
-    switch (this.state.state) {
       case 'PLAYING':
         this.setState({ state: 'PAUSED' })
         window.cancelAnimationFrame(this.animationFrame)
@@ -542,6 +502,8 @@ class Simulator extends Component {
         skip = true
       }
 
+      const bare = !this.props.bare
+
       for (let row = 0; row < grid.height; ++row) {
         for (let col = 0; col < grid.width; ++col) {
           const token = grid[row][col]
@@ -549,12 +511,12 @@ class Simulator extends Component {
             const x = col * BS
             const y = row * BS
             switch (token.type) {
-              case 'INPUT': drawInputBlock(layers, x, y, token, skip); break
-              case 'OUTPUT': drawOutputBlock(layers, x, y, token, skip); break
+              case 'INPUT': drawInputBlock(layers, x, y, token, skip, bare); break
+              case 'OUTPUT': drawOutputBlock(layers, x, y, token, skip, bare); break
               case 'INPUT_DIRECTION':
               case 'OUTPUT_DIRECTION': drawDirectionalIndicatorBlock(layers, x, y, token, skip); break
               case 'BELT': drawBeltBlock(layers, x, y, token, skip); break
-              case 'SPLITTER_LEFT': drawSplitterLeftBlock(layers, x, y, token, skip); break
+              case 'SPLITTER_LEFT': drawSplitterLeftBlock(layers, x, y, token, skip, bare); break
               case 'SPLITTER_RIGHT': drawSplitterRightBlock(layers, x, y, token, skip); break
               case 'UNDERGROUND_DOWN': drawUndergroundDownBlock(layers, x, y, token, skip); break
               case 'UNDERGROUND_UP': drawUndergroundUpBlock(layers, x, y, token, skip); break
@@ -574,36 +536,36 @@ class Simulator extends Component {
         <div className={styles.container}>
           <div className={styles.simulator}>
             <svg width={grid.width * BS} height={grid.height * BS}>
-              {layers[0]}{layers[1]}{layers[2]}
+              {layers[0]}{layers[1]}{layers[2]}{this.props.children}
             </svg>
           </div>
-          <div className={styles.controls}>
-            <div className={classnames(zf.buttonGroup, zf.small, zf.hollow, zf.noGaps)}>
-              <button className={zf.button} onClick={this.handleClickPlay}>Play</button>
-              <button className={zf.button} onClick={this.handleClickPause}>Pause</button>
-              <button className={zf.button} onClick={this.handleClickReset}>Reset</button>
-            </div>
-            <div className={classnames(zf.buttonGroup, zf.small, zf.hollow, zf.noGaps)}>
-              <button
-                className={classnames(zf.button, speedModifier === 0.5 && styles.active)}
-                onClick={this.handleClickSpeedModifier05}
-              >
-                0.5×
-              </button>
-              <button
-                className={classnames(zf.button, speedModifier === 1 && styles.active)}
-                onClick={this.handleClickSpeedModifier1}
-              >
-                1×
-              </button>
-              <button
-                className={classnames(zf.button, speedModifier === 2 && styles.active)}
-                onClick={this.handleClickSpeedModifier2}
-              >
-                2×
-              </button>
-            </div>
-          </div>
+          {bare &&
+            <div className={styles.controls}>
+              <div className={classnames(zf.buttonGroup, zf.small, zf.hollow, zf.noGaps)}>
+                <button className={zf.button} onClick={this.handleClickPlayPause}>Play/Pause</button>
+                <button className={zf.button} onClick={this.handleClickReset}>Reset</button>
+              </div>
+              <div className={classnames(zf.buttonGroup, zf.small, zf.hollow, zf.noGaps)}>
+                <button
+                  className={classnames(zf.button, speedModifier === 0.5 && styles.active)}
+                  onClick={this.handleClickSpeedModifier05}
+                >
+                  0.5×
+                </button>
+                <button
+                  className={classnames(zf.button, speedModifier === 1 && styles.active)}
+                  onClick={this.handleClickSpeedModifier1}
+                >
+                  1×
+                </button>
+                <button
+                  className={classnames(zf.button, speedModifier === 2 && styles.active)}
+                  onClick={this.handleClickSpeedModifier2}
+                >
+                  2×
+                </button>
+              </div>
+            </div>}
         </div>
       )
     }
@@ -611,7 +573,8 @@ class Simulator extends Component {
 }
 
 Simulator.propTypes = {
-  blueprint: PropTypes.string.isRequired
+  blueprint: PropTypes.string.isRequired,
+  bare: PropTypes.bool
 }
 
 export default Simulator
