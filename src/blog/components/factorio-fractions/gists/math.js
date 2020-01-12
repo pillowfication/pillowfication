@@ -59,7 +59,7 @@ function invertMatrix (m) {
     // Swap
     if (m[i][i].p === 0) {
       let nonzero = i
-      while (++nonzero < dimension && m[i][nonzero].p === 0);
+      while (++nonzero < dimension && m[nonzero][i].p === 0);
       if (nonzero === dimension) return null
 
       ;[m[i], m[nonzero]] = [m[nonzero], m[i]]

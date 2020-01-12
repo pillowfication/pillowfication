@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
-import p from './simulator/Path'
+import { Link } from 'react-router-dom'
 
 import { registerBlog } from '../Blog.jsx'
 import $ from '../../../shared/Math.jsx'
-import zf from '../../../foundation.scss'
 import Simulator from './simulator/Simulator.jsx'
+import p from './simulator/Path'
+import zf from '../../../foundation.scss'
 
 const BS = 40 // Grid size in pixels.
 
@@ -19,7 +20,6 @@ function redSplitter (x, y) {
   )
 }
 
-/* eslint-disable react/jsx-pascal-case */
 class FactorioFractions extends Component {
   render () {
     return (
@@ -137,8 +137,8 @@ class FactorioFractions extends Component {
           _ __^ <<<<<_____ '}
         >
           {redSplitter(5, 1)}
-          <text x={6 * BS} y={1.65 * BS} style={{ fill: 'red' }}>F<tspan dy='5'>n+1</tspan><tspan dy='-5'> / F</tspan><tspan dy='5'>n+2</tspan></text>
-          <text x={6 * BS} y={2.65 * BS} style={{ fill: 'red' }}>F<tspan dy='5'>n</tspan><tspan dy='-5'> / F</tspan><tspan dy='5'>n+2</tspan></text>
+          <text x={6 * BS} y={1.65 * BS} style={{ fontFamily: 'Times New Roman', fill: 'red' }}>F<tspan dy='5'>n+1</tspan><tspan dy='-5'> / F</tspan><tspan dy='5'>n+2</tspan></text>
+          <text x={6 * BS} y={2.65 * BS} style={{ fontFamily: 'Times New Roman', fill: 'red' }}>F<tspan dy='5'>n</tspan><tspan dy='-5'> / F</tspan><tspan dy='5'>n+2</tspan></text>
         </Simulator>
         <p>The bottom <$ $='n' /> splitters form a spiral of size <$ $='n' /> and is represented by a hypothetical <$ $='\color{red}{\text{Red}}' /> splitter. This splitter has a top split of <$ $='\frac{F_{n+1}}{F_{n+2}}' /> and a bottom split of <$ $='\frac{F_{n}}{F_{n+2}}' />. By examining paths again, the top output of this system has output</p>
         <$ $$={`
@@ -152,7 +152,7 @@ class FactorioFractions extends Component {
         <h2>All Fractions</h2>
         <p>It turns out that all fractions can be made with a finite number of splitters. First the fraction is written in binary.</p>
         <$ $$='\frac{191}{248} = 0.\color{blue}{110}\color{red}{\overline{00101}}.' />
-        <p>The <$ $='\color{blue}{\text{constant}}' /> part of the decimal contains 3 digits, and the <$ $='\color{red}{\text{repetend}}' /> contains 5 digits, so 8 splitters are used and arranged in the following way:</p>
+        <p>The <$ $='\color{blue}{\text{non-repeating}}' /> part of the decimal contains 3 digits, and the <$ $='\color{red}{\text{repetend}}' /> contains 5 digits, so 8 splitters are used and arranged in the following way:</p>
         <Simulator
           bare blueprint={'\
           I0>S> > > > > > > > > >O> \n\
@@ -171,14 +171,14 @@ class FactorioFractions extends Component {
           {redSplitter(7, 5)}
           {redSplitter(8, 6)}
           {redSplitter(9, 7)}
-          <text x={1.9 * BS} y={1.3 * BS} style={{ fontSize: BS + 'px' }}>1</text>
-          <text x={2.9 * BS} y={2.3 * BS} style={{ fontSize: BS + 'px' }}>1</text>
-          <text x={3.9 * BS} y={3.3 * BS} style={{ fontSize: BS + 'px' }}>0</text>
-          <text x={4.9 * BS} y={4.3 * BS} style={{ fontSize: BS + 'px' }}>0</text>
-          <text x={5.9 * BS} y={5.3 * BS} style={{ fontSize: BS + 'px' }}>0</text>
-          <text x={6.9 * BS} y={6.3 * BS} style={{ fontSize: BS + 'px' }}>1</text>
-          <text x={7.9 * BS} y={7.3 * BS} style={{ fontSize: BS + 'px' }}>0</text>
-          <text x={8.9 * BS} y={8.3 * BS} style={{ fontSize: BS + 'px' }}>1</text>
+          <text x={1.9 * BS} y={1.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>1</text>
+          <text x={2.9 * BS} y={2.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>1</text>
+          <text x={3.9 * BS} y={3.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>0</text>
+          <text x={4.9 * BS} y={4.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>0</text>
+          <text x={5.9 * BS} y={5.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>0</text>
+          <text x={6.9 * BS} y={6.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>1</text>
+          <text x={7.9 * BS} y={7.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>0</text>
+          <text x={8.9 * BS} y={8.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>1</text>
         </Simulator>
         <p>Every splitter corresponding to a <$ $='1' /> feeds into the top output, while the splitters corresponding to a <$ $='0' /> have their outputs dumped elsewhere. The last splitter also feeds back into one of the previous splitters, to represent the <$ $='\color{red}{\text{repetend}}' />. Since every rational number can be written as a terminating or repeating decimal in binary, every rational number can be represented by some system of splitters.</p>
         <Simulator blueprint={'\
@@ -193,6 +193,9 @@ class FactorioFractions extends Component {
           _    _ _ _ ^ _ _ _ _   v ___ \n\
           _    _ _ _ ^ < < < < < < ___ '}
         />
+        <hr />
+
+        <Link to='factorio-fractions-2'>This article is continued in Part 2.</Link>
       </>
     )
   }

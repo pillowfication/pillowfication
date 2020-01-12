@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+
+import Code from '../../../../shared/Code.jsx'
 import tokenizeBlueprint from './tokenize-blueprint'
 import attachNetwork from './attach-network'
 import p from './Path'
-
-import Code from '../../../../shared/Code.jsx'
 import zf from '../../../../foundation.scss'
 import styles from './Simulator.scss'
 

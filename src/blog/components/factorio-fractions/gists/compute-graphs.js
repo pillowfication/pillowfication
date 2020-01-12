@@ -17,13 +17,6 @@ function calculateOutputs (edges) {
     outputs.push(edges[i].length < 2 ? inverse[i + 1][0] : null)
   }
 
-  const zero = new Fraction(0, 1)
-  for (const fraction of outputs) {
-    if (fraction !== null && zero.greaterThan(fraction)) {
-      return null
-    }
-  }
-
   return outputs
 }
 
@@ -44,6 +37,10 @@ function allFractions (outputs) {
 }
 
 function incrementRow (row, rowIndex, maxIndex) {
+  if (maxIndex === 1) {
+    return false
+  }
+
   if (row.length === 1) {
     const next = row[0] + 1 === rowIndex ? rowIndex + 1 : row[0] + 1
     if (next > maxIndex) {
@@ -72,14 +69,14 @@ function incrementRow (row, rowIndex, maxIndex) {
 
 function incrementGraph (graph, size) {
   for (let i = 0; i < size; ++i) {
-    if (incrementRow(graph[i], i, size)) {
+    if (incrementRow(graph[i], i, size - 1)) {
       return true
     }
   }
   return false
 }
 
-function computeGraphs (size) {
+function computeGraphs (size, search) { // eslint-disable-line no-unused-vars
   const edges = Array(size).fill(0).map(n => [n])
   edges[0][0] = 1
   const fractions = [new Fraction(0, 1), new Fraction(1, 1)]
@@ -87,33 +84,87 @@ function computeGraphs (size) {
   do {
     const outputs = calculateOutputs(edges)
     if (!outputs) continue
-    // let hasNew = false
     for (const frac of allFractions(outputs)) {
       if (!fractions.find(inSet => inSet.equals(frac))) {
-        // hasNew = true
         fractions.push(frac)
+
+        if (search && frac.equals(search)) {
+          return { edges, outputs }
+        }
       }
     }
-
-    // if (hasNew) {
-    //   console.log(edges)
-    //   console.log(outputs)
-    // }
   } while (incrementGraph(edges, size))
 
-  return fractions.sort((a, b) => a.q > b.q ? 1 : a.q < b.q ? -1 : a.p > b.p ? 1 : -1)
+  return search ? null : fractions.sort((a, b) => a.q !== b.q ? a.q - b.q : a.p - b.p)
 }
 
-const SIZE = 7
-const results = computeGraphs(SIZE)
+// const SIZE = 3
+// const search = new Fraction(1, 5)
+// const results = computeGraphs(SIZE, search)
+//
+// if (search) {
+//   console.log(results)
+// } else {
+//   for (let q = 2; q < (1 << SIZE); ++q) {
+//     for (let p = 1; p < q; ++p) {
+//       const frac = new Fraction(p, q)
+//       if (frac.p !== p) continue
+//       if (!results.find(inSet => inSet.equals(frac))) {
+//         console.log(frac)
+//       }
+//     }
+//   }
+// }
 
-for (let q = 2; q < (1 << SIZE); ++q) {
-  for (let p = 1; p < q; ++p) {
-    const frac = new Fraction(p, q)
-    if (frac.p !== p) continue
-    if (!results.find(inSet => inSet.equals(frac))) {
-      console.log(frac)
-    }
+const MAX_SIZE = 6
+
+function createData (maxSize) {
+  const fractions = [new Fraction(0, 1), new Fraction(1, 1)]
+  const results = []
+
+  for (let size = 2; size <= maxSize; ++size) {
+    console.log('SIZE', size)
+    const edges = Array(size).fill(0).map(n => [n])
+    edges[0][0] = 1
+
+    do {
+      const outputs = calculateOutputs(edges)
+      if (!outputs) continue
+
+      const hasNew = []
+      for (const frac of allFractions(outputs)) {
+        if (!fractions.find(inSet => inSet.equals(frac))) {
+          fractions.push(frac)
+          hasNew.push(frac)
+        }
+      }
+
+      if (hasNew.length) {
+        let allPowersOf2 = true
+        for (const { q } of hasNew) {
+          if (q <= 1 || (q & (q - 1)) !== 0) {
+            allPowersOf2 = false
+          }
+          break
+        }
+        if (allPowersOf2) {
+          continue
+        }
+
+        results.push({
+          system: {
+            edges: edges.map(r => r.slice()),
+            outputs: outputs.map(f => f ? `${f.p}/${f.q}` : null)
+          },
+          solves: hasNew.map(f => `${f.p}/${f.q}`)
+        })
+      }
+    } while (incrementGraph(edges, size))
   }
+
+  console.log('WRITING')
+  require('fs').writeFileSync(require('path').resolve('./results.json'), JSON.stringify(results) + '\n')
 }
+createData(MAX_SIZE)
+
 console.log('DONE')

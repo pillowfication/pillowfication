@@ -132,7 +132,7 @@ function getNode (grid, row, col) {
 function getNodeDirection (grid, row, col) {
   if (row < 0 || row >= grid.height || col < 0 || col >= grid.width) return
   const token = grid[row][col]
-  return token && token.node && token.node.direction
+  return token && token.type !== 'UNDERGROUND_DOWN' && token.node && token.node.direction
 }
 
 // To avoid infinite loops, every node's `outputNode` is a `{ row, col }`
