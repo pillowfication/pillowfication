@@ -74,7 +74,7 @@ class AllFractions extends Component {
     const isPowerOf2 = mq > 1 && (mq & (mq - 1)) === 0
 
     let graph, outputs
-    if (isPowerOf2) {
+    if (isPowerOf2 && mp < mq) {
       const exponent = Math.log2(mq)
       const nodes = []
       const edges = []
@@ -118,7 +118,6 @@ class AllFractions extends Component {
       }
     }
 
-    /* eslint-disable react/jsx-pascal-case */
     return (
       <>
         <div className={classnames(zf.gridX, zf.gridPaddingX)}>

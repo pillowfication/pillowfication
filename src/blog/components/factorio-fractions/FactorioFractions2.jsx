@@ -11,7 +11,6 @@ import p from './simulator/Path'
 
 const BS = 40 // Grid size in pixels.
 
-/* eslint-disable react/jsx-pascal-case */
 class FactorioFractions2 extends Component {
   render () {
     return (

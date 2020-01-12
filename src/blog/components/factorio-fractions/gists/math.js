@@ -39,6 +39,10 @@ class Fraction {
   greaterThan (frac) {
     return this.p * frac.q > this.q * frac.p
   }
+
+  toString () {
+    return this.p + '/' + this.q
+  }
 }
 
 function invertMatrix (m) {

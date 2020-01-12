@@ -33,7 +33,21 @@ function allFractions (outputs) {
     }
   }
 
-  return set.sort((a, b) => a.greaterThan(b) ? 1 : -1)
+  return set.sort((a, b) => a.greaterThan(b) ? 1 : -1).filter(f => f.q !== 1)
+}
+
+function maxInputsIntoNode (edges) {
+  let max = 0
+  for (let i = 0; i < edges.length; ++i) {
+    let count = 0
+    for (let j = 0; j < edges.length; ++j) {
+      if (edges[j].includes(i)) {
+        ++count
+      }
+    }
+    max = Math.max(max, count)
+  }
+  return max
 }
 
 function incrementRow (row, rowIndex, maxIndex) {
@@ -119,8 +133,7 @@ function computeGraphs (size, search) { // eslint-disable-line no-unused-vars
 const MAX_SIZE = 6
 
 function createData (maxSize) {
-  const fractions = [new Fraction(0, 1), new Fraction(1, 1)]
-  const results = []
+  const results = {}
 
   for (let size = 2; size <= maxSize; ++size) {
     console.log('SIZE', size)
@@ -131,39 +144,47 @@ function createData (maxSize) {
       const outputs = calculateOutputs(edges)
       if (!outputs) continue
 
-      const hasNew = []
-      for (const frac of allFractions(outputs)) {
-        if (!fractions.find(inSet => inSet.equals(frac))) {
-          fractions.push(frac)
-          hasNew.push(frac)
-        }
+      const allFracs = allFractions(outputs)
+      const result = {
+        system: {
+          edges: edges.map(r => r.slice()),
+          outputs: outputs.map(f => f && f.toString())
+        },
+        solves: allFracs.map(f => f.toString()).filter(f => !results[f])
       }
 
-      if (hasNew.length) {
-        let allPowersOf2 = true
-        for (const { q } of hasNew) {
-          if (q <= 1 || (q & (q - 1)) !== 0) {
-            allPowersOf2 = false
-          }
-          break
+      for (const frac of allFracs) {
+        const key = frac.toString()
+        if (!results[key]) {
+          results[key] = result
+        } else if (result.system.edges.length <= results[key].system.edges.length && maxInputsIntoNode(result.system.edges) < maxInputsIntoNode(results[key].system.edges)) {
+          results[key].solves.splice(results[key].solves.indexOf(key), 1)
+          result.solves.push(key)
+          results[key] = result
         }
-        if (allPowersOf2) {
-          continue
-        }
-
-        results.push({
-          system: {
-            edges: edges.map(r => r.slice()),
-            outputs: outputs.map(f => f ? `${f.p}/${f.q}` : null)
-          },
-          solves: hasNew.map(f => `${f.p}/${f.q}`)
-        })
       }
     } while (incrementGraph(edges, size))
   }
 
   console.log('WRITING')
-  require('fs').writeFileSync(require('path').resolve('./results.json'), JSON.stringify(results) + '\n')
+  const unique = {}
+  for (const key of Object.keys(results)) {
+    let allPowersOf2 = true
+    for (const solve of results[key].solves) {
+      const [, q] = solve.split('/')
+      if ((q & (q - 1)) !== 0) {
+        allPowersOf2 = false
+      }
+    }
+    if (allPowersOf2) {
+      continue
+    }
+    unique[results[key].solves.sort().join(',')] = results[key]
+  }
+  require('fs').writeFileSync(
+    require('path').resolve('./results.json'),
+    JSON.stringify(Object.keys(unique).map(k => unique[k])) + '\n'
+  )
 }
 createData(MAX_SIZE)
 
