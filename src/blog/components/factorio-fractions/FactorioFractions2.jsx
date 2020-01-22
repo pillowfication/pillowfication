@@ -231,7 +231,7 @@ class FactorioFractions2 extends Component {
         <hr />
 
         <h2>Results</h2>
-        <p>I let my computer calculate all possible fractions for systems of up to <$ $='n=6' /> splitters. It appears that a system of <$ $='n' /> splitters can always produce the fraction <$ $='\frac{p}{q}' /> where <$ $='0 \leq p \leq q \leq 2^n' />, although I was unable to prove this.</p>
+        <p>I let my computer calculate all possible fractions for systems of up to <$ $='n=6' /> splitters. It appears that a system of <$ $='n' /> splitters can always produce the fraction <$ $='\frac{p}{q}' /> where <$ $='0 \leq p \leq q \leq 2^n' />, although I was unable to prove this. If multiple systems solve a certain fraction, the system with the smallest maximum number of edges going into any one node is preferred.</p>
         <AllFractions />
       </>
     )

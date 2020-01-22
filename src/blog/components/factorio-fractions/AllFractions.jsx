@@ -103,9 +103,9 @@ class AllFractions extends Component {
       )
     } else {
       for (const result of results) {
-        if (result.solves.includes(fraction)) {
-          graph = fromSystem(result.system)
-          outputs = result.system.outputs.map(f => {
+        if (result.v.includes(fraction)) {
+          graph = fromSystem(result.s)
+          outputs = result.s.o.map(f => {
             if (f) {
               const [p, q] = f.split('/')
               return new Fraction(Number(p), Number(q))

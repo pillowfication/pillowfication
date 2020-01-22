@@ -93,7 +93,7 @@ const edgeLength = 100
 const nodeLabels = 'ABCDEF'
 
 function fromSystem (system) {
-  const n = system.edges.length
+  const n = system.e.length
   const radius = edgeLength / 2 / Math.sin(Math.PI / n)
   const outputRadius = radius + edgeLength
   const mid = radius + edgeLength + 30
@@ -109,21 +109,21 @@ function fromSystem (system) {
       y: mid - Math.sin(theta) * radius
     })
   }
-  if (system.outputs[0]) {
+  if (system.o[0]) {
     nodes.push({ name: 'I', x: mid - outputRadius, y: mid - 30 })
     edges.push({ from: 'I', to: 'A' })
-    nodes.push({ name: 'OA', label: system.outputs[0], x: mid - outputRadius, y: mid + 30, isFraction: true })
+    nodes.push({ name: 'OA', label: system.o[0], x: mid - outputRadius, y: mid + 30, isFraction: true })
     edges.push({ from: 'A', to: 'OA' })
   } else {
     nodes.push({ name: 'I', x: mid - outputRadius, y: mid })
     edges.push({ from: 'I', to: 'A' })
   }
   for (let i = 1; i < n; ++i) {
-    if (system.outputs[i]) {
+    if (system.o[i]) {
       const theta = 2 * Math.PI / n * i
       nodes.push({
         name: 'O' + nodeLabels[i],
-        label: system.outputs[i],
+        label: system.o[i],
         x: mid - Math.cos(theta) * outputRadius,
         y: mid - Math.sin(theta) * outputRadius,
         isFraction: true
@@ -132,8 +132,8 @@ function fromSystem (system) {
     }
   }
   for (let i = 0; i < n; ++i) {
-    for (const j of system.edges[i]) {
-      edges.push({ from: '' + nodeLabels[i], to: '' + nodeLabels[j], offset: system.edges[j].includes(i) })
+    for (const j of system.e[i]) {
+      edges.push({ from: '' + nodeLabels[i], to: '' + nodeLabels[j], offset: system.e[j].includes(i) })
     }
   }
 

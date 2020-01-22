@@ -183,7 +183,16 @@ function createData (maxSize) {
   }
   require('fs').writeFileSync(
     require('path').resolve('./results.json'),
-    JSON.stringify(Object.keys(unique).map(k => unique[k])) + '\n'
+    JSON.stringify(Object.keys(unique).map(k => {
+      const result = unique[k]
+      return {
+        s: {
+          e: result.system.edges,
+          o: result.system.outputs
+        },
+        v: result.solves
+      }
+    })) + '\n'
   )
 }
 createData(MAX_SIZE)
