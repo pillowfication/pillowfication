@@ -8,14 +8,14 @@ class Blog extends Component {
     const { date, title } = this.props
 
     return (
-      <div className={styles.page}>
+      <article className={styles.page}>
         <h1>
           {title}
           <span className={styles.date}>{date}</span>
         </h1>
         <hr className={styles.titleDivider} />
         {this.props.children}
-      </div>
+      </article>
     )
   }
 }

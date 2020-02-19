@@ -58,3 +58,13 @@ figure {
 figcaption {
   text-align: center;
 }
+
+ol, ul {
+  margin-left: 5rem;
+}
+
+blockquote > {
+  ol, ul {
+    margin-left: $list-side-margin;
+  }
+}

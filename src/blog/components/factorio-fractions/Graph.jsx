@@ -75,19 +75,21 @@ class Graph extends Component {
   }
 }
 
-Graph.data = PropTypes.shape({
-  nodes: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    offset: PropTypes.bool,
-    isFraction: PropTypes.bool
-  }).isRequired).isRequired,
-  edges: PropTypes.arrayOf(PropTypes.shape({
-    from: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired
-  })).isRequired
-})
+Graph.propTypes = {
+  data: PropTypes.shape({
+    nodes: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+      offset: PropTypes.bool,
+      isFraction: PropTypes.bool
+    }).isRequired).isRequired,
+    edges: PropTypes.arrayOf(PropTypes.shape({
+      from: PropTypes.string.isRequired,
+      to: PropTypes.string.isRequired
+    })).isRequired
+  })
+}
 
 const edgeLength = 100
 const nodeLabels = 'ABCDEF'

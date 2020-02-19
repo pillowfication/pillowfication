@@ -42,12 +42,16 @@
 @include foundation-visibility-classes;
 // @include foundation-float-classes;
 
-a {
-  transition: color 0.2s;
-}
-
 body {
   overflow: hidden;
+}
+
+h2 {
+  margin-top: 2rem;
+}
+
+a {
+  transition: color 0.2s;
 }
 
 code {

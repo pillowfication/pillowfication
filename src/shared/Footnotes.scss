@@ -1,3 +1,5 @@
+@import "../settings";
+
 .ref {
   @media print {
     text-decoration: none;
@@ -7,5 +9,9 @@
 .footnotes {
   p {
     margin-bottom: 0;
+  }
+
+  & > ol {
+    margin-left: $list-side-margin;
   }
 }
