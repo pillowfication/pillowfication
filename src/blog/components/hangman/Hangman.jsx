@@ -164,6 +164,11 @@ class Hangman extends Component {
           <p>This strategy was too computationally expensive for me to calculated anything meaningful. It seems to perform the worst, since it disregards whether a guess is likely to be right or wrong.{createReference('st3')}</p>
         </section>
 
+        <section>
+          <h2>Data</h2>
+          <p>All the data can be found on the <a href='https://github.com/pillowfication/pillowfication/blob/master/src/blog/components/hangman/gists/results.csv'>GitHub repo</a>.</p>
+        </section>
+
         <hr />
         {createFootnotes({
           mis: (
