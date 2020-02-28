@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Page from '../Page.jsx'
+import { registerBlog } from '../Blog.jsx'
 import Code from '../../../shared/Code.jsx'
 import $ from '../../../shared/Math.jsx'
 import Playground from './Playground.jsx'
@@ -17,7 +17,7 @@ const lineStyle = {
 class PerfectCuboid extends Component {
   render () {
     return (
-      <Page title='Perfect Cuboid' github='pillowfication/perfect-cuboid'>
+      <>
         <section>
           <p>Also a known as a perfect Euler brick or a perfect box, a <a href='https://en.wikipedia.org/wiki/Euler_brick#Perfect_cuboid'>perfect cuboid</a> is a cuboid where all distances between vertices are integers. Existence of a perfect cuboid is an unsolved problem in mathematics.</p>
           <div className={`${styles.diagramContainer} ${zf.scroller}`}>
@@ -82,22 +82,21 @@ class PerfectCuboid extends Component {
           <p>With <$ $='6' /> triples and <$ $='12' /> kinds each, I created a program to check each of the <$ $='12^6 = 2{,}985{,}984' /> cases. During a check, a knowledge table would keep track of each length’s divisibility by <$ $='2' />, <$ $='3' />, <$ $='4' />, and <$ $='5' />. A list of possible proof steps was created for the program to use to update the knowledge table. For a triple <$ $='(x, y, z)' /> that was <$ $='\times 2, 3' />, possible proof steps looked like</p>
           <Code
             lang='javascript'
-            $={`
-'x2 x3': [
-  { if: [ y.d4 ], then: x.not.d4 },
-  { if: [ x.not.d5, y.not.d5 ], then: z.d5 },
-  // ...
-]
-            `}
+            $={(
+              '\'x2 x3\': [\n' +
+              '  { if: [ y.d4 ], then: x.not.d4 },\n' +
+              '  { if: [ x.not.d5, y.not.d5 ], then: z.d5 },\n' +
+              '  // ...\n' +
+              ']'
+            )}
           />
           <p>The program would keep updating the knowledge table until no new facts were available, or if a contradiction was reached.</p>
-          <p>To speed up checking, some extra considerations were made. Due to symmetries of a cuboid (<$ $='6' /> with the permutations of <$ $='a, b, c' />), certain cases could be identical to each other. The case with the smallest identifier was used as the representative for each group of identical cases. In addition, some cases could not represent a primitive cuboid, and those cases were disregarded.</p>
+          <p>To speed up checking, some extra considerations were made. Due to symmetries of a cuboid (<$ $='6' /> with the permutations of <$ $='a, b, c' />), certain cases could be identical to each other. The case with the smallest identifier was used as the representative for each class of identical cases. In addition, some cases could not represent a primitive cuboid, and those cases were disregarded.</p>
         </section>
-        <hr />
         <Playground />
-      </Page>
+      </>
     )
   }
 }
 
-export default PerfectCuboid
+export default registerBlog(PerfectCuboid, '2015/04/23', 'Perfect Cuboid')

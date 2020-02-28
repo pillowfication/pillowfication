@@ -8,6 +8,7 @@ import FactorioFractions2 from './factorio-fractions/FactorioFractions2.jsx'
 import GodelsIncompletenessTheorems from './godels-incompleteness-theorems/GodelsIncompletenessTheorems.jsx'
 import Hangman from './hangman/Hangman.jsx'
 import NewtonsMethod from './newtons-method/NewtonsMethod.jsx'
+import PerfectCuboid from './perfect-cuboid/PerfectCuboid.jsx'
 import ScssInANutshell from './scss-in-a-nutshell/ScssInANutshell.jsx'
 import SolidAngles from './solid-angles/SolidAngles.jsx'
 import SwapSorting from './swap-sorting/SwapSorting.jsx'
@@ -21,6 +22,7 @@ const routes = [
   GodelsIncompletenessTheorems,
   Hangman,
   NewtonsMethod,
+  PerfectCuboid,
   ScssInANutshell,
   SolidAngles,
   SwapSorting

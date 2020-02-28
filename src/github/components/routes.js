@@ -1,7 +1,6 @@
 import AwesomeDings from './awesome-dings/AwesomeDings.jsx'
 import CIS89C from './cis89c/CIS89C.jsx'
 import Moofuck from './moofuck/Moofuck.jsx'
-import PerfectCuboid from './perfect-cuboid/PerfectCuboid.jsx'
 import PFBoggle from './pf-boggle/PFBoggle.jsx'
 import PFKonami from './pf-konami/PFKonami.jsx'
 import PFPerlin from './pf-perlin/PFPerlin.jsx'
@@ -16,7 +15,6 @@ const routes = [{
     { path: 'awesome-dings', component: AwesomeDings },
     { path: 'cis89c', component: CIS89C },
     { path: 'moofuck', component: Moofuck },
-    { path: 'perfect-cuboid', component: PerfectCuboid },
     { path: 'pf-boggle', component: PFBoggle },
     { path: 'pf-konami', component: PFKonami },
     { path: 'pf-perlin', component: PFPerlin },
