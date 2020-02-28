@@ -166,7 +166,7 @@ class Hangman extends Component {
 
         <section>
           <h2>Data</h2>
-          <p>All the data can be found on the <a href='https://github.com/pillowfication/pillowfication/blob/master/src/blog/components/hangman/gists/results.csv'>GitHub repo</a>.</p>
+          <p>All the data can be found on the <a href='https://github.com/pillowfication/pillowfication/tree/master/src/blog/components/hangman/gists'>GitHub repo</a>.</p>
         </section>
 
         <hr />
