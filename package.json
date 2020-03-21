@@ -46,7 +46,8 @@
     "react-router-dom": "^5.1.2",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.8",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "source-serif-pro": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",

@@ -146,7 +146,7 @@ module.exports = {
         loader: 'sass-loader'
       }]
     }, {
-      test: /\.(eot|ttf|woff2?)(\?.*)?$/,
+      test: /\.(eot|ttf|otf|woff2?)(\?.*)?$/,
       use: [{
         loader: 'file-loader',
         options: {

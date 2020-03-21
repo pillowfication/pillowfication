@@ -61,28 +61,7 @@
 //  56. Xy Grid
 
 @import "~foundation-sites/scss/util/util";
-
-/* TODO: css-loader is not properly bundling the files normally */
-@font-face {
-  font-family: "Neue Haas Grotesk";
-  src: url("/fonts/NeueHaasGrotesk-normal.eot");
-  src: url("/fonts/NeueHaasGrotesk-normal.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/NeueHaasGrotesk-normal.ttf") format("truetype"),
-    url("/fonts/NeueHaasGrotesk-normal.woff") format("woff"),
-    url("/fonts/NeueHaasGrotesk-normal.woff2") format("woff2");
-  font-style: normal;
-  font-weight: normal;
-}
-@font-face {
-  font-family: "Neue Haas Grotesk";
-  src: url("/fonts/NeueHaasGrotesk-bold.eot");
-  src: url("/fonts/NeueHaasGrotesk-bold.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/NeueHaasGrotesk-bold.ttf") format("truetype"),
-    url("/fonts/NeueHaasGrotesk-bold.woff") format("woff"),
-    url("/fonts/NeueHaasGrotesk-bold.woff2") format("woff2");
-  font-style: normal;
-  font-weight: bold;
-}
+@import "~source-serif-pro/source-serif-pro.css";
 
 // 1. Global
 // ---------
@@ -104,7 +83,7 @@ $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: "Neue Haas Grotesk", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: "Source Serif Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;

@@ -161,7 +161,7 @@ class Hangman extends Component {
         <section>
           <h2>Strategy 3 (most knowledge)</h2>
           <p>For another strategy, the focus is on the number of valid words remaining after every guess. To judge the value of guessing the letter <samp>A</samp>, first all currently valid words are assumed to be in play with equal probability. The guess of <samp>A</samp> is applied to each valid word, and all the valid words after each application are counted up. The guess that results in the fewest number of valid words is chosen. Again, if multiple letters tie, then either is chosen with equal probability.</p>
-          <p>This strategy was too computationally expensive for me to calculated anything meaningful. It seems to perform the worst, since it disregards whether a guess is likely to be right or wrong.{createReference('st3')}</p>
+          <p>This strategy was too computationally expensive for me to calculate anything meaningful. It seems to perform the worst too, since it disregards whether a guess is likely to be right or wrong.{createReference('st3')}</p>
         </section>
 
         <section>
