@@ -10,7 +10,7 @@ class Home extends Component {
       <div className={styles.page}>
         <h1>Archives</h1>
         <hr className={styles.titleDivider} />
-        <ul>
+        <ul className={styles.archivesList}>
           {routes
             .sort((a, b) => b.date.localeCompare(a.date))
             .map(route =>

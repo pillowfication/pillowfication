@@ -1,14 +1,19 @@
 const sowpods = require('pf-sowpods')
 const { Fraction } = require('./math')
+
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
-// Split up SOWPODS by word length
+// Split up SOWPODS by word length (speed up findMatchingWords)
 const sowpodsByLength = {}
 for (const word of sowpods) {
   const group = sowpodsByLength[word.length] || (sowpodsByLength[word.length] = [])
   group.push(word)
 }
 
+/**
+ * Given a template "BA_A_A" and misses "XYZ", return an array of words in
+ * SOWPODS that are still valid.
+ **/
 function findMatchingWords (template, misses) {
   const matchingWords = []
 
@@ -18,8 +23,10 @@ function findMatchingWords (template, misses) {
       if (~word.indexOf(miss)) continue check
     }
     for (let i = 0; i < template.length; ++i) {
-      if (template[i] !== '_' && template[i] !== word[i]) continue check // Letter at template doesn't match letter in word
-      if (template[i] === '_' && ~template.indexOf(word[i])) continue check // Template is blank for a letter already guessed
+      // Letter at template doesn't match letter in word
+      if (template[i] !== '_' && template[i] !== word[i]) continue check
+      // Template is blank for a letter already guessed
+      if (template[i] === '_' && ~template.indexOf(word[i])) continue check
     }
     matchingWords.push(word)
   }
@@ -28,6 +35,10 @@ function findMatchingWords (template, misses) {
   return matchingWords
 }
 
+/**
+ * Given the current template and misses, as well as a target word and guess
+ * to apply, returns the updated game state { template, misses }.
+ **/
 function applyGuess (template, misses, word, guess) {
   if (!~word.indexOf(guess)) {
     return { template, misses: (misses + guess).split('').sort().join('') }
@@ -40,6 +51,10 @@ function applyGuess (template, misses, word, guess) {
   return { template: newTemplate, misses }
 }
 
+/**
+ * Returns the letter frequencies of in a list of words as an array of integers.
+ * Letters in 'skip' always return with 0.
+ **/
 function getLetterFrequencies (words, skip) {
   return ALPHABET.map(letter =>
     ~skip.indexOf(letter)
@@ -50,8 +65,10 @@ function getLetterFrequencies (words, skip) {
 
 let strategyCache = {}
 
-// Guess the most common valid letter.
-// If there is a tie, choose either letter randomly.
+/**
+ * Guess the most common valid letter.
+ * If there is a tie, choose either letter randomly.
+ **/
 function strategy1 (template, misses) {
   const key = template + ',' + misses
   if (strategyCache[key]) {
@@ -71,8 +88,10 @@ function strategy1 (template, misses) {
   })
 }
 
-// Guess all possible letters weighted by how often they appear in the
-// remaining valid words.
+/**
+ * Guess all possible letters weighted by how often they appear in the
+ * remaining valid words.
+ **/
 function strategy2 (template, misses) {
   const key = template + ',' + misses
   if (strategyCache[key]) {
@@ -88,7 +107,9 @@ function strategy2 (template, misses) {
   })
 }
 
-// Guess the letter that most restricts the number of valid words
+/**
+ * Guess the letter that most restricts the number of valid words.
+ **/
 function strategy3 (template, misses) {
   const key = template + ',' + misses
   if (strategyCache[key]) {
@@ -119,6 +140,9 @@ function strategy3 (template, misses) {
   })
 }
 
+/**
+ * Compute the exact value of the entire decision tree. Returns a Fraction.
+ **/
 function scoreWordExact (word, strategy) {
   strategyCache = {}
   const scoreCache = {}
@@ -131,9 +155,9 @@ function scoreWordExact (word, strategy) {
 
     let score
     if (template === word) {
-      score = new Fraction(misses.length, 1)
+      score = new Fraction(misses.length)
     } else {
-      score = new Fraction(0, 1)
+      score = new Fraction(0)
       const { guesses, sum } = strategy(template, misses)
       for (let i = 0; i < ALPHABET.length; ++i) {
         if (guesses[i] > 0) {
@@ -149,6 +173,10 @@ function scoreWordExact (word, strategy) {
   return computeScore('_'.repeat(word.length), '')
 }
 
+/**
+ * Plays the word using the specified strategy for however many trials.
+ * Returns an array of scores for each trial (average this if needed).
+ **/
 function scoreWordMC (word, strategy, trials) {
   strategyCache = {}
   const scores = []
@@ -187,12 +215,10 @@ if (require.main === module) {
     if (fs.existsSync(RESULTS_PATH)) {
       const csv = fs.readFileSync(RESULTS_PATH).toString().split('\n')
       csv.pop()
-
       const lastWord = csv.pop().split(',')[0]
       skip = sowpods.indexOf(lastWord) + 1
     } else {
-      throw new Error('Are you sure? :(')
-      // fs.writeFileSync(RESULTS_PATH, 'word,strategy1,strategy2\n')
+      fs.writeFileSync(RESULTS_PATH, 'word,strategy1,strategy2\n')
     }
 
     for (let i = skip || 0; i < sowpods.length; ++i) {

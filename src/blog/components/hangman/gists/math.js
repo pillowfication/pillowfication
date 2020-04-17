@@ -7,7 +7,7 @@ function gcd (a, b) {
 }
 
 class Fraction {
-  constructor (p, q) {
+  constructor (p, q = 1) {
     this.p = p
     this.q = q
 
@@ -28,6 +28,10 @@ class Fraction {
     return new Fraction(this.p * frac.q + this.q * frac.p, this.q * frac.q)
   }
 
+  subtract (frac) {
+    return new Fraction(this.p * frac.q + this.q * frac.p, this.q * frac.q)
+  }
+
   multiply (frac) {
     return new Fraction(this.p * frac.p, this.q * frac.q)
   }
@@ -38,6 +42,10 @@ class Fraction {
 
   greaterThan (frac) {
     return this.p * frac.q > this.q * frac.p
+  }
+
+  lessThan (frac) {
+    return this.p * frac.q < this.q * frac.p
   }
 
   toString () {
