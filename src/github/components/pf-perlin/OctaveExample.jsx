@@ -147,7 +147,7 @@ class GridExample extends Component {
               Octaves: {this.state.octaves}
             </text>
           </svg>
-          <div className={`${zf.buttonGroup} ${zf.textCenter}`}>
+          <div className={`${zf.buttonGroup} ${zf.textCenter}`} style={{ display: 'block' }}>
             <button className={zf.button} onClick={this.handleClickSubtractOctave}>
               <i className={`${fa.fa} ${fa.faFw} ${fa.faMinus}`} />
             </button>

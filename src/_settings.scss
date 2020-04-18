@@ -61,7 +61,10 @@
 //  56. Xy Grid
 
 @import "~foundation-sites/scss/util/util";
-@import "~source-serif-pro/source-serif-pro.css";
+
+$FontPathOpenSans: "~open-sans-fonts/open-sans";
+@import "~charter-webfont/charter.css";
+@import "~open-sans-fonts/open-sans";
 
 // 1. Global
 // ---------
@@ -83,7 +86,7 @@ $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: "Source Serif Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: "Charter", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -130,7 +133,7 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: $body-font-family;
+$header-font-family: "Open Sans";
 $header-font-weight: bold;
 $header-font-style: normal;
 $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;

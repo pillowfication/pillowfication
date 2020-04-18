@@ -19,8 +19,11 @@ const {
   scoreWordMC
 } = require('./hangman')
 
-const score = scoreWordExact('PILLOW', strategy1)
-console.log(score)
+const score1 = scoreWordExact('PILLOW', strategy1)
+console.log(score1) // Fraction { p: 6, q: 1 }
+
+const score2 = scoreWordMC('PILLOW', strategy1, 100)
+console.log(score2.reduce((a, c) => a + c, 0) / 100) // 6.07
 ```
 
 The functions `scoreWordExact` and `scoreWordMC` are described in the source file.

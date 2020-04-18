@@ -128,7 +128,7 @@ class Hangman extends Component {
           </HideShow>
           <p>Typically, shorter words are more difficult than longer words, with the most difficult being <a href='https://www.oed.com/view/Entry/61244141'><samp>JAI</samp></a> (or <samp>KOI</samp> for a common word). However, a human player may find longer words to be harder. This is because the challenge of Hangman lies in Step 1. I asked several players to guess two words:</p>
           <ol>
-            <li><samp>VISUALIZED</samp>—10-letter word with difficult 0.</li>
+            <li><samp>VISUALIZED</samp>—10-letter word with difficulty 0.</li>
             <li><samp>BAKING</samp>—6-letter word with difficulty 11.58.</li>
           </ol>
           <p>One player reached the state</p>
@@ -194,7 +194,7 @@ class Hangman extends Component {
           ),
           st3: (
             <p>
-              Using a dictionary of <samp>ABC</samp>, <samp>BAC</samp>, <samp>DDD</samp>, <samp>DDE</samp>, Strategy 3 was on average 3.94× worse than Strategy 1 and 3.06× worse than Strategy 2.
+              Using a dictionary of <samp>ABC</samp>, <samp>BAC</samp>, <samp>DDD</samp>, <samp>DDE</samp>, Strategy 3 is on average 3.94× worse than Strategy 1 and 3.06× worse than Strategy 2.
             </p>
           )
         })}

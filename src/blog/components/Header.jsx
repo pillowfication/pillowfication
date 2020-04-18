@@ -13,7 +13,7 @@ class Header extends Component {
         <div className={zf.gridContainer}>
           <nav className={zf.topBar}>
             <div className={zf.topBarLeft}>
-              <a href='/'><img className={styles.pfIcon} src={pfIcon} />pillowfication</a>
+              <a href='/' className={styles.pfLogo}><img className={styles.pfIcon} src={pfIcon} />pillowfication</a>
             </div>
             <div className={zf.topBarRight}>
               <Link to='/'><i className={`${fa.fa} ${fa.faHome}`} /></Link>

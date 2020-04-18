@@ -135,7 +135,9 @@ class CellExample extends Component {
         </div>
         <div className={zf.textCenter}>
           <small>
-            Distance vectors are drawn with thickness proportional to the influence value. <$ $='\color{#00f}{\text{Blue}}' /> indicates a positive influence value, while <$ $='\color{#f00}{\text{Red}}' /> is negative.
+            Distance vectors are drawn with thickness proportional to the influence value.
+            <br />
+            <$ $='\color{#00f}{\text{Blue}}' /> indicates a positive influence value, while <$ $='\color{#f00}{\text{Red}}' /> is negative.
             <br />
             Click to randomize the gradient vectors.
           </small>

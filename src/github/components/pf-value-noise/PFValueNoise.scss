@@ -9,7 +9,7 @@
 
 $cube-size: 280px;
 $cube-perspective: 800px;
-$cube-color: $primary-color;
+$cube-color: lighten($primary-color, 10%);
 :export {
   cube-size: $cube-size;
   cube-color: $cube-color;
