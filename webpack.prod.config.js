@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const incstr = require('incstr')
-const { getLocalIdent } = require('css-loader/dist/utils')
+const { getLocalIdent } = require('./css-loader-getLocalIdent')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -61,10 +61,6 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, './node_modules/cis89c'),
       to: 'cis89c'
-    }, {
-      // See github/_settings.scss:65
-      from: path.resolve(__dirname, './src/github/assets'),
-      to: ''
     }])
   ],
   optimization: {

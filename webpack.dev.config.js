@@ -42,10 +42,6 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, './node_modules/cis89c'),
       to: 'cis89c'
-    }, {
-      // See github/_settings.scss:65
-      from: path.resolve(__dirname, './src/github/assets'),
-      to: ''
     }])
   ],
   module: {
