@@ -52,7 +52,6 @@ class App extends Component {
           </div>
           <div className={styles.offCanvas}>
             <Navigation offCanvas onCloseOffCanvas={this.handleCloseOffCanvas} />
-            sdf
           </div>
         </div>
       </Router>
