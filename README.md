@@ -1,3 +1,1 @@
-# pillowfication
-
-http://pillowfication.com
+# README

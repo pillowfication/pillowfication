@@ -1,9 +1,0 @@
-// Not sure why `~` doesn't work here if the `.css` extension is included
-@import "~normalize.css/normalize";
-@import "./variables";
-
-a:link, a:visited, a:link:active, a:visited:active {
-  color: $primary-color;
-  text-decoration: none;
-  transition: color 0.1s linear;
-}
