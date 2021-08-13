@@ -26,7 +26,7 @@
     "@material-ui/lab": "^4.0.0-alpha.58",
     "file-loader": "^6.2.0",
     "highlight.js": "^10.7.2",
-    "next": "^10.2.0",
+    "next": "^11.1.0",
     "pf-konami": "^1.0.8",
     "raw-loader": "^4.0.2",
     "react": "^17.0.2",
