@@ -19,6 +19,31 @@ const Index = (): React.ReactElement => {
               AwesomeDings
             </Link>
           </Typography>
+          <Typography component='li'>
+            <Link href='github/moofuck'>
+              moofuck
+            </Link>
+          </Typography>
+          <Typography component='li'>
+            <Link href='github/pf-boggle'>
+              pf-boggle
+            </Link>
+          </Typography>
+          <Typography component='li'>
+            <Link href='github/pf-konami'>
+              pf-konami
+            </Link>
+          </Typography>
+          <Typography component='li'>
+            <Link href='github/pf-perlin'>
+              pf-perlin
+            </Link>
+          </Typography>
+          <Typography component='li'>
+            <Link href='github/pf-sowpods'>
+              pf-sowpods
+            </Link>
+          </Typography>
         </ul>
       </Section>
     </Container>

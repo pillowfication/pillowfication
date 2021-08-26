@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles(theme => ({
   highlight: {
-    fontSize: '1.25em',
+    fontSize: '1.125em',
     marginBottom: theme.spacing(2),
     '& pre': {
       margin: theme.spacing(1)

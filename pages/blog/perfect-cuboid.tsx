@@ -94,7 +94,7 @@ const PerfectCuboid = (): React.ReactElement => {
             `)}
           </div>
         </div>
-        <Typography paragraph>There are six <Link href='https://en.wikipedia.org/wiki/Pythagorean_triple'>Pythagorean triples</Link> to satisfy. I tried to test which kinds of triples are possible using modular arithmetic. Triples were categorized by their divisibility:</Typography>
+        <Typography>There are six <Link href='https://en.wikipedia.org/wiki/Pythagorean_triple'>Pythagorean triples</Link> to satisfy. I tried to test which kinds of triples are possible using modular arithmetic. Triples were categorized by their divisibility:</Typography>
         {$$(`
           \\begin{align}
             \\times N &: \\text{not divisible by $2, 3, 5$}\\\\
@@ -124,6 +124,7 @@ const PerfectCuboid = (): React.ReactElement => {
         </Highlight>
         <Typography paragraph>The program would keep updating the knowledge table until no new facts were available, or if a contradiction was reached.</Typography>
         <Typography paragraph>To speed up checking, some extra considerations were made. Due to symmetries of a cuboid ({$('6')} with the permutations of {$('a, b, c')}), certain cases could be identical to each other. The case with the smallest identifier was used as the representative for each class of identical cases. In addition, some cases could not represent a primitive cuboid, and those cases were disregarded.</Typography>
+        <Typography paragraph>In the future, this project can be extended to check all cases under an arbitrarily high modulus.</Typography>
       </Section>
       <Playground />
     </Blog>

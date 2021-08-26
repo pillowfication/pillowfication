@@ -72,7 +72,6 @@ const ExampleKeypress = (): React.ReactElement => {
       setPointer((pointer) => {
         const key = event.code
         let newPointer = pointer
-        console.log(pointer)
 
         if (key === KONAMI[newPointer].code) {
           ++newPointer

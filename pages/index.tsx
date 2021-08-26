@@ -116,7 +116,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.25em',
 
       '& > a': {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        '&:visited': {
+          color: theme.palette.primary.dark
+        }
       }
     }
   }

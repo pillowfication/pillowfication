@@ -14,7 +14,8 @@ import hangmanData from '../../src/blog/hangman/gists/hangman-data.json'
 const useStyles = makeStyles(() => ({
   word: {
     fontFamily: 'monospace',
-    fontSize: '1.33em'
+    fontSize: '1.25em',
+    lineHeight: 1
   }
 }))
 
