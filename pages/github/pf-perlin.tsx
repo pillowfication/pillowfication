@@ -102,13 +102,13 @@ const GridExample = ({ width }: { width: number }): React.ReactElement => {
   const [gridDrag, setGridDrag] = useState<{ x: number, y: number } | null>(null)
   const gridTheta = useRef<Record<number, Record<number, number>>>({}).current
 
-  const handleMouseDownGrid = (event: MouseEvent) => {
+  const handleMouseDownGrid = (event: React.MouseEvent) => {
     setGridDrag({ x: event.clientX, y: event.clientY })
   }
   const handleMouseUpGrid = () => {
     setGridDrag(null)
   }
-  const handleDragGrid = (event: MouseEvent) => {
+  const handleDragGrid = (event: React.MouseEvent) => {
     if (gridDrag !== null) {
       setGridOffsetX(gridOffsetX + event.clientX - gridDrag.x)
       setGridOffsetY(gridOffsetY + event.clientY - gridDrag.y)
@@ -206,7 +206,7 @@ const CellExample = ({ width }: { width: number }): React.ReactElement => {
   const handleClickCell = () => {
     setCellGradients(Array(4).fill(0).map(() => Math.random() * 2 * Math.PI))
   }
-  const handleMouseMoveCell = (event: MouseEvent) => {
+  const handleMouseMoveCell = (event: React.MouseEvent) => {
     if (cellRef.current !== null) {
       const cellResolution = Math.min(width, MAX_CELL_RESOLUTION * 2) / 2
       const boundingRect = cellRef.current.getBoundingClientRect()
@@ -333,7 +333,7 @@ const InterpolationExample = ({ width }: { width: number }): React.ReactElement 
       b: Math.random() * 256
     })))
   }
-  const handleMouseMoveInterpolation = (event: MouseEvent) => {
+  const handleMouseMoveInterpolation = (event: React.MouseEvent) => {
     if (cellRef.current !== null) {
       const cellResolution = Math.max(0, Math.min(width - INTERPOLATION_PADDING * 2, MAX_INTERPOLATION_RESOLUTION))
       const boundingRect = cellRef.current.getBoundingClientRect()
@@ -458,7 +458,7 @@ const InterpolationExample = ({ width }: { width: number }): React.ReactElement 
 const GRAPH_RESOLUTION = 100
 const GRAPH_INTERVAL = 1
 const GRAPH_PADDING = 5
-const INTERPOLATION = t => t * t * t * (t * (t * 6 - 15) + 10)
+const INTERPOLATION = (t: number): number => t * t * t * (t * (t * 6 - 15) + 10)
 
 const OctaveExample = ({ width }: { width: number }): React.ReactElement => {
   const classes = useStyles()
@@ -467,13 +467,13 @@ const OctaveExample = ({ width }: { width: number }): React.ReactElement => {
   const [octaves, setOctaves] = useState(1)
   const graphValues = useRef<Record<number, number>>({}).current
 
-  const handleMouseDownGraph = (event: MouseEvent) => {
+  const handleMouseDownGraph = (event: React.MouseEvent) => {
     setGraphDrag({ x: event.clientX })
   }
   const handleMouseUpGraph = () => {
     setGraphDrag(null)
   }
-  const handleDragGraph = (event: MouseEvent) => {
+  const handleDragGraph = (event: React.MouseEvent) => {
     if (graphDrag !== null) {
       setGraphOffsetX(graphOffsetX + event.clientX - graphDrag.x)
       setGraphDrag({ x: event.clientX })
