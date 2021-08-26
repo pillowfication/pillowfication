@@ -102,13 +102,13 @@ const GridExample = ({ width }: { width: number }): React.ReactElement => {
   const [gridDrag, setGridDrag] = useState<{ x: number, y: number } | null>(null)
   const gridTheta = useRef<Record<number, Record<number, number>>>({}).current
 
-  const handleMouseDownGrid = (event: React.MouseEvent) => {
+  const handleMouseDownGrid = (event: React.MouseEvent): void => {
     setGridDrag({ x: event.clientX, y: event.clientY })
   }
-  const handleMouseUpGrid = () => {
+  const handleMouseUpGrid = (): void => {
     setGridDrag(null)
   }
-  const handleDragGrid = (event: React.MouseEvent) => {
+  const handleDragGrid = (event: React.MouseEvent): void => {
     if (gridDrag !== null) {
       setGridOffsetX(gridOffsetX + event.clientX - gridDrag.x)
       setGridOffsetY(gridOffsetY + event.clientY - gridDrag.y)
@@ -203,10 +203,10 @@ const CellExample = ({ width }: { width: number }): React.ReactElement => {
   const [cellMouseY, setCellMouseY] = useState(Math.random())
   const cellRef = useRef<HTMLDivElement>(null)
 
-  const handleClickCell = () => {
+  const handleClickCell = (): void => {
     setCellGradients(Array(4).fill(0).map(() => Math.random() * 2 * Math.PI))
   }
-  const handleMouseMoveCell = (event: React.MouseEvent) => {
+  const handleMouseMoveCell = (event: React.MouseEvent): void => {
     if (cellRef.current !== null) {
       const cellResolution = Math.min(width, MAX_CELL_RESOLUTION * 2) / 2
       const boundingRect = cellRef.current.getBoundingClientRect()
@@ -313,7 +313,7 @@ const MAX_INTERPOLATION_RESOLUTION = 200
 const INTERPOLATION_PADDING = 20
 const GRADIENT_WIDTH = 8
 const CIRCLE_RADIUS = 10
-type Color = { r: number, g: number, b: number }
+interface Color { r: number, g: number, b: number }
 
 const InterpolationExample = ({ width }: { width: number }): React.ReactElement => {
   const classes = useStyles()
@@ -321,19 +321,19 @@ const InterpolationExample = ({ width }: { width: number }): React.ReactElement 
     r: Math.random() * 256,
     g: Math.random() * 256,
     b: Math.random() * 256
-  } as Color)))
+  })))
   const [cellMouseX, setCellMouseX] = useState(Math.random())
   const [cellMouseY, setCellMouseY] = useState(Math.random())
   const cellRef = useRef<HTMLDivElement>(null)
 
-  const handleClickInterpolation = () => {
+  const handleClickInterpolation = (): void => {
     setInfluenceValues(Array(4).fill(0).map(() => ({
       r: Math.random() * 256,
       g: Math.random() * 256,
       b: Math.random() * 256
     })))
   }
-  const handleMouseMoveInterpolation = (event: React.MouseEvent) => {
+  const handleMouseMoveInterpolation = (event: React.MouseEvent): void => {
     if (cellRef.current !== null) {
       const cellResolution = Math.max(0, Math.min(width - INTERPOLATION_PADDING * 2, MAX_INTERPOLATION_RESOLUTION))
       const boundingRect = cellRef.current.getBoundingClientRect()
@@ -467,22 +467,22 @@ const OctaveExample = ({ width }: { width: number }): React.ReactElement => {
   const [octaves, setOctaves] = useState(1)
   const graphValues = useRef<Record<number, number>>({}).current
 
-  const handleMouseDownGraph = (event: React.MouseEvent) => {
+  const handleMouseDownGraph = (event: React.MouseEvent): void => {
     setGraphDrag({ x: event.clientX })
   }
-  const handleMouseUpGraph = () => {
+  const handleMouseUpGraph = (): void => {
     setGraphDrag(null)
   }
-  const handleDragGraph = (event: React.MouseEvent) => {
+  const handleDragGraph = (event: React.MouseEvent): void => {
     if (graphDrag !== null) {
       setGraphOffsetX(graphOffsetX + event.clientX - graphDrag.x)
       setGraphDrag({ x: event.clientX })
     }
   }
-  const handleClickSubtractOctave = () => {
+  const handleClickSubtractOctave = (): void => {
     setOctaves(Math.max(1, octaves - 1))
   }
-  const handleClickAddOctave = () => {
+  const handleClickAddOctave = (): void => {
     setOctaves(octaves + 1)
   }
 
@@ -544,7 +544,7 @@ const OctaveExample = ({ width }: { width: number }): React.ReactElement => {
             )
           }
 
-          const points: Array<string> = []
+          const points: string[] = []
           for (let x = 0; x <= width - GRAPH_PADDING * 2; x += GRAPH_INTERVAL) {
             const noise = getNoiseValue(leftX + x / GRAPH_RESOLUTION)
             points.push(`${GRAPH_PADDING + x},${GRAPH_RESOLUTION + GRAPH_PADDING - noise * GRAPH_RESOLUTION}`)

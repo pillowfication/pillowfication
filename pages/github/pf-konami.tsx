@@ -68,7 +68,7 @@ const ExampleKeypress = (): React.ReactElement => {
   const [pointer, setPointer] = useState(0)
 
   useEffect(() => {
-    const captureKeyDown = (event: KeyboardEvent) => {
+    const captureKeyDown = (event: KeyboardEvent): void => {
       setPointer((pointer) => {
         const key = event.code
         let newPointer = pointer

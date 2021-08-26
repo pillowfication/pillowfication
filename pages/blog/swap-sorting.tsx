@@ -7,7 +7,7 @@ import Blog from '../../src/blog/Blog'
 import Section from '../../src/blog/Section'
 import { $, $$ } from '../../src/MathJax'
 
-const withHeader = (theme: Theme, title: string) => ({
+const withHeader = (theme: Theme, title: string): any => ({
   marginTop: '2rem',
   '&::before': {
     content: `"${title}"`,

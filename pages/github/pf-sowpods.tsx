@@ -97,7 +97,7 @@ const PFSowpods = (): React.ReactElement => {
     lengthStats.push({
       label: String(length),
       value: stat.count,
-      displayValue: `${stat.count.toLocaleString()} (${stat.percentage.toFixed(2)}%)`
+      displayValue: `${(stat.count as number).toLocaleString()} (${(stat.percentage as number).toFixed(2)}%)`
     })
   }
 
@@ -107,7 +107,7 @@ const PFSowpods = (): React.ReactElement => {
     letterStats.push({
       label: letter,
       value: stat.count,
-      displayValue: `${stat.count.toLocaleString()} (${stat.percentage.toFixed(2)}%)`
+      displayValue: `${(stat.count as number).toLocaleString()} (${(stat.percentage as number).toFixed(2)}%)`
     })
   }
 
@@ -145,7 +145,7 @@ const BarGraph = ({ title, stats }: { title: string, stats: Array<{ label: strin
                 <Typography>{stat.label}</Typography>
               </th>
               <td className={classes.datum}>
-                <div className={classes.bar} style={{ width: stat.value / maxValue * 100 + '%' }} />
+                <div className={classes.bar} style={{ width: `${stat.value / maxValue * 100}%` }} />
                 <div className={classes.displayValue}>
                   <Typography>{stat.displayValue}</Typography>
                 </div>

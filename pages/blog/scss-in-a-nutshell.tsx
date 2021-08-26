@@ -57,7 +57,7 @@ const SCSSInANutshell = (): React.ReactElement => {
         <Highlight language='scss'>
           {`
 // _partial.scss
-@import \'partial\'; // underscore and extension omitted
+@import 'partial'; // underscore and extension omitted
           `.trim()}
         </Highlight>
 
@@ -71,7 +71,7 @@ const SCSSInANutshell = (): React.ReactElement => {
 ul {
   list-style-type: none;
 
-  li { // equivalent to the selector \'ul li\'
+  li { // equivalent to the selector 'ul li'
     display: block;
   }
 }
@@ -116,7 +116,7 @@ blockquote {
         <Typography paragraph>Selectors can inherit from other selectors using <code>@extend</code>. If the <code>!optional</code> tag is included, <code>@extend</code> will be ignored if it were to cause an error (e.g. the selector doesn't exist or is conflictory). The <code>%</code> selector is similar to <code>.</code>/<code>#</code> for classes/id's, but exists for the purpose of inheritance and won't be rendered into the output css.</Typography>
         <Highlight language='scss'>
           {`
-p%awesome { // This ruleset won\'t be rendered explicitly
+p%awesome { // This ruleset won't be rendered explicitly
   font-weight: bold;
 }
 .message {
@@ -128,7 +128,7 @@ p%awesome { // This ruleset won\'t be rendered explicitly
   border-color: green;
   p {
     @extend %awesome; // @extend successfully runs
-    @extend .something !optional; // .something doesn\'t exist; @extend is ignored.
+    @extend .something !optional; // .something doesn't exist; @extend is ignored.
   }
   a {
     @extend %awesome !optional;
@@ -302,14 +302,14 @@ p {
           {`
 @each $animal in puma, sea-slug, egret, salamander {
   .#{$animal}-icon {
-    background-image: url(\'/images/#{$animal}.png\');
+    background-image: url('/images/#{$animal}.png');
   }
 }
 @each $animal, $color, $cursor in (puma, black, default),
                                   (sea-slug, blue, pointer),
                                   (egret, white, move) {
   .#{$animal}-icon {
-    background-image: url(\'/images/#{$animal}.png\');
+    background-image: url('/images/#{$animal}.png');
     border: 2px solid $color;
     cursor: $cursor;
   }

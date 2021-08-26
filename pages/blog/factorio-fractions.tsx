@@ -168,14 +168,14 @@ const FactorioFractions = (): React.ReactElement => {
           {redSplitter(7, 5)}
           {redSplitter(8, 6)}
           {redSplitter(9, 7)}
-          <text x={1.85 * BS} y={1.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>1</text>
-          <text x={2.85 * BS} y={2.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>1</text>
-          <text x={3.85 * BS} y={3.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>0</text>
-          <text x={4.85 * BS} y={4.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>0</text>
-          <text x={5.85 * BS} y={5.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>0</text>
-          <text x={6.85 * BS} y={6.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>1</text>
-          <text x={7.85 * BS} y={7.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>0</text>
-          <text x={8.85 * BS} y={8.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>1</text>
+          <text x={1.85 * BS} y={1.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>1</text>
+          <text x={2.85 * BS} y={2.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>1</text>
+          <text x={3.85 * BS} y={3.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>0</text>
+          <text x={4.85 * BS} y={4.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>0</text>
+          <text x={5.85 * BS} y={5.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>0</text>
+          <text x={6.85 * BS} y={6.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>1</text>
+          <text x={7.85 * BS} y={7.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>0</text>
+          <text x={8.85 * BS} y={8.25 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>1</text>
         </Simulator>
         <Typography paragraph>Every splitter corresponding to a {$('1')} feeds into the top output, while the splitters corresponding to a {$('0')} have their outputs dumped elsewhere. The last splitter also feeds back into one of the previous splitters, to represent the {$('\\color{red}{\\text{repetend}}')}. Since every rational number can be written as a terminating or repeating decimal in binary, every rational number can be represented by some system of splitters.</Typography>
         <Simulator blueprint={'\
@@ -223,14 +223,14 @@ const FactorioFractions = (): React.ReactElement => {
           _ _ ^ _ _ _   v   v __ \n\
           _ _ ^ < < < < < < < __ '}
         >
-          <text x={0.37 * BS} y={1.75 * BS} style={{ fontFamily: 'Times New Roman', fontSize: 0.8 * BS + 'px' }}>I</text>
-          <text x={2.9 * BS} y={2.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>A</text>
-          <text x={3.9 * BS} y={1.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>B</text>
-          <text x={5.9 * BS} y={3.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>C</text>
-          <text x={6.9 * BS} y={2.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>D</text>
-          <text x={7.9 * BS} y={3.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: BS + 'px' }}>E</text>
-          <text x={11 * BS} y={1.75 * BS} style={{ fontFamily: 'Times New Roman', fontSize: 0.8 * BS + 'px' }}>O1</text>
-          <text x={11 * BS} y={2.75 * BS} style={{ fontFamily: 'Times New Roman', fontSize: 0.8 * BS + 'px' }}>O2</text>
+          <text x={0.37 * BS} y={1.75 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${0.8 * BS}px` }}>I</text>
+          <text x={2.9 * BS} y={2.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>A</text>
+          <text x={3.9 * BS} y={1.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>B</text>
+          <text x={5.9 * BS} y={3.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>C</text>
+          <text x={6.9 * BS} y={2.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>D</text>
+          <text x={7.9 * BS} y={3.3 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${BS}px` }}>E</text>
+          <text x={11 * BS} y={1.75 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${0.8 * BS}px` }}>O1</text>
+          <text x={11 * BS} y={2.75 * BS} style={{ fontFamily: 'Times New Roman', fontSize: `${0.8 * BS}px` }}>O2</text>
         </Simulator>
         <Graph
           width={480}
