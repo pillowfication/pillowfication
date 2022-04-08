@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     position: 'absolute',
     width: '100%',
-    height: 0,
+    height: 0
   },
   gridLabel: {
     position: 'absolute',
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function offset (percent: number, offset: number) {
+function offset (percent: number, offset: number): string {
   return `calc(${percent}% - ${offset}px)`
 }
 

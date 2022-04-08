@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 interface ReferenceProps {
-  identifier?: string,
-  references: string[],
+  identifier?: string
+  references: string[]
   refIds: string[]
 }
 
@@ -34,14 +34,14 @@ const Reference = ({ identifier, references, refIds }: ReferenceProps): React.Re
           const count = references.length - refIds.length + index
           const reference = (
             <Link
-              href={`#[${identifier ? identifier + (count + 1) : (count + 1)}]`}
+              href={`#[${identifier ?? 0 + (count + 1)}]`}
               className={classes.reference}
             >
               {count + 1}
             </Link>
           )
           return index > 0
-            ? [<Fragment key={'f' + index}>, </Fragment>, reference]
+            ? [<Fragment key={`f${index}`}>, </Fragment>, reference]
             : reference
         })
         .flat()}
@@ -50,8 +50,8 @@ const Reference = ({ identifier, references, refIds }: ReferenceProps): React.Re
 }
 
 interface FootnoteProps {
-  identifier?: string,
-  references: string[],
+  identifier?: string
+  references: string[]
   footnotes: Record<string, any>
 }
 
@@ -65,7 +65,7 @@ const Footnote = ({ identifier, references, footnotes }: FootnoteProps): React.R
           <Typography
             key={id}
             component='li'
-            id={`[${identifier ? identifier + (index + 1) : (index + 1)}]`}
+            id={`[${identifier ?? 0 + (index + 1)}]`}
           >
             {footnotes[id]}
           </Typography>
@@ -87,7 +87,7 @@ class Footnotes {
     this.createFootnote = this.createFootnote.bind(this)
   }
 
-  createReference (...refIds: string[]) {
+  createReference (...refIds: string[]): React.ReactElement {
     this.references.push(...refIds)
     return (
       <Reference
@@ -98,7 +98,7 @@ class Footnotes {
     )
   }
 
-  createFootnote (footnotes: Record<string, any>) {
+  createFootnote (footnotes: Record<string, any>): React.ReactElement {
     return (
       <Footnote
         identifier={this.identifier}

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 interface Props {
-  template: string,
+  template: string
   misses?: string
 }
 
@@ -35,7 +35,7 @@ const HangmanGame = ({ template, misses }: Props): React.ReactElement => {
   return (
     <div className={classes.hangmanGame}>
       <div>{template}</div>
-      {misses && (
+      {misses !== undefined && (
         <div>
           {misses.split('').map((letter, index) =>
             <span key={index} className={classes.miss}>{letter}</span>)}

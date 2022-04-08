@@ -31,7 +31,7 @@ const WordsTable = ({ data }: Props): React.ReactElement => {
   const classes = useStyles()
   const [show, setShow] = useState(false)
 
-  const toggleShow = () => {
+  const toggleShow = (): void => {
     setShow(!show)
   }
 

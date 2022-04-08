@@ -59,11 +59,11 @@
 const { TRIPLES, fromId } = require('./enumerate')
 
 const TYPES_MAP = {
-  'xN': null,
-  'x2': 2,
-  'x3': 3,
-  'x4': 4,
-  'x5': 5,
+  xN: null,
+  x2: 2,
+  x3: 3,
+  x4: 4,
+  x5: 5,
   'x2 x3': 6,
   'x2 x5': 10,
   'x3 x4': 12,

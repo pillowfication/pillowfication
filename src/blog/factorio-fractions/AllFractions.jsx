@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
+import React, { Component } from 'react' // eslint-disable-line no-unused-vars
+import Box from '@material-ui/core/Box' // eslint-disable-line no-unused-vars
+import Grid from '@material-ui/core/Grid' // eslint-disable-line no-unused-vars
+import Typography from '@material-ui/core/Typography' // eslint-disable-line no-unused-vars
+import TextField from '@material-ui/core/TextField' // eslint-disable-line no-unused-vars
 import { $, $$ } from '../../MathJax'
-import Graph, { fromSystem } from './Graph.jsx'
+import { fromSystem } from './Graph.jsx'
 import { Fraction } from './gists/math'
 import results from './gists/results.json'
 
@@ -136,16 +137,17 @@ class AllFractions extends Component {
           <Grid item sm={12}>
             {graph
               ? (
-                <>
-                  {graph}
-                  {$$(`
-                    \\frac{${p}}{${q}} =
-                    ${findCombination(outputs, new Fraction(mp, mq)).map(i => `\\text{${nodeLabels[i]}}`).join('+')}
-                  `)}
-                </>
-              ) : (
-                <Typography paragraph>No results.</Typography>
-              )
+                  <>
+                    {graph}
+                    {$$(`
+                      \\frac{${p}}{${q}} =
+                      ${findCombination(outputs, new Fraction(mp, mq)).map(i => `\\text{${nodeLabels[i]}}`).join('+')}
+                    `)}
+                  </>
+                )
+              : (
+                  <Typography paragraph>No results.</Typography>
+                )
             }
           </Grid>
         </Grid>

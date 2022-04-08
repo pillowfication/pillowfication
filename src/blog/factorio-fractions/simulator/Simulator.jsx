@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react' // eslint-disable-line no-unused-vars
 import { withStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Button from '@material-ui/core/Button'
-import Highlight from '../../../Highlight'
+import Box from '@material-ui/core/Box' // eslint-disable-line no-unused-vars
+import ButtonGroup from '@material-ui/core/ButtonGroup' // eslint-disable-line no-unused-vars
+import Button from '@material-ui/core/Button' // eslint-disable-line no-unused-vars
+import Highlight from '../../../Highlight' // eslint-disable-line no-unused-vars
 import tokenizeBlueprint from './tokenize-blueprint'
 import attachNetwork from './attach-network'
 import p from './Path'

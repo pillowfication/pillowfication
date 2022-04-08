@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Box from '@material-ui/core/Box'
+import React, { Component } from 'react' // eslint-disable-line no-unused-vars
+import Box from '@material-ui/core/Box' // eslint-disable-line no-unused-vars
 
 const styles = {
   node: { fill: 'white', stroke: '#1663c7', strokeWidth: '2px' },

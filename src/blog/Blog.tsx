@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 interface Props {
-  title: string,
-  date?: string,
-  className?: string,
+  title: string
+  date?: string
+  className?: string
   children?: any
 }
 
@@ -28,7 +28,7 @@ const Blog = ({ title, date, className, children }: Props): React.ReactElement =
       <Box component='article' mt={8} mb={16} className={className}>
         <Typography variant='h1' className={classes.title}>
           {title}
-          {date && (
+          {date !== undefined && (
             <Typography component='span' className={classes.date}>{date}</Typography>
           )}
         </Typography>

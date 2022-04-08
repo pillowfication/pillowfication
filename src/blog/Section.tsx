@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 
 interface Props {
-  title?: React.ReactNode,
+  title?: React.ReactNode
   children?: any
 }
 

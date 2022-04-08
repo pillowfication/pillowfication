@@ -33,13 +33,13 @@ const PASSED = [
 ]
 
 function stringifyStatement (statement: any): string {
-  return statement.divisibility.substring(1) + ' ' +
+  return (statement.divisibility as string).substring(1) + ' ' +
     (statement.truth === TRUE ? '\\mid ' : '\\nmid ') +
     SIDES.get(statement.triple[statement.side])
 }
 
 function stringifyStep (permutation: any, stepRule: any): string {
-  if (!stepRule) {
+  if (stepRule === undefined) {
     return '\\text{Initialization}'
   }
 
@@ -103,10 +103,12 @@ const Playground = (): React.ReactElement => {
   const _stepIndex = stepIndex === -1 ? verification.steps.length - 1 : stepIndex
   const step = verification.steps[_stepIndex]
   const then = _stepIndex === 0 ? null : step.rule.then
-  const newKnowledge = _stepIndex === 0 ? null : {
-    side: then.triple[then.side],
-    divisibility: then.divisibility
-  }
+  const newKnowledge = _stepIndex === 0
+    ? null
+    : {
+        side: then.triple[then.side],
+        divisibility: then.divisibility
+      }
 
   useEffect(() => {
     const id = 2985984 * Math.random() | 0
@@ -114,25 +116,25 @@ const Playground = (): React.ReactElement => {
     setIdInput(String(id))
   }, [])
 
-  const handleInputId = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputId = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const idInput = event.target.value
-    const id = Math.min(2985983, Math.max(0, Math.floor(Number(idInput) || 0)))
+    const id = Math.min(2985983, Math.max(0, Math.floor(Number(idInput) ?? 0)))
     setIdInput(idInput)
     setId(id)
     setStepIndex(-1)
   }
 
-  const handleBlurId = () => {
+  const handleBlurId = (): void => {
     setIdInput(String(id))
   }
 
-  const handleClickId = (id: number) => {
+  const handleClickId = (id: number): void => {
     setId(id)
     setIdInput(String(id))
     setStepIndex(-1)
   }
 
-  const handleSelectRadio = (triple: string, type: string) => {
+  const handleSelectRadio = (triple: string, type: string): void => {
     permutation[triple] = type
     const id = toId(permutation)
     setId(id)
@@ -140,14 +142,14 @@ const Playground = (): React.ReactElement => {
     setStepIndex(-1)
   }
 
-  const handleSelectStep = (stepIndex: number) => {
+  const handleSelectStep = (stepIndex: number): void => {
     setStepIndex(stepIndex)
   }
 
-  const onSelectKnowledge = (steps: any, side: any, divisibility: any) => {
+  const onSelectKnowledge = (steps: any, side: any, divisibility: any): void => {
     const currStepIndex = stepIndex
     const nextStepIndex = steps.findIndex((step: any) => {
-      if (!step.rule) {
+      if (step.rule === undefined) {
         return false
       }
 
@@ -239,8 +241,8 @@ const Playground = (): React.ReactElement => {
                     {$(stringifyStep(permutation, step.rule))}
                   </li>
                 )}
-                <li className={clsx(verification.contradiction && classes.contradiction)}>
-                  {$(verification.contradiction
+                <li className={clsx((verification.contradiction as boolean) && classes.contradiction)}>
+                  {$((verification.contradiction as boolean)
                     ? stringifyStep(permutation, verification.contradiction)
                     : '\\text{No contradiction}'
                   )}
@@ -274,7 +276,7 @@ const Playground = (): React.ReactElement => {
                         <TableCell
                           key={divisibility.name}
                           align='center'
-                          className={clsx(stepIndex &&
+                          className={clsx(stepIndex > 0 &&
                             newKnowledge?.side === side.name &&
                             newKnowledge?.divisibility === divisibility.name &&
                             classes.selected

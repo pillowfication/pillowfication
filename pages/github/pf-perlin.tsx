@@ -148,7 +148,7 @@ const GridExample = ({ width }: { width: number }): React.ReactElement => {
           </marker>
         </defs>
         {(() => {
-          const children: React.ReactNodeArray = []
+          const children: React.ReactNode[] = []
 
           for (let x = startX, canvasX = startCanvasX; canvasX <= width + GRID_RESOLUTION; ++x, canvasX += GRID_RESOLUTION) {
             children.push(
@@ -531,7 +531,7 @@ const OctaveExample = ({ width }: { width: number }): React.ReactElement => {
           stroke='#7caff0' strokeWidth='3'
         />
         {(() => {
-          const children: React.ReactNodeArray = []
+          const children: React.ReactNode[] = []
 
           for (let index = 0, canvasX = GRAPH_PADDING + left; canvasX <= width - GRAPH_PADDING; ++index, canvasX += GRAPH_RESOLUTION) {
             children.push(
