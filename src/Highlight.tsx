@@ -1,8 +1,13 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Head from 'next/head'
-import ReactHighlight from 'react-highlight.js'
 import Paper from '@material-ui/core/Paper'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { github } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import javascript from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript'
+import latex from 'react-syntax-highlighter/dist/cjs/languages/hljs/latex'
+
+SyntaxHighlighter.registerLanguage('javascript', javascript)
+SyntaxHighlighter.registerLanguage('latex', latex)
 
 const useStyles = makeStyles(theme => ({
   highlight: {
@@ -27,16 +32,9 @@ const Highlight = ({ language, children }: Props): React.ReactElement => {
 
   return (
     <Paper variant='outlined' className={classes.highlight}>
-      <Head>
-        <link
-          key='hljs-css'
-          rel='stylesheet'
-          href={`https://highlightjs.org/static/demo/styles/github.css`}
-        />
-      </Head>
-      <ReactHighlight language={language}>
+      <SyntaxHighlighter language={language} style={github}>
         {children}
-      </ReactHighlight>
+      </SyntaxHighlighter>
     </Paper>
   )
 }

@@ -23,41 +23,45 @@ const Index = (): React.ReactElement => {
       </Box>
       <Section>
         <ul>
-          <Typography component='li'>
-            <Link href='blog/hangman'>
-              <span className={classes.date}>2020/01/20</span> - Hangman
-            </Link>
-          </Typography>
-          <Typography component='li'>
-            <Link href='blog/factorio-fractions'>
-              <span className={classes.date}>2019/10/05</span> - Factorio Fractions
-            </Link>
-          </Typography>
-          <Typography component='li'>
-            <Link href='blog/godels-incompleteness-theorems'>
-              <span className={classes.date}>2019/03/12</span> - Gödel’s Incompleteness Theorems
-            </Link>
-          </Typography>
-          <Typography component='li'>
-            <Link href='blog/swap-sorting'>
-              <span className={classes.date}>2018/09/02</span> - Swap Sorting
-            </Link>
-          </Typography>
-          <Typography component='li'>
-            <Link href='blog/scss-in-a-nutshell'>
-              <span className={classes.date}>2015/07/20</span> - SCSS in a Nutshell
-            </Link>
-          </Typography>
-          <Typography component='li'>
-            <Link href='blog/perfect-cuboid'>
-              <span className={classes.date}>2015/04/23</span> - Perfect Cuboid
-            </Link>
-          </Typography>
-          <Typography component='li'>
-            <Link href='blog/css-in-a-nutshell'>
-              <span className={classes.date}>2015/03/08</span> - CSS in a Nutshell
-            </Link>
-          </Typography>
+          {[{
+            title: 'Spot It!',
+            date: '2020/12/25',
+            url: 'blog/spot-it'
+          }, {
+            title: 'Hangman',
+            date: '2020/01/20',
+            url: 'blog/hangman'
+          }, {
+            title: 'Factorio Fractions',
+            date: '2019/10/05',
+            url: 'blog/factorio-fractions'
+          }, {
+            title: 'Gödel’s Incompleteness Theorems',
+            date: '2019/03/12',
+            url: 'blog/godels-incompleteness-theorems'
+          }, {
+            title: 'Swap Sorting',
+            date: '2018/09/02',
+            url: 'blog/swap-sorting'
+          }, {
+            title: 'SCSS in a Nutshell',
+            date: '2015/07/20',
+            url: 'blog/scss-in-a-nutshell'
+          }, {
+            title: 'Perfect Cuboid',
+            date: '2015/04/23',
+            url: 'blog/perfect-cuboid'
+          }, {
+            title: 'CSS in a Nutshell',
+            date: '2015/03/08',
+            url: 'blog/css-in-a-nutshell'
+          }].map(blog => (
+            <Typography key={blog.url} component='li'>
+              <Link href={blog.url}>
+                <span className={classes.date}>{blog.date}</span> - {blog.title}
+              </Link>
+            </Typography>
+          ))}
         </ul>
       </Section>
     </Container>
