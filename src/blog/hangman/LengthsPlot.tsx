@@ -4,7 +4,7 @@ import { $ } from '../../MathJax'
 
 const LENGTHS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   lengthsPlot: {
     position: 'relative',
     height: 250,

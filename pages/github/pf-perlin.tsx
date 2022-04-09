@@ -12,7 +12,7 @@ import Blog from '../../src/blog/Blog'
 import Section from '../../src/blog/Section'
 import { $, $$ } from '../../src/MathJax'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   figure: {
     margin: theme.spacing(4, 0),
     '& > figcaption': {

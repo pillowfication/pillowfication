@@ -19,7 +19,7 @@ const styles = {
 const CUBOID_WIDTH = 440
 const CUBOID_HEIGHT = 260
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   diagramContainer: {
     '& > div': {
       position: 'relative',

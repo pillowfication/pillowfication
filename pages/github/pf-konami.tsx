@@ -26,7 +26,7 @@ const KONAMI: Array<{ code: string, icon: React.ReactNode }> = [
   { code: 'KeyA', icon: <Icon>A</Icon> }
 ]
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   example: {
     display: 'inline-block',
     paddingLeft: theme.spacing(2),

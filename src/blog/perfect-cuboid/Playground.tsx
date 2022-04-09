@@ -39,7 +39,7 @@ function stringifyStatement (statement: any): string {
 }
 
 function stringifyStep (permutation: any, stepRule: any): string {
-  if (stepRule === undefined) {
+  if (stepRule == null) {
     return '\\text{Initialization}'
   }
 
@@ -149,7 +149,7 @@ const Playground = (): React.ReactElement => {
   const onSelectKnowledge = (steps: any, side: any, divisibility: any): void => {
     const currStepIndex = stepIndex
     const nextStepIndex = steps.findIndex((step: any) => {
-      if (step.rule === undefined) {
+      if (step.rule == null) {
         return false
       }
 

@@ -56,7 +56,7 @@ const stats = {
   }
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   barGraph: {
     border: 'none',
     '& th, & td': {

@@ -18,7 +18,7 @@ const withHeader = (theme: Theme, title: string): any => ({
   }
 })
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   container: {
     counterReset: 'corollary theorem'
   },

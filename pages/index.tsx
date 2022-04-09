@@ -88,7 +88,7 @@ const PILLOWFICATION = {
   }
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     width: '100vw',

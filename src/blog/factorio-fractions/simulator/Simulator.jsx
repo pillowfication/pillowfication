@@ -578,7 +578,7 @@ class Simulator extends Component {
 //   bare: PropTypes.bool
 // }
 
-export default withStyles((theme) => ({
+export default withStyles(theme => ({
   buttonGroup: {
     margin: theme.spacing(0, 2),
     '& button': {
