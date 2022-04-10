@@ -1,25 +1,17 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
+import { styled } from '@mui/system'
+import Paper from '@mui/material/Paper'
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { github } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import css from 'react-syntax-highlighter/dist/cjs/languages/hljs/css'
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript'
 import latex from 'react-syntax-highlighter/dist/cjs/languages/hljs/latex'
 
+SyntaxHighlighter.registerLanguage('javascript', css)
 SyntaxHighlighter.registerLanguage('javascript', javascript)
 SyntaxHighlighter.registerLanguage('latex', latex)
 
-const useStyles = makeStyles(theme => ({
-  highlight: {
-    fontSize: '1.125em',
-    marginBottom: theme.spacing(2),
-    '& pre': {
-      margin: theme.spacing(1)
-    },
-    '& code': {
-      background: 'none'
-    }
-  }
+const HighlighterContainer = styled(Paper)(({ theme }) => ({
 }))
 
 interface Props {
@@ -28,14 +20,15 @@ interface Props {
 }
 
 const Highlight = ({ language, children }: Props): React.ReactElement => {
-  const classes = useStyles()
-
   return (
-    <Paper variant='outlined' className={classes.highlight}>
-      <SyntaxHighlighter language={language} style={github}>
-        {children}
-      </SyntaxHighlighter>
-    </Paper>
+    <HighlighterContainer
+      component={SyntaxHighlighter}
+      variant='outlined'
+      language={language}
+      style={github}
+    >
+      {children}
+    </HighlighterContainer>
   )
 }
 

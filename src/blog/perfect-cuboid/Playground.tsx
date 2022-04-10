@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import { alpha } from '@material-ui/core/styles/colorManipulator'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
-import TextField from '@material-ui/core/TextField'
-import Radio from '@material-ui/core/Radio'
-import Button from '@material-ui/core/Button'
-import CheckIcon from '@material-ui/icons/Check'
-import CloseIcon from '@material-ui/icons/Close'
-import RemoveIcon from '@material-ui/icons/Remove'
+import { alpha } from '@mui/material/styles'
+import { grey } from '@mui/material/colors'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import TableContainer from '@mui/material/TableContainer'
+import Table from '@mui/material/Table'
+import TableHead from '@mui/material/TableHead'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+import TextField from '@mui/material/TextField'
+import Radio from '@mui/material/Radio'
+import Button from '@mui/material/Button'
+import CheckIcon from '@mui/icons-material/Check'
+import CloseIcon from '@mui/icons-material/Close'
+import RemoveIcon from '@mui/icons-material/Remove'
 import Link from '../../Link'
 import Section from '../Section'
 import { $ } from '../../MathJax'
@@ -54,47 +54,7 @@ function stringifyStep (permutation: any, stepRule: any): string {
   return _if + ' \\implies ' + _then
 }
 
-const useStyles = makeStyles(theme => ({
-  buttonControl: {
-    display: 'initial',
-    '& button': {
-      margin: theme.spacing(1)
-    }
-  },
-  radioTable: {
-    marginBottom: theme.spacing(2),
-    '& td, & td:last-child': {
-      padding: 0
-    }
-  },
-  knowledgeTable: {
-    '& td, & td:last-child': {
-      paddingLeft: 0,
-      paddingRight: 0
-    }
-  },
-  step: {
-    cursor: 'pointer'
-  },
-  contradiction: {
-    color: 'red'
-  },
-  trueIcon: {
-    color: theme.palette.success.main
-  },
-  falseIcon: {
-    color: theme.palette.error.main
-  },
-  unknownIcon: {
-    color: theme.palette.grey[300]
-  },
-  selected: {
-    backgroundColor: alpha(theme.palette.primary.main, 0.25)
-  }
-}))
-
 const Playground = (): React.ReactElement => {
-  const classes = useStyles()
   const [id, setId] = useState(0)
   const [idInput, setIdInput] = useState('0')
   const [stepIndex, setStepIndex] = useState(-1)
@@ -166,53 +126,54 @@ const Playground = (): React.ReactElement => {
     <Section title='Playground'>
       <Typography paragraph>See the old playground <Link href='http://old.pillowfication.com/projects/cuboid/'>here</Link>. All code and data are in the <Link href='https://github.com/pillowfication/perfect-cuboid'>GitHub repository</Link>.</Typography>
       <Grid container spacing={2}>
-        <Grid item sm={3}>
-          <FormControl component='fieldset'>
+        <Grid item xs={12} md={3}>
+          <FormControl component='fieldset' sx={{ width: 1.00 }}>
             <FormLabel component='legend'>Case Identifier</FormLabel>
             <TextField
               type='number'
+              variant='standard'
+              fullWidth
               value={idInput}
               onChange={handleInputId}
               onBlur={handleBlurId}
+              sx={{ my: 0.5 }}
             />
           </FormControl>
         </Grid>
-        <Grid item sm={9}>
-          <FormControl component='fieldset' className={classes.buttonControl}>
+        <Grid item xs={12} md={9}>
+          <FormControl component='fieldset'>
             <FormLabel component='legend'>Equivalents</FormLabel>
-            {getEquivalents(id).map((equivalent: number) =>
-              <Button
-                key={equivalent}
-                variant='contained'
-                color={id === equivalent ? 'primary' : 'default'}
-                onClick={handleClickId.bind(null, equivalent)}
-              >
-                {equivalent}
-              </Button>
-            )}
+            <Box sx={{ flexFlow: 'row wrap' }}>
+              {getEquivalents(id).map((equivalent: number) =>
+                <Button
+                  key={equivalent}
+                  variant={equivalent === id ? 'contained' : 'outlined'}
+                  onClick={handleClickId.bind(null, equivalent)}
+                  sx={{ m: 0.5 }}
+                >
+                  {equivalent}
+                </Button>
+              )}
+            </Box>
           </FormControl>
         </Grid>
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <TableContainer>
-            <Table size='small' className={classes.radioTable}>
+            <Table size='small'>
               <TableHead>
                 <TableRow>
                   <TableCell />
                   {TRIPLES.map(triple =>
-                    <TableCell key={triple.name} align='center'>
-                      {$(triple.label)}
-                    </TableCell>
+                    <TableCell key={triple.name} align='center'>{$(triple.label)}</TableCell>
                   )}
                 </TableRow>
               </TableHead>
               <TableBody>
                 {TYPES.map(type =>
                   <TableRow key={type.name}>
-                    <TableCell component='th' scope='row' align='center'>
-                      {$(type.label)}
-                    </TableCell>
+                    <TableCell component='th' scope='row' align='center'>{$(type.label)}</TableCell>
                     {TRIPLES.map(triple =>
-                      <TableCell key={triple.name} align='center'>
+                      <TableCell key={triple.name} align='center' sx={{ p: 0 }}>
                         <Radio
                           size='small'
                           name={triple.name}
@@ -227,35 +188,43 @@ const Playground = (): React.ReactElement => {
             </Table>
           </TableContainer>
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs={12} md={6}>
           <FormControl component='fieldset'>
             <FormLabel component='legend'>Steps</FormLabel>
             <TableContainer>
-              <ol start={0}>
+              <Box component='ol' start={0} my={0} pl='50px'>
                 {verification.steps.map((step: any, index: number) =>
-                  <li
+                  <Box
+                    component='li'
                     key={index}
                     onClick={handleSelectStep.bind(null, index)}
-                    className={clsx(classes.step, _stepIndex === index && classes.selected)}
+                    sx={{
+                      cursor: 'pointer',
+                      backgroundColor: theme =>
+                        _stepIndex === index ? alpha(theme.palette.primary.main, 0.15) : undefined
+                    }}
                   >
                     {$(stringifyStep(permutation, step.rule))}
-                  </li>
+                  </Box>
                 )}
-                <li className={clsx((verification.contradiction as boolean) && classes.contradiction)}>
+                <Box component='li' sx={{
+                  color: theme =>
+                    (verification.contradiction as boolean) ? theme.palette.error.main : undefined
+                }}>
                   {$((verification.contradiction as boolean)
                     ? stringifyStep(permutation, verification.contradiction)
                     : '\\text{No contradiction}'
                   )}
-                </li>
-              </ol>
+                </Box>
+              </Box>
             </TableContainer>
           </FormControl>
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs={12} md={6}>
           <FormControl component='fieldset'>
             <FormLabel component='legend'>Knowledge (step {_stepIndex})</FormLabel>
             <TableContainer>
-              <Table size='small' className={classes.knowledgeTable}>
+              <Table size='small'>
                 <TableHead>
                   <TableRow>
                     <TableCell />
@@ -276,22 +245,31 @@ const Playground = (): React.ReactElement => {
                         <TableCell
                           key={divisibility.name}
                           align='center'
-                          className={clsx(stepIndex > 0 &&
-                            newKnowledge?.side === side.name &&
-                            newKnowledge?.divisibility === divisibility.name &&
-                            classes.selected
-                          )}
                           onClick={onSelectKnowledge.bind(null, verification.steps, side.name, divisibility.name)}
+                          sx={(() => {
+                            const state = TRUTH_STATES.get(step.knowledge[side.name][divisibility.name])
+                            return {
+                              cursor: state === 'true' || state === 'false' ? 'pointer' : undefined,
+                              backgroundColor: theme =>
+                                _stepIndex > 0 && newKnowledge?.side === side.name && newKnowledge?.divisibility === divisibility.name
+                                  ? alpha(theme.palette.primary.main, 0.15)
+                                  : undefined,
+                              color: theme => {
+                                switch (state) {
+                                  case 'true': return theme.palette.success.main
+                                  case 'false': return theme.palette.error.main
+                                  default: return grey[300]
+                                }
+                              }
+                            }
+                          })()}
                         >
                           {(() => {
-                            const state = step.knowledge[side.name][divisibility.name]
-                            switch (TRUTH_STATES.get(state)) {
-                              case 'true':
-                                return <CheckIcon className={classes.trueIcon} />
-                              case 'false':
-                                return <CloseIcon className={classes.falseIcon} />
-                              case 'unknown':
-                                return <RemoveIcon className={classes.unknownIcon} />
+                            const state = TRUTH_STATES.get(step.knowledge[side.name][divisibility.name])
+                            switch (state) {
+                              case 'true': return <CheckIcon sx={{ verticalAlign: 'middle' }} />
+                              case 'false': return <CloseIcon sx={{ verticalAlign: 'middle' }} />
+                              default: return <RemoveIcon sx={{ verticalAlign: 'middle' }} />
                             }
                           })()}
                         </TableCell>
@@ -303,19 +281,21 @@ const Playground = (): React.ReactElement => {
             </TableContainer>
           </FormControl>
         </Grid>
-        <Grid item sm={12}>
-          <FormControl component='fieldset' className={classes.buttonControl}>
+        <Grid item xs={12}>
+          <FormControl component='fieldset'>
             <FormLabel component='legend'>Passed Cases (50 total)</FormLabel>
-            {PASSED.map((equivalent: number) =>
-              <Button
-                key={equivalent}
-                variant='contained'
-                color={id === equivalent ? 'primary' : 'default'}
-                onClick={handleClickId.bind(null, equivalent)}
-              >
-                {equivalent}
-              </Button>
-            )}
+            <Box sx={{ flexFlow: 'row wrap' }}>
+              {PASSED.map((passed: number) =>
+                <Button
+                  key={passed}
+                  variant={passed === id ? 'contained' : 'outlined'}
+                  onClick={handleClickId.bind(null, passed)}
+                  sx={{ m: 0.5 }}
+                >
+                  {passed}
+                </Button>
+              )}
+            </Box>
           </FormControl>
         </Grid>
       </Grid>

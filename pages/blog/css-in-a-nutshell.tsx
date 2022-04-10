@@ -1,7 +1,7 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
-import Alert from '@material-ui/lab/Alert'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
+import Alert from '@mui/material/Alert'
 import Blog from '../../src/blog/Blog'
 import Section from '../../src/blog/Section'
 import Highlight from '../../src/Highlight'
@@ -14,13 +14,13 @@ const CSSInANutshell = (): React.ReactElement => {
           This article is old and may contain information or advice that is deprecated.
         </Alert>
       </Section>
+
       <Section>
         <Typography paragraph>CSS stands for Cascading Style Sheet and is pretty much just a list of rules that govern how an HTML page appears. A rule in CSS looks like:</Typography>
         <Highlight language='css'>
           {'selector {property: value;}'}
         </Highlight>
         <Typography paragraph><code>selector</code> determines which elements the rules apply to. The most important selectors are <code>element</code>, <code>.class</code>, and <code>#id</code>. A selector of h1 would apply to all <code>{'<h1>'}</code> tags, and a selector of <code>#potato</code> would apply to all elements with <code>id="potato"</code>.</Typography>
-
         <Typography paragraph>You can also chain selectors together in several ways</Typography>
         <Highlight language='css'>
           {`
@@ -30,14 +30,12 @@ body > div            All <div> that is a direct child of a <body>
 h1, h2, h3            All <h1>, and all <h2>, and all <h3>
           `.trim()}
         </Highlight>
-
         <Typography paragraph>There are also pseudo-classes that are prefixed with a colon. For example, <code>:hover</code> is a pseudo-class that is applied onto an element when the user’s mouse is over it.</Typography>
         <Highlight language='css'>
           {`
 a:hover               All <a> that have a mouse hovering over them
           `.trim()}
         </Highlight>
-
         <Typography paragraph>There are also pseudo-elements that are prefixed with a double colon. For example, <code>::first-letter</code> corresponds to the pseudo-element that is the first letter of another element.</Typography>
         <Highlight language='css'>
           {`
@@ -45,7 +43,6 @@ p::first-letter       All ::first-letter’s of all <Typography paragraph> eleme
           `.trim()}
         </Highlight>
         <Typography paragraph>For a list of all CSS selectors: <Link href='http://www.w3schools.com/cssref/css_selectors.asp'>http://www.w3schools.com/cssref/css_selectors.asp</Link></Typography>
-
         <Typography paragraph>Another important aspect of CSS selectors has to do with precedence (a.k.a. specificity). Suppose you had the following element in HTML</Typography>
         <Highlight language='html'>
           {'<div id="potato"> ... </div>'}
@@ -63,7 +60,6 @@ div#potato {color: blue;}
         </Highlight>
         <Typography paragraph>in terms of precedence. (This idea of precedence is what “Cascading” in CSS refers to). When two or more rules with the same precedence are defined for an object, the rule defined latest will be used.</Typography>
         <Typography paragraph>For a more extensive understanding of precedence: <Link href='http://www.vanseodesign.com/css/css-specificity-inheritance-cascaade/'>http://www.vanseodesign.com/css/css-specificity-inheritance-cascaade/</Link></Typography>
-
         <Typography paragraph>Now that selectors are all taken care of, let’s talk about the <code>{'{property: value;}'}</code> portion of a CSS rule. <code>property</code> is any one of many properties an element can have. (Not all elements support the same properties. Only <code>{'<ul>'}</code> and <code>{'<ol>'}</code> support the <code>list-style-type</code> property). <code>value</code> is whatever values the property can take on. Every property-value pair should end with a semicolon (this is optional for the very last pair)</Typography>
         <Highlight language='css'>
           {'p.error {color: red; font-weight: bold; font-size: 16px}'}
@@ -73,7 +69,6 @@ div#potato {color: blue;}
           {'font-family: "Times New Roman", Georgia, serif;'}
         </Highlight>
         <Typography paragraph>(Note: values that contain spaces must be enclosed in quotes). In the above line, CSS would first try to apply <code>font-family: "Times New Roman"</code>, but if the font <code>"Times New Roman"</code> doesn’t exist, then it will fallback to <code>font-family: Georgia</code>, and if that doesn’t work either, it will finally try <code>font-family: serif</code>.</Typography>
-
         <Typography paragraph>CSS also includes shorthand properties which are used to set multiple properties at once. The values of shorthand properties are space separated.</Typography>
         <Highlight language='css'>
           {'margin: 60px 20px;'}
@@ -90,18 +85,18 @@ margin-left: 20px;
         <Typography paragraph>For a list of all CSS properties: <Link href='http://www.w3schools.com/cssref/'>http://www.w3schools.com/cssref/</Link></Typography>
       </Section>
 
-      <Section title='CSS misc.'>
-        <h3><code>inherit</code> and <code>initial</code></h3>
+      <Section title='CSS Miscellaneous'>
+        <Typography variant='h3' gutterBottom><code>inherit</code> and <code>initial</code></Typography>
         <Typography paragraph>All properties can take on a value of <code>inherit</code> and <code>initial</code>. <code>inherit</code> will cause the property to inherit its value from its parent element. <code>initial</code> will cause the property to use its default value. Sometimes this default value may vary depending on the browser.</Typography>
 
-        <h3><code>!important</code></h3>
+        <Typography variant='h3' gutterBottom><code>!important</code></Typography>
         <Typography paragraph>All values can be given the <code>!important</code> flag, which pretty much overrides all orders of precedence. For example</Typography>
         <Highlight language='css'>
           {'.error {color: red !important;}'}
         </Highlight>
         <Typography paragraph>will cause any element with <code>class="error"</code> to be displayed as red regardless of any other rules. Please try to avoid using this flag.</Typography>
 
-        <h3>Vendor prefixes</h3>
+        <Typography variant='h3' gutterBottom>Vendor Prefixes</Typography>
         <Typography paragraph>When a browser implements a property that is not in the CSS spec, or is part of a CSS spec that is experimental or subject to change, then they will usually attach a vendor prefix to that property value. (Unprefixed properties are guaranteed not to change). For example, <code>column-rule</code> is a fairly new property, and some browsers haven’t implemented it yet, but do include the vendor-prefixed versions. So to use <code>column-rule</code>, it would look something like</Typography>
         <Highlight language='css'>
           {`
@@ -112,7 +107,7 @@ column-rule: 3px outset blue;           For browsers that support this
         </Highlight>
         <Typography paragraph>Generally, using vendor prefixes are unnecessary, and having to include them may cause discrepancies between browsers. But for standardized CSS3 properties like <code>border-radius</code>, it may be good to also include their vendor prefixed counterparts to support older browsers.</Typography>
 
-        <h3>Units</h3>
+        <Typography variant='h3' gutterBottom>Units</Typography>
         <Typography paragraph>There are two types of CSS units: Absolute and Relative. Absolute units appear the same size no matter what device you are on. Avoid using these units since screen size can vary drastically.</Typography>
         <blockquote>
           Absolute: <code>mm</code>, <code>cm</code>, <code>in</code>, <code>pt</code>
@@ -160,7 +155,7 @@ html   {font-size: 10px;}
         </Highlight>
         <Typography paragraph>For browser compatibility, see <Link href='http://caniuse.com/#feat=calc'>http://caniuse.com/#feat=calc</Link></Typography>
 
-        <h3>Colors</h3>
+        <Typography variant='h3' gutterBottom>Colors</Typography>
         <Typography paragraph>A color can be represented using <code>rgb()</code></Typography>
         <Highlight language='css'>
           {`
@@ -195,7 +190,7 @@ chocolate    same as #D2691E
         <Typography paragraph>Other ways to specify a color include <code>hsl()</code>, <code>hsla()</code>, <code>hwb()</code>, and <code>gray()</code>.</Typography>
         <Typography paragraph>For the full color specification, see <Link href='http://dev.w3.org/csswg/css-color-4/'>http://dev.w3.org/csswg/css-color-4/</Link></Typography>
 
-        <h3><code>@font-face</code></h3>
+        <Typography variant='h3' gutterBottom><code>@font-face</code></Typography>
         <Typography paragraph>CSS also has a <code>@font-face</code> rule for defining new fonts to use.</Typography>
         <Highlight language='css'>
           {'@font-face {font-family: SexyFont; url("sexyfont.ttf");}'}
@@ -205,7 +200,7 @@ chocolate    same as #D2691E
           {'p.sexy {font-family: SexyFont;}'}
         </Highlight>
 
-        <h3>Media queries</h3>
+        <Typography variant='h3' gutterBottom>Media Queries</Typography>
         <Typography paragraph>CSS also includes ways to detect what sort of device the website is being viewed on, using the <code>@media</code> rule. The only media query you need to know is detecting the size of the screen (useful for responsive design).</Typography>
         <Highlight language='css'>
           {`

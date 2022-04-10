@@ -1,8 +1,8 @@
 import React, { Component } from 'react' // eslint-disable-line no-unused-vars
-import Box from '@material-ui/core/Box' // eslint-disable-line no-unused-vars
-import Grid from '@material-ui/core/Grid' // eslint-disable-line no-unused-vars
-import Typography from '@material-ui/core/Typography' // eslint-disable-line no-unused-vars
-import TextField from '@material-ui/core/TextField' // eslint-disable-line no-unused-vars
+import Box from '@mui/material/Box' // eslint-disable-line no-unused-vars
+import Grid from '@mui/material/Grid' // eslint-disable-line no-unused-vars
+import Typography from '@mui/material/Typography' // eslint-disable-line no-unused-vars
+import TextField from '@mui/material/TextField' // eslint-disable-line no-unused-vars
 import { $, $$ } from '../../MathJax'
 import { fromSystem } from './Graph.jsx'
 import { Fraction } from './gists/math'
@@ -126,13 +126,25 @@ class AllFractions extends Component {
             <Typography>{$('0 < p < q:')}</Typography>
           </Grid>
           <Grid item sm={6}>
-            <TextField type='number' value={p} onChange={this.handleInputP} />
+            <TextField
+              type='number'
+              variant='standard'
+              value={p}
+              onChange={this.handleInputP}
+              sx={{ py: 0 }}
+            />
           </Grid>
           <Grid item sm={6} align='right'>
             <Typography>{$('1 < q \\leq 64:')}</Typography>
           </Grid>
           <Grid item sm={6}>
-            <TextField type='number' value={q} onChange={this.handleInputQ} />
+            <TextField
+              type='number'
+              variant='standard'
+              value={q}
+              onChange={this.handleInputQ}
+              sx={{ py: 0 }}
+            />
           </Grid>
           <Grid item sm={12}>
             {graph

@@ -1,22 +1,7 @@
-import React, { Fragment } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
-
-const useStyles = makeStyles(theme => ({
-  reference: {
-    lineHeight: 0,
-    '@media print': {
-      textDecoration: 'none'
-    }
-  },
-  footnote: {
-    '& > ol': {
-      fontSize: '0.2rem',
-      marginLeft: theme.spacing(2)
-    }
-  }
-}))
+import React from 'react'
+import { styled } from '@mui/system'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
 
 interface ReferenceProps {
   identifier?: string
@@ -24,28 +9,27 @@ interface ReferenceProps {
   refIds: string[]
 }
 
-const Reference = ({ identifier, references, refIds }: ReferenceProps): React.ReactElement => {
-  const classes = useStyles()
+const ReferenceComponent = styled('sup')(() => ({
+  lineHeight: 0
+}))
 
+const Reference = ({ identifier, references, refIds }: ReferenceProps): React.ReactElement => {
   return (
-    <sup className={classes.reference}>
+    <ReferenceComponent>
       {Array(refIds.length).fill(undefined)
         .map((_, index) => {
           const count = references.length - refIds.length + index
           const reference = (
-            <Link
-              href={`#[${identifier ?? 0 + (count + 1)}]`}
-              className={classes.reference}
-            >
+            <Link key={index} href={`#[${identifier ?? 0 + (count + 1)}]`}>
               {count + 1}
             </Link>
           )
           return index > 0
-            ? [<Fragment key={`f${index}`}>, </Fragment>, reference]
+            ? [<React.Fragment key={`f${index}`}>, </React.Fragment>, reference]
             : reference
         })
         .flat()}
-    </sup>
+    </ReferenceComponent>
   )
 }
 
@@ -56,10 +40,8 @@ interface FootnoteProps {
 }
 
 const Footnote = ({ identifier, references, footnotes }: FootnoteProps): React.ReactElement => {
-  const classes = useStyles()
-
   return (
-    <small className={classes.footnote}>
+    <small>
       <ol>
         {references.map((id, index) => (
           <Typography

@@ -1,29 +1,23 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
+import { styled } from '@mui/system'
+import Typography from '@mui/material/Typography'
 import Blog from '../../src/blog/Blog'
 import Section from '../../src/blog/Section'
 import Footnotes from '../../src/Footnotes'
 import { $, $$ } from '../../src/MathJax'
 
-const useStyles = makeStyles(() => ({
-  statement: {
-    '& > span': {
-      whiteSpace: 'nowrap'
-    },
-    '&::before': {
-      content: '"“"',
-      whiteSpace: 'nowrap'
-    },
-    '&::after': {
-      content: '"”"',
-      whiteSpace: 'nowrap'
-    }
+const Statement = styled('span')(() => ({
+  '&::before': {
+    content: '"“"',
+    whiteSpace: 'nowrap'
+  },
+  '&::after': {
+    content: '"”"',
+    whiteSpace: 'nowrap'
   }
 }))
 
 const GodelsIncompletenessTheorems = (): React.ReactElement => {
-  const classes = useStyles()
   const { createReference, createFootnote } = new Footnotes()
 
   return (
@@ -55,7 +49,7 @@ const GodelsIncompletenessTheorems = (): React.ReactElement => {
 
       <Section title={<Typography variant='h2' gutterBottom>On Formally Undecidable Propositions of <i>Principia Mathematica</i> and Related Systems</Typography>}>
         <Typography paragraph>
-          Gödel’s proof is applied to some system strong enough to describe arithmetic. In his original paper, Gödel used an adaptation of <i>Principia Mathematica</i>. The system assumed here is Hofstadter’s Typographical Number Theory (TNT).{createReference('tnt')} TNT contains 20 symbols, 5 axioms, 8 rules of inference, and it can codify all of arithmetic. For example, the phrase <span className={classes.statement}>{$('x')} is an even number</span> in TNT could be <span className={classes.statement}>{$('\\exists a\' : (\\text{SS}0 \\cdot a\') = a')}</span> where {$('x')} is represented by the free variable {$('a')}.
+          Gödel’s proof is applied to some system strong enough to describe arithmetic. In his original paper, Gödel used an adaptation of <i>Principia Mathematica</i>. The system assumed here is Hofstadter’s Typographical Number Theory (TNT).{createReference('tnt')} TNT contains 20 symbols, 5 axioms, 8 rules of inference, and it can codify all of arithmetic. For example, the phrase <Statement>{$('x')} is an even number</Statement> in TNT could be <Statement>{$('\\exists a\' : (\\text{SS}0 \\cdot a\') = a')}</Statement> where {$('x')} is represented by the free variable {$('a')}.
         </Typography>
         <Typography>
           The first step is to assign a unique code number to each symbol as in the following table:
@@ -74,25 +68,25 @@ const GodelsIncompletenessTheorems = (): React.ReactElement => {
         </Typography>
         {$$('\\ulcorner\\varphi\\urcorner = 2^{c_1} \\times 3^{c_2} \\times 5^{c_3} \\times \\cdots \\times \\pi_k^{c_k} = \\prod_{i=1}^k \\pi_i^{c_i}')}
         <Typography paragraph>
-          where {$('\\pi_i')} indicates the {$('i')}<sup>th</sup> prime number.{createReference('gnn')} Thus the symbol <span className={classes.statement}>{$('\\sim')}</span> has Gödel number {$('2^{17} = 131,072')}. The statement <span className={classes.statement}>{$('a = a')}</span> has Gödel number {$('2^{12} \\cdot 3^{3} \\cdot 5^{12} = 2.7 \\times 10^{13}')}. Similarly, proofs, which are just sequences of statements, have unique Gödel numbers constructed the same way.{createReference('gnu', 'gnp')}
+          where {$('\\pi_i')} indicates the {$('i')}<sup>th</sup> prime number.{createReference('gnn')} Thus the symbol <Statement>{$('\\sim')}</Statement> has Gödel number {$('2^{17} = 131,072')}. The statement <Statement>{$('a = a')}</Statement> has Gödel number {$('2^{12} \\cdot 3^{3} \\cdot 5^{12} = 2.7 \\times 10^{13}')}. Similarly, proofs, which are just sequences of statements, have unique Gödel numbers constructed the same way.{createReference('gnu', 'gnp')}
         </Typography>
         <Typography>
           Thus all the rules of inference which state which strings can be transformed into which strings, can be reinterpreted as statements about numbers, specifically the Gödel numbers of those strings. Every well defined operation on strings, has an equivalent well defined arithmetical{createReference('art')} operation on numbers. Subsequently, a proof with Gödel number {$('a')} being a valid proof for a theorem with Gödel number {$('a\'')} represents some arithmetical relationship between {$('a')} and {$('a\'')}{createReference('ppa')} denoted as
         </Typography>
         {$$('\\operatorname{Prf}_{\\text{TNT}}\\langle a, a\' \\rangle.')}
         <Typography paragraph>
-          TNT is now equipped to do some meta-mathematical introspection. The phrase <span className={classes.statement}>{$('\\varphi')} is a theorem in TNT</span> is logically equivalent to the TNT-statement <span className={classes.statement}>{$('\\exists a : \\operatorname{Prf}_{\\text{TNT}}\\langle a, \\ulcorner\\varphi\\urcorner \\rangle')}.</span>
+          TNT is now equipped to do some meta-mathematical introspection. The phrase <Statement>{$('\\varphi')} is a theorem in TNT</Statement> is logically equivalent to the TNT-statement <Statement>{$('\\exists a : \\operatorname{Prf}_{\\text{TNT}}\\langle a, \\ulcorner\\varphi\\urcorner \\rangle')}.</Statement>
         </Typography>
         <Typography>
           One last piece of machinery is required to complete Gödel’s proof. Suppose {$('\\varphi')} is a TNT-statement with one free variable {$('a')}. The process of replacing all instances of {$('a')} with a specified constant {$('a\'')} results in a new statement whose Gödel number is denoted as
         </Typography>
         {$$('\\operatorname{Sub}(\\ulcorner\\varphi\\urcorner, \\ulcorner a \\urcorner, a\').')}
         <Typography>
-          Take for example the statement <span className={classes.statement}>{$('a = a')}</span> with Gödel number {$('2^{12} \\cdot 3^{3} \\cdot 5^{12}')}. Then
+          Take for example the statement <Statement>{$('a = a')}</Statement> with Gödel number {$('2^{12} \\cdot 3^{3} \\cdot 5^{12}')}. Then
         </Typography>
         {$$('\\operatorname{Sub}(\\overbrace{\\text{S $\\cdots$ S}}^{\\llap{\\large{2^{12} \\cdot}\\rlap{3^{3} \\cdot 5^{12}}}}0, \\overbrace{\\text{S $\\cdots$ S}}^{\\large{2^{12}}}0, \\text{S}0) = 2^{2} \\cdot 3^{1} \\cdot 5^{3} \\cdot 7^{2} \\cdot 11^{1}.')}
         <Typography paragraph>
-          This corresponds to replacing the free variable <span className={classes.statement}>{$('a')}</span> with the numeral <span className={classes.statement}>{$('\\text{S}0')}</span> to obtain <span className={classes.statement}>{$('\\text{S}0 = \\text{S}0')}.</span> This is again an arithmetical function describable by TNT.{createReference('sba')}
+          This corresponds to replacing the free variable <Statement>{$('a')}</Statement> with the numeral <Statement>{$('\\text{S}0')}</Statement> to obtain <Statement>{$('\\text{S}0 = \\text{S}0')}.</Statement> This is again an arithmetical function describable by TNT.{createReference('sba')}
         </Typography>
         <Typography>
           Now we can consider the statement
@@ -103,7 +97,7 @@ const GodelsIncompletenessTheorems = (): React.ReactElement => {
         </Typography>
         {$$('\\forall a\' : {\\sim}\\operatorname{Prf}_{\\text{TNT}}\\langle a\', \\operatorname{Sub}(\\overbrace{\\text{S $\\cdots$ S}}^{\\large{n}}0, \\overbrace{\\text{S $\\cdots$ S}}^{\\large{2^{12}}}0, \\overbrace{\\text{S $\\cdots$ S}}^{\\large{n}}0) \\rangle.')}
         <Typography paragraph>
-          This new statement called {$('G')} has a Gödel number, and this number is equal to {$('\\operatorname{Sub}(n, 2^{12}, n)')}. Furthermore, {$('G')} is a statement in the system of TNT that represents the meta-mathematical statement <span className={classes.statement}>The statement whose Gödel number is {$('\\operatorname{Sub}(n, 2^{12}, n)')} is not a theorem in TNT.</span> In other words, {$('G')} says, <span className={classes.statement}>{$('\\text{$G$ is not provable}')}.</span> Gödel further proved that {$('G')} is provable if and only if its formal negation {$('{\\sim}G')} is provable.{createReference('gng')} Since TNT is a consistent system,{createReference('icp')} neither {$('G')} nor {$('{\\sim}G')} are provable. By meta-mathematical reasoning, this implies that {$('G')}, which asserts a definite numerical property of the natural numbers, is true. {$('G')} is a true TNT-statement that cannot be proven in TNT.
+          This new statement called {$('G')} has a Gödel number, and this number is equal to {$('\\operatorname{Sub}(n, 2^{12}, n)')}. Furthermore, {$('G')} is a statement in the system of TNT that represents the meta-mathematical statement <Statement>The statement whose Gödel number is {$('\\operatorname{Sub}(n, 2^{12}, n)')} is not a theorem in TNT.</Statement> In other words, {$('G')} says, <Statement>{$('\\text{$G$ is not provable}')}.</Statement> Gödel further proved that {$('G')} is provable if and only if its formal negation {$('{\\sim}G')} is provable.{createReference('gng')} Since TNT is a consistent system,{createReference('icp')} neither {$('G')} nor {$('{\\sim}G')} are provable. By meta-mathematical reasoning, this implies that {$('G')}, which asserts a definite numerical property of the natural numbers, is true. {$('G')} is a true TNT-statement that cannot be proven in TNT.
         </Typography>
         <Typography paragraph>
           TNT is incomplete,{createReference('inc')} and this proof is not unique to TNT. Even if {$('G')} was added as an axiom to TNT to create TNT-{$('G')}, this new system has its own Gödel sentence {$('G_1')} that is also true and not provable. Every consistent system is incomplete.
@@ -154,7 +148,7 @@ const GodelsIncompletenessTheorems = (): React.ReactElement => {
           ),
           icp: (
             <Typography variant='body2'>
-              Proving consistency of a system usually involves finding a formula in that system that cannot be proven, since if a system were inconsistent, then all formulas could be proven. In TNT, all axioms are tautological, and all rules of inference preserve tautologicalness. Thus the formula <span className={classes.statement}>{$('a = a\'')}</span> which is not a tautology, cannot be proven.
+              Proving consistency of a system usually involves finding a formula in that system that cannot be proven, since if a system were inconsistent, then all formulas could be proven. In TNT, all axioms are tautological, and all rules of inference preserve tautologicalness. Thus the formula <Statement>{$('a = a\'')}</Statement> which is not a tautology, cannot be proven.
             </Typography>
           ),
           inc: (

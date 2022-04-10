@@ -1,5 +1,5 @@
 import React, { Component } from 'react' // eslint-disable-line no-unused-vars
-import Box from '@material-ui/core/Box' // eslint-disable-line no-unused-vars
+import Box from '@mui/material/Box' // eslint-disable-line no-unused-vars
 
 const styles = {
   node: { fill: 'white', stroke: '#1663c7', strokeWidth: '2px' },
@@ -19,7 +19,7 @@ class Graph extends Component {
     }
 
     return (
-      <Box mb={2} align='center'>
+      <Box mb={2} textAlign='center'>
         <svg {...this.props}>
           <marker
             id='arrow'

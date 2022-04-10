@@ -1,7 +1,8 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
-import Alert from '@material-ui/lab/Alert'
+import Typography from '@mui/material/Typography'
+import MuiLink from '@mui/material/Link'
+import Alert from '@mui/material/Alert'
+import Link from '../../src/Link'
 import Blog from '../../src/blog/Blog'
 import Section from '../../src/blog/Section'
 import Highlight from '../../src/Highlight'
@@ -15,15 +16,15 @@ const SCSSInANutshell = (): React.ReactElement => {
         </Alert>
       </Section>
       <Section>
-        <Typography paragraph>The complete Sass/SCSS reference is located <Link href='https://sass-lang.com/documentation'>here</Link>.</Typography>
+        <Typography paragraph>The complete Sass/SCSS reference is located <MuiLink href='https://sass-lang.com/documentation'>here</MuiLink>.</Typography>
 
-        <h3>Installation</h3>
+        <Typography variant='h3' gutterBottom>Installation</Typography>
         <Typography paragraph>Install Sass using Ruby</Typography>
         <Highlight language='bash'>gem install sass</Highlight>
         <Typography paragraph>Have Sass watch over a file, and specify the output destination</Typography>
         <Highlight language='bash'>sass --watch main.scss:main.css</Highlight>
         <Typography paragraph>You will almost never use this command. Instead we use Grunt to handle this.</Typography>
-        <Typography paragraph>Install Sass syntax highlighting in Sublime Text via Package Control <a href='https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass'>https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass</a></Typography>
+        <Typography paragraph>Install Sass syntax highlighting in Sublime Text via Package Control <MuiLink href='https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass'>https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass</MuiLink></Typography>
         <ul>
           <Typography component='li'>
             Enable Package Control
@@ -32,7 +33,7 @@ const SCSSInANutshell = (): React.ReactElement => {
                 Open the Sublime Text console. <code>ctrl+`</code> OR <code>View &gt; Show Console</code>
               </Typography>
               <Typography component='li'>
-                Run the Python code found at <a href='https://packagecontrol.io/installation'>https://packagecontrol.io/installation</a>
+                Run the Python code found at <MuiLink href='https://packagecontrol.io/installation'>https://packagecontrol.io/installation</MuiLink>
               </Typography>
             </ul>
           </Typography>
@@ -52,7 +53,7 @@ const SCSSInANutshell = (): React.ReactElement => {
           </Typography>
         </ul>
 
-        <h3>Partials</h3>
+        <Typography variant='h3' gutterBottom>Partials</Typography>
         <Typography paragraph>All <code>.scss</code> files are compiled into their respective <code>.css</code> file. Partials which are prefixed with an underscore will not generate their own <code>.css</code> file. They exist for inclusion from other files.</Typography>
         <Highlight language='scss'>
           {`
@@ -61,10 +62,10 @@ const SCSSInANutshell = (): React.ReactElement => {
           `.trim()}
         </Highlight>
 
-        <h3>CSS Compliant</h3>
+        <Typography variant='h3' gutterBottom>CSS Compliant</Typography>
         <Typography paragraph>All CSS rules and syntax work in Sass. CSS in a Nutshell: <Link href='/blog/css-in-a-nutshell'>/css-in-a-nutshell</Link></Typography>
 
-        <h3>Nesting</h3>
+        <Typography variant='h3' gutterBottom>Nesting</Typography>
         <Typography paragraph>Selectors can be nested within others and are equivalent to CSS’s space separated selectors.</Typography>
         <Highlight language='scss'>
           {`
@@ -78,7 +79,7 @@ ul {
           `.trim()}
         </Highlight>
 
-        <h3>Parent Selector</h3>
+        <Typography variant='h3' gutterBottom>Parent Selector</Typography>
         <Typography paragraph>The <code>&</code> character represents the current parent selector and allows selectors to be made relative to it.</Typography>
         <Highlight language='scss'>
           {`
@@ -98,7 +99,7 @@ ul {
           `.trim()}
         </Highlight>
 
-        <h3>Nested Properties</h3>
+        <Typography variant='h3' gutterBottom>Nested Properties</Typography>
         <Typography paragraph>Certain properties can also be nested.</Typography>
         <Highlight language='scss'>
           {`
@@ -112,7 +113,7 @@ blockquote {
           `.trim()}
         </Highlight>
 
-        <h3>Extend/Inheritance</h3>
+        <Typography variant='h3' gutterBottom>Extend/Inheritance</Typography>
         <Typography paragraph>Selectors can inherit from other selectors using <code>@extend</code>. If the <code>!optional</code> tag is included, <code>@extend</code> will be ignored if it were to cause an error (e.g. the selector doesn't exist or is conflictory). The <code>%</code> selector is similar to <code>.</code>/<code>#</code> for classes/id's, but exists for the purpose of inheritance and won't be rendered into the output css.</Typography>
         <Highlight language='scss'>
           {`
@@ -139,8 +140,8 @@ p%awesome { // This ruleset won't be rendered explicitly
           `.trim()}
         </Highlight>
 
-        <h3>Variables</h3>
-        <Typography paragraph>Variables' scopes are within the level of selectors they are defined in, unless given the <code>!global</code> flag. The <code>!default</code> flag will set the variable if it isn't already defined.</Typography>
+        <Typography variant='h3' gutterBottom>Variables</Typography>
+        <Typography paragraph>Variables’ scopes are within the level of selectors they are defined in, unless given the <code>!global</code> flag. The <code>!default</code> flag will set the variable if it isn't already defined.</Typography>
         <Highlight language='scss'>
           {`
 $size: 15px;
@@ -166,7 +167,7 @@ div {
           <Typography component='li'>Maps: <code>(key1: value1, key2: value2)</code></Typography>
         </ul>
 
-        <h3>Interpolation</h3>
+        <Typography variant='h3' gutterBottom>Interpolation</Typography>
         <Typography paragraph>Interpolation is mainly for using variables in selectors or strings.</Typography>
         <Highlight language='scss'>
           {`
@@ -179,7 +180,7 @@ $text: "#{$name}#{$attr}"; // "fooborder"
           `.trim()}
         </Highlight>
 
-        <h3>Operations</h3>
+        <Typography variant='h3' gutterBottom>Operations</Typography>
         <Typography paragraph>Take care that agreeable units are in the arguments.</Typography>
         <Typography paragraph>Numbers and Colors: <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> <code>{'<'}</code> <code>{'>'}</code> <code>{'<='}</code> <code>{'>='}</code> <code>==</code> <code>!=</code></Typography>
         <Highlight language='scss'>
@@ -199,7 +200,7 @@ sans + -serif == sans-serif
         </Highlight>
         <Typography paragraph>Booleans: <code>and</code> <code>or</code> <code>not</code> <code>==</code> <code>!=</code></Typography>
 
-        <h3>Mixins</h3>
+        <Typography variant='h3' gutterBottom>Mixins</Typography>
         <Typography paragraph>Mixins are reusable groups of CSS declarations which allow variable parameters. (Also accepts the parameters as lists and maps).</Typography>
         <Highlight language='scss'>
           {`
@@ -254,7 +255,7 @@ sans + -serif == sans-serif
           `.trim()}
         </Highlight>
 
-        <h3>Functions</h3>
+        <Typography variant='h3' gutterBottom>Functions</Typography>
         <Typography paragraph>Functions supports var-args and keyword arguments similar to mixins. For the list of built-in Sass functions: <a href='http://sass-lang.com/documentation/Sass/Script/Functions.html'>http://sass-lang.com/documentation/Sass/Script/Functions.html</a></Typography>
         <Highlight language='scss'>
           {`
@@ -269,7 +270,7 @@ $gutter-width: 10px;
           `.trim()}
         </Highlight>
 
-        <h3>Control Directives</h3>
+        <Typography variant='h3' gutterBottom>Control Directives</Typography>
         <Typography paragraph>All values are "truthy" except for <code>false</code> and <code>null</code>.</Typography>
         <Typography paragraph>The <code>@if</code>, <code>@else if</code>, and <code>@else</code> directives:</Typography>
         <Highlight language='scss'>

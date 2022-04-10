@@ -1,7 +1,7 @@
 import React from 'react'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
 import Blog from '../../src/blog/Blog'
 import Section from '../../src/blog/Section'
 

@@ -1,3 +1,4 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
   webpack (config, { isServer }) {
     config.module.rules.push({
@@ -12,5 +13,6 @@ module.exports = {
     })
 
     return config
-  }
+  },
+  reactStrictMode: true
 }

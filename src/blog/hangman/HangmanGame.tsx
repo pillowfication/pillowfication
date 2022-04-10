@@ -1,26 +1,18 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/system'
+import Box from '@mui/material/Box'
 
-const useStyles = makeStyles(theme => ({
-  hangmanGame: {
-    fontFamily: 'monospace',
-    textAlign: 'center',
-    fontSize: '2rem',
-    letterSpacing: theme.spacing(0.5),
-    marginBottom: theme.spacing(2)
-  },
-  miss: {
-    position: 'relative',
-    margin: theme.spacing(0, 0.5),
-    '&::before': {
-      position: 'absolute',
-      content: '""',
-      left: '-20%',
-      top: '50%',
-      right: '-20%',
-      borderTop: '2px solid',
-      transform: 'rotate(-45deg)'
-    }
+const Miss = styled('span')(() => ({
+  position: 'relative',
+  margin: '0 2px',
+  '&::before': {
+    position: 'absolute',
+    content: '""',
+    left: '-20%',
+    top: '50%',
+    right: '-20%',
+    borderTop: '2px solid',
+    transform: 'rotate(-45deg)'
   }
 }))
 
@@ -30,18 +22,21 @@ interface Props {
 }
 
 const HangmanGame = ({ template, misses }: Props): React.ReactElement => {
-  const classes = useStyles()
-
   return (
-    <div className={classes.hangmanGame}>
+    <Box sx={{
+      fontFamily: 'monospace',
+      textAlign: 'center',
+      fontSize: '2rem',
+      letterSpacing: 4
+    }}>
       <div>{template}</div>
       {misses !== undefined && (
         <div>
           {misses.split('').map((letter, index) =>
-            <span key={index} className={classes.miss}>{letter}</span>)}
+            <Miss key={index}>{letter}</Miss>)}
         </div>
       )}
-    </div>
+    </Box>
   )
 }
 

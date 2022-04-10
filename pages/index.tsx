@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
+import { styled } from '@mui/system'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Link from '../src/Link'
 
 const PILLOWFICATION = {
@@ -88,64 +89,49 @@ const PILLOWFICATION = {
   }
 }
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    width: '100vw',
-    height: '100vh',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  triangle: {
-    fill: '#000000',
-    transition: 'fill 3s linear',
-    '&:hover': {
-      fill: '#ffffff',
-      transition: 'fill 0s linear'
-    }
-  },
-  links: {
-    margin: theme.spacing(4, 0, 0),
-    padding: 0,
-    textAlign: 'center',
-    listStyle: 'none',
-
-    '& > li': {
-      display: 'inline-block',
-      margin: theme.spacing(4),
-      fontSize: '1.25em',
-
-      '& > a': {
-        textDecoration: 'none',
-        '&:visited': {
-          color: theme.palette.primary.dark
-        }
-      }
-    }
+const Triangle = styled('polygon')({
+  fill: '#000000',
+  transition: 'fill 3s linear',
+  '&:hover': {
+    fill: '#ffffff',
+    transition: 'fill 0s linear'
   }
-}))
+})
 
 const Index = (): React.ReactElement => {
-  const classes = useStyles()
-
   return (
-    <>
-      <div className={classes.container}>
-        <div>
-          <svg
-            width={PILLOWFICATION.bounds.x[1] - PILLOWFICATION.bounds.x[0]} height={PILLOWFICATION.bounds.y[1] - PILLOWFICATION.bounds.y[0]}
+    <Box sx={{
+      display: 'flex',
+      width: '100vw',
+      height: '100vh',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <div>
+        <svg
+          width={PILLOWFICATION.bounds.x[1] - PILLOWFICATION.bounds.x[0]} height={PILLOWFICATION.bounds.y[1] - PILLOWFICATION.bounds.y[0]}
+        >
+          {PILLOWFICATION.path.map((points, index) =>
+            <Triangle key={index} points={points} />
+          )}
+        </svg>
+        <Box sx={{ textAlign: 'center' }}>
+          <Button
+            component={Link}
+            variant='outlined'
+            href='/blog'
+            sx={{
+              textTransform: 'none',
+              mt: 4,
+              px: 4,
+              py: 0.25
+            }}
           >
-            {PILLOWFICATION.path.map((points, index) =>
-              <polygon key={index} className={classes.triangle} points={points} />
-            )}
-          </svg>
-          <ul className={classes.links}>
-            <Typography component='li'><Link href='/github'>code</Link></Typography>
-            <Typography component='li'><Link href='/blog'>blog</Link></Typography>
-          </ul>
-        </div>
+            blog
+          </Button>
+        </Box>
       </div>
-    </>
+    </Box>
   )
 }
 

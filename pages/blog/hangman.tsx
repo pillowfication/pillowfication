@@ -1,8 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
+import { styled } from '@mui/system'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
 import Blog from '../../src/blog/Blog'
 import Section from '../../src/blog/Section'
 import Footnotes from '../../src/Footnotes'
@@ -11,16 +11,11 @@ import LengthsPlot from '../../src/blog/hangman/LengthsPlot'
 import WordsTable from '../../src/blog/hangman/WordsTable'
 import hangmanData from '../../src/blog/hangman/gists/hangman-data.json'
 
-const useStyles = makeStyles(() => ({
-  word: {
-    fontFamily: 'monospace',
-    fontSize: '1.25em',
-    lineHeight: 1
-  }
+const Word = styled('span')(() => ({
+  fontFamily: 'monospace'
 }))
 
 const Hangman = (): React.ReactElement => {
-  const classes = useStyles()
   const { createReference, createFootnote } = new Footnotes()
 
   return (
@@ -39,14 +34,15 @@ const Hangman = (): React.ReactElement => {
         </ol>
         <Typography paragraph>If multiple letters have the same rank in Step 2, then any is chosen with equal probability. The difficulty of a word under this strategy is the average number of misses made before the word is guessed. The most difficult words by length are listed in the following table:</Typography>
         <WordsTable data={hangmanData.strat1.words} />
-        <Typography paragraph>Typically, shorter words are more difficult than longer words, with the most difficult being <Link href='https://www.oed.com/view/Entry/61244141'><Typography component='samp' className={classes.word}>JAI</Typography></Link> (or <Typography component='samp' className={classes.word}>KOI</Typography> for a common word). However, a human player may find longer words to be harder, because Step 1 is extremely difficult to calculate. I asked several players to guess two words:</Typography>
+        <Typography paragraph>Typically, shorter words are more difficult than longer words, with the most difficult being <Link href='https://www.oed.com/view/Entry/61244141'><Word>JAI</Word></Link> (or <Word>KOI</Word> for a common word). However, a human player may find longer words to be harder, because Step 1 is extremely difficult to calculate. I asked several players to guess two words:</Typography>
         <ol>
-          <Typography component='li'><Typography component='samp' className={classes.word}>VISUALIZED</Typography>—a 10-letter word with difficulty 0.</Typography>
-          <Typography component='li'><Typography component='samp' className={classes.word}>BAKING</Typography>—a 6-letter word with difficulty 11.58.</Typography>
+          <Typography component='li'><Word>VISUALIZED</Word>—a 10-letter word with difficulty 0.</Typography>
+          <Typography component='li'><Word>BAKING</Word>—a 6-letter word with difficulty 11.58.</Typography>
         </ol>
         <Typography paragraph>One player reached the state</Typography>
         <HangmanGame template='_IS___I__D' misses='NT' />
-        <Typography paragraph>of which only 2 valid words remained.{createReference('mis')} The player was unable to find either easily and ended with 12 misses. The difficulty of this word also came from the presence of a <Typography component='samp' className={classes.word}>V</Typography> and <Typography component='samp' className={classes.word}>Z</Typography> which players tend to overlook. The best score I saw was 7.</Typography>
+
+        <Typography paragraph>of which only 2 valid words remained.{createReference('mis')} The player was unable to find either easily and ended with 12 misses. The difficulty of this word also came from the presence of a <Word>V</Word> and <Word>Z</Word> which players tend to overlook. The best score I saw was 7.</Typography>
         <Typography paragraph>On the other hand, many players reached the state</Typography>
         <HangmanGame template='_A_ING' misses='???' />
         <Typography paragraph>and they were aware that many, many words fit this template.{createReference('bak')} Guessing the word became a game of chance, which a computer cannot overcome either. The best score I saw was 8.</Typography>
@@ -65,11 +61,11 @@ const Hangman = (): React.ReactElement => {
         </Grid>
         <Typography paragraph>Strategy 2 plays more consistently so it is harder to outplay, but it is worse overall. These are the best words for Strategy 2:{createReference('di2')}</Typography>
         <WordsTable data={hangmanData.strat2.words} />
-        <Typography paragraph>Strategy 2 does the worst when the word contains very uncommon letters such as <Typography component='samp' className={classes.word}>J</Typography> and <Typography component='samp' className={classes.word}>Z</Typography>, and like Strategy 1, it finds repeated letters difficult.</Typography>
+        <Typography paragraph>Strategy 2 does the worst when the word contains very uncommon letters such as <Word>J</Word> and <Word>Z</Word>, and like Strategy 1, it finds repeated letters difficult.</Typography>
       </Section>
 
       <Section title='Strategy 3 - Most Knowledge'>
-        <Typography paragraph>For another strategy, the focus is on the number of valid words remaining after every guess. To judge the value of guessing the letter <Typography component='samp' className={classes.word}>A</Typography>, first all currently valid words are assumed to be in play with equal probability. The guess of <Typography component='samp' className={classes.word}>A</Typography> is applied to each valid word, and all the valid words after each application are counted up. The guess that results in the fewest number of valid words is chosen. Again, if multiple letters tie, then either is chosen with equal probability.</Typography>
+        <Typography paragraph>For another strategy, the focus is on the number of valid words remaining after every guess. To judge the value of guessing the letter <Word>A</Word>, first all currently valid words are assumed to be in play with equal probability. The guess of <Word>A</Word> is applied to each valid word, and all the valid words after each application are counted up. The guess that results in the fewest number of valid words is chosen. Again, if multiple letters tie, then either is chosen with equal probability.</Typography>
         <Typography paragraph>This strategy was too computationally expensive for me to calculate anything meaningful. It seems to perform the worst too, since it disregards whether a guess is likely to be right or wrong.{createReference('st3')}</Typography>
       </Section>
 
@@ -82,13 +78,13 @@ const Hangman = (): React.ReactElement => {
         {createFootnote({
           mis: (
             <Typography variant='body2'>
-              The other word is <Typography component='samp' className={classes.word}>MISCLAIMED</Typography>.
+              The other word is <Word>MISCLAIMED</Word>.
             </Typography>
           ),
           bak: (
             <Typography variant='body2'>
-              102 words match <Typography component='samp' className={classes.word}>_A_ING</Typography>, and the frequencies of remaining letters are somewhat evenly distributed.<br />
-              <Typography component='samp' className={classes.word}>B</Typography>-6, <Typography component='samp' className={classes.word}>C</Typography>-11, <Typography component='samp' className={classes.word}>D</Typography>-11, <Typography component='samp' className={classes.word}>E</Typography>-7, <Typography component='samp' className={classes.word}>F</Typography>-10, <Typography component='samp' className={classes.word}>H</Typography>-11, <Typography component='samp' className={classes.word}>J</Typography>-3, <Typography component='samp' className={classes.word}>K</Typography>-10, <Typography component='samp' className={classes.word}>L</Typography>-13, <Typography component='samp' className={classes.word}>M</Typography>-12, <Typography component='samp' className={classes.word}>O</Typography>-1, <Typography component='samp' className={classes.word}>P</Typography>-10, <Typography component='samp' className={classes.word}>Q</Typography>-0, <Typography component='samp' className={classes.word}>R</Typography>-23, <Typography component='samp' className={classes.word}>S</Typography>-12, <Typography component='samp' className={classes.word}>T</Typography>-15, <Typography component='samp' className={classes.word}>U</Typography>-0, <Typography component='samp' className={classes.word}>V</Typography>-8, <Typography component='samp' className={classes.word}>W</Typography>-19, <Typography component='samp' className={classes.word}>X</Typography>-5, <Typography component='samp' className={classes.word}>Y</Typography>-10, <Typography component='samp' className={classes.word}>Z</Typography>-6.
+              102 words match <Word>_A_ING</Word>, and the frequencies of remaining letters are somewhat evenly distributed.<br />
+              <Word>B</Word>-6, <Word>C</Word>-11, <Word>D</Word>-11, <Word>E</Word>-7, <Word>F</Word>-10, <Word>H</Word>-11, <Word>J</Word>-3, <Word>K</Word>-10, <Word>L</Word>-13, <Word>M</Word>-12, <Word>O</Word>-1, <Word>P</Word>-10, <Word>Q</Word>-0, <Word>R</Word>-23, <Word>S</Word>-12, <Word>T</Word>-15, <Word>U</Word>-0, <Word>V</Word>-8, <Word>W</Word>-19, <Word>X</Word>-5, <Word>Y</Word>-10, <Word>Z</Word>-6.
             </Typography>
           ),
           dif: (
@@ -103,7 +99,7 @@ const Hangman = (): React.ReactElement => {
           ),
           st3: (
             <Typography variant='body2'>
-              Using a dictionary of <Typography component='samp' className={classes.word}>ABC</Typography>, <Typography component='samp' className={classes.word}>BAC</Typography>, <Typography component='samp' className={classes.word}>DDD</Typography>, <Typography component='samp' className={classes.word}>DDE</Typography>, Strategy 3 is on average 3.94× worse than Strategy 1 and 3.06× worse than Strategy 2.
+              Using a dictionary of <Word>ABC</Word>, <Word>BAC</Word>, <Word>DDD</Word>, <Word>DDE</Word>, Strategy 3 is on average 3.94× worse than Strategy 1 and 3.06× worse than Strategy 2.
             </Typography>
           )
         })}

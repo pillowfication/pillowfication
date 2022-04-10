@@ -1,16 +1,29 @@
-import { createTheme } from '@material-ui/core/styles'
+import { createTheme } from '@mui/material/styles'
 
-export default createTheme({
+const theme = createTheme({
   typography: {
     fontSize: 20,
-    fontFamily: 'Lora, "Open Serif", serif',
+    fontFamily: 'Lora, serif',
     h1: {
       fontSize: '2.75rem',
       fontWeight: 'bold'
     },
     h2: {
+      fontSize: '2rem',
+      fontWeight: 'bold'
+    },
+    h3: {
       fontSize: '1.75rem',
       fontWeight: 'bold'
     }
+  },
+  components: {
+    MuiLink: {
+      defaultProps: {
+        underline: 'none'
+      }
+    }
   }
 })
+
+export default theme

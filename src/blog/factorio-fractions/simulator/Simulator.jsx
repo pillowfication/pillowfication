@@ -1,9 +1,10 @@
-import React, { Component } from 'react' // eslint-disable-line no-unused-vars
-import { withStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box' // eslint-disable-line no-unused-vars
-import ButtonGroup from '@material-ui/core/ButtonGroup' // eslint-disable-line no-unused-vars
-import Button from '@material-ui/core/Button' // eslint-disable-line no-unused-vars
-import Highlight from '../../../Highlight' // eslint-disable-line no-unused-vars
+import React, { Component } from 'react'
+import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
+import ButtonGroup from '@mui/material/ButtonGroup'
+import Button from '@mui/material/Button'
+import TableContainer from '@mui/material/TableContainer'
+import Highlight from '../../../Highlight'
 import tokenizeBlueprint from './tokenize-blueprint'
 import attachNetwork from './attach-network'
 import p from './Path'
@@ -489,8 +490,6 @@ class Simulator extends Component {
     if (this.error) {
       return <Highlight>{'Error creating simulator.\n' + this.error}</Highlight>
     } else {
-      const classes = this.props.classes
-
       // `layers[0]` contains the base grid graphics
       // `layers[1]` contains the blobs as (x, y) coordinates
       // `layers[2]` contains splitters and underground belts and other graphics
@@ -534,19 +533,33 @@ class Simulator extends Component {
       const { speedModifier } = this.state
 
       return (
-        <Box mt={2} mb={4} align='center'>
-          <Box mb={2}>
-            <svg width={grid.width * BS} height={grid.height * BS}>
-              {layers[0]}{layers[1]}{layers[2]}{this.props.children}
-            </svg>
+        <Box component={TableContainer} mb={2}>
+          <Box component='svg' sx={{
+            display: 'block',
+            width: grid.width * BS,
+            height: grid.height * BS,
+            mx: 'auto',
+            mb: 2
+          }}>
+            {layers[0]}{layers[1]}{layers[2]}{this.props.children}
           </Box>
           {bare &&
-            <div>
-              <ButtonGroup className={classes.buttonGroup} color='primary' size='small'>
-                <Button onClick={this.handleClickPlayPause}>Play/Pause</Button>
-                <Button onClick={this.handleClickReset}>Reset</Button>
+            <Stack direction='row' justifyContent='center' spacing={1}>
+              <ButtonGroup color='primary' size='small'>
+                <Button
+                  onClick={this.handleClickPlayPause}
+                  sx={{ textTransform: 'none' }}
+                >
+                  Play/Pause
+                </Button>
+                <Button
+                  onClick={this.handleClickReset}
+                  sx={{ textTransform: 'none' }}
+                >
+                  Reset
+                </Button>
               </ButtonGroup>
-              <ButtonGroup className={classes.buttonGroup} color='primary' size='small'>
+              <ButtonGroup color='primary' size='small'>
                 <Button
                   disabled={speedModifier === 0.5}
                   onClick={this.handleClickSpeedModifier05}
@@ -566,23 +579,11 @@ class Simulator extends Component {
                   2×
                 </Button>
               </ButtonGroup>
-            </div>}
+            </Stack>}
         </Box>
       )
     }
   }
 }
 
-// Simulator.propTypes = {
-//   blueprint: PropTypes.string.isRequired,
-//   bare: PropTypes.bool
-// }
-
-export default withStyles(theme => ({
-  buttonGroup: {
-    margin: theme.spacing(0, 2),
-    '& button': {
-      textTransform: 'none'
-    }
-  }
-}))(Simulator)
+export default Simulator

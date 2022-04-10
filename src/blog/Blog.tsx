@@ -1,35 +1,22 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-
-const useStyles = makeStyles(theme => ({
-  title: {
-    marginBottom: theme.spacing(8)
-  },
-  date: {
-    marginLeft: theme.spacing(4)
-  }
-}))
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 
 interface Props {
   title: string
   date?: string
-  className?: string
   children?: any
 }
 
-const Blog = ({ title, date, className, children }: Props): React.ReactElement => {
-  const classes = useStyles()
-
+const Blog = ({ title, date, children }: Props): React.ReactElement => {
   return (
-    <Container maxWidth='md'>
-      <Box component='article' mt={8} mb={16} className={className}>
-        <Typography variant='h1' className={classes.title}>
+    <Container maxWidth='lg'>
+      <Box component='article' mt={8} mb={20}>
+        <Typography variant='h1' sx={{ mb: 8 }}>
           {title}
           {date !== undefined && (
-            <Typography component='span' className={classes.date}>{date}</Typography>
+            <Typography component='span' ml={4}>{date}</Typography>
           )}
         </Typography>
         {children}

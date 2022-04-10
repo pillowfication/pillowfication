@@ -1,7 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-// import Link from '@material-ui/core/Link'
+import { makeStyles } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+// import Link from '@mui/material/Link'
 import Blog from '../../src/blog/Blog'
 import Section from '../../src/blog/Section'
 

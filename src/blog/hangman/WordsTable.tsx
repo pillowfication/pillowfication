@@ -1,26 +1,20 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Paper from '@material-ui/core/Paper'
-import Collapse from '@material-ui/core/Collapse'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
+import { styled } from '@mui/system'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Collapse from '@mui/material/Collapse'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import TableContainer from '@mui/material/TableContainer'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
 
 const LENGTHS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-const useStyles = makeStyles(() => ({
-  word: {
-    fontFamily: 'monospace',
-    fontSize: '1.25em'
-  },
-  difficulty: {
-    fontSize: '0.8em'
-  }
+const Word = styled('span')(() => ({
+  fontFamily: 'monospace'
 }))
 
 interface Props {
@@ -28,7 +22,6 @@ interface Props {
 }
 
 const WordsTable = ({ data }: Props): React.ReactElement => {
-  const classes = useStyles()
   const [show, setShow] = useState(false)
 
   const toggleShow = (): void => {
@@ -46,9 +39,9 @@ const WordsTable = ({ data }: Props): React.ReactElement => {
                 <TableRow key={length}>
                   {data[length].map((datum: any) =>
                     <TableCell key={datum.word} align='center'>
-                      <Typography component='span' className={classes.word}>{datum.word}</Typography>
+                      <Word>{datum.word}</Word>
                       <br />
-                      <Typography component='span' className={classes.difficulty}>{datum.diff.toFixed(2)}</Typography>
+                      {datum.diff.toFixed(2)}
                     </TableCell>
                   )}
                 </TableRow>
