@@ -325,7 +325,7 @@ const SpotIt = (): React.ReactElement => {
             <Icons.Language />
           ]} />
         </Box>
-        <Typography paragraph>This process can go on until 9 cards have been made, utilizing 36 unique symbols, and it shows that 36 is the fewest number of symbols required to build a deck of 9 cards. Unfortunately, this algorithm stops at 9 cards. It is impossible to add a 10th card without editting the some of the 9 cards already made. (Try to add a 10th card, keeping in mind that every preexisting symbol appears exactly twice.)</Typography>
+        <Typography paragraph>This process can go on until 9 cards have been made, utilizing 36 unique symbols, and it shows that 36 is the fewest number of symbols required to build a deck of 9 cards. Unfortunately, this algorithm stops at 9 cards. It is impossible to add a 10th card without editing the some of the 9 cards already made. (Try to add a 10th card, keeping in mind that every preexisting symbol appears exactly twice.)</Typography>
         <Typography paragraph>Thus {$('36')} is the first lower bound.</Typography>
       </Section>
 
@@ -561,11 +561,11 @@ const SpotIt = (): React.ReactElement => {
             </Box>
           </TableContainer>
         </Box>
-        <Typography>This means that the size of the <Icons.AcUnit fontSize='inherit' /> group can’t be more than {$('7')}, there are two ways the 54 cards can be partitioned, based on the size of the groups:</Typography>
+        <Typography>This means that the size of the <Icons.AcUnit fontSize='inherit' /> group can’t be more than {$('7')}, and there are only two ways the 54 cards can be partitioned, based on the size of the groups:</Typography>
         {$$(`
           \\{ 7, 7, 7, 7, 7, 7, 6, 6 \\} \\quad\\text{and}\\quad \\{ 7, 7, 7, 7, 7, 7, 7, 5 \\}
         `)}
-        <Typography paragraph>This argument assumes that there are 2 non-empty groups, so there is actually the third possible partitioning {$('\\{ 54, 0, 0, 0, 0, 0, 0, 0 \\}')}, which is the trivial case already discussed.</Typography>
+        <Typography paragraph>This argument assumes that there are 2 non-empty groups, so there is also the third possible partitioning {$('\\{ 54, 0, 0, 0, 0, 0, 0, 0 \\}')}, which is the trivial case already discussed.</Typography>
         <Typography paragraph>Pick three groups of size {$('7')}, and call them the <Icons.Star fontSize='inherit' />, <Icons.AcUnit fontSize='inherit' />, and <Icons.AirplanemodeActive fontSize='inherit' /> groups. The <Icons.Star fontSize='inherit' /> group contains 49 unique non-<Icons.Star fontSize='inherit' /> symbols. There are also 49 different ways to pair up a card from the <Icons.Star fontSize='inherit' /> group with a card from the <Icons.AcUnit fontSize='inherit' /> group. Each connection requires a unique symbol, so all 49 symbols are used to connect the <Icons.Star fontSize='inherit' /> and <Icons.AcUnit fontSize='inherit' /> groups. These same 49 symbols must also be used to connect the <Icons.Star fontSize='inherit' /> and <Icons.AirplanemodeActive fontSize='inherit' /> groups, and consequently the <Icons.AcUnit fontSize='inherit' /> and <Icons.AirplanemodeActive fontSize='inherit' /> groups. 49 symbols <strong>must</strong> be used to ensure the entire deck adheres to <i>Spot It!</i> rules.</Typography>
         <Box component='figure' textAlign='center'>
           <TableContainer>
