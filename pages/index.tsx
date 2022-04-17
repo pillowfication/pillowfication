@@ -1,6 +1,7 @@
 import React from 'react'
 import { styled } from '@mui/system'
 import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import Link from '../src/Link'
 
@@ -115,21 +116,37 @@ const Index = (): React.ReactElement => {
             <Triangle key={index} points={points} />
           )}
         </svg>
-        <Box sx={{ textAlign: 'center' }}>
+        <Stack
+          direction='row'
+          spacing={2}
+          justifyContent='center'
+          sx={{ mt: 4 }}
+        >
+          <Button
+            component={Link}
+            variant='outlined'
+            href='/projects'
+            sx={{
+              textTransform: 'none',
+              px: 4,
+              py: 0.25
+            }}
+          >
+            projects
+          </Button>
           <Button
             component={Link}
             variant='outlined'
             href='/blog'
             sx={{
               textTransform: 'none',
-              mt: 4,
               px: 4,
               py: 0.25
             }}
           >
             blog
           </Button>
-        </Box>
+        </Stack>
       </div>
     </Box>
   )

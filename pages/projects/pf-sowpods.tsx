@@ -1,13 +1,18 @@
 import React from 'react'
-import { makeStyles } from '@mui/material/styles'
-import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import Blog from '../../src/blog/Blog'
 import Section from '../../src/blog/Section'
+import BarGraph from '../../src/projects/pf-sowpods/BarGraph'
+import Playground from '../../src/projects/pf-sowpods/Playground'
 
-const stats = {
+const stats: {
+  lengthFrequency: Record<number, { count: number, percentage: number }>
+  lengthFrequencyTotal: number
+  letterFrequency: Record<string, { count: number, percentage: number }>
+  letterFrequencyTotal: number
+} = {
   lengthFrequency: {
     2: { count: 124, percentage: 0.046311685110419755 },
     3: { count: 1292, percentage: 0.48253788034405104 },
@@ -22,9 +27,9 @@ const stats = {
     12: { count: 20297, percentage: 7.5805505861789495 },
     13: { count: 13857, percentage: 5.175330811089408 },
     14: { count: 9116, percentage: 3.4046558182789233 },
-    15: { count: 5757, percentage: 2.150132025650698 },
-    total: 267751
+    15: { count: 5757, percentage: 2.150132025650698 }
   },
+  lengthFrequencyTotal: 267751,
   letterFrequency: {
     A: { count: 188703, percentage: 7.736066180645547 },
     B: { count: 44953, percentage: 1.8428927098061998 },
@@ -51,44 +56,10 @@ const stats = {
     W: { count: 18393, percentage: 0.7540392323419 },
     X: { count: 6852, percentage: 0.28090451911089537 },
     Y: { count: 39772, percentage: 1.630492488919809 },
-    Z: { count: 11772, percentage: 0.48260478677370994 },
-    total: 2439263
-  }
+    Z: { count: 11772, percentage: 0.48260478677370994 }
+  },
+  letterFrequencyTotal: 2439263
 }
-
-const useStyles = makeStyles(theme => ({
-  barGraph: {
-    border: 'none',
-    '& th, & td': {
-      padding: theme.spacing(0, 1)
-    }
-  },
-  datum: {
-    width: '100%',
-    position: 'relative'
-  },
-  bar: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: '2rem',
-    backgroundColor: theme.palette.primary.main
-  },
-  displayValue: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    height: '2rem',
-    padding: '0 0.5rem',
-    backgroundColor: 'rgba(255, 255, 255, 0.66)',
-    overflow: 'visible',
-    opacity: 0,
-    transition: 'opacity 0.2s',
-    ':hover > &': {
-      opacity: 1
-    }
-  }
-}))
 
 const PFSowpods = (): React.ReactElement => {
   const lengthStats: Array<{ label: string, value: number, displayValue: string }> = []
@@ -97,7 +68,7 @@ const PFSowpods = (): React.ReactElement => {
     lengthStats.push({
       label: String(length),
       value: stat.count,
-      displayValue: `${(stat.count as number).toLocaleString()} (${(stat.percentage as number).toFixed(2)}%)`
+      displayValue: `${stat.count.toLocaleString()} (${stat.percentage.toFixed(2)}%)`
     })
   }
 
@@ -107,7 +78,7 @@ const PFSowpods = (): React.ReactElement => {
     letterStats.push({
       label: letter,
       value: stat.count,
-      displayValue: `${(stat.count as number).toLocaleString()} (${(stat.percentage as number).toFixed(2)}%)`
+      displayValue: `${stat.count.toLocaleString()} (${stat.percentage.toFixed(2)}%)`
     })
   }
 
@@ -124,37 +95,8 @@ const PFSowpods = (): React.ReactElement => {
           </Grid>
         </Grid>
       </Section>
+      <Playground />
     </Blog>
-  )
-}
-
-const BarGraph = ({ title, stats }: { title: string, stats: Array<{ label: string, value: number, displayValue: string }> }): React.ReactElement => {
-  const classes = useStyles()
-  const maxValue = Math.max(...stats.map(stat => stat.value))
-
-  return (
-    <div>
-      <Box textAlign='center'>
-        <Typography>{title}</Typography>
-      </Box>
-      <table className={classes.barGraph}>
-        <tbody>
-          {stats.map((stat, index) =>
-            <tr key={index}>
-              <th align='center'>
-                <Typography>{stat.label}</Typography>
-              </th>
-              <td className={classes.datum}>
-                <div className={classes.bar} style={{ width: `${stat.value / maxValue * 100}%` }} />
-                <div className={classes.displayValue}>
-                  <Typography>{stat.displayValue}</Typography>
-                </div>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
   )
 }
 
